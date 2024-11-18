@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+from multiprocessing import Pool
 import logging
 from typing import List, Union
 from src.config import RAW_DATA_DIR
@@ -141,3 +142,56 @@ class DataLoader:
             logger.info(f"Data successfully saved to: {save_path}")
         except Exception as e:
             logger.error(f"Failed to save data to '{save_path}': {e}")
+
+    def get_metadata(self, data: pd.DataFrame) -> dict:
+        """
+        Extract metadata from a DataFrame.
+
+        Parameters:
+        - data: DataFrame to extract metadata from.
+
+        Returns:
+        - Dictionary containing metadata.
+        """
+        return {
+            "rows": data.shape[0],
+            "columns": data.shape[1],
+            "size_in_memory": data.memory_usage(deep=True).sum(),
+        }
+    
+    def parallel_load_files(self, file_names: List[str], num_workers: int = 4) -> List[pd.DataFrame]:
+        """
+        Load multiple files in parallel using multiprocessing.
+
+        Parameters:
+        - file_names: List of file names to load.
+        - num_workers: Number of parallel processes.
+
+        Returns:
+        - List of DataFrames.
+        """
+        with Pool(num_workers) as pool:
+            data_frames = pool.map(self.load_file, file_names)
+        return data_frames
+    
+    def validate_data(self, data: pd.DataFrame) -> bool:
+        """
+        Perform basic validation checks on a DataFrame.
+
+        Parameters:
+        - data: DataFrame to validate.
+
+        Returns:
+        - True if validation passes, False otherwise.
+        """
+        if data.empty:
+            logger.warning("Validation failed: DataFrame is empty.")
+            return False
+        if data.isnull().all(axis=None):
+            logger.warning("Validation failed: DataFrame contains only NaN values.")
+            return False
+        return True
+    
+    
+
+

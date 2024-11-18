@@ -21,3 +21,31 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+from ingestion.data_loader import DataLoader
+from preprocessing.data_cleaner import DataCleaner
+from transformation.feature_engineering import FeatureEngineer
+from visualization.data_visualizer import DataVisualizer
+from storage.data_saver import DataSaver
+
+def main_pipeline():
+    # Ingestion
+    data = DataLoader().load_all_data()
+
+    # Preprocessing
+    cleaned_data = DataCleaner().clean_data(data)
+
+    # Transformation
+    transformed_data = FeatureEngineer().apply_transformations(cleaned_data)
+
+    # Visualization
+    DataVisualizer().generate_plots(transformed_data)
+
+    # Storage
+    DataSaver().save_to_parquet(transformed_data, "final_data.parquet")
+
+if __name__ == "__main__":
+    main_pipeline()
+"""
