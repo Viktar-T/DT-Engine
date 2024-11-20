@@ -28,8 +28,8 @@
             "test_date": "2019-11-06"
         },
         {
-            "main_file_name": "~$Zew ch ON _ 2018-12-18.xlsx",
-            "eco_file_name": "~$Zew ch ON _ 2018-12-18_eco.xlsx",
+            "main_file_name": "Zew ch ON _ 2018-12-18.xlsx",
+            "eco_file_name": "Zew ch ON _ 2018-12-18_eco.xlsx",
             "description": "empty",
             "diesel_test_type": "Zew",
             "fuel": "ON",
@@ -38,7 +38,7 @@
         },
         {
             "main_file_name": "Zew Efekta Agrotronika _ 2019-05-17.xlsx",
-            "eco_file_name": "~$Zew Efekta Agrotronika _ 2019-05-17_eco.xlsx",
+            "eco_file_name": "Zew Efekta Agrotronika _ 2019-05-17_eco.xlsx",
             "description": "empty",
             "diesel_test_type": "Zew",
             "fuel": "Efekta Agrotronika",
