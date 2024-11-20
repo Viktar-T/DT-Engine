@@ -1,0 +1,92 @@
+{
+    "Lublin Diesel": [
+        {
+            "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.xlsx",
+            "eco_file_name": "1600Nn obc ON _ 2018-12-06_eco.xlsx",
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "diesel",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "diesel",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "diesel",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "RME",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "RME",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "B20",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "B20",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "diesel",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "diesel",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "Efekta Agrotronika",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        },
+        {
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "Efekta Agrotronika",
+            "main_file_name": "",
+            "eco_file_name": "",
+            "diesel_engine_name": "empty"
+        }
+    ]
+}
