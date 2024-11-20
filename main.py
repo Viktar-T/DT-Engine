@@ -28,6 +28,7 @@ def proceed_to_next_step(step_number):
 def main():
     try:
         # Step 1: Build files_with_raw_data_links.json
+        logger.info("Starting data pipeline...")
         logger.info("Building files_with_raw_data_links.json...")
         builder = JSONBuilder(RAW_DATA_DIR)
         builder.build_json()
@@ -37,10 +38,11 @@ def main():
         proceed_to_next_step(1)
 
         # Step 2: Load raw data
-        logger.info("Starting data pipeline...")
+        logger.info("Continue data pipeline. Loading raw data...")
         data_loader = DataLoader(RAW_DATA_DIR)
-        raw_data = data_loader.load_data("Zew ch ON _ 2018-12-18.xlsx")
-        logger.info(f"Data loaded successfully. Shape: {raw_data.shape}")
+        #raw_data = data_loader.load_data("Zew ch ON _ 2018-12-18.xlsx")
+        raw_data = data_loader.select_from_json_and_load_data(selected_id=1)
+        logger.info(f"Data loaded successfully. Data Frame 1 - Shape: {raw_data[0].shape}") # !!!Think to multiple data frames
         proceed_to_next_step(2)
 
         # Step 3: Validate data

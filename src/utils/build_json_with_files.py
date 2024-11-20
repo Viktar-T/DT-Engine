@@ -8,15 +8,16 @@ class JSONBuilder:
     def __init__(self, data_dir):
         self.data_dir = data_dir
         self.template = {
+            "id": 0,
             "main_file_name": "",
             "eco_file_name": "",
             "description": "empty",
             "diesel_test_type": "",
             "fuel": "diesel",
             "diesel_engine_name": "empty",
-            "test_date": "",
         }
         self.json_data = {"Lublin Diesel": []}
+        self.current_id = 1  # Initialize the ID counter
 
     def parse_file_name(self, file_name):
         # Extract test_date, fuel, and test_type from the file name
@@ -58,6 +59,9 @@ class JSONBuilder:
                     else:
                         existing_entry["main_file_name"] = file_name
                 else:
+                    # Assign a new ID to the entry
+                    entry["id"] = self.current_id
+                    self.current_id += 1
                     # Add the entry to the JSON structure
                     self.json_data["Lublin Diesel"].append(entry)
 

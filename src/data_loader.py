@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from multiprocessing import Pool
 import logging
+import json
 from typing import List, Union
 from src.config import RAW_DATA_DIR
 
@@ -27,7 +28,8 @@ class DataLoader:
             logger.error(f"Directory '{self.raw_data_path}' does not exist.")
             raise FileNotFoundError(f"Directory '{self.raw_data_path}' does not exist.")
         logger.info(f"DataLoader initialized with raw data path: {self.raw_data_path}")
-    
+
+    # !!!! I have files_with_raw_data_links.json. Don't used in main.py !!!!    
     def list_files(self, extensions: List[str] = ["csv", "xlsx"]) -> List[str]:
         """
         List all files in the raw data directory with the specified extensions.
@@ -46,7 +48,75 @@ class DataLoader:
         ]
         logger.info(f"Found {len(files)} files with extensions {extensions} in '{self.raw_data_path}'")
         return files
+    
+    # !!!! used in main.py !!!!
+    def select_from_json_and_load_data(self, selected_id: int) -> List[pd.DataFrame]:
+        """
+        Select data files to load based on 'files_with_raw_data_links.json' and a provided 'id'.
 
+        Parameters:
+        - selected_id: The ID of the data entry to load.
+
+        Returns:
+        - List of DataFrames loaded from the selected files.
+        """
+        # Define the path to the JSON file
+        json_file_path = os.path.join(self.raw_data_path, 'files_with_raw_data_links.json')
+
+        # Check if the JSON file exists
+        if not os.path.exists(json_file_path):
+            logger.error(f"JSON file '{json_file_path}' does not exist.")
+            raise FileNotFoundError(f"JSON file '{json_file_path}' does not exist.")
+
+        # Open and read the JSON file
+        with open(json_file_path, 'r', encoding='utf-8') as f:
+            data_links = json.load(f)
+
+        # Flatten the JSON structure to a list of entries
+        entries = []
+        for category, items in data_links.items():
+            for item in items:
+                item['category'] = category
+                entries.append(item)
+
+        # Find the entry with the selected ID
+        selected_entry = next((entry for entry in entries if entry['id'] == selected_id), None)
+
+        if not selected_entry:
+            logger.error(f"No entry found with ID {selected_id}.")
+            raise ValueError(f"No entry found with ID {selected_id}.")
+
+        # Get the main_file_name and eco_file_name
+        main_file_name = selected_entry.get('main_file_name', '')
+        eco_file_name = selected_entry.get('eco_file_name', '')
+
+        data_frames = []
+
+        # Load the main file using the existing load_data method
+        if main_file_name:
+            logger.info(f"Loading main file: {main_file_name}")
+            df_main = self.load_data(main_file_name)
+            if df_main is not None:
+                data_frames.append(df_main)
+            else:
+                logger.error(f"Failed to load main file '{main_file_name}'.")
+                raise FileNotFoundError(f"Main file '{main_file_name}' not found or failed to load.")
+
+        # Load the eco file using the existing load_data method
+        if eco_file_name:
+            logger.info(f"Loading eco file: {eco_file_name}")
+            df_eco = self.load_data(eco_file_name)
+            if df_eco is not None:
+                data_frames.append(df_eco)
+            else:
+                logger.error(f"Failed to load eco file '{eco_file_name}'.")
+                raise FileNotFoundError(f"Eco file '{eco_file_name}' not found or failed to load.")
+
+        logger.info("Data files loaded successfully.")
+        return data_frames
+
+
+    # !!!! used in def select_from_json_and_load_data(self, selected_id: int)  !!!!
     def load_data(self, file_name: str) -> Union[pd.DataFrame, None]:
         """
         Load data from a specified file.
@@ -72,39 +142,10 @@ class DataLoader:
             return None
         
         logger.info(f"Data loaded successfully from file: {file_path}")
+        # Display the table in the log
+        logger.info(f"Data from file '{file_name}':\n{data.head().to_string(index=False)}")
         return data
 
-    def load_file(self, file_path: str) -> pd.DataFrame:
-        """
-        Load a single file into a pandas DataFrame.
-
-        Parameters:
-        - file_path: Path to the file to load.
-
-        Returns:
-        - DataFrame containing the file's data.
-        """
-        if not os.path.exists(file_path):
-            logger.error(f"File '{file_path}' not found.")
-            raise FileNotFoundError(f"File '{file_path}' not found.")
-
-        file_extension = os.path.splitext(file_path)[1].lower()
-
-        if file_extension == ".csv":
-            data = pd.read_csv(file_path)
-        elif file_extension in [".xls", ".xlsx"]:
-            data = pd.read_excel(file_path)
-        else:
-            logger.error(f"Unsupported file format: {file_extension}")
-            raise ValueError(f"Unsupported file format: {file_extension}")
-        
-        # Validate that the DataFrame is not empty
-        if data.empty:
-            logger.warning(f"File '{file_path}' is empty or contains no data.")
-            raise ValueError(f"File '{file_path}' is empty or contains no data.")
-        
-        logger.info(f"File '{file_path}' loaded successfully.")
-        return data
     
     def load_all_data(self) -> List[pd.DataFrame]:
         """

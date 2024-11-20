@@ -1,6 +1,7 @@
 {
     "Lublin Diesel": [
         {
+            "id": 1,
             "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.xlsx",
             "eco_file_name": "",
             "description": "empty",
@@ -10,6 +11,7 @@
             "test_date": "2018-12-06"
         },
         {
+            "id": 2,
             "main_file_name": "RME zew _ 2018-12-20.xlsx",
             "eco_file_name": "RME zew _ 2018-12-20_eco.xlsx",
             "description": "empty",
@@ -19,6 +21,7 @@
             "test_date": "2018-12-20"
         },
         {
+            "id": 3,
             "main_file_name": "TiL II st Zew B20 IRiL _ 2019-11-06.xlsx",
             "eco_file_name": "TiL II st Zew B20 IRiL _ 2019-11-06_eco.xlsx",
             "description": "empty",
@@ -28,6 +31,7 @@
             "test_date": "2019-11-06"
         },
         {
+            "id": 4,
             "main_file_name": "Zew ch ON _ 2018-12-18.xlsx",
             "eco_file_name": "Zew ch ON _ 2018-12-18_eco.xlsx",
             "description": "empty",
@@ -37,6 +41,7 @@
             "test_date": "2018-12-18"
         },
         {
+            "id": 5,
             "main_file_name": "Zew Efekta Agrotronika _ 2019-05-17.xlsx",
             "eco_file_name": "Zew Efekta Agrotronika _ 2019-05-17_eco.xlsx",
             "description": "empty",
