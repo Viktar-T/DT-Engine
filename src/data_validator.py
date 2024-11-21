@@ -1,6 +1,7 @@
 import pandas as pd
 import logging
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Union
+from pandas.api.types import is_numeric_dtype, is_string_dtype
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -33,119 +34,196 @@ this "class DataValidator:" is refactored form NAWA project:
 """
 
 class DataValidator:
-    def __init__(self, df: pd.DataFrame, parameters_all: List[str], optional_params: List[str] = []):
+    def __init__(self, dfs: List[pd.DataFrame], required_columns_list: List[List[str]], optional_columns_list: List[List[str]] = []):
         """
         Initialize the DataValidator.
 
         Parameters:
-        - df: DataFrame to validate.
-        - parameters_all: List of required parameters.
-        - optional_params: List of optional parameters.
+        - dfs: List of DataFrames to validate.
+        - required_columns_list: List of required columns for each DataFrame.
+        - optional_columns_list: List of optional columns for each DataFrame.
         """
-        self.df = df
-        self.parameters_all = parameters_all
-        self.optional_params = optional_params
-        self.missing_required = []
-        self.missing_optional = []
+        self.dfs = dfs
+        self.required_columns_list = required_columns_list
+        self.optional_columns_list = optional_columns_list or [[] for _ in dfs]
+        self.missing_required_list = []
+        self.missing_optional_list = []
 
-    def validate_columns(self) -> Dict[str, List[str]]:
+    def validate_columns(self) -> List[Dict[str, Union[List[str], bool]]]:
         """
-        Validate that required and optional columns exist in the DataFrame.
+        Validate that required and optional columns exist in each DataFrame.
 
         Returns:
-        - A dictionary with validation results.
+        - A list of dictionaries with validation results for each DataFrame.
         """
-        logger.info("Starting column validation...")
-        self.missing_required = [param for param in self.parameters_all if param not in self.df.columns]
-        self.missing_optional = [param for param in self.optional_params if param not in self.df.columns]
+        logger.info("Starting column validation for multiple DataFrames...")
+        results = []
+        for idx, df in enumerate(self.dfs):
+            missing_required = [col for col in self.required_columns_list[idx] if col not in df.columns]
+            missing_optional = [col for col in self.optional_columns_list[idx] if col not in df.columns]
+            if missing_required:
+                logger.error(f"DataFrame {idx}: Missing required columns: {missing_required}")
+            else:
+                logger.info(f"DataFrame {idx}: All required columns are present.")
+            if missing_optional:
+                logger.warning(f"DataFrame {idx}: Missing optional columns: {missing_optional}")
+            else:
+                logger.info(f"DataFrame {idx}: All optional columns are present.")
+            result = {
+                "missing_required": missing_required,
+                "missing_optional": missing_optional,
+                "valid": len(missing_required) == 0
+            }
+            self.missing_required_list.append(missing_required)
+            self.missing_optional_list.append(missing_optional)
+            results.append(result)
+        return results
 
-        if self.missing_required:
-            logger.error(f"Missing required columns: {self.missing_required}")
-        if self.missing_optional:
-            logger.warning(f"Missing optional columns: {self.missing_optional}")
-        else:
-            logger.info("All required and optional columns are present.")
-
-        return {
-            "missing_required": self.missing_required,
-            "missing_optional": self.missing_optional,
-            "valid": len(self.missing_required) == 0
-        }
-
-    def validate_schema(self, expected_schema: Dict[str, type]) -> Dict[str, List[Tuple[str, type]]]:
+    def validate_schema(self, expected_schemas: List[Dict[str, Union[type, str]]]) -> List[Dict[str, Union[List[Tuple[str, str]], bool]]]:
         """
-        Validate the schema of the DataFrame (column names and types).
+        Validate the data types of specified columns for each DataFrame.
+        
+        Parameters:
+        - expected_schemas: A list of dictionaries mapping column names to expected data types for each DataFrame.
+        
+        Returns:
+        - A list of dictionaries with mismatches in column types for each DataFrame.
+        """
+        logger.info("Starting schema validation for multiple DataFrames...")
+        results = []
+        for idx, (df, expected_schema) in enumerate(zip(self.dfs, expected_schemas)):
+            mismatches = []
+            for column, expected_type in expected_schema.items():
+                if column in df.columns:
+                    actual_dtype = df[column].dtype
+                    if expected_type == 'numeric' and not is_numeric_dtype(df[column]):
+                        mismatches.append((column, str(actual_dtype)))
+                        logger.warning(f"DataFrame {idx} - Column '{column}' expected to be numeric, found {actual_dtype}")
+                    elif expected_type == 'string' and not is_string_dtype(df[column]):
+                        mismatches.append((column, str(actual_dtype)))
+                        logger.warning(f"DataFrame {idx} - Column '{column}' expected to be string, found {actual_dtype}")
+            if mismatches:
+                logger.error(f"DataFrame {idx} - Schema validation failed.")
+            else:
+                logger.info(f"DataFrame {idx} - Schema validation passed.")
+            results.append({"mismatches": mismatches, "valid": len(mismatches) == 0})
+        return results
+
+    def handle_missing_columns(self, fill_value=0):
+        """
+        Handle missing required columns by filling them with a default value in each DataFrame.
 
         Parameters:
-        - expected_schema: A dictionary where keys are column names and values are expected data types.
+        - fill_value: The value to fill in missing columns.
+        """
+        for idx, df in enumerate(self.dfs):
+            if self.missing_required_list[idx]:
+                for column in self.missing_required_list[idx]:
+                    df[column] = fill_value
+                    logger.info(f"DataFrame {idx}: Filled missing required column '{column}' with {fill_value}")
+
+    def check_for_duplicate_columns(self):
+        """
+        Check for duplicate columns in each DataFrame.
+        """
+        logger.info("Checking for duplicate columns in multiple DataFrames...")
+        for idx, df in enumerate(self.dfs):
+            duplicates = df.columns[df.columns.duplicated()].tolist()
+            if duplicates:
+                logger.warning(f"DataFrame {idx}: Duplicate columns found: {duplicates}")
+            else:
+                logger.info(f"DataFrame {idx}: No duplicate columns found.")
+
+    def get_metadata(self) -> List[pd.DataFrame]:
+        """
+        Extract metadata for each DataFrame.
+        
+        Returns:
+        - A list of DataFrames with column metadata for each DataFrame.
+        """
+        logger.info("Extracting metadata for multiple DataFrames...")
+        metadata_list = []
+        for idx, df in enumerate(self.dfs):
+            metadata = pd.DataFrame({
+                "Column": df.columns,
+                "Non-Null Count": df.notnull().sum().values,
+                "Null Count": df.isnull().sum().values,
+                "Unique Values": [df[col].nunique() for col in df.columns],
+                "Data Type": df.dtypes.values
+            })
+            metadata_list.append(metadata)
+            logger.info(f"Metadata for DataFrame {idx} extracted.")
+        return metadata_list
+
+    def generate_report(self) -> List[str]:
+        """
+        Generate validation reports summarizing the results for each DataFrame,
+        including the shape of each DataFrame.
+
+        Returns:
+        - A list of string reports summarizing validation outcomes for each DataFrame.
+        """
+        logger.info("Validation reports summarizing the results for each DataFrame")
+        reports = []
+        for idx, df in enumerate(self.dfs):
+            report = []
+            report.append("=================")
+            report.append(f"Validation Report for DataFrame {idx} (0 - main Data Frame; 1 - eco Data Frame):")
+            # Include the shape of the DataFrame
+            report.append(f"DataFrame Shape: {df.shape} (Rows, Columns) <--- !!!!!!!!!")
+            missing_required = self.missing_required_list[idx]
+            missing_optional = self.missing_optional_list[idx]
+            if missing_required:
+                report.append(f"Missing Required Columns: {', '.join(missing_required)}")
+            else:
+                report.append("All Required Columns: Present")
+            if missing_optional:
+                report.append(f"Missing Optional Columns: {', '.join(missing_optional)}")
+            else:
+                report.append("All Optional Columns: Present")
+            reports.append("\n".join(report))
+        return reports
+
+    def run_all_validations(self, expected_schemas: List[Dict[str, Union[type, str]]] = None):
+        """
+        Run all validations and log a summary report for each DataFrame.
+
+        Parameters:
+        - expected_schemas: List of schemas to validate, one for each DataFrame.
+        """
+        self.validate_columns()
+        if expected_schemas:
+            self.validate_schema(expected_schemas)
+        self.check_for_duplicate_columns()
+        reports = self.generate_report()
+        for report in reports:
+            logger.info(report)
+
+    def validate_schema_for_df(self, idx: int, expected_schema: Dict[str, Union[type, str]]) -> Dict[str, Union[List[Tuple[str, str]], bool]]:
+        """
+        Validate the data types of specified columns for a specific DataFrame.
+
+        Parameters:
+        - idx: Index of the DataFrame in self.dfs.
+        - expected_schema: Expected schema for the DataFrame.
 
         Returns:
         - A dictionary with mismatches in column types.
         """
-        logger.info("Starting schema validation...")
+        logger.info(f"Starting schema validation for DataFrame {idx}...")
         mismatches = []
+        df = self.dfs[idx]
         for column, expected_type in expected_schema.items():
-            if column in self.df.columns:
-                actual_type = self.df[column].dtype
-                if not pd.api.types.is_dtype_equal(actual_type, expected_type):
-                    mismatches.append((column, actual_type))
-                    logger.warning(f"Column '{column}' type mismatch: Expected {expected_type}, Found {actual_type}")
-
+            if column in df.columns:
+                actual_dtype = df[column].dtype
+                if expected_type == 'numeric' and not is_numeric_dtype(df[column]):
+                    mismatches.append((column, str(actual_dtype)))
+                    logger.warning(f"DataFrame {idx} - Column '{column}' expected to be numeric, found {actual_dtype}")
+                elif expected_type == 'string' and not is_string_dtype(df[column]):
+                    mismatches.append((column, str(actual_dtype)))
+                    logger.warning(f"DataFrame {idx} - Column '{column}' expected to be string, found {actual_dtype}")
         if mismatches:
-            logger.error("Schema validation failed.")
+            logger.error(f"DataFrame {idx} - Schema validation failed.")
         else:
-            logger.info("Schema validation passed.")
-
+            logger.info(f"DataFrame {idx} - Schema validation passed.")
         return {"mismatches": mismatches, "valid": len(mismatches) == 0}
-
-    def get_metadata(self) -> pd.DataFrame:
-        """
-        Extract metadata for the DataFrame columns (e.g., null counts, unique values).
-
-        Returns:
-        - A DataFrame with column metadata.
-        """
-        logger.info("Extracting metadata...")
-        metadata = pd.DataFrame({
-            "Column": self.df.columns,
-            "Non-Null Count": self.df.notnull().sum().values,
-            "Null Count": self.df.isnull().sum().values,
-            "Unique Values": [self.df[col].nunique() for col in self.df.columns],
-            "Data Type": self.df.dtypes.values
-        })
-        logger.info("Metadata extraction completed.")
-        return metadata
-
-    def generate_report(self) -> str:
-        """
-        Generate a validation report summarizing the results.
-
-        Returns:
-        - A string report summarizing validation outcomes.
-        """
-        report = []
-        report.append("Validation Report")
-        report.append("=================")
-        if self.missing_required:
-            report.append(f"Missing Required Columns: {', '.join(self.missing_required)}")
-        else:
-            report.append("All Required Columns: Present")
-        
-        if self.missing_optional:
-            report.append(f"Missing Optional Columns: {', '.join(self.missing_optional)}")
-        else:
-            report.append("All Optional Columns: Present")
-        
-        return "\n".join(report)
-
-    def run_all_validations(self, expected_schema: Dict[str, type] = None):
-        """
-        Run all validations and print a summary report.
-
-        Parameters:
-        - expected_schema: Schema to validate, if provided.
-        """
-        self.validate_columns()
-        if expected_schema:
-            self.validate_schema(expected_schema)
-        logger.info(self.generate_report())

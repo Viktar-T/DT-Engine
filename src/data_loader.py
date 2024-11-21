@@ -5,10 +5,38 @@ import logging
 import json
 from typing import List, Union
 from src.config import RAW_DATA_DIR
+from tabulate import tabulate
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
+def split_dataframe(df, chunk_size):
+    """
+    Split a DataFrame into chunks of columns.
+
+    Parameters:
+    - df: The DataFrame to split.
+    - chunk_size: The number of columns per chunk.
+
+    Yields:
+    - Chunks of the DataFrame.
+    """
+    for i in range(0, df.shape[1], chunk_size):
+        yield df.iloc[:, i:i + chunk_size]
+
+def log_dataframe_in_chunks(df, file_name, chunk_size=6, rows=3):
+    """
+    Log a DataFrame in chunks to improve readability.
+
+    Parameters:
+    - df: The DataFrame to log.
+    - file_name: The name of the file the data was loaded from.
+    - chunk_size: The number of columns per chunk.
+    - rows: The number of rows to display per chunk.
+    """
+    for chunk in split_dataframe(df, chunk_size):
+        logger.info(f"Data from file '{file_name}':\n{tabulate(chunk.head(rows), headers='keys', tablefmt='fancy_grid')}")
 
 class DataLoader:
     """
@@ -142,8 +170,10 @@ class DataLoader:
             return None
         
         logger.info(f"Data loaded successfully from file: {file_path}")
-        # Display the table in the log
-        logger.info(f"Data from file '{file_name}':\n{data.head().to_string(index=False)}")
+        # logger.info(f"Data from file '{file_name}':\n{tabulate(data.head(), headers='keys', tablefmt='fancy_grid')}")
+        log_dataframe_in_chunks(data, file_name)
+
+        logger.info(f"Data Frame Shape: {data.shape}")
         return data
 
     
@@ -232,7 +262,5 @@ class DataLoader:
             logger.warning("Validation failed: DataFrame contains only NaN values.")
             return False
         return True
-    
-    
 
 
