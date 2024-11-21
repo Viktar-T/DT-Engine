@@ -77,7 +77,6 @@ class DataCleaner:
                             logger.warning(f"No adjacent time column found for '{req_col}'.")
                 else:
                     logger.warning(f"Column '{req_col}' not found in DataFrame. Skipping...")
-
         logger.info(f"Mapped columns: {column_map}")
         return column_map
 

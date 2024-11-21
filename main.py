@@ -98,6 +98,14 @@ def main():
             logger.info(f"Metadata for DataFrame {idx}:\n{metadata}")
         proceed_to_next_step(4)
 
+        # Step 5: TEST. Clean and preprocess data
+        logger.info("Continue data pipeline. Step 5: TEST. Cleaning and preprocessing data...")
+        data_cleaner = DataCleaner(raw_data_frames[0], required_columns, time_mapping)
+        cleaned_df = data_cleaner.filter_required_columns(column_map=time_mapping)
+        cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.xlsx'), index=False)
+        logger.info("Step 5: TEST.  Data cleaned and preprocessed successfully.")
+        proceed_to_next_step(5)
+
         # Step 5: Clean and preprocess data
         logger.info("Continue data pipeline. Step 5: Cleaning and preprocessing data...")
         data_cleaner = DataCleaner(raw_data_frames[0], required_columns, time_mapping)
