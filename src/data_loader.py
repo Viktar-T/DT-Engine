@@ -170,6 +170,7 @@ class DataLoader:
             return None
         
         logger.info(f"Data loaded successfully from file: {file_path}")
+        logger.info(f"Data Frame Columns: {list(data.columns)}")
         # logger.info(f"Data from file '{file_name}':\n{tabulate(data.head(), headers='keys', tablefmt='fancy_grid')}")
         log_dataframe_in_chunks(data, file_name)
 

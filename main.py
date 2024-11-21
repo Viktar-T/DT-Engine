@@ -14,6 +14,28 @@ required_columns = [
     'Temp. spalin 1/6[°C]', 'Temp. spalin 2/6[°C]', 'Temp. spalin 3/6[°C]', 'Temp. spalin 4/6[°C]', 
     'Zużycie paliwa średnie[g/s]', 'Ciśnienie atmosferyczne[hPa]', 'Temp. otoczenia[°C]', 'Wilgotność względna[%]'
 ]
+
+time_mapping = {
+    'Ciś. pow. za turb.[Pa]': 'Czas [ms].1',
+    'ECT - wyjście z sil.[°C]': 'Czas [ms].11',
+    'MAF[kg/h]': 'Czas [ms].25',
+    'Moc[kW]': 'Czas [ms].26',
+    'Moment obrotowy[Nm]': 'Czas [ms].27',
+    'Obroty[obr/min]': 'Czas [ms].30',
+    'Temp. oleju w misce[°C]': 'Czas [ms].48',
+    'Temp. pal. na wyjściu sil.[°C]': 'Czas [ms].52',
+    'Temp. powietrza za turb.[°C]': 'Czas [ms].57',
+    'Temp. spalin 1/6[°C]': 'Czas [ms].58',
+    'Temp. spalin 2/6[°C]': 'Czas [ms].59',
+    'Temp. spalin 3/6[°C]': 'Czas [ms].60',
+    'Temp. spalin 4/6[°C]': 'Czas [ms].61',
+    'Zużycie paliwa średnie[g/s]': 'Czas [ms].74',
+    'Ciśnienie atmosferyczne[hPa]': 'Czas [ms].2',
+    'Temp. otoczenia[°C]': 'Czas [ms].50',
+    'Wilgotność względna[%]': 'Czas [ms].66'
+}
+
+
 required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
 
 
@@ -77,16 +99,15 @@ def main():
         proceed_to_next_step(4)
 
         # Step 5: Clean and preprocess data
-        logger.info("Continue data pipeline. Step 5: ECleaning and preprocessing data...")
-        cleaner = DataCleaner(raw_data_frames[0], time_column=None)
-        harmonized_data = cleaner.harmonize_time(parameter_columns=["Parameter1", "Parameter2"])
-        cleaned_data = cleaner.handle_missing_values(strategy="mean")
+        logger.info("Continue data pipeline. Step 5: Cleaning and preprocessing data...")
+        data_cleaner = DataCleaner(raw_data_frames[0], required_columns, time_mapping)
+        cleaned_df = data_cleaner.clean_data()
         logger.info("Step 5: Data cleaned and preprocessed successfully.")
         proceed_to_next_step(5)
 
         # Step 6: Save cleaned data
         logger.info("Step 6: Continue data pipeline. Saving cleaned data...")
-        cleaned_data.to_csv(os.path.join(PROCESSED_DATA_DIR, "cleaned_data.csv"), index=False)
+        cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv'), index=False)
         logger.info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv')}")
         logger.info("Step 6: Save cleaned data completed successfully.")
         proceed_to_next_step(6)
