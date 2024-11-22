@@ -7,34 +7,34 @@ from src.data_cleaner import DataCleaner
 from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 from src.utils.build_json_with_files import JSONBuilder
 
-required_columns = [
-    'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
-    'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 
-    'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 
+
+required_columns_for_validation_step = [
+    'Ciś. pow. za turb.[Pa]', 'Ciśnienie atmosferyczne[hPa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
+    'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. otoczenia[°C]',  
+    'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]',
     'Temp. spalin 1/6[°C]', 'Temp. spalin 2/6[°C]', 'Temp. spalin 3/6[°C]', 'Temp. spalin 4/6[°C]', 
-    'Zużycie paliwa średnie[g/s]', 'Ciśnienie atmosferyczne[hPa]', 'Temp. otoczenia[°C]', 'Wilgotność względna[%]'
+    'Wilgotność względna[%]', 'Zużycie paliwa średnie[g/s]'
 ]
 
-time_mapping = {
-    'Ciś. pow. za turb.[Pa]': 'Czas [ms].1',
-    'ECT - wyjście z sil.[°C]': 'Czas [ms].11',
-    'MAF[kg/h]': 'Czas [ms].25',
-    'Moc[kW]': 'Czas [ms].26',
-    'Moment obrotowy[Nm]': 'Czas [ms].27',
-    'Obroty[obr/min]': 'Czas [ms].30',
-    'Temp. oleju w misce[°C]': 'Czas [ms].48',
-    'Temp. pal. na wyjściu sil.[°C]': 'Czas [ms].52',
-    'Temp. powietrza za turb.[°C]': 'Czas [ms].57',
-    'Temp. spalin 1/6[°C]': 'Czas [ms].58',
-    'Temp. spalin 2/6[°C]': 'Czas [ms].59',
-    'Temp. spalin 3/6[°C]': 'Czas [ms].60',
-    'Temp. spalin 4/6[°C]': 'Czas [ms].61',
-    'Zużycie paliwa średnie[g/s]': 'Czas [ms].74',
-    'Ciśnienie atmosferyczne[hPa]': 'Czas [ms].2',
-    'Temp. otoczenia[°C]': 'Czas [ms].50',
-    'Wilgotność względna[%]': 'Czas [ms].66'
-}
-
+required_columns = [
+    ['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'],
+    ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'],
+    ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'],
+    ['Czas [ms].25', 'MAF[kg/h]'],
+    ['Czas [ms].26', 'Moc[kW]'],
+    ['Czas [ms].27', 'Moment obrotowy[Nm]'],
+    ['Czas [ms].29', 'Obroty[obr/min]'],
+    ['Czas [ms].46', 'Temp. oleju w misce[°C]'],
+    ['Czas [ms].48', 'Temp. otoczenia[°C]'],
+    ['Czas [ms].50', 'Temp. pal. na wyjściu sil.[°C]'],
+    ['Czas [ms].55', 'Temp. powietrza za turb.[°C]'],
+    ['Czas [ms].56', 'Temp. spalin 1/6[°C]'],
+    ['Czas [ms].57', 'Temp. spalin 2/6[°C]'],
+    ['Czas [ms].58', 'Temp. spalin 3/6[°C]'],
+    ['Czas [ms].59', 'Temp. spalin 4/6[°C]'],
+    ['Czas [ms].64', 'Wilgotność względna[%]'],
+    ['Czas [ms].72', 'Zużycie paliwa średnie[g/s]'],    
+]
 
 required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
 
@@ -69,7 +69,7 @@ def main():
 
         # Step 3: Validate data
         logger.info("Continue data pipeline. Step 3: Validating data...")
-        required_columns_list = [required_columns, required_columns_eco]
+        required_columns_list = [required_columns_for_validation_step, required_columns_eco]
         validator = DataValidator(raw_data_frames, required_columns_list=required_columns_list)
         validation_results = validator.validate_columns()
         for idx, result in enumerate(validation_results):
@@ -80,7 +80,7 @@ def main():
 
         # Schema validation
         expected_schemas = [
-            {col: 'numeric' for col in required_columns},       # Expected schema for first DataFrame
+            {col: 'numeric' for col in required_columns_for_validation_step},       # Expected schema for first DataFrame
             {col: 'numeric' for col in required_columns_eco}    # Expected schema for second DataFrame
         ]
         validator.validate_schema(expected_schemas)
@@ -95,21 +95,13 @@ def main():
         logger.info("Continue data pipeline. Step 4: Extracting metadata...")
         metadata_list = validator.get_metadata()
         for idx, metadata in enumerate(metadata_list):
-            logger.info(f"Metadata for DataFrame {idx}:\n{metadata}")
+            logger.info(f"Metadata for DataFrame {idx}: {metadata}")
         proceed_to_next_step(4)
 
-        # Step 5: TEST. Clean and preprocess data
-        logger.info("Continue data pipeline. Step 5: TEST. Cleaning and preprocessing data...")
-        data_cleaner = DataCleaner(raw_data_frames[0], required_columns, time_mapping)
-        cleaned_df = data_cleaner.filter_required_columns(column_map=time_mapping)
-        cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.xlsx'), index=False)
-        logger.info("Step 5: TEST.  Data cleaned and preprocessed successfully.")
-        proceed_to_next_step(5)
-
-        # Step 5: Clean and preprocess data
+        #---> !!!# Step 5: Clean and preprocess data
         logger.info("Continue data pipeline. Step 5: Cleaning and preprocessing data...")
-        data_cleaner = DataCleaner(raw_data_frames[0], required_columns, time_mapping)
-        cleaned_df = data_cleaner.clean_data()
+        data_cleaner = DataCleaner(df=raw_data_frames[0], required_columns=required_columns)
+        cleaned_df = data_cleaner.clean()
         logger.info("Step 5: Data cleaned and preprocessed successfully.")
         proceed_to_next_step(5)
 
