@@ -2,6 +2,7 @@ import pandas as pd
 import logging
 from typing import List
 from tabulate import tabulate
+from src.metadata_manager import MetadataManager
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -38,7 +39,7 @@ class DataCleaner:
     A class to clean and preprocess data for future analysis.
     """
 
-    def __init__(self, df: pd.DataFrame, required_columns: List[List[str]]):
+    def __init__(self, df: pd.DataFrame, required_columns: List[List[str]], metadata_manager: MetadataManager = None):
         """
         Initialize the DataCleaner with the list of required columns.
 
@@ -46,12 +47,14 @@ class DataCleaner:
         - df (pd.DataFrame): The DataFrame to clean.
         - required_columns (List[List[str]]): A list of lists where each sublist contains
                                               a time column and its corresponding data column.
+        - metadata_manager (MetadataManager, optional): An instance of MetadataManager to handle metadata.
         """
         if not isinstance(df, pd.DataFrame):
             raise TypeError("Input data must be a pandas DataFrame.")
         
         self.df = df.copy()
         self.required_columns = required_columns
+        self.metadata_manager = metadata_manager
         logger.info("DataCleaner initialized with required columns.")
 
     def _filter_columns(self) -> pd.DataFrame:
@@ -87,5 +90,7 @@ class DataCleaner:
         logger.info("Data cleaning process completed.")
         logger.info(f"Filtered DataFrame shape: {filtered_df.shape}")
         log_dataframe_in_chunks(filtered_df)
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata('cleaned_data_shape', filtered_df.shape)
         return filtered_df
 

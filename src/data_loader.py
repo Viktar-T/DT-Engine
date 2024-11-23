@@ -6,6 +6,7 @@ import json
 from typing import List, Union
 from src.config import RAW_DATA_DIR
 from tabulate import tabulate
+from src.metadata_manager import MetadataManager
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -44,7 +45,7 @@ class DataLoader:
     Supports CSV and Excel files and includes basic validation checks.
     """
 
-    def __init__(self, raw_data_path: str = RAW_DATA_DIR):
+    def __init__(self, raw_data_path: str = RAW_DATA_DIR, metadata_manager: MetadataManager = None):
         """
         Initialize the DataLoader.
 
@@ -55,6 +56,7 @@ class DataLoader:
         if not os.path.exists(self.raw_data_path):
             logger.error(f"Directory '{self.raw_data_path}' does not exist.")
             raise FileNotFoundError(f"Directory '{self.raw_data_path}' does not exist.")
+        self.metadata_manager = metadata_manager
         logger.info(f"DataLoader initialized with raw data path: {self.raw_data_path}")
 
     # !!!! I have files_with_raw_data_links.json. Don't used in main.py !!!!    
@@ -173,6 +175,9 @@ class DataLoader:
         logger.info(f"Data Frame Columns: {list(data.columns)}")
         # logger.info(f"Data from file '{file_name}':\n{tabulate(data.head(), headers='keys', tablefmt='fancy_grid')}")
         log_dataframe_in_chunks(data, file_name)
+
+        self.metadata_manager.update_metadata(f'{file_name}_columns', list(data.columns))
+        self.metadata_manager.update_metadata(f'{file_name}_shape', data.shape)
 
         logger.info(f"Data Frame Shape: {data.shape}")
         return data

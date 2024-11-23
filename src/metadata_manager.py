@@ -1,74 +1,71 @@
 import os
 import json
-from datetime import datetime
 import logging
+from datetime import datetime
 from typing import Any, Dict
-from src.config import METADATA_DIR
+import pandas as pd
 
 # Set up logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class MetadataManager:
-    """
-    A class for dynamic metadata management in the data pipeline.
-    """
+    def __init__(self, metadata_dir: str):
+        self.metadata_dir = metadata_dir
+        self.version = self._get_next_version()
+        self.metadata = self._load_existing_metadata()
 
-    def __init__(self, pipeline_name: str = "data_pipeline", version: str = "v1.0"):
-        """
-        Initialize MetadataManager.
+    def _get_next_version(self) -> str:
+        existing_files = [f for f in os.listdir(self.metadata_dir) if f.startswith('metadata_v')]
+        if not existing_files:
+            return 'v1.0'
+        latest_version = sorted(existing_files)[-1].split('_v')[-1].split('.json')[0]
+        major, minor = map(int, latest_version.split('.'))
+        return f'v{major}.{minor + 1}'
 
-        Parameters:
-        - pipeline_name (str): Name of the pipeline for versioning.
-        - version (str): Version of the metadata file (e.g., 'v1.0').
-        """
-        self.pipeline_name = pipeline_name
-        self.version = version
-        self.metadata = {
-            "pipeline_name": pipeline_name,
-            "version": version,
-            "start_time": str(datetime.now()),
-            "steps": []
-        }
-        self.metadata_file = self._generate_metadata_filename()
+    def _load_existing_metadata(self) -> Dict[str, Any]:
+        file_path = os.path.join(self.metadata_dir, f'metadata_{self.version}.json')
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        return {}
 
-    def _generate_metadata_filename(self) -> str:
-        """
-        Generate a versioned metadata filename.
+    def update_metadata(self, key: str, value: Any):
+        if isinstance(value, pd.DataFrame):
+            value = value.astype(str).to_dict(orient='list')
+        elif isinstance(value, pd.Series):
+            value = value.astype(str).to_dict()
+        self.metadata[key] = value
+        # logger.info(f"Updated metadata: {self.metadata}")
+        self._save_metadata()
 
-        Returns:
-        - str: Full path of the metadata file.
-        """
-        filename = f"metadata_{self.version}.json"
-        return os.path.join(METADATA_DIR, filename)
+    def _save_metadata(self):
+        file_path = os.path.join(self.metadata_dir, f'metadata_{self.version}.json')
+        logger.info(f"!!!!!!!Saving metadata to {file_path}")
+        
+        # Load existing metadata if the file exists
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                existing_metadata = json.load(f)
+        else:
+            existing_metadata = {}
+        
+        logger.info(f"!!!Existing metadata: {existing_metadata}")
+        logger.info(f"!!!New metadata to update: {self.metadata}")
+        
+        # Update existing metadata with new information
+        existing_metadata.update(self.metadata)
 
-    def add_step_metadata(self, step_name: str, details: Dict[str, Any]):
-        """
-        Add metadata for a specific step in the pipeline.
-
-        Parameters:
-        - step_name (str): Name of the pipeline step.
-        - details (Dict[str, Any]): Metadata details for the step.
-        """
-        step_metadata = {
-            "step_name": step_name,
-            "timestamp": str(datetime.now()),
-            "details": details
-        }
-        self.metadata["steps"].append(step_metadata)
-        logger.info(f"Metadata updated for step: {step_name}")
-
-    def finalize_metadata(self):
-        """
-        Finalize and save the metadata file.
-        """
-        self.metadata["end_time"] = str(datetime.now())
-        with open(self.metadata_file, "w") as f:
-            json.dump(self.metadata, f, indent=4)
-        logger.info(f"Metadata saved to {self.metadata_file}")
+        # Save the updated metadata back to the file
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(existing_metadata, f, ensure_ascii=False, indent=4)
+        
+        logger.info(f"Metadata saved to {file_path}")
 
     def visualize_metadata(self):
-        """
-        Print the metadata for visualization.
-        """
-        print(json.dumps(self.metadata, indent=4))
+        # Implement visualization logic here
+        pass
+
+    def monitor_metadata(self):
+        # Implement monitoring logic here
+        pass

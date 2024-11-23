@@ -55,6 +55,7 @@ def ensure_directories_exist():
         PRETRAINED_MODELS_DIR,
         VISUALIZATIONS_DIR,
         LOGS_DIR,
+        METADATA_DIR,
     ]
     for directory in required_dirs:
         if not os.path.exists(directory):
