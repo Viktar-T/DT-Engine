@@ -51,11 +51,11 @@ class MetadataManager:
             existing_metadata = {}
         
         logger.info(f"!!!Existing metadata: {existing_metadata}")
-        logger.info(f"!!!New metadata to update: {self.metadata}")
+        logger.info(f"!!!!!New metadata to update: {self.metadata}")
         
         # Update existing metadata with new information
         existing_metadata.update(self.metadata)
-
+        logger.info(f"!!!!!! Existing metadata after update: {existing_metadata}")
         # Save the updated metadata back to the file
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(existing_metadata, f, ensure_ascii=False, indent=4)
