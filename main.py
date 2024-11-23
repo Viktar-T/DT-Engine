@@ -108,9 +108,11 @@ def main():
         # --> Step 6: Save cleaned data
         logger.info("Step 6: Continue data pipeline. Saving cleaned data...")
         cleaned_data_file_name = 'cleaned_data.csv' # <-- name of the base file from files_with_raw_data_links.json
-        cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv'), index=False)
-        cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.xlsx'), index=False, engine='openpyxl')
-        logger.info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv')}")
+        #cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv'), index=False)
+        #logger.info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv')}")
+        # cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.xlsx'), index=False, engine='openpyxl')
+        cleaned_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.parquet'), index=False)
+        logger.info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.parquet')}")
         logger.info("Step 6: Save cleaned data completed successfully.")
         proceed_to_next_step(6)
 
