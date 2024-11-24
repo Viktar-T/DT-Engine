@@ -75,7 +75,7 @@ def main():
         metadata_manager.update_metadata('step_name', 'Load raw data')
         metadata_manager.update_metadata('step_2_start_time', str(datetime.now()))
         data_loader = DataLoader(RAW_DATA_DIR, metadata_manager=metadata_manager)
-        raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=1)
+        raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=4)
         metadata_manager.update_metadata('step_2_status', 'completed')
         metadata_manager.update_metadata('step_2_end_time', str(datetime.now()))
         proceed_to_next_step(2)
