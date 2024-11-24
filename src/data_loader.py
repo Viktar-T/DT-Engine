@@ -176,8 +176,8 @@ class DataLoader:
         # logger.info(f"Data from file '{file_name}':\n{tabulate(data.head(), headers='keys', tablefmt='fancy_grid')}")
         log_dataframe_in_chunks(data, file_name)
 
-        self.metadata_manager.update_metadata(f'{file_name}_columns', list(data.columns))
-        self.metadata_manager.update_metadata(f'{file_name}_shape', data.shape)
+        #self.metadata_manager.update_metadata(f"{file_name}", f'{file_name}_columns', list(data.columns))
+        self.metadata_manager.update_metadata(f"{file_name}", f'{file_name}_shape', data.shape)
 
         logger.info(f"Data Frame Shape: {data.shape}")
         return data

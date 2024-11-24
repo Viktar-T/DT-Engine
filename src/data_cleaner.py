@@ -55,6 +55,7 @@ class DataCleaner:
         self.df = df.copy()
         self.required_columns = required_columns
         self.metadata_manager = metadata_manager
+        self.step_5_file_name = None
         logger.info("DataCleaner initialized with required columns.")
 
     def _filter_columns(self) -> pd.DataFrame:
@@ -91,6 +92,8 @@ class DataCleaner:
         logger.info(f"Filtered DataFrame shape: {filtered_df.shape}")
         log_dataframe_in_chunks(filtered_df)
         if self.metadata_manager:
-            self.metadata_manager.update_metadata('cleaned_data_shape', filtered_df.shape)
+            self.step_5_file_name = "5-raw file_name"
+            #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
+            self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', filtered_df.shape)
         return filtered_df
 
