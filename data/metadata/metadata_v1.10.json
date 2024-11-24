@@ -3,16 +3,16 @@
         "pipeline_status": "started",
         "step": "1",
         "step_name": "Build files_with_raw_data_links.json",
-        "start_time": "2024-11-24 17:10:48.008355",
+        "start_time": "2024-11-24 17:15:44.190688",
         "step_1_status": "completed",
-        "step_1_end_time": "2024-11-24 17:10:48.010306"
+        "step_1_end_time": "2024-11-24 17:15:44.193241"
     },
     "2-raw file_name": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2024-11-24 17:10:55.760413",
+        "step_2_start_time": "2024-11-24 17:15:46.575737",
         "step_2_status": "completed",
-        "step_2_end_time": "2024-11-24 17:10:56.146177"
+        "step_2_end_time": "2024-11-24 17:15:46.916001"
     },
     "1600Nn obc ON _ 2018-12-06_ORIGEN.csv": {
         "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
@@ -23,7 +23,7 @@
     "4-raw file_name": {
         "step": "3",
         "step_name": "Validate data",
-        "step_3_start_time": "2024-11-24 17:10:57.403670",
+        "step_3_start_time": "2024-11-24 17:15:47.591716",
         "validation_results": [
             {
                 "missing_required": [],
@@ -32,32 +32,32 @@
             }
         ],
         "step_3_status": "completed",
-        "step_3_end_time": "2024-11-24 17:10:57.406951",
+        "step_3_end_time": "2024-11-24 17:15:47.595002",
         "step_4_status": "completed",
-        "step_4_end_time": "2024-11-24 17:11:01.652095"
+        "step_4_end_time": "2024-11-24 17:15:48.417652"
     },
     "5-raw file_name": {
         "step": "5",
         "step_name": "Clean and preprocess data",
-        "step_5_start_time": "2024-11-24 17:11:06.956099",
+        "step_5_start_time": "2024-11-24 17:15:48.989515",
         "cleaned_data_shape": [
             38535,
             34
         ],
         "step_5_status": "completed",
-        "step_5_end_time": "2024-11-24 17:11:06.983963"
+        "step_5_end_time": "2024-11-24 17:15:49.017262"
     },
     "6-raw file_name": {
         "step": "6",
         "step_name": "Save cleaned data",
-        "step_6_start_time": "2024-11-24 17:11:11.744121",
+        "step_6_start_time": "2024-11-24 17:15:49.526575",
         "step_6_status": "completed",
-        "step_6_end_time": "2024-11-24 17:11:11.822454"
+        "step_6_end_time": "2024-11-24 17:15:49.605608"
     },
     "7-raw file_name": {
         "step": "7",
         "step_name": "Filter data",
-        "step_7_start_time": "2024-11-24 17:11:15.703157",
+        "step_7_start_time": "2024-11-24 17:15:50.038556",
         "pipeline_status": "completed"
     }
 }
