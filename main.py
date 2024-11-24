@@ -64,7 +64,7 @@ def main():
         # Step 2: Load raw data
         logger.info("Continue data pipeline. Step 2: Loading raw data...")
         data_loader = DataLoader(RAW_DATA_DIR)
-        raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=1)
+        raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=4)
         proceed_to_next_step(2)
 
         # Step 3: Validate data
