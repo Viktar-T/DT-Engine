@@ -3,41 +3,17 @@
         "pipeline_status": "started",
         "step": "1",
         "step_name": "Build files_with_raw_data_links.json",
-        "start_time": "2024-11-24 17:10:01.490340",
+        "start_time": "2024-11-25 14:51:36.645425",
         "step_1_status": "completed",
-        "step_1_end_time": "2024-11-24 17:10:01.491919"
+        "step_1_end_time": "2024-11-25 14:51:36.647016"
     },
     "2-raw file_name": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2024-11-24 17:10:07.985560",
-        "step_2_status": "completed",
-        "step_2_end_time": "2024-11-24 17:10:08.360622"
+        "step_2_start_time": "2024-11-25 14:51:39.371272"
     },
-    "1600Nn obc ON _ 2018-12-06_ORIGEN.csv": {
-        "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
-            38535,
-            146
-        ]
-    },
-    "4-raw file_name": {
-        "step": "3",
-        "step_name": "Validate data",
-        "step_3_start_time": "2024-11-24 17:10:10.903988",
-        "validation_results": [
-            {
-                "missing_required": [],
-                "missing_optional": [],
-                "valid": true
-            }
-        ],
-        "step_3_status": "completed",
-        "step_3_end_time": "2024-11-24 17:10:10.906879",
-        "step_4_status": "completed",
-        "step_4_end_time": "2024-11-24 17:10:18.521727"
-    },
-    "5-raw file_name": {
-        "step": "5",
-        "step_name": "Clean and preprocess data",
-        "step_5_start_time": "2024-11-24 17:10:23.951947",
-        "Cleaned DataFrame columns:": 
+    "0": {
+        "pipeline_status": "error: 'tuple' object has no attribute 'id'",
+        "error_time": "2024-11-25 14:51:39.372046"
+    }
+}

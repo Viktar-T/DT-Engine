@@ -5,7 +5,7 @@ from datetime import datetime
 from src.data_loader import DataLoader
 from src.data_validator import DataValidator
 from src.data_cleaner import DataCleaner
-from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, METADATA_DIR
+from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, METADATA_DIR, LOGS_DIR
 from src.utils.build_json_with_files import JSONBuilder
 from src.metadata_manager import MetadataManager
 
@@ -36,6 +36,17 @@ required_columns = [
     ['Czas [ms].64', 'Wilgotność względna[%]'],
     ['Czas [ms].72', 'Zużycie paliwa średnie[g/s]'],    
 ]
+
+current_file = {
+    "id": 4,
+    "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+    "eco_file_name": "",
+    "description": "empty",
+    "diesel_test_type": "1600Nn obc",
+    "fuel": "ON",
+    "diesel_engine_name": "empty",
+    "test_date": "2018-12-06"
+}
 
 required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
 
@@ -76,19 +87,20 @@ def main():
         metadata_manager.update_metadata(step_2_file_name, 'step_name', 'Load raw data')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_start_time', str(datetime.now()))
         data_loader = DataLoader(RAW_DATA_DIR, metadata_manager=metadata_manager)
-        raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=4)
+        raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=current_file["id"])
         metadata_manager.update_metadata(step_2_file_name, 'step_2_status', 'completed')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_end_time', str(datetime.now()))
         proceed_to_next_step(2)
 
         # Step 3: Validate data
-        step_3_file_name = "4-raw file_name"
+        step_3_file_name = "3-raw file_name"
         logger.info("Continue data pipeline. Step 3: Validating data...")
         metadata_manager.update_metadata(step_3_file_name, 'step', '3')
         metadata_manager.update_metadata(step_3_file_name, 'step_name', 'Validate data')
         metadata_manager.update_metadata(step_3_file_name, 'step_3_start_time', str(datetime.now()))
         required_columns_list = [required_columns_for_validation_step, required_columns_eco]
-        validator = DataValidator(raw_data_frames, required_columns_list=required_columns_list)
+        validator = DataValidator(raw_data_frames, required_columns_list=required_columns_list, 
+                                  file_names=[current_file["main_file_name"], current_file["eco_file_name"]])
         validation_results = validator.validate_columns()
         for idx, result in enumerate(validation_results):
             if not result["valid"]:
@@ -106,6 +118,7 @@ def main():
         reports = validator.generate_report()
         for report in reports:
             logger.info(report)
+        # metadata_manager.update_metadata(step_3_file_name, 'validation_reports', reports)
         logger.info("Step 3: Data validated successfully.")
         metadata_manager.update_metadata(step_3_file_name, 'validation_results', validation_results)
         metadata_manager.update_metadata(step_3_file_name, 'step_3_status', 'completed')
@@ -115,9 +128,9 @@ def main():
         # Step 4: Validate data
         step_4_file_name = "4-raw file_name"
         metadata_list = validator.get_metadata()
-        for idx, metadata in enumerate(metadata_list):
-            logger.info(f"Metadata for DataFrame {idx}: {metadata}")
-        #metadata_manager.update_metadata(step_4_file_name, 'metadata_list', [md.astype(str).to_dict() for md in metadata_list])
+        #for idx, metadata in enumerate(metadata_list):
+        #    logger.info(f"Metadata for DataFrame {idx}: {metadata}")
+        # metadata_manager.update_metadata(step_4_file_name, 'metadata_list', )
         metadata_manager.update_metadata(step_4_file_name, 'step_4_status', 'completed')
         metadata_manager.update_metadata(step_4_file_name, 'step_4_end_time', str(datetime.now()))
         proceed_to_next_step(4)

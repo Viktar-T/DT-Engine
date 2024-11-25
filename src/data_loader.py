@@ -177,7 +177,8 @@ class DataLoader:
         log_dataframe_in_chunks(data, file_name)
 
         #self.metadata_manager.update_metadata(f"{file_name}", f'{file_name}_columns', list(data.columns))
-        self.metadata_manager.update_metadata(f"{file_name}", f'{file_name}_shape', data.shape)
+        step_2_file_name = "2-raw file_name"
+        self.metadata_manager.update_metadata(step_2_file_name, f'{file_name}_shape', data.shape)
 
         logger.info(f"Data Frame Shape: {data.shape}")
         return data

@@ -2,6 +2,7 @@ import pandas as pd
 import logging
 from typing import List, Dict, Tuple, Union
 from pandas.api.types import is_numeric_dtype, is_string_dtype
+from tabulate import tabulate
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -34,7 +35,10 @@ this "class DataValidator:" is refactored form NAWA project:
 """
 
 class DataValidator:
-    def __init__(self, dfs: List[pd.DataFrame], required_columns_list: List[List[str]], optional_columns_list: List[List[str]] = []):
+    def __init__(self, dfs: List[pd.DataFrame], 
+                 required_columns_list: List[List[str]], 
+                 optional_columns_list: List[List[str]] = [], 
+                 file_names: List[str] = []):
         """
         Initialize the DataValidator.
 
@@ -42,10 +46,12 @@ class DataValidator:
         - dfs: List of DataFrames to validate.
         - required_columns_list: List of required columns for each DataFrame.
         - optional_columns_list: List of optional columns for each DataFrame.
+        - file_names: List of file names for each DataFrame.
         """
         self.dfs = dfs
         self.required_columns_list = required_columns_list
         self.optional_columns_list = optional_columns_list or [[] for _ in dfs]
+        self.file_names = file_names or [f"DataFrame_{i}" for i in range(len(dfs))]
         self.missing_required_list = []
         self.missing_optional_list = []
 
@@ -141,9 +147,12 @@ class DataValidator:
         Returns:
         - A list of DataFrames with column metadata for each DataFrame.
         """
-        logger.info("Extracting metadata for multiple DataFrames...")
+        logger.info("Starting metadata extraction for multiple DataFrames...")
         metadata_list = []
+        
         for idx, df in enumerate(self.dfs):
+            logger.info(f"Processing DataFrame {idx + 1}/{len(self.dfs)} with shape {df.shape}...")
+            
             metadata = pd.DataFrame({
                 "Column": df.columns,
                 "Non-Null Count": df.notnull().sum().values,
@@ -151,8 +160,11 @@ class DataValidator:
                 "Unique Values": [df[col].nunique() for col in df.columns],
                 "Data Type": df.dtypes.values
             })
+            #"File Name": [self.file_names[idx]] * len(df.columns),
             metadata_list.append(metadata)
-            logger.info(f"Metadata for DataFrame {idx} extracted.")
+            logger.info(f"Metadata for DataFrame {idx + 1}, File:{self.file_names}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
+        
+        logger.info("Metadata extraction completed for all DataFrames.")
         return metadata_list
 
     def generate_report(self) -> List[str]:

@@ -2,7 +2,7 @@ import os
 import json
 import logging
 from datetime import datetime
-from typing import Any, Dict
+from typing import Any, Dict, List
 import pandas as pd
 
 # Set up logging
@@ -64,3 +64,30 @@ class MetadataManager:
     def monitor_metadata(self):
         # Implement monitoring logic here
         pass
+
+    def get_metadata(self) -> List[pd.DataFrame]:
+        """
+        Extract metadata for each DataFrame.
+        
+        Returns:
+        - A list of DataFrames with column metadata for each DataFrame.
+        """
+        logger.info("Starting metadata extraction for multiple DataFrames...")
+        metadata_list = []
+        
+        for idx, df in enumerate(self.dfs):
+            logger.info(f"Processing DataFrame {idx + 1}/{len(self.dfs)} with shape {df.shape}...")
+            
+            metadata = pd.DataFrame({
+                "Column": df.columns,
+                "Non-Null Count": df.notnull().sum().values,
+                "Null Count": df.isnull().sum().values,
+                "Unique Values": [df[col].nunique() for col in df.columns],
+                "Data Type": df.dtypes.values
+            })
+            
+            metadata_list.append(metadata)
+            logger.info(f"Metadata for DataFrame {idx + 1} extracted: {metadata.shape[0]} columns processed.")
+        
+        logger.info("Metadata extraction completed for all DataFrames.")
+        return metadata_list
