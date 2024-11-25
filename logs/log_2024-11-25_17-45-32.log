@@ -1,0 +1,25 @@
+2024-11-25 17:45:32,382 - INFO - Starting data pipeline...
+2024-11-25 17:45:32,388 - INFO - Step 1: Building files_with_raw_data_links.json...
+2024-11-25 17:45:32,390 - INFO - Step 1: files_with_raw_data_links.json built successfully.
+2024-11-25 17:45:37,033 - INFO - Step 1: files_with_raw_data_links.json built successfully.
+2024-11-25 17:45:37,034 - INFO - Continue data pipeline. Step 2: Loading raw data...
+2024-11-25 17:45:38,257 - INFO - Step 2: Raw data loaded successfully.
+2024-11-25 17:45:38,257 - INFO - Continue data pipeline. Step 3: Validating data...
+2024-11-25 17:45:38,264 - INFO - =================
+Validation Report for DataFrame 0 (0 - main Data Frame; 1 - eco Data Frame):
+DataFrame Shape: (38535, 146) (Rows, Columns) <--- !!!!!!!!!
+All Required Columns: Present
+All Optional Columns: Present
+2024-11-25 17:45:38,265 - INFO - Step 3: Data validated successfully.
+2024-11-25 17:45:39,449 - INFO - Step 3: Data validated successfully.
+2024-11-25 17:45:53,714 - INFO - Step 4: Metadata extracted successfully.
+2024-11-25 17:45:53,714 - INFO - Continue data pipeline. Step 5: Cleaning and preprocessing data...
+2024-11-25 17:45:53,762 - INFO - Step 5: Data cleaned and preprocessed successfully.
+2024-11-25 17:45:54,354 - INFO - Step 5: Data cleaned and preprocessed successfully.
+2024-11-25 17:45:54,354 - INFO - Step 6: Continue data pipeline. Saving cleaned data...
+2024-11-25 17:45:54,425 - INFO - Cleaned data saved to c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\processed\cleaned_data.parquet
+2024-11-25 17:45:54,426 - INFO - Step 6: Save cleaned data completed successfully.
+2024-11-25 17:45:54,969 - INFO - Step 6: Cleaned data saved successfully.
+2024-11-25 17:45:54,969 - INFO - Continue data pipeline. Step 7 - NOT IMPLEMENTED: Filtering data...
+2024-11-25 17:45:55,641 - INFO - Step 7: Data filtering step not implemented.
+2024-11-25 17:45:55,642 - INFO - Data pipeline completed successfully.

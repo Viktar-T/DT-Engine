@@ -3,9 +3,10 @@ import json
 import logging
 import re
 from src.config import RAW_DATA_DIR
+from src.log_manager import LogManager
 
 class JSONBuilder:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, log_manager: LogManager = None):
         self.data_dir = data_dir
         self.template = {
             "id": 0,
@@ -18,6 +19,9 @@ class JSONBuilder:
         }
         self.json_data = {"Lublin Diesel": []}
         self.current_id = 1  # Initialize the ID counter
+        self.log_manager = log_manager
+        if self.log_manager:
+            self.log_manager.log_info("JSONBuilder initialized.")
 
     def parse_file_name(self, file_name):
         # Extract test_date, fuel, and test_type from the file name
@@ -33,9 +37,13 @@ class JSONBuilder:
         return test_date, fuel, test_type
 
     def build_json(self):
+        if self.log_manager:
+            self.log_manager.log_info("Building JSON data structure...")
         # Scan the directory for .csv and .xlsx files
         for file_name in os.listdir(self.data_dir):
             if file_name.endswith('.csv') or file_name.endswith('.xlsx'):
+                if self.log_manager:
+                    self.log_manager.log_info(f"Processing file: {file_name}")
                 # Create a new entry based on the template
                 entry = self.template.copy()
                 test_date, fuel, test_type = self.parse_file_name(file_name)
@@ -64,20 +72,26 @@ class JSONBuilder:
                     self.current_id += 1
                     # Add the entry to the JSON structure
                     self.json_data["Lublin Diesel"].append(entry)
+        if self.log_manager:
+            self.log_manager.log_info("JSON data structure built successfully.")
 
     def save_json(self, output_file_path):
         # Save the JSON structure to a file
         with open(output_file_path, 'w') as json_file:
             json.dump(self.json_data, json_file, indent=4)
-        logging.info(f"JSON file created at {output_file_path}")
+        if self.log_manager:
+            self.log_manager.log_info(f"JSON file created at {output_file_path}")
 
 if __name__ == "__main__":
     # Configure logging
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
     logger = logging.getLogger(__name__)
 
-    # Create an instance of JSONBuilder
-    builder = JSONBuilder(RAW_DATA_DIR)
+    # Create an instance of LogManager
+    log_manager = LogManager(logs_dir=LOGS_DIR)
+
+    # Create an instance of JSONBuilder with log_manager
+    builder = JSONBuilder(RAW_DATA_DIR, log_manager=log_manager)
     
     # Build the JSON data
     builder.build_json()

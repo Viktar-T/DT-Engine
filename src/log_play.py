@@ -1,4 +1,3 @@
-
 from src.log_manager import LogManager
 from src.config import LOGS_DIR
 
@@ -12,7 +11,7 @@ def main():
     log_manager.log_error("This is an error message.")
     log_manager.log_debug("This is a debug message.")
 
-    print(f"Logs have been written to {log_manager.log_file}")
+    print(f"Logs have been written to {log_manager._get_log_file_path()}")
 
 if __name__ == "__main__":
     main()

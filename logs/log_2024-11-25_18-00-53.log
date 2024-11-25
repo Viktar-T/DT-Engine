@@ -1,0 +1,48 @@
+2024-11-25 18:00:53,673 - INFO - Starting data pipeline...
+2024-11-25 18:00:53,679 - INFO - Step 1: Building files_with_raw_data_links.json...
+2024-11-25 18:00:53,680 - INFO - Step 1: files_with_raw_data_links.json built successfully.
+2024-11-25 18:00:57,192 - INFO - Step 1: files_with_raw_data_links.json built successfully.
+2024-11-25 18:00:57,193 - INFO - Continue data pipeline. Step 2: Loading raw data...
+2024-11-25 18:00:57,197 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw
+2024-11-25 18:00:57,198 - INFO - Loading main file: 1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-11-25 18:00:57,198 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-11-25 18:00:57,505 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-11-25 18:00:57,736 - INFO - Data Frame Shape: (38535, 146)
+2024-11-25 18:00:57,736 - INFO - Data files loaded successfully.
+2024-11-25 18:00:58,352 - INFO - Step 2: Raw data loaded successfully.
+2024-11-25 18:00:58,353 - INFO - Continue data pipeline. Step 3: Validating data...
+2024-11-25 18:00:58,357 - INFO - DataValidator initialized.
+2024-11-25 18:00:58,357 - INFO - Starting column validation for multiple DataFrames...
+2024-11-25 18:00:58,358 - INFO - DataFrame 0: All required columns are present.
+2024-11-25 18:00:58,358 - INFO - DataFrame 0: All optional columns are present.
+2024-11-25 18:00:58,359 - INFO - Starting schema validation for multiple DataFrames...
+2024-11-25 18:00:58,360 - INFO - DataFrame 0 - Schema validation passed.
+2024-11-25 18:00:58,361 - INFO - Checking for duplicate columns in multiple DataFrames...
+2024-11-25 18:00:58,361 - INFO - DataFrame 0: No duplicate columns found.
+2024-11-25 18:00:58,361 - INFO - Validation reports summarizing the results for each DataFrame
+2024-11-25 18:00:58,361 - INFO - =================
+Validation Report for DataFrame 0 (0 - main Data Frame; 1 - eco Data Frame):
+DataFrame Shape: (38535, 146) (Rows, Columns) <--- !!!!!!!!!
+All Required Columns: Present
+All Optional Columns: Present
+2024-11-25 18:00:58,362 - INFO - Step 3: Data validated successfully.
+2024-11-25 18:00:58,968 - INFO - Step 3: Data validated successfully.
+2024-11-25 18:00:58,968 - INFO - Starting metadata extraction for multiple DataFrames...
+2024-11-25 18:00:58,969 - INFO - Processing DataFrame 1/1 with shape (38535, 146)...
+2024-11-25 18:00:59,162 - INFO - Metadata extraction completed for all DataFrames.
+2024-11-25 18:00:59,752 - INFO - Step 4: Metadata extracted successfully.
+2024-11-25 18:00:59,753 - INFO - Continue data pipeline. Step 5: Cleaning and preprocessing data...
+2024-11-25 18:00:59,771 - INFO - DataCleaner initialized with required columns.
+2024-11-25 18:00:59,772 - INFO - Starting data cleaning process.
+2024-11-25 18:00:59,776 - INFO - Filtered DataFrame to include 34 columns.
+2024-11-25 18:00:59,777 - INFO - Data cleaning process completed.
+2024-11-25 18:00:59,777 - INFO - Filtered DataFrame shape: (38535, 34)
+2024-11-25 18:00:59,805 - INFO - Step 5: Data cleaned and preprocessed successfully.
+2024-11-25 18:01:00,464 - INFO - Step 5: Data cleaned and preprocessed successfully.
+2024-11-25 18:01:00,464 - INFO - Step 6: Continue data pipeline. Saving cleaned data...
+2024-11-25 18:01:00,537 - INFO - Cleaned data saved to c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\processed\cleaned_data.parquet
+2024-11-25 18:01:00,537 - INFO - Step 6: Save cleaned data completed successfully.
+2024-11-25 18:01:01,153 - INFO - Step 6: Cleaned data saved successfully.
+2024-11-25 18:01:01,153 - INFO - Continue data pipeline. Step 7 - NOT IMPLEMENTED: Filtering data...
+2024-11-25 18:01:01,801 - INFO - Step 7: Data filtering step not implemented.
+2024-11-25 18:01:01,836 - INFO - Data pipeline completed successfully.

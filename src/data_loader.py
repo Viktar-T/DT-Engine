@@ -7,6 +7,7 @@ from typing import List, Union
 from src.config import RAW_DATA_DIR
 from tabulate import tabulate
 from src.metadata_manager import MetadataManager
+from src.log_manager import LogManager
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -45,19 +46,26 @@ class DataLoader:
     Supports CSV and Excel files and includes basic validation checks.
     """
 
-    def __init__(self, raw_data_path: str = RAW_DATA_DIR, metadata_manager: MetadataManager = None):
+    def __init__(self, raw_data_path: str = RAW_DATA_DIR, 
+                 metadata_manager: MetadataManager = None, 
+                 log_manager: LogManager = None):
         """
         Initialize the DataLoader.
 
         Parameters:
         - raw_data_path: Path to the directory containing raw data files.
+        - metadata_manager: An instance of MetadataManager to handle metadata.
+        - log_manager: An instance of LogManager for logging.
         """
         self.raw_data_path = raw_data_path
         if not os.path.exists(self.raw_data_path):
-            logger.error(f"Directory '{self.raw_data_path}' does not exist.")
+            if log_manager:
+                log_manager.log_error(f"Directory '{self.raw_data_path}' does not exist.")
             raise FileNotFoundError(f"Directory '{self.raw_data_path}' does not exist.")
         self.metadata_manager = metadata_manager
-        logger.info(f"DataLoader initialized with raw data path: {self.raw_data_path}")
+        self.log_manager = log_manager
+        if self.log_manager:
+            self.log_manager.log_info(f"DataLoader initialized with raw data path: {self.raw_data_path}")
 
     # !!!! I have files_with_raw_data_links.json. Don't used in main.py !!!!    
     def list_files(self, extensions: List[str] = ["csv", "xlsx"]) -> List[str]:
@@ -76,7 +84,8 @@ class DataLoader:
             if os.path.isfile(os.path.join(self.raw_data_path, f)) and
             any(f.endswith(ext) for ext in extensions)
         ]
-        logger.info(f"Found {len(files)} files with extensions {extensions} in '{self.raw_data_path}'")
+        if self.log_manager:
+            self.log_manager.log_info(f"Found {len(files)} files with extensions {extensions} in '{self.raw_data_path}'")
         return files
     
     # !!!! used in main.py !!!!
@@ -95,7 +104,8 @@ class DataLoader:
 
         # Check if the JSON file exists
         if not os.path.exists(json_file_path):
-            logger.error(f"JSON file '{json_file_path}' does not exist.")
+            if self.log_manager:
+                self.log_manager.log_error(f"JSON file '{json_file_path}' does not exist.")
             raise FileNotFoundError(f"JSON file '{json_file_path}' does not exist.")
 
         # Open and read the JSON file
@@ -113,7 +123,8 @@ class DataLoader:
         selected_entry = next((entry for entry in entries if entry['id'] == selected_id), None)
 
         if not selected_entry:
-            logger.error(f"No entry found with ID {selected_id}.")
+            if self.log_manager:
+                self.log_manager.log_error(f"No entry found with ID {selected_id}.")
             raise ValueError(f"No entry found with ID {selected_id}.")
 
         # Get the main_file_name and eco_file_name
@@ -124,25 +135,30 @@ class DataLoader:
 
         # Load the main file using the existing load_data method
         if main_file_name:
-            logger.info(f"Loading main file: {main_file_name}")
+            if self.log_manager:
+                self.log_manager.log_info(f"Loading main file: {main_file_name}")
             df_main = self.load_data(main_file_name)
             if df_main is not None:
                 data_frames.append(df_main)
             else:
-                logger.error(f"Failed to load main file '{main_file_name}'.")
+                if self.log_manager:
+                    self.log_manager.log_error(f"Failed to load main file '{main_file_name}'.")
                 raise FileNotFoundError(f"Main file '{main_file_name}' not found or failed to load.")
 
         # Load the eco file using the existing load_data method
         if eco_file_name:
-            logger.info(f"Loading eco file: {eco_file_name}")
+            if self.log_manager:
+                self.log_manager.log_info(f"Loading eco file: {eco_file_name}")
             df_eco = self.load_data(eco_file_name)
             if df_eco is not None:
                 data_frames.append(df_eco)
             else:
-                logger.error(f"Failed to load eco file '{eco_file_name}'.")
+                if self.log_manager:
+                    self.log_manager.log_error(f"Failed to load eco file '{eco_file_name}'.")
                 raise FileNotFoundError(f"Eco file '{eco_file_name}' not found or failed to load.")
 
-        logger.info("Data files loaded successfully.")
+        if self.log_manager:
+            self.log_manager.log_info("Data files loaded successfully.")
         return data_frames
 
 
@@ -159,20 +175,24 @@ class DataLoader:
         """
         file_path = os.path.join(self.raw_data_path, file_name)
         if not os.path.exists(file_path):
-            logger.error(f"File '{file_path}' does not exist.")
+            if self.log_manager:
+                self.log_manager.log_error(f"File '{file_path}' does not exist.")
             raise FileNotFoundError(f"File '{file_path}' does not exist.")
         
-        logger.info(f"Loading data from file: {file_path}")
+        if self.log_manager:
+            self.log_manager.log_info(f"Loading data from file: {file_path}")
         if file_name.endswith('.csv'):
             data = pd.read_csv(file_path)
         elif file_name.endswith('.xlsx'):
             data = pd.read_excel(file_path)
         else:
-            logger.error(f"Unsupported file format: {file_name}")
+            if self.log_manager:
+                self.log_manager.log_error(f"Unsupported file format: {file_name}")
             return None
         
-        logger.info(f"Data loaded successfully from file: {file_path}")
-        logger.info(f"Data Frame Columns: {list(data.columns)}")
+        if self.log_manager:
+            self.log_manager.log_info(f"Data loaded successfully from file: {file_path}")
+            self.log_manager.log_info(f"Data Frame Columns: {list(data.columns)}")
         # logger.info(f"Data from file '{file_name}':\n{tabulate(data.head(), headers='keys', tablefmt='fancy_grid')}")
         log_dataframe_in_chunks(data, file_name)
 
@@ -180,7 +200,8 @@ class DataLoader:
         step_2_file_name = "2-raw file_name"
         self.metadata_manager.update_metadata(step_2_file_name, f'{file_name}_shape', data.shape)
 
-        logger.info(f"Data Frame Shape: {data.shape}")
+        if self.log_manager:
+            self.log_manager.log_info(f"Data Frame Shape: {data.shape}")
         return data
 
     
@@ -193,7 +214,8 @@ class DataLoader:
         """
         files = self.list_files()
         if not files:
-            logger.error(f"No data files found in directory '{self.raw_data_path}'.")
+            if self.log_manager:
+                self.log_manager.log_error(f"No data files found in directory '{self.raw_data_path}'.")
             raise FileNotFoundError(f"No data files found in directory '{self.raw_data_path}'.")
 
         data_frames = []
@@ -201,9 +223,11 @@ class DataLoader:
             try:
                 df = self.load_file(file)
                 data_frames.append(df)
-                logger.info(f"Successfully loaded: {file}")
+                if self.log_manager:
+                    self.log_manager.log_info(f"Successfully loaded: {file}")
             except Exception as e:
-                logger.error(f"Failed to load '{file}': {e}")
+                if self.log_manager:
+                    self.log_manager.log_error(f"Failed to load '{file}': {e}")
         
         return data_frames
 
@@ -217,9 +241,11 @@ class DataLoader:
         """
         try:
             data.to_parquet(save_path, index=False)
-            logger.info(f"Data successfully saved to: {save_path}")
+            if self.log_manager:
+                self.log_manager.log_info(f"Data successfully saved to: {save_path}")
         except Exception as e:
-            logger.error(f"Failed to save data to '{save_path}': {e}")
+            if self.log_manager:
+                self.log_manager.log_error(f"Failed to save data to '{save_path}': {e}")
 
     def get_metadata(self, data: pd.DataFrame) -> dict:
         """
@@ -263,10 +289,12 @@ class DataLoader:
         - True if validation passes, False otherwise.
         """
         if data.empty:
-            logger.warning("Validation failed: DataFrame is empty.")
+            if self.log_manager:
+                self.log_manager.log_warning("Validation failed: DataFrame is empty.")
             return False
         if data.isnull().all(axis=None):
-            logger.warning("Validation failed: DataFrame contains only NaN values.")
+            if self.log_manager:
+                self.log_manager.log_warning("Validation failed: DataFrame contains only NaN values.")
             return False
         return True
 

@@ -5,22 +5,28 @@ from datetime import datetime
 class LogManager:
     def __init__(self, logs_dir: str):
         self.logs_dir = logs_dir
-        self.log_file = self._get_log_file_path()
-        self._setup_logging()
+        self._setup_logging()  # Call the setup logging method
 
     def _get_log_file_path(self) -> str:
-        date_str = datetime.now().strftime('%Y-%m-%d')
-        return os.path.join(self.logs_dir, f'log_{date_str}.log')
+        date_time_str = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        return os.path.join(self.logs_dir, f'log_{date_time_str}.log')
 
     def _setup_logging(self):
         if not os.path.exists(self.logs_dir):
             os.makedirs(self.logs_dir)
-        logging.basicConfig(
-            filename=self.log_file,
-            level=logging.INFO,
-            format='%(asctime)s - %(levelname)s - %(message)s'
-        )
-        self.logger = logging.getLogger(__name__)
+        log_file_path = self._get_log_file_path()
+        self.logger = logging.getLogger('LogManager')
+        self.logger.setLevel(logging.INFO)
+        # Check if the logger already has handlers to avoid duplicate logs
+        if not self.logger.handlers:
+            # Create file handler
+            fh = logging.FileHandler(log_file_path)
+            fh.setLevel(logging.INFO)
+            # Create formatter
+            formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+            fh.setFormatter(formatter)
+            # Add handler to logger
+            self.logger.addHandler(fh)
 
     def log_info(self, message: str):
         self.logger.info(message)
