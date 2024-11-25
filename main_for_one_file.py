@@ -8,6 +8,7 @@ from src.data_cleaner import DataCleaner
 from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, METADATA_DIR, LOGS_DIR
 from src.utils.build_json_with_files import JSONBuilder
 from src.metadata_manager import MetadataManager
+from src.log_manager import LogManager
 
 required_columns_for_validation_step = [
     'Ciś. pow. za turb.[Pa]', 'Ciśnienie atmosferyczne[hPa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
@@ -62,8 +63,11 @@ def proceed_to_next_step(step_number):
 
 def main():
     try:
+        # Initialize LogManager
+        log_manager = LogManager(logs_dir=LOGS_DIR)
+        log_manager.log_info("Starting data pipeline...")
+
         # Step 1: Build files_with_raw_data_links.json
-        logger.info("Starting data pipeline...")
         metadata_manager = MetadataManager(metadata_dir=METADATA_DIR)
         metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'pipeline_status', 'started')
         metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step', '1')
@@ -79,6 +83,7 @@ def main():
         metadata_manager.update_metadata("1-Build files_with_raw_data_links.json", 'step_1_status', 'completed')
         metadata_manager.update_metadata("1-Build files_with_raw_data_links.json", 'step_1_end_time', str(datetime.now()))
         proceed_to_next_step(1)
+        log_manager.log_info("Step 1: files_with_raw_data_links.json built successfully.")
 
         # Step 2: Load raw data
         step_2_file_name = "2-raw file_name"
@@ -91,6 +96,7 @@ def main():
         metadata_manager.update_metadata(step_2_file_name, 'step_2_status', 'completed')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_end_time', str(datetime.now()))
         proceed_to_next_step(2)
+        log_manager.log_info("Step 2: Raw data loaded successfully.")
 
         # Step 3: Validate data
         step_3_file_name = "3-raw file_name"
@@ -124,6 +130,7 @@ def main():
         metadata_manager.update_metadata(step_3_file_name, 'step_3_status', 'completed')
         metadata_manager.update_metadata(step_3_file_name, 'step_3_end_time', str(datetime.now()))
         proceed_to_next_step(3)
+        log_manager.log_info("Step 3: Data validated successfully.")
 
         # Step 4: Validate data
         step_4_file_name = "4-raw file_name"
@@ -134,6 +141,7 @@ def main():
         metadata_manager.update_metadata(step_4_file_name, 'step_4_status', 'completed')
         metadata_manager.update_metadata(step_4_file_name, 'step_4_end_time', str(datetime.now()))
         proceed_to_next_step(4)
+        log_manager.log_info("Step 4: Metadata extracted successfully.")
 
         # Step 5: Clean and preprocess data
         step_5_file_name = "5-raw file_name"
@@ -147,6 +155,7 @@ def main():
         metadata_manager.update_metadata(step_5_file_name, 'step_5_status', 'completed')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_end_time', str(datetime.now()))
         proceed_to_next_step(5)
+        log_manager.log_info("Step 5: Data cleaned and preprocessed successfully.")
 
         # Step 6: Save cleaned data
         step_6_file_name = "6-raw file_name"
@@ -164,6 +173,7 @@ def main():
         metadata_manager.update_metadata(step_6_file_name, 'step_6_status', 'completed')
         metadata_manager.update_metadata(step_6_file_name, 'step_6_end_time', str(datetime.now()))
         proceed_to_next_step(6)
+        log_manager.log_info("Step 6: Cleaned data saved successfully.")
 
         # Step 7: Filter data - NOT IMPLEMENTED
         step_7_file_name = "7-raw file_name"
@@ -172,12 +182,13 @@ def main():
         metadata_manager.update_metadata(step_7_file_name, 'step_name', 'Filter data')
         metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
         proceed_to_next_step(7)
+        log_manager.log_info("Step 7: Data filtering step not implemented.")
 
-        logger.info("Data pipeline completed successfully.")
+        log_manager.log_info("Data pipeline completed successfully.")
         metadata_manager.update_metadata(step_7_file_name, 'pipeline_status', 'completed')
 
     except Exception as e:
-        logger.error(f"An error occurred: {e}")
+        log_manager.log_error(f"An error occurred: {e}")
         metadata_manager.update_metadata(0, 'pipeline_status', f'error: {e}')
         metadata_manager.update_metadata(0, 'error_time', str(datetime.now()))
 
