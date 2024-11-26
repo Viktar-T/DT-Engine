@@ -1,39 +1,12 @@
 import pandas as pd
 import logging
 from typing import List
-from tabulate import tabulate
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
 
 # Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-def split_dataframe(df: pd.DataFrame, chunk_size: int):
-    """
-    Split a DataFrame into chunks of columns.
-
-    Parameters:
-    - df: The DataFrame to split.
-    - chunk_size: The number of columns per chunk.
-
-    Yields:
-    - Chunks of the DataFrame.
-    """
-    for i in range(0, df.shape[1], chunk_size):
-        yield df.iloc[:, i:i + chunk_size]
-
-def log_dataframe_in_chunks(df: pd.DataFrame, chunk_size: int = 6, rows: int = 3):
-    """
-    Log a DataFrame in chunks to improve readability.
-
-    Parameters:
-    - df: The DataFrame to log.
-    - chunk_size: The number of columns per chunk.
-    - rows: The number of rows to display per chunk.
-    """
-    for chunk in split_dataframe(df, chunk_size):
-        logger.info(f"Current DataFrame chunk:\n{tabulate(chunk.head(rows), headers='keys', tablefmt='fancy_grid')}")
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logger = logging.getLogger(__name__)
 
 class DataCleaner:
     """
@@ -98,7 +71,8 @@ class DataCleaner:
         if self.log_manager:
             self.log_manager.log_info("Data cleaning process completed.")
             self.log_manager.log_info(f"Filtered DataFrame shape: {filtered_df.shape}")
-        log_dataframe_in_chunks(filtered_df)
+        if self.log_manager:
+            self.log_manager.log_dataframe_in_chunks(filtered_df)
         if self.metadata_manager:
             self.step_5_file_name = "5-raw file_name"
             #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)

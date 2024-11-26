@@ -1,6 +1,7 @@
 import os
 import logging
 from datetime import datetime
+from tabulate import tabulate  # Add this import
 
 class LogManager:
     def __init__(self, logs_dir: str):
@@ -19,8 +20,8 @@ class LogManager:
         self.logger.setLevel(logging.INFO)
         # Check if the logger already has handlers to avoid duplicate logs
         if not self.logger.handlers:
-            # Create file handler
-            fh = logging.FileHandler(log_file_path)
+            # Create file handler with UTF-8 encoding
+            fh = logging.FileHandler(log_file_path, encoding='utf-8')
             fh.setLevel(logging.INFO)
             # Create formatter
             formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
@@ -39,3 +40,33 @@ class LogManager:
 
     def log_debug(self, message: str):
         self.logger.debug(message)
+
+    def split_dataframe(self, df, chunk_size):
+        """
+        Split a DataFrame into chunks of columns.
+
+        Parameters:
+        - df: The DataFrame to split.
+        - chunk_size: The number of columns per chunk.
+
+        Yields:
+        - Chunks of the DataFrame.
+        """
+        for i in range(0, df.shape[1], chunk_size):
+            yield df.iloc[:, i:i + chunk_size]
+
+    def log_dataframe_in_chunks(self, df, file_name=None, chunk_size=6, rows=3):
+        """
+        Log a DataFrame in chunks to improve readability.
+
+        Parameters:
+        - df: The DataFrame to log.
+        - file_name: The name of the file the data was loaded from (optional).
+        - chunk_size: The number of columns per chunk.
+        - rows: The number of rows to display per chunk.
+        """
+        for chunk in self.split_dataframe(df, chunk_size):
+            if file_name:
+                self.logger.info(f"Data from file '{file_name}':\n{tabulate(chunk.head(rows), headers='keys', tablefmt='fancy_grid')}")
+            else:
+                self.logger.info(f"DataFrame chunk:\n{tabulate(chunk.head(rows), headers='keys', tablefmt='fancy_grid')}")

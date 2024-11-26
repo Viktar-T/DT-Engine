@@ -1,0 +1,11 @@
+2024-11-26 09:39:35,420 - INFO - Starting data pipeline...
+2024-11-26 09:39:35,425 - INFO - Step 1: Building files_with_raw_data_links.json...
+2024-11-26 09:39:35,427 - INFO - Step 1: files_with_raw_data_links.json built successfully.
+2024-11-26 09:39:38,208 - INFO - Step 1: files_with_raw_data_links.json built successfully.
+2024-11-26 09:39:38,208 - INFO - Continue data pipeline. Step 2: Loading raw data...
+2024-11-26 09:39:38,213 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw
+2024-11-26 09:39:38,213 - INFO - Loading main file: 1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-11-26 09:39:38,214 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-11-26 09:39:38,538 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-11-26 09:39:38,838 - INFO - Data Frame Shape: (38535, 146)
+2024-11-26 09:39:38,838 - INFO - Data files loaded successfully.
