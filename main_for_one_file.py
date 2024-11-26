@@ -9,6 +9,7 @@ from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, METADATA_DIR, LOGS_DIR
 from src.utils.build_json_with_files import JSONBuilder
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
+from src.data_visualizer import DataVisualizer
 
 required_columns_for_validation_step = [
     'Ciś. pow. za turb.[Pa]', 'Ciśnienie atmosferyczne[hPa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
@@ -188,10 +189,10 @@ def main():
         metadata_manager.update_metadata(step_6_file_name, 'step_name', 'Save cleaned data')
         metadata_manager.update_metadata(step_6_file_name, 'step_6_start_time', str(datetime.now()))
         cleaned_data_file_name = 'cleaned_data.csv' # <-- name of the base file from files_with_raw_data_links.json
-        #cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv'), index=False)
+        #cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv'), index=False)
         #log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv')}")
-        # cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.xlsx'), index=False, engine='openpyxl')
-        cleaned_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.parquet'), index=False)
+        # cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.xlsx'), index=False, engine='openpyxl')
+        cleaned_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.parquet'), index=False)
         log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.parquet')}")
         log_manager.log_info("Step 6: Save cleaned data completed successfully.")
         metadata_manager.update_metadata(step_6_file_name, 'step_6_status', 'completed')
@@ -199,14 +200,32 @@ def main():
         proceed_to_next_step(6, log_manager)
         log_manager.log_info("Step 6: Cleaned data saved successfully.")
 
-        # Step 7: Filter data - NOT IMPLEMENTED
+        # Step 7: Visualize data
         step_7_file_name = f"7-{files_for_steps}"
-        log_manager.log_info("Continue data pipeline. Step 7 - NOT IMPLEMENTED: Filtering data...")
+        log_manager.log_info("Continue data pipeline. Step 7: Visualizing data...")
         metadata_manager.update_metadata(step_7_file_name, 'step', '7')
-        metadata_manager.update_metadata(step_7_file_name, 'step_name', 'Filter data')
+        metadata_manager.update_metadata(step_7_file_name, 'step_name', 'Visualize data')
         metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
+        
+        data_visualizer = DataVisualizer(cleaned_df)
+        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
+        data_visualizer.plot_columns(columns_to_plot)
+
+        for column_pair in required_columns:
+            x_column = column_pair[0]
+            y_column = column_pair[1]
+            data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
+
+        # x_column = 'Obroty[obr/min]'
+        # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
+        # data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
+        
+        # ...call other visualization methods as needed...
+
+        metadata_manager.update_metadata(step_7_file_name, 'step_7_status', 'completed')
+        metadata_manager.update_metadata(step_7_file_name, 'step_7_end_time', str(datetime.now()))
         proceed_to_next_step(7, log_manager)
-        log_manager.log_info("Step 7: Data filtering step not implemented.")
+        log_manager.log_info("Step 7: Data visualization completed successfully.")
 
         log_manager.log_info("Data pipeline completed successfully.")
         metadata_manager.update_metadata(step_7_file_name, 'pipeline_status', 'completed')
