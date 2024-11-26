@@ -61,9 +61,49 @@ class DataCleaner:
             self.log_manager.log_info(f"Filtered DataFrame to include {len(columns_to_keep)} columns.")
         return filtered_df
 
+    def _handle_missing_values(self) -> pd.DataFrame:
+        """
+        Handles missing values in the DataFrame.
+        Returns:
+        - pd.DataFrame: DataFrame with missing values handled.
+        """
+        if self.log_manager:
+            self.log_manager.log_info("Handling missing values.")
+        # Example: Fill missing values with mean of each column
+        self.df = self.df.fillna(self.df.mean())
+        return self.df
+    
+    def _remove_duplicates(self) -> pd.DataFrame:
+        """
+        Removes duplicate rows from the DataFrame.
+        Returns:
+        - pd.DataFrame: DataFrame with duplicates removed.
+        """
+        if self.log_manager:
+            self.log_manager.log_info("Removing duplicate rows.")
+        self.df = self.df.drop_duplicates()
+        return self.df
+    
+    def _handle_outliers(self) -> pd.DataFrame:
+        """
+        Handles outliers in the DataFrame.
+        Returns:
+        - pd.DataFrame: DataFrame with outliers handled.
+        """
+        if self.log_manager:
+            self.log_manager.log_info("Handling outliers.")
+        # Example: Cap values at the 1st and 99th percentiles
+        numerical_columns = self.df.select_dtypes(include=['number']).columns
+        for col in numerical_columns:
+            lower_bound = self.df[col].quantile(0.01)
+            upper_bound = self.df[col].quantile(0.99)
+            self.df[col] = self.df[col].clip(lower=lower_bound, upper=upper_bound)
+        return self.df
+
     def clean(self) -> pd.DataFrame:
         """
-        Cleans the DataFrame by retaining only the required columns.
+        Cleans the DataFrame by retaining only the required columns,
+        handling missing values, removing duplicates, and handling outliers.
 
         Returns:
         - pd.DataFrame: A cleaned DataFrame.
@@ -71,6 +111,10 @@ class DataCleaner:
         if self.log_manager:
             self.log_manager.log_info("Starting data cleaning process.")
         filtered_df = self._filter_columns()
+        self.df = filtered_df  # Update self.df with filtered columns
+        #self._handle_missing_values() # the number of "Non-Null Count" in DataFrame after cleaning 3853*10=38530 -> see logs
+        self._remove_duplicates()
+        self._handle_outliers()
         if self.log_manager:
             self.log_manager.log_info("Data cleaning process completed.")
             self.log_manager.log_info(f"Filtered DataFrame shape: {filtered_df.shape}")
@@ -80,4 +124,4 @@ class DataCleaner:
             self.step_5_file_name = f"5-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
             #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
             self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', filtered_df.shape)
-        return filtered_df
+        return self.df
