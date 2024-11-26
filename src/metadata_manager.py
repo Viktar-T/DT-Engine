@@ -22,7 +22,10 @@ class MetadataManager:
         existing_files = [f for f in os.listdir(self.metadata_dir) if f.startswith('metadata_v')]
         if not existing_files:
             return 'v1.0'
-        latest_version = sorted(existing_files)[-1].split('_v')[-1].split('.json')[0]
+        
+        versions = [f.split('_v')[-1].split('.json')[0] for f in existing_files]
+        versions = sorted(versions, key=lambda s: list(map(int, s.split('.'))))
+        latest_version = versions[-1]
         major, minor = map(int, latest_version.split('.'))
         return f'v{major}.{minor + 1}'
 

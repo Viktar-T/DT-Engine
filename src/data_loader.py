@@ -170,7 +170,7 @@ class DataLoader:
             self.log_manager.log_dataframe_in_chunks(data, file_name)
 
         #self.metadata_manager.update_metadata(f"{file_name}", f'{file_name}_columns', list(data.columns))
-        step_2_file_name = "2-raw file_name"
+        step_2_file_name = f"2-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
         self.metadata_manager.update_metadata(step_2_file_name, f'{file_name}_shape', data.shape)
 
         if self.log_manager:

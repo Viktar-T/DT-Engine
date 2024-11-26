@@ -77,7 +77,7 @@ class DataCleaner:
         if self.log_manager:
             self.log_manager.log_dataframe_in_chunks(filtered_df)
         if self.metadata_manager:
-            self.step_5_file_name = "5-raw file_name"
+            self.step_5_file_name = f"5-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
             #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
             self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', filtered_df.shape)
         return filtered_df

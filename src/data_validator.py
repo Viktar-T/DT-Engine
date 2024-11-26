@@ -33,12 +33,12 @@ class DataValidator:
         self.required_columns_list = required_columns_list
         self.names_of_files_under_procession = names_of_files_under_procession
         self.optional_columns_list = optional_columns_list or [[] for _ in dfs]
-        self.file_names = file_names or [f"DataFrame_{i}" for i in range(len(dfs))]
+        self.file_names = file_names or [f"DataFrame_{i}" for i in range(len(dfs))]   # !!! duplication
         self.missing_required_list = []
         self.missing_optional_list = []
         self.metadata_manager = metadata_manager
         if self.metadata_manager:
-            self.step_4_file_name = "4-raw file_name"
+            self.step_4_file_name = f"4-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
             self.metadata_manager.update_metadata(self.step_4_file_name, 
                                                   'from class DataValidator. Files for validation:', 
                                                   self.file_names)
@@ -135,7 +135,7 @@ class DataValidator:
             })
             metadata_list.append(metadata)
             if self.log_manager:
-                self.log_manager.log_info(f"Metadata for DataFrame {idx + 1}, File:{self.file_names[idx]}, {message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
+                self.log_manager.log_info(f"Metadata for DataFrame {idx}, names_of_files_under_procession:{self.names_of_files_under_procession}, {message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
 
         if self.log_manager:
             self.log_manager.log_info("Metadata extraction completed for all DataFrames.")
