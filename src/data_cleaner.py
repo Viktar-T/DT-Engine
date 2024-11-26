@@ -15,6 +15,7 @@ class DataCleaner:
 
     def __init__(self, df: pd.DataFrame, 
                  required_columns: List[List[str]], 
+                 names_of_files_under_procession: List[str] = None,
                  metadata_manager: MetadataManager = None, 
                  log_manager: LogManager = None):
         """
@@ -23,6 +24,7 @@ class DataCleaner:
         Parameters:
         - df: The DataFrame to clean.
         - required_columns: A list of lists where each sublist contains time and data columns.
+        - names_of_files_under_procession: A list of file names under procession.
         - metadata_manager: An instance of MetadataManager to handle metadata.
         - log_manager: An instance of LogManager for logging.
         """
@@ -30,6 +32,7 @@ class DataCleaner:
             raise TypeError("Input data must be a pandas DataFrame.")
         self.df = df.copy()
         self.required_columns = required_columns
+        self.names_of_files_under_procession = names_of_files_under_procession
         self.metadata_manager = metadata_manager
         self.log_manager = log_manager
         self.step_5_file_name = None
@@ -78,4 +81,3 @@ class DataCleaner:
             #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
             self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', filtered_df.shape)
         return filtered_df
-

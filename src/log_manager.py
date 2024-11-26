@@ -1,11 +1,16 @@
 import os
 import logging
 from datetime import datetime
+from typing import List
 from tabulate import tabulate  # Add this import
 
 class LogManager:
-    def __init__(self, logs_dir: str):
+    def __init__(self, logs_dir: str, 
+                 names_of_files_under_procession: List[str] = None, 
+                 metadata_manager=None):
         self.logs_dir = logs_dir
+        self.names_of_files_under_procession = names_of_files_under_procession
+        self.metadata_manager = metadata_manager
         self._setup_logging()  # Call the setup logging method
 
     def _get_log_file_path(self) -> str:

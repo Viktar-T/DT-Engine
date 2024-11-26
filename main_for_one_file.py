@@ -59,6 +59,7 @@ current_file = {
             "diesel_engine_name": "empty",
             "test_date": "2018-12-06"
         }
+names_of_files_under_procession = [current_file["main_file_name"], current_file["eco_file_name"], current_file["fuel"]]
 
 required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
 
@@ -74,11 +75,13 @@ def proceed_to_next_step(step_number, log_manager):
 def main():
     try:
         # Initialize LogManager
-        log_manager = LogManager(logs_dir=LOGS_DIR)
+        log_manager = LogManager(logs_dir=LOGS_DIR, 
+                                 names_of_files_under_procession=names_of_files_under_procession)
         log_manager.log_info("Starting data pipeline...")
 
         # Step 1: Build files_with_raw_data_links.json
-        metadata_manager = MetadataManager(metadata_dir=METADATA_DIR)
+        metadata_manager = MetadataManager(metadata_dir=METADATA_DIR, 
+                                           names_of_files_under_procession=names_of_files_under_procession)
         metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'pipeline_status', 'started')
         metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step', '1')
         metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step_name', 'Build files_with_raw_data_links.json')
@@ -96,12 +99,15 @@ def main():
         log_manager.log_info("Step 1: files_with_raw_data_links.json built successfully.")
 
         # Step 2: Load raw data
-        step_2_file_name = "2-raw file_name"
+        step_2_file_name = f"2-main_file_name:{current_file['main_file_name']}, eco_file_name:{current_file['eco_file_name']}"
         log_manager.log_info("Continue data pipeline. Step 2: Loading raw data...")
         metadata_manager.update_metadata(step_2_file_name, 'step', '2')
         metadata_manager.update_metadata(step_2_file_name, 'step_name', 'Load raw data')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_start_time', str(datetime.now()))
-        data_loader = DataLoader(RAW_DATA_DIR, metadata_manager=metadata_manager, log_manager=log_manager)
+        data_loader = DataLoader(RAW_DATA_DIR, 
+                                 names_of_files_under_procession=names_of_files_under_procession,
+                                 metadata_manager=metadata_manager, 
+                                 log_manager=log_manager)
         raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=current_file["id"])
         metadata_manager.update_metadata(step_2_file_name, 'step_2_status', 'completed')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_end_time', str(datetime.now()))
@@ -109,7 +115,7 @@ def main():
         log_manager.log_info("Step 2: Raw data loaded successfully.")
 
         # Step 3: Validate data
-        step_3_file_name = "3-raw file_name"
+        step_3_file_name = f"3-main_file_name:{current_file['main_file_name']}, eco_file_name:{current_file['eco_file_name']}"
         log_manager.log_info("Continue data pipeline. Step 3: Validating data...")
         metadata_manager.update_metadata(step_3_file_name, 'step', '3')
         metadata_manager.update_metadata(step_3_file_name, 'step_name', 'Validate data')
@@ -117,7 +123,8 @@ def main():
         required_columns_list = [required_columns_for_validation_step, required_columns_eco]
         validator = DataValidator(raw_data_frames, required_columns_list=required_columns_list, 
                                   file_names=[current_file["main_file_name"], current_file["eco_file_name"]],
-                                  log_manager=log_manager)
+                                  log_manager=log_manager,
+                                  metadata_manager=metadata_manager)
         validation_results = validator.validate_columns()
         for idx, result in enumerate(validation_results):
             if not result["valid"]:
@@ -144,7 +151,7 @@ def main():
         log_manager.log_info("Step 3: Data validated successfully.")
 
         # Step 4: Validate data
-        step_4_file_name = "4-raw file_name"
+        step_4_file_name = f"4-main_file_name:{current_file['main_file_name']}, eco_file_name:{current_file['eco_file_name']}"
         metadata_list = validator.get_metadata()
         #for idx, metadata in enumerate(metadata_list):
         #    log_manager.log_info(f"Metadata for DataFrame {idx}: {metadata}")
@@ -155,21 +162,21 @@ def main():
         log_manager.log_info("Step 4: Metadata extracted successfully.")
 
         # Step 5: Clean and preprocess data
-        step_5_file_name = "5-raw file_name"
+        step_5_file_name = f"5-main_file_name:{current_file['main_file_name']}, eco_file_name:{current_file['eco_file_name']}"
         log_manager.log_info("Continue data pipeline. Step 5: Cleaning and preprocessing data...")
         metadata_manager.update_metadata(step_5_file_name, 'step', '5')
         metadata_manager.update_metadata(step_5_file_name, 'step_name', 'Clean and preprocess data')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_start_time', str(datetime.now()))
         data_cleaner = DataCleaner(df=raw_data_frames[0], required_columns=required_columns, metadata_manager=metadata_manager, log_manager=log_manager)
         cleaned_df = data_cleaner.clean()
-        log_manager.log_info("Step 5: Data cleaned and preprocessed successfully.")
+        validator.get_metadata([cleaned_df], message_for_logs="DataFrame after cleaning:")
         metadata_manager.update_metadata(step_5_file_name, 'step_5_status', 'completed')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_end_time', str(datetime.now()))
         proceed_to_next_step(5, log_manager)
         log_manager.log_info("Step 5: Data cleaned and preprocessed successfully.")
 
         # Step 6: Save cleaned data
-        step_6_file_name = "6-raw file_name"
+        step_6_file_name = f"6-main_file_name:{current_file['main_file_name']}, eco_file_name:{current_file['eco_file_name']}"
         log_manager.log_info("Step 6: Continue data pipeline. Saving cleaned data...")
         metadata_manager.update_metadata(step_6_file_name, 'step', '6')
         metadata_manager.update_metadata(step_6_file_name, 'step_name', 'Save cleaned data')
@@ -187,7 +194,7 @@ def main():
         log_manager.log_info("Step 6: Cleaned data saved successfully.")
 
         # Step 7: Filter data - NOT IMPLEMENTED
-        step_7_file_name = "7-raw file_name"
+        step_7_file_name = f"7-main_file_name:{current_file['main_file_name']}, eco_file_name:{current_file['eco_file_name']}"
         log_manager.log_info("Continue data pipeline. Step 7 - NOT IMPLEMENTED: Filtering data...")
         metadata_manager.update_metadata(step_7_file_name, 'step', '7')
         metadata_manager.update_metadata(step_7_file_name, 'step_name', 'Filter data')

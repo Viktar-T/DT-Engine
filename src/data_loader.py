@@ -19,6 +19,7 @@ class DataLoader:
     """
 
     def __init__(self, raw_data_path: str = RAW_DATA_DIR, 
+                 names_of_files_under_procession: List[str] = None,
                  metadata_manager: MetadataManager = None, 
                  log_manager: LogManager = None):
         """
@@ -30,6 +31,7 @@ class DataLoader:
         - log_manager: An instance of LogManager for logging.
         """
         self.raw_data_path = raw_data_path
+        self.names_of_files_under_procession = names_of_files_under_procession
         if not os.path.exists(self.raw_data_path):
             if log_manager:
                 log_manager.log_error(f"Directory '{self.raw_data_path}' does not exist.")
@@ -268,5 +270,3 @@ class DataLoader:
                 self.log_manager.log_warning("Validation failed: DataFrame contains only NaN values.")
             return False
         return True
-
-

@@ -10,8 +10,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class MetadataManager:
-    def __init__(self, metadata_dir: str):
+    def __init__(self, metadata_dir: str, 
+                 names_of_files_under_procession: List[str] = None):
+        
         self.metadata_dir = metadata_dir
+        self.names_of_files_under_procession = names_of_files_under_procession
         self.version = self._get_next_version()
         self.metadata = self._load_existing_metadata()
 

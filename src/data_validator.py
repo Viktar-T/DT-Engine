@@ -4,43 +4,20 @@ from typing import List, Dict, Tuple, Union
 from pandas.api.types import is_numeric_dtype, is_string_dtype
 from tabulate import tabulate
 from src.log_manager import LogManager
+from src.metadata_manager import MetadataManager
 
 # logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 # logger = logging.getLogger(__name__)
 
-"""
-this "class DataValidator:" is refactored form NAWA project:
-
-    parameters_all = ['Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
-                      'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 
-                      'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 
-      'Temp. spalin 1/6[°C]', 'Temp. spalin 2/6[°C]', 'Temp. spalin 3/6[°C]', 'Temp. spalin 4/6[°C]',  # count average
-                      'Zużycie paliwa średnie[g/s]', 
-      'Ciśnienie atmosferyczne[hPa]', 'Temp. otoczenia[°C]', 'Wilgotność względna[%]']
-
-       ........
-        self.get_lst_param()
-       ........
-      
-    def get_lst_param(self):
-        self.parameters = []
-        self.correction = []
-        self.lst_columns = list(self.df.columns)
-        for par in self.parameters_all:           #!!!!!!!!!!!!!!!!
-            if par in self.df.columns:                
-                self.index_df_par = self.lst_columns.index(par)
-                self.parameters.append(list([self.lst_columns[self.index_df_par - 1], 
-                                            self.lst_columns[self.index_df_par]])) 
-        print('parameters:', *self.parameters, sep='\n', end='\n\n')
-
-"""
 
 class DataValidator:
     def __init__(self, dfs: List[pd.DataFrame], 
                  required_columns_list: List[List[str]], 
                  optional_columns_list: List[List[str]] = [], 
                  file_names: List[str] = [],
-                 log_manager: LogManager = None):
+                 names_of_files_under_procession: List[str] = None,
+                 log_manager: LogManager = None,
+                 metadata_manager: MetadataManager = None):
         """
         Initialize the DataValidator.
 
@@ -49,14 +26,23 @@ class DataValidator:
         - required_columns_list: List of required columns for each DataFrame.
         - optional_columns_list: List of optional columns for each DataFrame.
         - file_names: List of file names for each DataFrame.
+        - names_of_files_under_procession: List of file names under procession.
         - log_manager: An instance of LogManager for logging.
         """
         self.dfs = dfs
         self.required_columns_list = required_columns_list
+        self.names_of_files_under_procession = names_of_files_under_procession
         self.optional_columns_list = optional_columns_list or [[] for _ in dfs]
         self.file_names = file_names or [f"DataFrame_{i}" for i in range(len(dfs))]
         self.missing_required_list = []
         self.missing_optional_list = []
+        self.metadata_manager = metadata_manager
+        if self.metadata_manager:
+            self.step_4_file_name = "4-raw file_name"
+            self.metadata_manager.update_metadata(self.step_4_file_name, 
+                                                  'from class DataValidator. Files for validation:', 
+                                                  self.file_names)
+        
         self.log_manager = log_manager
         if self.log_manager:
             self.log_manager.log_info("DataValidator initialized.")
@@ -126,15 +112,20 @@ class DataValidator:
             else:
                 self.log_manager.log_info(f"DataFrame {idx}: No duplicate columns found.")
 
-    def get_metadata(self) -> List[pd.DataFrame]:
+    def get_metadata(self, data_frames=None, message_for_logs=None) -> List[pd.DataFrame]:
+        if data_frames is None:
+            data_frames = self.dfs
+        else:
+            self.message_for_logs = message_for_logs
+
         if self.log_manager:
             self.log_manager.log_info("Starting metadata extraction for multiple DataFrames...")
         metadata_list = []
-        
-        for idx, df in enumerate(self.dfs):
+
+        for idx, df in enumerate(data_frames):
             if self.log_manager:
-                self.log_manager.log_info(f"Processing DataFrame {idx + 1}/{len(self.dfs)} with shape {df.shape}...")
-            
+                self.log_manager.log_info(f"Processing DataFrame {idx + 1}/{len(data_frames)} with shape {df.shape}...")
+
             metadata = pd.DataFrame({
                 "Column": df.columns,
                 "Non-Null Count": df.notnull().sum().values,
@@ -142,11 +133,10 @@ class DataValidator:
                 "Unique Values": [df[col].nunique() for col in df.columns],
                 "Data Type": df.dtypes.values
             })
-            #"File Name": [self.file_names[idx]] * len(df.columns),
             metadata_list.append(metadata)
             if self.log_manager:
-                self.log_manager.log_info(f"Metadata for DataFrame {idx + 1}, File:{self.file_names}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
-        
+                self.log_manager.log_info(f"Metadata for DataFrame {idx + 1}, File:{self.file_names[idx]}, {message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
+
         if self.log_manager:
             self.log_manager.log_info("Metadata extraction completed for all DataFrames.")
         return metadata_list
