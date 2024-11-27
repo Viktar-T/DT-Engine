@@ -192,6 +192,7 @@ def main():
             log_manager=log_manager
         )
         filtered_df = data_filter.filter_columns()
+        # filtered_df = data_filter.synchronize_time()    # <-- In Progress
 
         # Proceed with DataCleaner using the filtered DataFrame
         data_cleaner = DataCleaner(
@@ -215,10 +216,12 @@ def main():
         metadata_manager.update_metadata(step_6_file_name, 'step_name', 'Save cleaned data')
         metadata_manager.update_metadata(step_6_file_name, 'step_6_start_time', str(datetime.now()))
         cleaned_data_file_name = 'cleaned_data.csv' # <-- name of the base file from files_with_raw_data_links.json
-        #cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv'), index=False)
-        #log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.csv')}")
+        cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv'), index=False)
+        log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv')}")
         # cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.xlsx'), index=False, engine='openpyxl')
-        cleaned_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.parquet'), index=False)
+        cleaned_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, 
+                                           f'cleaned_data_{names_of_files_under_procession[0]}.parquet'), 
+                                           index=False)
         log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.parquet')}")
         log_manager.log_info("Step 6: Save cleaned data completed successfully.")
         metadata_manager.update_metadata(step_6_file_name, 'step_6_status', 'completed')
@@ -226,7 +229,7 @@ def main():
         proceed_to_next_step(6, log_manager)
         log_manager.log_info("Step 6: Cleaned data saved successfully.")
 
-        # Step 7: Visualize data
+        # Step 7.1: Visualize data 1
         step_7_file_name = f"7-{files_for_steps}"
         log_manager.log_info("Continue data pipeline. Step 7: Visualizing data...")
         metadata_manager.update_metadata(step_7_file_name, 'step', '7')
@@ -241,6 +244,10 @@ def main():
             x_column = column_pair[0]
             y_column = column_pair[1]
             data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
+
+        # x_column = 'Time'
+        # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
+        # data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
 
         # x_column = 'Obroty[obr/min]'
         # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
