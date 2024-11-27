@@ -10,6 +10,7 @@ from src.utils.build_json_with_files import JSONBuilder
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
 from src.data_visualizer import DataVisualizer
+from src.data_filter import DataFilter
 
 required_columns_for_validation_step = [
     'Ciś. pow. za turb.[Pa]', 'Ciśnienie atmosferyczne[hPa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
@@ -60,6 +61,17 @@ current_file = {
             "diesel_engine_name": "empty",
             "test_date": "2018-12-06"
         }
+# current_file = {
+#             "id": 2,
+#             "main_file_name": "RME zew _ 2018-12-20.xlsx",
+#             "eco_file_name": "RME zew _ 2018-12-20_eco.xlsx",
+#             "description": "empty",
+#             "diesel_test_type": "zew",
+#             "fuel": "RME",
+#             "diesel_engine_name": "empty",
+#             "test_date": "2018-12-20"
+#         }
+
 names_of_files_under_procession = [current_file["main_file_name"], current_file["eco_file_name"], current_file["fuel"]]
 files_for_steps = f"main_file_name:{names_of_files_under_procession[0]}, eco_file_name:{names_of_files_under_procession[1]}, Fuel:{names_of_files_under_procession[2]}"
 
@@ -164,23 +176,37 @@ def main():
         proceed_to_next_step(4, log_manager)
         log_manager.log_info("Step 4: Metadata extracted successfully.")
 
-        # Step 5: Clean and preprocess data
+        # Step 5: Filter and then clean each chunk 
         step_5_file_name = f"5-{files_for_steps}"
-        log_manager.log_info("Continue data pipeline. Step 5: Cleaning and preprocessing data...")
+        log_manager.log_info("Continue data pipeline. Step 5: Filtering and preprocessing data...")
         metadata_manager.update_metadata(step_5_file_name, 'step', '5')
-        metadata_manager.update_metadata(step_5_file_name, 'step_name', 'Clean and preprocess data')
+        metadata_manager.update_metadata(step_5_file_name, 'step_name', 'Filter and preprocess data')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_start_time', str(datetime.now()))
-        data_cleaner = DataCleaner(df=raw_data_frames[0], 
-                                   names_of_files_under_procession=names_of_files_under_procession,
-                                   required_columns=required_columns, 
-                                   metadata_manager=metadata_manager, 
-                                   log_manager=log_manager)
+
+        # Use DataFilter to filter columns
+        data_filter = DataFilter(
+            df=raw_data_frames[0],
+            required_columns=required_columns,
+            names_of_files_under_procession=names_of_files_under_procession,
+            metadata_manager=metadata_manager,
+            log_manager=log_manager
+        )
+        filtered_df = data_filter.filter_columns()
+
+        # Proceed with DataCleaner using the filtered DataFrame
+        data_cleaner = DataCleaner(
+            df=filtered_df,
+            names_of_files_under_procession=names_of_files_under_procession,
+            metadata_manager=metadata_manager,
+            log_manager=log_manager
+        )
         cleaned_df = data_cleaner.clean()
+
         validator.get_metadata([cleaned_df], message_for_logs="DataFrame after cleaning:")
         metadata_manager.update_metadata(step_5_file_name, 'step_5_status', 'completed')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_end_time', str(datetime.now()))
         proceed_to_next_step(5, log_manager)
-        log_manager.log_info("Step 5: Data cleaned and preprocessed successfully.")
+        log_manager.log_info("Step 5: Data filtered and preprocessed successfully.")
 
         # Step 6: Save cleaned data
         step_6_file_name = f"6-{files_for_steps}"

@@ -1,5 +1,4 @@
 import pandas as pd
-import logging
 from typing import List
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
@@ -14,7 +13,6 @@ class DataCleaner:
     """
 
     def __init__(self, df: pd.DataFrame, 
-                 required_columns: List[List[str]], 
                  names_of_files_under_procession: List[str] = None,
                  metadata_manager: MetadataManager = None, 
                  log_manager: LogManager = None):
@@ -31,35 +29,16 @@ class DataCleaner:
         if not isinstance(df, pd.DataFrame):
             raise TypeError("Input data must be a pandas DataFrame.")
         self.df = df.copy()
-        self.required_columns = required_columns
         self.names_of_files_under_procession = names_of_files_under_procession
         self.metadata_manager = metadata_manager
         self.log_manager = log_manager
         self.step_5_file_name = None
         if self.log_manager:
-            self.log_manager.log_info("DataCleaner initialized with required columns.")
+            self.log_manager.log_info("DataCleaner initialized.")
 
-    def _filter_columns(self) -> pd.DataFrame:
-        """
-        Filters the DataFrame to include only the required columns.
-
-        Returns:
-        - pd.DataFrame: A filtered DataFrame containing only the required columns.
-        """
-        # Flatten the list of required columns
-        columns_to_keep = [col for pair in self.required_columns for col in pair]
-
-        # Validate columns exist in the DataFrame
-        missing_columns = [col for col in columns_to_keep if col not in self.df.columns]
-        if missing_columns and self.log_manager:
-            self.log_manager.log_warning(f"The following required columns are missing from the DataFrame: {missing_columns}")
-            columns_to_keep = [col for col in columns_to_keep if col in self.df.columns]
-
-        # Filter the DataFrame
-        filtered_df = self.df[columns_to_keep]
-        if self.log_manager:
-            self.log_manager.log_info(f"Filtered DataFrame to include {len(columns_to_keep)} columns.")
-        return filtered_df
+    # Removed the _filter_columns method
+    # def _filter_columns(self):
+    #     # ...method content...
 
     def _handle_missing_values(self) -> pd.DataFrame:
         """
@@ -102,26 +81,20 @@ class DataCleaner:
 
     def clean(self) -> pd.DataFrame:
         """
-        Cleans the DataFrame by retaining only the required columns,
-        handling missing values, removing duplicates, and handling outliers.
+        Cleans the DataFrame by filtering columns.
 
         Returns:
         - pd.DataFrame: A cleaned DataFrame.
         """
         if self.log_manager:
             self.log_manager.log_info("Starting data cleaning process.")
-        filtered_df = self._filter_columns()
-        self.df = filtered_df  # Update self.df with filtered columns
-        #self._handle_missing_values() # the number of "Non-Null Count" in DataFrame after cleaning 3853*10=38530 -> see logs
-        self._remove_duplicates()
-        self._handle_outliers()
         if self.log_manager:
             self.log_manager.log_info("Data cleaning process completed.")
-            self.log_manager.log_info(f"Filtered DataFrame shape: {filtered_df.shape}")
-        if self.log_manager:
-            self.log_manager.log_dataframe_in_chunks(filtered_df)
+            self.log_manager.log_info(f"Filtered DataFrame shape: {self.df.shape}")
+        # if self.log_manager:
+        #     self.log_manager.log_dataframe_in_chunks(self.df)
         if self.metadata_manager:
-            self.step_5_file_name = f"5-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
+            self.step_5_file_name = f"5.1-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
             #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
-            self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', filtered_df.shape)
+            self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', self.df.shape)
         return self.df

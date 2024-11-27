@@ -46,7 +46,7 @@ class LogManager:
     def log_debug(self, message: str):
         self.logger.debug(message)
 
-    def split_dataframe(self, df, chunk_size):
+    def _split_dataframe(self, df, chunk_size):
         """
         Split a DataFrame into chunks of columns.
 
@@ -70,7 +70,7 @@ class LogManager:
         - chunk_size: The number of columns per chunk.
         - rows: The number of rows to display per chunk.
         """
-        for chunk in self.split_dataframe(df, chunk_size):
+        for chunk in self._split_dataframe(df, chunk_size):
             if file_name:
                 self.logger.info(f"Data from file '{file_name}':\n{tabulate(chunk.head(rows), headers='keys', tablefmt='fancy_grid')}")
             else:
