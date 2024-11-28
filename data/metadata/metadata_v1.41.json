@@ -1,0 +1,25 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-11-28 11:46:04.887754",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-11-28 11:46:04.889456"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-11-28 11:46:09.289926",
+        "TiL II st Zew B20 IRiL _ 2019-11-06.xlsx_shape": [
+            30120,
+            150
+        ],
+        "TiL II st Zew B20 IRiL _ 2019-11-06_eco.xlsx_shape": [
+            12,
+            9
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-11-28 11:46:36.168042"
+    }
+}

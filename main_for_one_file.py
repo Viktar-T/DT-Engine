@@ -52,7 +52,7 @@ required_columns = [
 # }
 
 current_file = {
-            "id": 1,
+            "id": 4,        # <--- change for windows id:1; linux id:4
             "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
             "eco_file_name": "",
             "description": "empty",
@@ -192,7 +192,7 @@ def main():
             log_manager=log_manager
         )
         filtered_df = data_filter.filter_columns()
-        # filtered_df = data_filter.synchronize_time()    # <-- In Progress
+        filtered_df = data_filter.synchronize_time()    # <-- In Progress 'Czas [ms].1'
 
         # Proceed with DataCleaner using the filtered DataFrame
         data_cleaner = DataCleaner(
@@ -240,10 +240,10 @@ def main():
         columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
         data_visualizer.plot_columns(columns_to_plot)
 
-        for column_pair in required_columns:
-            x_column = column_pair[0]
-            y_column = column_pair[1]
-            data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
+        #for column_pair in required_columns:
+        #    x_column = column_pair[0]
+        #    y_column = column_pair[1]
+        #    data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
 
         # x_column = 'Time'
         # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']

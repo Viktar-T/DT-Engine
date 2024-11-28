@@ -1,0 +1,56 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-11-28 12:14:45.389747",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-11-28 12:14:45.391545"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-11-28 12:14:48.314891",
+        "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
+            38535,
+            146
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-11-28 12:14:48.604551"
+    },
+    "3-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-11-28 12:14:49.306961",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-11-28 12:14:49.310270"
+    },
+    "4-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "from class DataValidator. Files for validation:": [
+            "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-11-28 12:14:51.001167"
+    },
+    "5-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-11-28 12:14:51.922759",
+        "cleaned_data_shape": [
+            38535,
+            146
+        ]
+    },
+    "0": {
+        "pipeline_status": "error: DataFilter.synchronize_time() missing 1 required positional argument: 'reference_time_col'",
+        "error_time": "2024-11-28 12:14:51.926308"
+    }
+}
