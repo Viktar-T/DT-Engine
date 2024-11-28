@@ -3,23 +3,23 @@
         "pipeline_status": "started",
         "step": "1",
         "step_name": "Build files_with_raw_data_links.json",
-        "start_time": "2024-11-28 11:46:04.887754",
+        "start_time": "2024-11-28 17:30:27.566558",
         "step_1_status": "completed",
-        "step_1_end_time": "2024-11-28 11:46:04.889456"
+        "step_1_end_time": "2024-11-28 17:30:27.569558"
     },
     "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2024-11-28 11:46:09.289926",
-        "TiL II st Zew B20 IRiL _ 2019-11-06.xlsx_shape": [
-            30120,
+        "step_2_start_time": "2024-11-28 17:30:30.069372",
+        "Zew ch ON _ 2018-12-18.xlsx_shape": [
+            31577,
             150
         ],
-        "TiL II st Zew B20 IRiL _ 2019-11-06_eco.xlsx_shape": [
-            12,
+        "Zew ch ON _ 2018-12-18_eco.xlsx_shape": [
+            10,
             9
         ],
         "step_2_status": "completed",
-        "step_2_end_time": "2024-11-28 11:46:36.168042"
+        "step_2_end_time": "2024-11-28 17:31:10.996786"
     }
 }

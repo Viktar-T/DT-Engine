@@ -189,3 +189,117 @@ class DataFilter:
             )
 
         return final_df
+
+    def stable_rotation_identification(self) -> List[np.ndarray]:
+        """
+        Identifies stable rotation levels in 'Obroty[obr/min]'.
+
+        Returns:
+        - List of time arrays corresponding to each stable rotation level.
+        """
+        if 'Obroty[obr/min]' not in self.df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Obroty[obr/min]' not found in DataFrame.")
+            return []
+
+        rolling_std = self.df['Obroty[obr/min]'].rolling(window=10000, min_periods=1).std()
+        stable_mask = rolling_std <= 0.1
+        stable_times = self.df.loc[stable_mask, 'Time']
+
+        # Group consecutive times into periods
+        stable_periods = []
+        if not stable_times.empty:
+            time_diff = stable_times.diff().fillna(0)
+            gaps = time_diff > (stable_times.diff().median() * 1.5)
+            gap_indices = stable_times[gaps].index.tolist()
+            start_idx = 0
+            for gap_idx in gap_indices:
+                period = stable_times.iloc[start_idx:gap_idx]
+                stable_periods.append(period.values)
+                start_idx = gap_idx
+            # Add the last period
+            period = stable_times.iloc[start_idx:]
+            stable_periods.append(period.values)
+
+        if self.log_manager:
+            self.log_manager.log_info(f"Identified {len(stable_periods)} stable rotation periods.")
+        return stable_periods
+
+    def stable_torque_identification(self) -> List[np.ndarray]:
+        """
+        Identifies stable torque levels in 'Moment obrotowy[Nm]'.
+
+        Returns:
+        - List of time arrays corresponding to each stable torque level.
+        """
+        if 'Moment obrotowy[Nm]' not in self.df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Moment obrotowy[Nm]' not found in DataFrame.")
+            return []
+
+        rolling_std = self.df['Moment obrotowy[Nm]'].rolling(window=10000, min_periods=1).std()
+        stable_mask = rolling_std <= 0.1
+        stable_times = self.df.loc[stable_mask, 'Time']
+
+        # Group consecutive times into periods
+        stable_periods = []
+        if not stable_times.empty:
+            time_diff = stable_times.diff().fillna(0)
+            gaps = time_diff > (stable_times.diff().median() * 1.5)
+            gap_indices = stable_times[gaps].index.tolist()
+            start_idx = 0
+            for gap_idx in gap_indices:
+                period = stable_times.iloc[start_idx:gap_idx]
+                stable_periods.append(period.values)
+                start_idx = gap_idx
+            # Add the last period
+            period = stable_times.iloc[start_idx:]
+            stable_periods.append(period.values)
+
+        if self.log_manager:
+            self.log_manager.log_info(f"Identified {len(stable_periods)} stable torque periods.")
+        return stable_periods
+
+    def extract_and_clean_data(self) -> pd.DataFrame:
+        """
+        Extracts data where both rotation and torque are stable and cleans it.
+
+        Returns:
+        - pd.DataFrame: Cleaned DataFrame with stable rotation and torque.
+        """
+        # Get stable periods
+        rotation_periods = self.stable_rotation_identification()
+        torque_periods = self.stable_torque_identification()
+
+        # Intersect periods
+        stable_times = set()
+        for r_period in rotation_periods:
+            for t_period in torque_periods:
+                common_times = set(r_period).intersection(t_period)
+                stable_times.update(common_times)
+
+        stable_times = sorted(stable_times)
+        if not stable_times:
+            if self.log_manager:
+                self.log_manager.log_warning("No overlapping stable periods found.")
+            return self.df
+
+        # Extract stable data
+        stable_df = self.df[self.df['Time'].isin(stable_times)].copy()
+
+        # Clean data using DataCleaner
+        data_cleaner = DataCleaner(
+            df=stable_df,
+            names_of_files_under_procession=self.names_of_files_under_procession,
+            metadata_manager=self.metadata_manager,
+            log_manager=self.log_manager
+        )
+        # Call cleaning methods
+        data_cleaner.handle_outliers()
+        data_cleaner.remove_duplicates()
+        data_cleaner.handle_missing_values()
+
+        if self.log_manager:
+            self.log_manager.log_info("Data extracted and cleaned successfully.")
+
+        return data_cleaner.df

@@ -40,7 +40,7 @@ class DataCleaner:
     # def _filter_columns(self):
     #     # ...method content...
 
-    def _handle_missing_values(self) -> pd.DataFrame:
+    def handle_missing_values(self) -> pd.DataFrame:
         """
         Handles missing values in the DataFrame.
         Returns:
@@ -52,7 +52,7 @@ class DataCleaner:
         self.df = self.df.fillna(self.df.mean())
         return self.df
     
-    def _remove_duplicates(self) -> pd.DataFrame:
+    def remove_duplicates(self) -> pd.DataFrame:
         """
         Removes duplicate rows from the DataFrame.
         Returns:
@@ -63,7 +63,7 @@ class DataCleaner:
         self.df = self.df.drop_duplicates()
         return self.df
     
-    def _handle_outliers(self) -> pd.DataFrame:
+    def handle_outliers(self) -> pd.DataFrame:
         """
         Handles outliers in the DataFrame.
         Returns:

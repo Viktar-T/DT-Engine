@@ -52,7 +52,7 @@ required_columns = [
 # }
 
 current_file = {
-            "id": 4,        # <--- change for windows id:1; linux id:4
+            "id": 1,        # <--- change for windows id:1; linux id:4
             "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
             "eco_file_name": "",
             "description": "empty",
@@ -183,7 +183,7 @@ def main():
         metadata_manager.update_metadata(step_5_file_name, 'step_name', 'Filter and preprocess data')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_start_time', str(datetime.now()))
 
-        # Use DataFilter to filter columns
+        # Use DataFilter to filter columns and synchronize time
         data_filter = DataFilter(
             df=raw_data_frames[0],
             required_columns=required_columns,
@@ -192,18 +192,14 @@ def main():
             log_manager=log_manager
         )
         filtered_df = data_filter.filter_columns()
-        filtered_df = data_filter.synchronize_time()    # <-- In Progress 'Czas [ms].1'
+        filtered_df = data_filter.synchronize_time()
+        
+        # Extract and clean data using the new method
+        cleaned_df = data_filter.extract_and_clean_data()
+        
+        # Proceed without re-initializing DataCleaner
 
-        # Proceed with DataCleaner using the filtered DataFrame
-        data_cleaner = DataCleaner(
-            df=filtered_df,
-            names_of_files_under_procession=names_of_files_under_procession,
-            metadata_manager=metadata_manager,
-            log_manager=log_manager
-        )
-        cleaned_df = data_cleaner.clean()
-
-        validator.get_metadata([cleaned_df], message_for_logs="DataFrame after cleaning:")
+        validator.get_metadata([filtered_df], message_for_logs="DataFrame after filtering and cleaning:")
         metadata_manager.update_metadata(step_5_file_name, 'step_5_status', 'completed')
         metadata_manager.update_metadata(step_5_file_name, 'step_5_end_time', str(datetime.now()))
         proceed_to_next_step(5, log_manager)
@@ -213,21 +209,20 @@ def main():
         step_6_file_name = f"6-{files_for_steps}"
         log_manager.log_info("Step 6: Continue data pipeline. Saving cleaned data...")
         metadata_manager.update_metadata(step_6_file_name, 'step', '6')
-        metadata_manager.update_metadata(step_6_file_name, 'step_name', 'Save cleaned data')
+        metadata_manager.update_metadata(step_6_file_name, 'step_name', 'Save filtered data')
         metadata_manager.update_metadata(step_6_file_name, 'step_6_start_time', str(datetime.now()))
-        cleaned_data_file_name = 'cleaned_data.csv' # <-- name of the base file from files_with_raw_data_links.json
-        cleaned_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv'), index=False)
-        log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv')}")
+        filtered_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'filtered_data_{names_of_files_under_procession[0]}.csv'), index=False)
+        log_manager.log_info(f"Filtered and Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv')}")
         # cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.xlsx'), index=False, engine='openpyxl')
-        cleaned_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, 
+        filtered_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, 
                                            f'cleaned_data_{names_of_files_under_procession[0]}.parquet'), 
                                            index=False)
-        log_manager.log_info(f"Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'cleaned_data.parquet')}")
+        log_manager.log_info(f"Filtered and Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'filtered_data.parquet')}")
         log_manager.log_info("Step 6: Save cleaned data completed successfully.")
         metadata_manager.update_metadata(step_6_file_name, 'step_6_status', 'completed')
         metadata_manager.update_metadata(step_6_file_name, 'step_6_end_time', str(datetime.now()))
         proceed_to_next_step(6, log_manager)
-        log_manager.log_info("Step 6: Cleaned data saved successfully.")
+        log_manager.log_info("Step 6: Filtered and Cleaned data saved successfully.")
 
         # Step 7.1: Visualize data 1
         step_7_file_name = f"7-{files_for_steps}"
@@ -237,7 +232,7 @@ def main():
         metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
         
         data_visualizer = DataVisualizer(cleaned_df)
-        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
+        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]', 'Zużycie paliwa średnie[g/s]']
         data_visualizer.plot_columns(columns_to_plot)
 
         #for column_pair in required_columns:

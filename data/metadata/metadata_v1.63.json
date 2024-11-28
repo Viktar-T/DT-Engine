@@ -3,25 +3,25 @@
         "pipeline_status": "started",
         "step": "1",
         "step_name": "Build files_with_raw_data_links.json",
-        "start_time": "2024-11-28 14:19:28.629496",
+        "start_time": "2024-11-28 17:50:21.746488",
         "step_1_status": "completed",
-        "step_1_end_time": "2024-11-28 14:19:28.631073"
+        "step_1_end_time": "2024-11-28 17:50:21.751491"
     },
     "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2024-11-28 14:21:36.301520",
+        "step_2_start_time": "2024-11-28 17:50:22.987993",
         "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
             38535,
             146
         ],
         "step_2_status": "completed",
-        "step_2_end_time": "2024-11-28 14:21:36.674277"
+        "step_2_end_time": "2024-11-28 17:50:23.388994"
     },
     "3-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "step": "3",
         "step_name": "Validate data",
-        "step_3_start_time": "2024-11-28 14:21:37.367234",
+        "step_3_start_time": "2024-11-28 17:50:23.476011",
         "validation_results": [
             {
                 "missing_required": [],
@@ -30,7 +30,7 @@
             }
         ],
         "step_3_status": "completed",
-        "step_3_end_time": "2024-11-28 14:21:37.370453"
+        "step_3_end_time": "2024-11-28 17:50:23.488994"
     },
     "4-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "from class DataValidator. Files for validation:": [
@@ -38,34 +38,42 @@
             ""
         ],
         "step_4_status": "completed",
-        "step_4_end_time": "2024-11-28 14:21:38.159695"
+        "step_4_end_time": "2024-11-28 17:50:24.143332"
     },
     "5-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "step": "5",
         "step_name": "Filter and preprocess data",
-        "step_5_start_time": "2024-11-28 14:21:38.972190",
+        "step_5_start_time": "2024-11-28 17:50:24.484791",
         "cleaned_data_shape": [
             38535,
             146
         ],
         "synchronized_data_shape": [
-            77159,
+            3853,
             18
         ],
         "step_5_status": "completed",
-        "step_5_end_time": "2024-11-28 14:21:39.246060"
+        "step_5_end_time": "2024-11-28 17:50:24.575778"
     },
     "5.1-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "cleaned_data_shape": [
-            77159,
+            3853,
             18
         ]
     },
     "6-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
         "step": "6",
-        "step_name": "Save cleaned data",
-        "step_6_start_time": "2024-11-28 14:21:40.181680",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-11-28 17:50:24.908733",
         "step_6_status": "completed",
-        "step_6_end_time": "2024-11-28 14:21:41.460862"
+        "step_6_end_time": "2024-11-28 17:50:25.001267"
+    },
+    "7-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "7",
+        "step_name": "Visualize data",
+        "step_7_start_time": "2024-11-28 17:50:25.384882",
+        "step_7_status": "completed",
+        "step_7_end_time": "2024-11-28 17:51:32.695522",
+        "pipeline_status": "completed"
     }
 }
