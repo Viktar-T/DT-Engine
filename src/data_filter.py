@@ -156,14 +156,27 @@ class DataFilter:
         if self.log_manager:
             self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable rotation levels.")
 
+        rpm_mean_values = []
+        for time_array in stable_time_arrays:
+            time_array_sorted = sorted(time_array)
+            extracted_df = self.df[self.df['Time'].isin(time_array_sorted)].copy()
+            rpm_mean_value = round(extracted_df["Obroty[obr/min]"].mean(), 1)
+            rpm_mean_values.append(rpm_mean_value)
+
+        if self.log_manager:
+            self.log_manager.log_info(f"Stable rotation levels extracted. Average values: {rpm_mean_values}")
+        
         if self.metadata_manager:
             self.metadata_manager.update_metadata(
                 self.step_5_file_name, 'Identified stable rotation levels.": ', len(stable_time_arrays)
             )
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'Stable rotation levels extracted. Average values:', rpm_mean_values
+            )
 
         return stable_time_arrays
 
-    def identify_stable_torque(self, threshold: float = 0.1, window: str = '10000ms') -> List[np.ndarray]:
+    def identify_stable_torque(self, threshold: float = 0.5, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identifies stable torque levels in 'Moment obrotowy[Nm]'.
         A torque value is considered stable if the change between consecutive readings is ≤ 10% of the average value over a 10-second window.
@@ -195,7 +208,7 @@ class DataFilter:
         rolling_max_diff = df['Torque_diff'].rolling(window).max()
 
         # Identify where the maximum torque difference is less than or equal to 10% of rolling average
-        df['Torque_stable'] = rolling_max_diff <= 0.1 * rolling_avg
+        df['Torque_stable'] = rolling_max_diff <= threshold * rolling_avg
 
         stable_mask = df['Torque_stable']
         stable_periods = (stable_mask != stable_mask.shift()).cumsum()
@@ -206,11 +219,25 @@ class DataFilter:
             stable_time_arrays.append(time_array)
 
         if self.log_manager:
-            self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable torque levels.")
+            self.log_manager.log_info(f"Identified {len(stable_time_arrays)}")
+
+        # Calculate average torque values for each stable torque period
+        torque_mean_values = []
+        for time_array in stable_time_arrays:
+            time_array_sorted = sorted(time_array)
+            extracted_df = self.df[self.df['Time'].isin(time_array_sorted)].copy()
+            torque_mean_value = round(extracted_df["Moment obrotowy[Nm]"].mean(), 1)
+            torque_mean_values.append(torque_mean_value)
+
+        if self.log_manager:
+            self.log_manager.log_info(f"Stable torque ('Moment obrotowy[Nm]') levels extracted. Average values: {torque_mean_values}")
 
         if self.metadata_manager:
             self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Identified stable torque levels.: ', len(stable_time_arrays)
+                self.step_5_file_name, 'Identified stable torque (Moment obrotowy[Nm]) levels.: ', len(stable_time_arrays)
+            )
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'Stable torque levels extracted. Average values:', torque_mean_values
             )
 
         # Clean up temporary columns

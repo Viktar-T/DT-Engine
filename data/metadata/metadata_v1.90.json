@@ -1,0 +1,96 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-11-29 16:41:26.097320",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-11-29 16:41:26.101834"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-11-29 16:41:27.970962",
+        "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
+            38535,
+            146
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-11-29 16:41:28.434962"
+    },
+    "3-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-11-29 16:41:28.978264",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-11-29 16:41:28.991248"
+    },
+    "4-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "from class DataValidator. Files for validation:": [
+            "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-11-29 16:41:29.672535"
+    },
+    "5-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-11-29 16:41:42.953830",
+        "filtered_data_shape after \"def filter_columns\":": [
+            38535,
+            146
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            3853,
+            18
+        ],
+        "Identified stable rotation levels.\": ": 12,
+        "Stable rotation levels extracted. Average values:": [
+            1.7,
+            800.5,
+            1600.3,
+            1600.5,
+            1600.4,
+            1600.4,
+            1600.2,
+            1598.4,
+            1601.0,
+            1602.6,
+            1600.0,
+            800.5
+        ],
+        "Identified stable torque (Moment obrotowy[Nm]) levels.: ": 2,
+        "Stable torque levels extracted. Average values:": [
+            0.1,
+            327.2
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\": ": [
+            679,
+            18
+        ],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-11-29 16:41:43.124833"
+    },
+    "6-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-11-29 16:42:07.322816",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-11-29 16:42:07.369436"
+    },
+    "7-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "7",
+        "step_name": "Visualize data",
+        "step_7_start_time": "2024-11-29 16:42:07.986657",
+        "step_7_status": "completed",
+        "step_7_end_time": "2024-11-29 16:42:15.661110"
+    }
+}
