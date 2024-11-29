@@ -191,11 +191,11 @@ def main():
             metadata_manager=metadata_manager,
             log_manager=log_manager
         )
-        filtered_df = data_filter.filter_columns()
-        filtered_df = data_filter.synchronize_time()
-        
-        # Extract and clean data using the new method
-        cleaned_df = data_filter.extract_and_clean_data()
+
+        # filtered_df_only_essential = data_filter.filter_columns()
+        data_filter.filter_columns()
+        data_filter.synchronize_time()
+        filtered_df = data_filter.extract_and_clean_data()
         
         # Proceed without re-initializing DataCleaner
 
@@ -231,7 +231,7 @@ def main():
         metadata_manager.update_metadata(step_7_file_name, 'step_name', 'Visualize data')
         metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
         
-        data_visualizer = DataVisualizer(cleaned_df)
+        data_visualizer = DataVisualizer(filtered_df)
         columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]', 'Zużycie paliwa średnie[g/s]']
         data_visualizer.plot_columns(columns_to_plot)
 

@@ -79,22 +79,22 @@ class DataCleaner:
             self.df[col] = self.df[col].clip(lower=lower_bound, upper=upper_bound)
         return self.df
 
-    def clean(self) -> pd.DataFrame:
-        """
-        Cleans the DataFrame by filtering columns.
+    # def clean(self) -> pd.DataFrame:
+    #     """
+    #     Cleans the DataFrame by filtering columns.
 
-        Returns:
-        - pd.DataFrame: A cleaned DataFrame.
-        """
-        if self.log_manager:
-            self.log_manager.log_info("Starting data cleaning process.")
-        if self.log_manager:
-            self.log_manager.log_info("Data cleaning process completed.")
-            self.log_manager.log_info(f"Filtered DataFrame shape: {self.df.shape}")
-        # if self.log_manager:
-        #     self.log_manager.log_dataframe_in_chunks(self.df)
-        if self.metadata_manager:
-            self.step_5_file_name = f"5.1-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
-            #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
-            self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', self.df.shape)
-        return self.df
+    #     Returns:
+    #     - pd.DataFrame: A cleaned DataFrame.
+    #     """
+    #     if self.log_manager:
+    #         self.log_manager.log_info("Starting data cleaning process.")
+    #     if self.log_manager:
+    #         self.log_manager.log_info("Data cleaning process completed.")
+    #         self.log_manager.log_info(f"Filtered DataFrame shape: {self.df.shape}")
+    #     # if self.log_manager:
+    #     #     self.log_manager.log_dataframe_in_chunks(self.df)
+    #     if self.metadata_manager:
+    #         self.step_5_file_name = f"5.1-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
+    #         #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
+    #         self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', self.df.shape)
+    #     return self.df

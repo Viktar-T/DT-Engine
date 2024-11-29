@@ -1,0 +1,73 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-11-29 15:10:23.296011",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-11-29 15:10:23.300010"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-11-29 15:10:25.725409",
+        "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
+            38535,
+            146
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-11-29 15:10:26.192411"
+    },
+    "3-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-11-29 15:10:26.965592",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-11-29 15:10:26.979593"
+    },
+    "4-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "from class DataValidator. Files for validation:": [
+            "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-11-29 15:10:27.881555"
+    },
+    "5-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-11-29 15:10:29.781961",
+        "cleaned_data_shape": [
+            38535,
+            146
+        ],
+        "synchronized_data_shape": [
+            3853,
+            18
+        ],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-11-29 15:10:29.906961"
+    },
+    "6-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-11-29 15:11:18.813376",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-11-29 15:11:18.899740"
+    },
+    "7-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "7",
+        "step_name": "Visualize data",
+        "step_7_start_time": "2024-11-29 15:11:19.645797",
+        "step_7_status": "completed",
+        "step_7_end_time": "2024-11-29 15:12:50.442897",
+        "pipeline_status": "completed"
+    }
+}

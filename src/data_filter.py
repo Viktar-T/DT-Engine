@@ -32,7 +32,7 @@ class DataFilter:
         self.metadata_manager = metadata_manager
         self.log_manager = log_manager
 
-    def filter_columns(self) -> pd.DataFrame:
+    def filter_columns(self) -> None:
         """
         Filters the DataFrame to include only the required columns.
 
@@ -54,11 +54,13 @@ class DataFilter:
             self.log_manager.log_info(f"Filtered DataFrame to include {len(columns_to_keep)} columns.")
         if self.metadata_manager:
             self.step_5_file_name = f"5-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
-            #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
-            self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', self.df.shape)
-        return filtered_df
-    
-    def synchronize_time(self) -> pd.DataFrame:
+            self.metadata_manager.update_metadata(self.step_5_file_name, 'filtered_data_shape after "def filter_columns":', self.df.shape)
+        
+        # Update self.df with filtered DataFrame
+        self.df = filtered_df
+        # No need to return filtered_df
+
+    def synchronize_time(self) -> None:
         """
         Synchronizes time for all sensors in the DataFrame.
         dose not work consider fast sensors
@@ -107,92 +109,20 @@ class DataFilter:
 
         if self.metadata_manager:
             self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'synchronized_data_shape', final_df.shape
+                self.step_5_file_name, 'synchronized_data_shape after "synchronize_time()": ', final_df.shape
             )
 
-        return final_df
+        # Update self.df with synchronized DataFrame
+        self.df = final_df
+        self.log_manager.log_info(f"!!!! ---> Filtered DataFrame shape: {self.df.shape}")
+        #self.log_manager.log_dataframe_in_chunks(self.df)
+        # No need to return final_df
     
     
-
-  
-    # Note USED: slow sensors and fast sensors (interpolation) -- doesnot work well
-    def synchronize_time_NOT_USE(self) -> pd.DataFrame:
-        """
-        Synchronizes time for all sensors in the DataFrame.
-
-        Returns:
-        - pd.DataFrame: A DataFrame with synchronized time columns.
-        """
-
-        # Identify fast and slow sensors
-        fast_sensors = [
-            ['Czas [ms].27', 'Moment obrotowy[Nm]'],
-            ['Czas [ms].29', 'Obroty[obr/min]']
-        ]
-        slow_sensors = [pair for pair in self.required_columns if pair not in fast_sensors]
-        # slow_sensors = [pair for pair in self.required_columns]
-        # Use the time column of the first slow sensor as the reference time
-        reference_time_col = slow_sensors[0][0]
-
-        if reference_time_col not in self.df.columns:
-            if self.log_manager:
-                self.log_manager.log_error(f"Reference time column '{reference_time_col}' is missing from the DataFrame.")
-            return self.df
-
-        # Create a reference time index
-        reference_time = self.df[reference_time_col].dropna().astype(float).sort_values().unique()
-        final_df = pd.DataFrame(index=reference_time)
-        final_df.index.name = 'Time'
-
-        # Calculate average sampling interval for tolerance
-        delta_times = np.diff(reference_time)
-        average_delta_time = np.mean(delta_times)
-        tolerance = average_delta_time / 2
-
-        # Process slow sensors
-        for time_col, data_col in slow_sensors:
-            if time_col in self.df.columns and data_col in self.df.columns:
-                df_sensor = self.df[[time_col, data_col]].dropna()
-                df_sensor[time_col] = df_sensor[time_col].astype(float)
-                df_sensor.set_index(time_col, inplace=True)
-                df_sensor = df_sensor[~df_sensor.index.duplicated(keep='first')]
-                # Reindex onto reference time using 'nearest' method
-                df_sensor = df_sensor.reindex(final_df.index, method='nearest', tolerance=tolerance)
-                final_df[data_col] = df_sensor[data_col]
-            else:
-                if self.log_manager:
-                    self.log_manager.log_warning(f"Columns '{time_col}' and/or '{data_col}' not found in DataFrame.")
-
-        # Process fast sensors
-        for time_col, data_col in fast_sensors:
-            if time_col in self.df.columns and data_col in self.df.columns:
-                df_sensor = self.df[[time_col, data_col]].dropna()
-                df_sensor[time_col] = df_sensor[time_col].astype(float)
-                df_sensor.set_index(time_col, inplace=True)
-                df_sensor = df_sensor[~df_sensor.index.duplicated(keep='first')]
-                # Interpolate data onto reference time
-                df_sensor = df_sensor.reindex(final_df.index).interpolate(method='index')
-                final_df[data_col] = df_sensor[data_col]
-            else:
-                if self.log_manager:
-                    self.log_manager.log_warning(f"Columns '{time_col}' and/or '{data_col}' not found in DataFrame.")
-
-        # Reset index to make 'Time' a column
-        final_df.reset_index(inplace=True)
-
-        if self.log_manager:
-            self.log_manager.log_info("Time columns synchronized successfully.")
-
-        if self.metadata_manager:
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'synchronized_data_shape', final_df.shape
-            )
-
-        return final_df
-
-    def stable_rotation_identification(self) -> List[np.ndarray]:
+    def identify_stable_rotation(self, threshold: int = 20, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identifies stable rotation levels in 'Obroty[obr/min]'.
+        A rotation level is considered stable if its value changes by ≤ 20 RPM over a 10-second window.
 
         Returns:
         - List of time arrays corresponding to each stable rotation level.
@@ -202,32 +132,41 @@ class DataFilter:
                 self.log_manager.log_error("Column 'Obroty[obr/min]' not found in DataFrame.")
             return []
 
-        rolling_std = self.df['Obroty[obr/min]'].rolling(window=10000, min_periods=1).std()
-        stable_mask = rolling_std <= 0.1
-        stable_times = self.df.loc[stable_mask, 'Time']
+        df = self.df.copy()
+        if 'Time' not in df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Time' not found in DataFrame.")
+            return []
 
-        # Group consecutive times into periods
-        stable_periods = []
-        if not stable_times.empty:
-            time_diff = stable_times.diff().fillna(0)
-            gaps = time_diff > (stable_times.diff().median() * 1.5)
-            gap_indices = stable_times[gaps].index.tolist()
-            start_idx = 0
-            for gap_idx in gap_indices:
-                period = stable_times.iloc[start_idx:gap_idx]
-                stable_periods.append(period.values)
-                start_idx = gap_idx
-            # Add the last period
-            period = stable_times.iloc[start_idx:]
-            stable_periods.append(period.values)
+        df['Timedelta'] = pd.to_timedelta(df['Time'], unit='ms')
+        df.set_index('Timedelta', inplace=True)
+
+        # Use rolling window of 10 seconds ('10s')
+        rolling_window = df['Obroty[obr/min]'].rolling(window)
+        rotation_range = rolling_window.max() - rolling_window.min()
+        # max fluctuation in 10 seconds is threshold=20 RPM
+        stable_mask = rotation_range.le(threshold)
+        stable_periods = (stable_mask != stable_mask.shift()).cumsum()
+
+        stable_time_arrays = []
+        for _, group in df[stable_mask].groupby(stable_periods):
+            time_array = group['Time'].values
+            stable_time_arrays.append(time_array)
 
         if self.log_manager:
-            self.log_manager.log_info(f"Identified {len(stable_periods)} stable rotation periods.")
-        return stable_periods
+            self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable rotation levels.")
 
-    def stable_torque_identification(self) -> List[np.ndarray]:
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'Identified stable rotation levels.": ', len(stable_time_arrays)
+            )
+
+        return stable_time_arrays
+
+    def identify_stable_torque(self, threshold: float = 0.1, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identifies stable torque levels in 'Moment obrotowy[Nm]'.
+        A torque value is considered stable if the change between consecutive readings is ≤ 10% of the average value over a 10-second window.
 
         Returns:
         - List of time arrays corresponding to each stable torque level.
@@ -237,69 +176,96 @@ class DataFilter:
                 self.log_manager.log_error("Column 'Moment obrotowy[Nm]' not found in DataFrame.")
             return []
 
-        rolling_std = self.df['Moment obrotowy[Nm]'].rolling(window=10000, min_periods=1).std()
-        stable_mask = rolling_std <= 0.1
-        stable_times = self.df.loc[stable_mask, 'Time']
+        df = self.df.copy()
+        if 'Time' not in df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Time' not found in DataFrame.")
+            return []
 
-        # Group consecutive times into periods
-        stable_periods = []
-        if not stable_times.empty:
-            time_diff = stable_times.diff().fillna(0)
-            gaps = time_diff > (stable_times.diff().median() * 1.5)
-            gap_indices = stable_times[gaps].index.tolist()
-            start_idx = 0
-            for gap_idx in gap_indices:
-                period = stable_times.iloc[start_idx:gap_idx]
-                stable_periods.append(period.values)
-                start_idx = gap_idx
-            # Add the last period
-            period = stable_times.iloc[start_idx:]
-            stable_periods.append(period.values)
+        df['Timedelta'] = pd.to_timedelta(df['Time'], unit='ms')
+        df.set_index('Timedelta', inplace=True)
+
+        # Calculate absolute change between consecutive readings
+        df['Torque_diff'] = df['Moment obrotowy[Nm]'].diff().abs()
+
+        # Calculate rolling average torque over 10-second window
+        rolling_avg = df['Moment obrotowy[Nm]'].rolling(window).mean()
+
+        # Calculate maximum torque difference over 10-second window
+        rolling_max_diff = df['Torque_diff'].rolling(window).max()
+
+        # Identify where the maximum torque difference is less than or equal to 10% of rolling average
+        df['Torque_stable'] = rolling_max_diff <= 0.1 * rolling_avg
+
+        stable_mask = df['Torque_stable']
+        stable_periods = (stable_mask != stable_mask.shift()).cumsum()
+
+        stable_time_arrays = []
+        for _, group in df[stable_mask].groupby(stable_periods):
+            time_array = group['Time'].values
+            stable_time_arrays.append(time_array)
 
         if self.log_manager:
-            self.log_manager.log_info(f"Identified {len(stable_periods)} stable torque periods.")
-        return stable_periods
+            self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable torque levels.")
+
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'Identified stable torque levels.: ', len(stable_time_arrays)
+            )
+
+        # Clean up temporary columns
+        df.drop(columns=['Torque_diff', 'Torque_stable'], inplace=True)
+
+        return stable_time_arrays
 
     def extract_and_clean_data(self) -> pd.DataFrame:
         """
-        Extracts data where both rotation and torque are stable and cleans it.
+        Intersects the time arrays from stable rotation and torque,
+        extracts corresponding data from the DataFrame, and cleans it.
 
         Returns:
-        - pd.DataFrame: Cleaned DataFrame with stable rotation and torque.
+        - pd.DataFrame with the cleaned data.
         """
-        # Get stable periods
-        rotation_periods = self.stable_rotation_identification()
-        torque_periods = self.stable_torque_identification()
+        stable_rotations = self.identify_stable_rotation()
+        stable_torques = self.identify_stable_torque()
 
-        # Intersect periods
-        stable_times = set()
-        for r_period in rotation_periods:
-            for t_period in torque_periods:
-                common_times = set(r_period).intersection(t_period)
-                stable_times.update(common_times)
+        # Find the intersection of time arrays
+        intersected_times = set()
+        for rot_times in stable_rotations:
+            for torque_times in stable_torques:
+                common_times = np.intersect1d(rot_times, torque_times)
+                intersected_times.update(common_times)
 
-        stable_times = sorted(stable_times)
-        if not stable_times:
+        if not intersected_times:
             if self.log_manager:
-                self.log_manager.log_warning("No overlapping stable periods found.")
-            return self.df
+                self.log_manager.log_warning("No overlapping stable periods found between rotation and torque.")
+            return pd.DataFrame()
 
-        # Extract stable data
-        stable_df = self.df[self.df['Time'].isin(stable_times)].copy()
-
-        # Clean data using DataCleaner
-        data_cleaner = DataCleaner(
-            df=stable_df,
-            names_of_files_under_procession=self.names_of_files_under_procession,
-            metadata_manager=self.metadata_manager,
-            log_manager=self.log_manager
-        )
-        # Call cleaning methods
-        data_cleaner.handle_outliers()
-        data_cleaner.remove_duplicates()
-        data_cleaner.handle_missing_values()
+        intersected_times = sorted(intersected_times)
+        extracted_df = self.df[self.df['Time'].isin(intersected_times)].copy()
 
         if self.log_manager:
-            self.log_manager.log_info("Data extracted and cleaned successfully.")
+            self.log_manager.log_info(f"Extracted {len(extracted_df)} rows of intersected stable data.")
 
-        return data_cleaner.df
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'filtered_data_shape after "extract_and_clean_data()": ', extracted_df.shape
+            )
+
+        # # Initialize DataCleaner and perform cleaning operations
+        # data_cleaner = DataCleaner(
+        #     df=extracted_df,
+        #     names_of_files_under_procession=self.names_of_files_under_procession,
+        #     metadata_manager=self.metadata_manager,
+        #     log_manager=self.log_manager
+        # )
+
+        # # Placeholder calls to cleaning functions
+        # data_cleaner.handle_outliers()
+        # data_cleaner.remove_duplicates()
+        # data_cleaner.handle_missing_values()
+
+        # cleaned_df = data_cleaner.df
+
+        # Return the cleaned DataFrame
+        return extracted_df
