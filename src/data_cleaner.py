@@ -46,8 +46,8 @@ class DataCleaner:
         Returns:
         - pd.DataFrame: DataFrame with missing values handled.
         """
-        if self.log_manager:
-            self.log_manager.log_info("Handling missing values.")
+        #if self.log_manager:
+        #    self.log_manager.log_info("Handling missing values.")
         # Example: Fill missing values with mean of each column
         self.df = self.df.fillna(self.df.mean())
         return self.df
@@ -58,8 +58,8 @@ class DataCleaner:
         Returns:
         - pd.DataFrame: DataFrame with duplicates removed.
         """
-        if self.log_manager:
-            self.log_manager.log_info("Removing duplicate rows.")
+        #if self.log_manager:
+        #    self.log_manager.log_info("Removing duplicate rows.")
         self.df = self.df.drop_duplicates()
         return self.df
     
@@ -69,8 +69,8 @@ class DataCleaner:
         Returns:
         - pd.DataFrame: DataFrame with outliers handled.
         """
-        if self.log_manager:
-            self.log_manager.log_info("Handling outliers.")
+        #if self.log_manager:
+        #    self.log_manager.log_info("Handling outliers.")
         # Example: Cap values at the 1st and 99th percentiles
         numerical_columns = self.df.select_dtypes(include=['number']).columns
         for col in numerical_columns:
@@ -79,22 +79,20 @@ class DataCleaner:
             self.df[col] = self.df[col].clip(lower=lower_bound, upper=upper_bound)
         return self.df
 
-    # def clean(self) -> pd.DataFrame:
-    #     """
-    #     Cleans the DataFrame by filtering columns.
-
-    #     Returns:
-    #     - pd.DataFrame: A cleaned DataFrame.
-    #     """
-    #     if self.log_manager:
-    #         self.log_manager.log_info("Starting data cleaning process.")
-    #     if self.log_manager:
-    #         self.log_manager.log_info("Data cleaning process completed.")
-    #         self.log_manager.log_info(f"Filtered DataFrame shape: {self.df.shape}")
-    #     # if self.log_manager:
-    #     #     self.log_manager.log_dataframe_in_chunks(self.df)
-    #     if self.metadata_manager:
-    #         self.step_5_file_name = f"5.1-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
-    #         #self.metadata_manager.update_metadata(self.step_5_file_name, 'Cleaned DataFrame columns:', filtered_df.columns)
-    #         self.metadata_manager.update_metadata(self.step_5_file_name, 'cleaned_data_shape', self.df.shape)
-    #     return self.df
+    def clean(self) -> pd.DataFrame:
+        """
+        Cleans the DataFrame by handling missing values, removing duplicates, and handling outliers.
+        Returns:
+        - pd.DataFrame: Cleaned DataFrame.
+        """
+        if self.log_manager:
+            self.log_manager.log_info("Starting data cleaning process.")
+        # !!! check !!!
+        self.handle_missing_values()
+        self.remove_duplicates()
+        self.handle_outliers()
+        
+        if self.log_manager:
+            self.log_manager.log_info("Data cleaning process completed.")
+        
+        return self.df

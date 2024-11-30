@@ -340,12 +340,16 @@ class DataFilter:
 
         # Calculate average torque values for each stable torque period
         torque_mean_values = []
+
         for idx, time_array in enumerate(stable_time_arrays):
             extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
             torque_mean_value = round(extracted_df['Moment obrotowy[Nm]'].mean(), 1)
             torque_mean_values.append(torque_mean_value)
             if self.log_manager:
                 self.log_manager.log_info(f"Group {idx}: Mean torque = {torque_mean_value} Nm.")
+
+        # Clean the chunks using the new method
+        #self._clean_stable_chunks(stable_time_arrays)
 
         if self.log_manager:
             self.log_manager.log_info(f"Stable torque levels extracted. Average values: {torque_mean_values}")
@@ -364,6 +368,31 @@ class DataFilter:
             )
 
         return stable_time_arrays
+
+    def _clean_stable_chunks(self, stable_time_arrays: List[np.ndarray]) -> None:
+        """
+        Cleans each chunk of data corresponding to stable_time_arrays using DataCleaner.
+        Updates self.df with the cleaned data.
+        """
+        cleaned_chunks = []
+
+        for idx, time_array in enumerate(stable_time_arrays):
+            extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
+
+            # Clean the chunk using DataCleaner
+            data_cleaner = DataCleaner(
+                df=extracted_df,
+                names_of_files_under_procession=self.names_of_files_under_procession,
+                metadata_manager=self.metadata_manager,
+                log_manager=self.log_manager
+            )
+            cleaned_df = data_cleaner.clean()
+            cleaned_chunks.append(cleaned_df)
+
+        # Combine cleaned chunks into a single DataFrame
+        self.df = pd.concat(cleaned_chunks).reset_index(drop=True)
+        if self.log_manager:
+            self.log_manager.log_info("All stable torque chunks have been cleaned and combined.")
 
     def identify_stable_fuel_consumption(self, threshold: float = 2, window: str = '10000ms') -> List[np.ndarray]:
         """
@@ -416,7 +445,6 @@ class DataFilter:
             self.log_manager.log_info(f" - window: {rolling_object.window}")
             self.log_manager.log_info(f" - min_periods: {rolling_object.min_periods}")
             self.log_manager.log_info(f" - center: {rolling_object.center}")
-            self.log_manager.log_info(f" - win_type: {rolling_object.win_type}")
             self.log_manager.log_info(f" - axis: {rolling_object.axis}")
             self.log_manager.log_info(f" - method: {rolling_object.method}")
             self.log_manager.log_info(f" - closed: {rolling_object.closed}")
@@ -474,69 +502,7 @@ class DataFilter:
     
         return stable_time_arrays
 
-    # !!! NOT USED !!! -> add data clenning to each chunck (window)
-    def identify_stable_fuel_consumption(self, threshold: float = 2, window: str = '10000ms') -> List[np.ndarray]:
-        """
-        Identify stable fuel consumption levels in the column 'Zużycie paliwa średnie[g/s]'.
-        A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
-        Returns a list of time arrays (from the "Time" index) corresponding to each stable fuel consumption level.
-        """
-
-        df = self.df.copy()
-
-        # Ensure 'Time' is in datetime format and set as index
-        if not pd.api.types.is_datetime64_any_dtype(df['Time']):
-            df['Time'] = pd.to_datetime(df['Time'], unit='ms')
-        df.set_index('Time', inplace=True)
-
-        # Compute rolling max and min over the specified window
-        roll_max = df['Zużycie paliwa średnie[g/s]'].rolling(window, min_periods=1).max()
-        roll_min = df['Zużycie paliwa średnie[g/s]'].rolling(window, min_periods=1).min()
-        roll_diff = roll_max - roll_min
-
-        # Identify stable fuel consumption where difference ≤ threshold
-        stable_mask = roll_diff <= threshold
-
-        # Label contiguous stable regions
-        df['Stable'] = stable_mask
-        df['Group'] = (df['Stable'] != df['Stable'].shift()).cumsum()
-
-        # Extract time arrays for each stable region
-        stable_time_arrays = []
-        for _, group in df[df['Stable']].groupby('Group'):
-            times = group.index.values
-            stable_time_arrays.append(times)
-
-        # Clean up
-        df.drop(columns=['Stable', 'Group'], inplace=True)
-
-        # Logging
-        if self.log_manager:
-            self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable fuel consumption levels.")
-
-        fuel_mean_values = []
-        for time_array in stable_time_arrays:
-            time_array_sorted = sorted(time_array)
-            extracted_df = self.df[self.df['Time'].isin(time_array_sorted)].copy()
-            fuel_mean_value = round(extracted_df['Zużycie paliwa średnie[g/s]'].mean(), 2)
-            fuel_mean_values.append(fuel_mean_value)
-
-        if self.log_manager:
-            self.log_manager.log_info(f"Stable fuel consumption levels extracted. Average values: {fuel_mean_values}")
-        
-        # Metadata management
-        if self.metadata_manager:
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Identified stable fuel consumption levels:', len(stable_time_arrays)
-            )
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Stable fuel consumption levels extracted. Average values:', fuel_mean_values
-            )
-
-        return stable_time_arrays
-    
-
-    def filter_stable_periods(self) -> pd.DataFrame:
+    def filter_all_stable_periods(self) -> pd.DataFrame:
         """
         Intersects the time arrays from multiple stable identification functions,
         extracts corresponding data from the DataFrame.

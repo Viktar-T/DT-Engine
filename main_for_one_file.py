@@ -207,7 +207,7 @@ def main():
         # filtered_df_only_essential = data_filter.filter_columns()
         data_filter.filter_columns()
         filtered_df = data_filter.synchronize_time()
-        filtered_df = data_filter.filter_stable_periods()
+        filtered_df = data_filter.filter_all_stable_periods()
         
         # Proceed without re-initializing DataCleaner
 
