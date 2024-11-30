@@ -250,7 +250,7 @@ class DataFilter:
         # Proceed with the rest of the method using df.index for time
         # ...
 
-    def identify_stable_torque_nm(self, threshold: float = 5, window: str = '10000ms') -> List[np.ndarray]:
+    def identify_stable_torque_nm(self, threshold: float = 1.5, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identifies stable torque levels in 'Moment obrotowy[Nm]'.
         A torque level is considered stable if its value changes by ≤ threshold over the specified window.
@@ -365,8 +365,117 @@ class DataFilter:
 
         return stable_time_arrays
 
+    def identify_stable_fuel_consumption(self, threshold: float = 2, window: str = '10000ms') -> List[np.ndarray]:
+        """
+        Identify stable fuel consumption levels in the column 'Zużycie paliwa średnie[g/s]'.
+        A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
+        Returns a list of time arrays (from the "Time" index) corresponding to each stable fuel consumption level.
+        """
+        if self.log_manager:
+            self.log_manager.log_info(f"Starting identify_stable_fuel_consumption with threshold={threshold} and window='{window}'")
+        
+        # Check if 'Zużycie paliwa średnie[g/s]' column exists
+        if 'Zużycie paliwa średnie[g/s]' not in self.df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Zużycie paliwa średnie[g/s]' not found in DataFrame.")
+            return []
+        
+        df = self.df.copy()
+        if self.log_manager:
+            self.log_manager.log_info("DataFrame copied for processing.")
+        
+        # Check if 'Time' column exists
+        if 'Time' not in df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Time' not found in DataFrame.")
+            return []
+        
+        # Ensure 'Time' is in datetime format and set as index
+        if not pd.api.types.is_datetime64_any_dtype(df['Time']):
+            df['Time'] = pd.to_datetime(df['Time'], unit='ms')
+            if self.log_manager:
+                self.log_manager.log_info("Converted 'Time' column to datetime.")
+        else:
+            if self.log_manager:
+                self.log_manager.log_info("'Time' column is already in datetime format.")
+        
+        df.set_index('Time', inplace=True)
+        if self.log_manager:
+            self.log_manager.log_info("'Time' column set as index.")
+    
+        # Compute rolling max and min over the specified window
+        if self.log_manager:
+            self.log_manager.log_info("Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.")
+        rolling_object = df['Zużycie paliwa średnie[g/s]'].rolling(window, min_periods=1)
+        roll_max = rolling_object.max()
+        roll_min = rolling_object.min()
+        roll_diff = roll_max - roll_min
+        if self.log_manager:
+            # Log main parameters of the rolling object
+            self.log_manager.log_info("Rolling object parameters:")
+            self.log_manager.log_info(f" - window: {rolling_object.window}")
+            self.log_manager.log_info(f" - min_periods: {rolling_object.min_periods}")
+            self.log_manager.log_info(f" - center: {rolling_object.center}")
+            self.log_manager.log_info(f" - win_type: {rolling_object.win_type}")
+            self.log_manager.log_info(f" - axis: {rolling_object.axis}")
+            self.log_manager.log_info(f" - method: {rolling_object.method}")
+            self.log_manager.log_info(f" - closed: {rolling_object.closed}")
+    
+        # Identify stable fuel consumption where difference ≤ threshold
+        stable_mask = roll_diff <= threshold
+        if self.log_manager:
+            num_stable_points = stable_mask.sum()
+            self.log_manager.log_info(f"Identified {num_stable_points} points where fuel consumption difference ≤ threshold.")
+    
+        # Label contiguous stable regions
+        df['Stable'] = stable_mask
+        df['Group'] = (df['Stable'] != df['Stable'].shift()).cumsum()
+        if self.log_manager:
+            num_groups = df['Group'].nunique()
+            self.log_manager.log_info(f"Labeled stable regions into {num_groups} groups.")
+    
+        # Extract time arrays for each stable region
+        stable_time_arrays = []
+        for group_id, group in df[df['Stable']].groupby('Group'):
+            times = group.index.values
+            stable_time_arrays.append(times)
+            if self.log_manager:
+                self.log_manager.log_info(f"Group {group_id}: Found {len(times)} stable time points.")
+    
+        # Clean up
+        df.drop(columns=['Stable', 'Group'], inplace=True)
+        if self.log_manager:
+            self.log_manager.log_info("Dropped temporary 'Stable' and 'Group' columns.")
+    
+        # Logging
+        if self.log_manager:
+            self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable fuel consumption levels.")
+    
+        # Calculate average fuel consumption values for each stable period
+        fuel_mean_values = []
+        for idx, time_array in enumerate(stable_time_arrays):
+            extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
+            fuel_mean_value = round(extracted_df['Zużycie paliwa średnie[g/s]'].mean(), 2)
+            fuel_mean_values.append(fuel_mean_value)
+            if self.log_manager:
+                self.log_manager.log_info(f"Group {idx}: Mean fuel consumption = {fuel_mean_value} g/s.")
+    
+        if self.log_manager:
+            self.log_manager.log_info(f"Stable fuel consumption levels extracted. Average values: {fuel_mean_values}")
+        
+        # Metadata management
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'Identified stable fuel consumption levels:', len(stable_time_arrays)
+            )
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name, 'Stable fuel consumption levels extracted. Average values:', fuel_mean_values
+            )
+    
+        return stable_time_arrays
+
     # !!! NOT USED !!! -> add data clenning to each chunck (window)
-    def identify_stable_fuel_consumption(self, threshold: float = 0.5, window: str = '10000ms') -> List[np.ndarray]:
+    def identify_stable_fuel_consumption(self, threshold: float = 2, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identify stable fuel consumption levels in the column 'Zużycie paliwa średnie[g/s]'.
         A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
@@ -425,6 +534,7 @@ class DataFilter:
             )
 
         return stable_time_arrays
+    
 
     def filter_stable_periods(self) -> pd.DataFrame:
         """
@@ -438,7 +548,8 @@ class DataFilter:
             self.identify_stable_rotation,
             self.identify_stable_torque_nm,
             #self.identify_stable_torque_percent,
-            #self.identify_stable_fuel_consumption,
+            self.identify_stable_fuel_consumption,
+            self.filter_high_temperature_oil
             # Add more functions if needed
         ]
 
@@ -473,3 +584,40 @@ class DataFilter:
             )
 
         return extracted_df
+
+    def filter_high_temperature_oil(self) -> List[np.ndarray]:
+        """
+        Removes rows where 'Temp. oleju w misce[°C]' is less than 50.
+        Returns:
+        - high_temperature_oil_time_array: List of time arrays where oil temperature is ≥ 50°C.
+        """
+        if self.log_manager:
+            self.log_manager.log_info("Starting filter_high_temperature_oil.")
+        
+        # Check if 'Temp. oleju w misce[°C]' column exists
+        if 'Temp. oleju w misce[°C]' not in self.df.columns:
+            if self.log_manager:
+                self.log_manager.log_error("Column 'Temp. oleju w misce[°C]' not found in DataFrame.")
+            return []
+        
+        # Filter the DataFrame to include only rows where temperature ≥ 50°C
+        high_temp_df = self.df[self.df['Temp. oleju w misce[°C]'] >= 50].copy()
+        num_removed = len(self.df) - len(high_temp_df)
+        if self.log_manager:
+            self.log_manager.log_info(f"Removed {num_removed} rows where oil temperature was less than 50°C.")
+        
+        # Get the time array where oil temperature is high
+        high_temperature_oil_time_array = [high_temp_df['Time'].values]
+        
+        # Update metadata
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name,
+                'Filtered data shape after "filter_high_temperature_oil":',
+                high_temp_df.shape
+            )
+        
+        # Update self.df with the filtered DataFrame
+        self.df = high_temp_df
+        
+        return high_temperature_oil_time_array

@@ -13,11 +13,23 @@ from src.data_visualizer import DataVisualizer
 from src.data_filter import DataFilter
 
 required_columns_for_validation_step = [
-    'Ciś. pow. za turb.[Pa]', 'Ciśnienie atmosferyczne[hPa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 
-    'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. otoczenia[°C]',  
-    'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]',
-    'Temp. spalin 1/6[°C]', 'Temp. spalin 2/6[°C]', 'Temp. spalin 3/6[°C]', 'Temp. spalin 4/6[°C]', 
-    'Wilgotność względna[%]', 'Zużycie paliwa średnie[g/s]'
+    'Ciś. pow. za turb.[Pa]', 
+    'Ciśnienie atmosferyczne[hPa]', 
+    'ECT - wyjście z sil.[°C]', 
+    'MAF[kg/h]', 
+    'Moc[kW]', 
+    'Moment obrotowy[Nm]', 
+    'Obroty[obr/min]', 
+    'Temp. oleju w misce[°C]', 
+    'Temp. otoczenia[°C]',  
+    'Temp. pal. na wyjściu sil.[°C]', 
+    'Temp. powietrza za turb.[°C]',
+    'Temp. spalin 1/6[°C]', 
+    'Temp. spalin 2/6[°C]', 
+    'Temp. spalin 3/6[°C]', 
+    'Temp. spalin 4/6[°C]', 
+    'Wilgotność względna[%]', 
+    'Zużycie paliwa średnie[g/s]'
 ]
 
 required_columns = [
@@ -52,7 +64,7 @@ required_columns = [
 # }
 
 current_file = {
-            "id": 1,        # <--- change for windows id:1; linux id:4
+            "id": 4,        # <--- change for windows id:1; linux id:4
             "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
             "eco_file_name": "",
             "description": "empty",
@@ -232,7 +244,8 @@ def main():
         metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
         
         data_visualizer = DataVisualizer(filtered_df)
-        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+        #columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+        columns_to_plot = required_columns_for_validation_step
         data_visualizer.plot_columns(columns_to_plot)
 
         #for column_pair in required_columns:
@@ -241,7 +254,8 @@ def main():
         #    data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
 
         x_column = 'Time'
-        y_columns = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+        #y_columns = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+        y_columns = required_columns_for_validation_step
         data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
 
         # x_column = 'Obroty[obr/min]'
