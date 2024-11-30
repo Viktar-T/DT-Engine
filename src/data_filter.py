@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from typing import List
+from typing import List, Tuple
 from src.log_manager import LogManager
 from src.metadata_manager import MetadataManager
 from src.data_cleaner import DataCleaner
@@ -103,6 +103,8 @@ class DataFilter:
 
         # Reset index to make 'Time' a column
         final_df.reset_index(inplace=True)
+        # Convert 'Time' from milliseconds to datetime
+        final_df['Time'] = pd.to_datetime(final_df['Time'], unit='ms')
 
         if self.log_manager:
             self.log_manager.log_info("Time columns synchronized successfully.")
@@ -123,60 +125,109 @@ class DataFilter:
     def identify_stable_rotation(self, threshold: int = 20, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identifies stable rotation levels in 'Obroty[obr/min]'.
-        A rotation level is considered stable if its value changes by ≤ 20 RPM over a 10-second window.
+        A rotation level is considered stable if its value changes by ≤ threshold over the specified window.
 
         Returns:
         - List of time arrays corresponding to each stable rotation level.
         """
+        if self.log_manager:
+            self.log_manager.log_info(f"Starting identify_stable_rotation with threshold={threshold} and window='{window}'")
+        
+        # Check if 'Obroty[obr/min]' column exists
         if 'Obroty[obr/min]' not in self.df.columns:
             if self.log_manager:
                 self.log_manager.log_error("Column 'Obroty[obr/min]' not found in DataFrame.")
             return []
 
         df = self.df.copy()
+        if self.log_manager:
+            self.log_manager.log_info("DataFrame copied for processing.")
+
+        # Check if 'Time' column exists
         if 'Time' not in df.columns:
             if self.log_manager:
                 self.log_manager.log_error("Column 'Time' not found in DataFrame.")
             return []
 
-        df['Timedelta'] = pd.to_timedelta(df['Time'], unit='ms')
-        df.set_index('Timedelta', inplace=True)
+        # Ensure 'Time' is in datetime format and set as index
+        if not pd.api.types.is_datetime64_any_dtype(df['Time']):
+            df['Time'] = pd.to_datetime(df['Time'], unit='ms')
+            if self.log_manager:
+                self.log_manager.log_info("Converted 'Time' column to datetime.")
+        else:
+            if self.log_manager:
+                self.log_manager.log_info("'Time' column is already in datetime format.")
 
-        # Use rolling window of 10 seconds ('10s')
-        rolling_window = df['Obroty[obr/min]'].rolling(window)
-        rotation_range = rolling_window.max() - rolling_window.min()
-        # max fluctuation in 10 seconds is threshold=20 RPM
-        stable_mask = rotation_range.le(threshold)
-        stable_periods = (stable_mask != stable_mask.shift()).cumsum()
+        df.set_index('Time', inplace=True)
+        if self.log_manager:
+            self.log_manager.log_info("'Time' column set as index.")
 
+        # Compute rolling max and min over the specified window
+        if self.log_manager:
+            self.log_manager.log_info("Computing rolling max and min of 'Obroty[obr/min]'.")
+        rolling_object = df['Obroty[obr/min]'].rolling(window, min_periods=1)
+        roll_max = rolling_object.max()
+        roll_min = rolling_object.min()
+        roll_diff = roll_max - roll_min
+
+        # Identify stable rotation where difference ≤ threshold
+        stable_mask = roll_diff <= threshold
+        if self.log_manager:
+            num_stable_points = stable_mask.sum()
+            self.log_manager.log_info(f"Identified {num_stable_points} points where rotation difference ≤ threshold.")
+
+        # Label contiguous stable regions
+        df['Stable'] = stable_mask
+        df['Group'] = (df['Stable'] != df['Stable'].shift()).cumsum()
+        if self.log_manager:
+            num_groups = df['Group'].nunique()
+            self.log_manager.log_info(f"Labeled stable regions into {num_groups} groups.")
+
+        # Extract time arrays for each stable region
         stable_time_arrays = []
-        for _, group in df[stable_mask].groupby(stable_periods):
-            time_array = group['Time'].values
-            stable_time_arrays.append(time_array)
+        for group_id, group in df[df['Stable']].groupby('Group'):
+            times = group.index.values
+            stable_time_arrays.append(times)
+            if self.log_manager:
+                self.log_manager.log_info(f"Group {group_id}: Found {len(times)} stable time points.")
 
+        # Clean up
+        df.drop(columns=['Stable', 'Group'], inplace=True)
+        if self.log_manager:
+            self.log_manager.log_info("Dropped temporary 'Stable' and 'Group' columns.")
+
+        # Logging
         if self.log_manager:
             self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable rotation levels.")
 
+        # Calculate average rotation values for each stable rotation period
         rpm_mean_values = []
-        for time_array in stable_time_arrays:
-            time_array_sorted = sorted(time_array)
-            extracted_df = self.df[self.df['Time'].isin(time_array_sorted)].copy()
-            rpm_mean_value = round(extracted_df["Obroty[obr/min]"].mean(), 1)
+        for idx, time_array in enumerate(stable_time_arrays):
+            extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
+            rpm_mean_value = round(extracted_df['Obroty[obr/min]'].mean(), 1)
             rpm_mean_values.append(rpm_mean_value)
+            if self.log_manager:
+                self.log_manager.log_info(f"Group {idx}: Mean rotation = {rpm_mean_value} RPM.")
 
         if self.log_manager:
             self.log_manager.log_info(f"Stable rotation levels extracted. Average values: {rpm_mean_values}")
-        
+
+        # Metadata management
         if self.metadata_manager:
             self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Identified stable rotation levels.": ', len(stable_time_arrays)
+                self.step_5_file_name,
+                'Identified stable rotation levels:',
+                len(stable_time_arrays)
             )
             self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Stable rotation levels extracted. Average values:', rpm_mean_values
+                self.step_5_file_name,
+                'Stable rotation levels extracted. Average values:',
+                rpm_mean_values
             )
 
         return stable_time_arrays
-
+    
+    # !!! NOT USED !!!
     def identify_stable_torque_percent(self, threshold: float = 1.5, window: str = '30000ms') -> List[np.ndarray]:
         """
         Identifies stable torque levels in 'Moment obrotowy[Nm]'.
@@ -191,75 +242,36 @@ class DataFilter:
             return []
 
         df = self.df.copy()
-        if 'Time' not in df.columns:
+        if self.df.index.name != 'Time':
             if self.log_manager:
-                self.log_manager.log_error("Column 'Time' not found in DataFrame.")
+                self.log_manager.log_error("Index 'Time' not set in DataFrame.")
             return []
 
-        df['Timedelta'] = pd.to_timedelta(df['Time'], unit='ms')
-        df.set_index('Timedelta', inplace=True)
+        # Proceed with the rest of the method using df.index for time
+        # ...
 
-        # Calculate absolute change between consecutive readings
-        df['Torque_diff'] = df['Moment obrotowy[Nm]'].diff().abs()
-
-        # Calculate rolling average torque over 10-second window
-        rolling_avg = df['Moment obrotowy[Nm]'].rolling(window).mean()
-
-        # Calculate maximum torque difference over 10-second window
-        rolling_max_diff = df['Torque_diff'].rolling(window).max()
-
-        # Identify where the maximum torque difference is less than or equal to 10% of rolling average
-        df['Torque_stable'] = rolling_max_diff <= threshold * rolling_avg
-
-        stable_mask = df['Torque_stable']
-        stable_periods = (stable_mask != stable_mask.shift()).cumsum()
-
-        stable_time_arrays = []
-        for _, group in df[stable_mask].groupby(stable_periods):
-            time_array = group['Time'].values
-            stable_time_arrays.append(time_array)
-
-        if self.log_manager:
-            self.log_manager.log_info(f"Identified {len(stable_time_arrays)}")
-
-        # Calculate average torque values for each stable torque period
-        torque_mean_values = []
-        for time_array in stable_time_arrays:
-            time_array_sorted = sorted(time_array)
-            extracted_df = self.df[self.df['Time'].isin(time_array_sorted)].copy()
-            torque_mean_value = round(extracted_df["Moment obrotowy[Nm]"].mean(), 1)
-            torque_mean_values.append(torque_mean_value)
-
-        if self.log_manager:
-            self.log_manager.log_info(f"Stable torque ('Moment obrotowy[Nm]') levels extracted. Average values: {torque_mean_values}")
-
-        if self.metadata_manager:
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Identified stable torque (Moment obrotowy[Nm]) levels.: ', len(stable_time_arrays)
-            )
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Stable torque levels extracted. Average values:', torque_mean_values
-            )
-
-        # Clean up temporary columns
-        df.drop(columns=['Torque_diff', 'Torque_stable'], inplace=True)
-
-        return stable_time_arrays
-
-    def identify_stable_torque_nm(self, threshold: float = 1.4, window: str = '35000ms') -> List[np.ndarray]:
+    def identify_stable_torque_nm(self, threshold: float = 5, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identifies stable torque levels in 'Moment obrotowy[Nm]'.
-        A torque level is considered stable if its value changes by ≤ 5 Nm over a 10-second window.
+        A torque level is considered stable if its value changes by ≤ threshold over the specified window.
 
         Returns:
         - List of time arrays corresponding to each stable torque level.
         """
+        if self.log_manager:
+            self.log_manager.log_info(f"!!!---> Starting identify_stable_torque_nm with threshold={threshold} and window='{window}'")
+        
+        # Check if 'Moment obrotowy[Nm]' column exists
         if 'Moment obrotowy[Nm]' not in self.df.columns:
             if self.log_manager:
                 self.log_manager.log_error("Column 'Moment obrotowy[Nm]' not found in DataFrame.")
             return []
 
         df = self.df.copy()
+        if self.log_manager:
+            self.log_manager.log_info("DataFrame copied for processing.")
+        
+        # Check if 'Time' column exists
         if 'Time' not in df.columns:
             if self.log_manager:
                 self.log_manager.log_error("Column 'Time' not found in DataFrame.")
@@ -268,28 +280,59 @@ class DataFilter:
         # Ensure 'Time' is in datetime format and set as index
         if not pd.api.types.is_datetime64_any_dtype(df['Time']):
             df['Time'] = pd.to_datetime(df['Time'], unit='ms')
+            if self.log_manager:
+                self.log_manager.log_info("Converted 'Time' column to datetime.")
+        else:
+            if self.log_manager:
+                self.log_manager.log_info("'Time' column is already in datetime format.")
+        
         df.set_index('Time', inplace=True)
+        if self.log_manager:
+            self.log_manager.log_info("'Time' column set as index.")
 
         # Compute rolling max and min over the specified window
-        roll_max = df['Moment obrotowy[Nm]'].rolling(window, min_periods=1).max()
-        roll_min = df['Moment obrotowy[Nm]'].rolling(window, min_periods=1).min()
+        if self.log_manager:
+            self.log_manager.log_info("Computing rolling max and min of 'Moment obrotowy[Nm]'.")
+        rolling_object = df['Moment obrotowy[Nm]'].rolling(window, min_periods=1)
+        roll_max = rolling_object.max()
+        roll_min = rolling_object.min()
         roll_diff = roll_max - roll_min
+        if self.log_manager:
+            #  Log main parameters of the rolling object
+            self.log_manager.log_info("Rolling object parameters:")
+            self.log_manager.log_info(f" - window: {rolling_object.window}")
+            self.log_manager.log_info(f" - min_periods: {rolling_object.min_periods}")
+            self.log_manager.log_info(f" - center: {rolling_object.center}")
+            self.log_manager.log_info(f" - win_type: {rolling_object.win_type}")
+            self.log_manager.log_info(f" - axis: {rolling_object.axis}")
+            self.log_manager.log_info(f" - method: {rolling_object.method}")
+            self.log_manager.log_info(f" - closed: {rolling_object.closed}")
 
         # Identify stable torque where difference ≤ threshold
         stable_mask = roll_diff <= threshold
+        if self.log_manager:
+            num_stable_points = stable_mask.sum()
+            self.log_manager.log_info(f"Identified {num_stable_points} points where torque difference ≤ threshold.")
 
         # Label contiguous stable regions
         df['Stable'] = stable_mask
         df['Group'] = (df['Stable'] != df['Stable'].shift()).cumsum()
+        if self.log_manager:
+            num_groups = df['Group'].nunique()
+            self.log_manager.log_info(f"Labeled stable regions into {num_groups} groups.")
 
         # Extract time arrays for each stable region
         stable_time_arrays = []
-        for _, group in df[df['Stable']].groupby('Group'):
+        for group_id, group in df[df['Stable']].groupby('Group'):
             times = group.index.values
             stable_time_arrays.append(times)
+            if self.log_manager:
+                self.log_manager.log_info(f"Group {group_id}: Found {len(times)} stable time points.")
 
         # Clean up
         df.drop(columns=['Stable', 'Group'], inplace=True)
+        if self.log_manager:
+            self.log_manager.log_info("Dropped temporary 'Stable' and 'Group' columns.")
 
         # Logging
         if self.log_manager:
@@ -297,10 +340,12 @@ class DataFilter:
 
         # Calculate average torque values for each stable torque period
         torque_mean_values = []
-        for time_array in stable_time_arrays:
+        for idx, time_array in enumerate(stable_time_arrays):
             extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
             torque_mean_value = round(extracted_df['Moment obrotowy[Nm]'].mean(), 1)
             torque_mean_values.append(torque_mean_value)
+            if self.log_manager:
+                self.log_manager.log_info(f"Group {idx}: Mean torque = {torque_mean_value} Nm.")
 
         if self.log_manager:
             self.log_manager.log_info(f"Stable torque levels extracted. Average values: {torque_mean_values}")
@@ -320,14 +365,13 @@ class DataFilter:
 
         return stable_time_arrays
 
+    # !!! NOT USED !!! -> add data clenning to each chunck (window)
     def identify_stable_fuel_consumption(self, threshold: float = 0.5, window: str = '10000ms') -> List[np.ndarray]:
         """
         Identify stable fuel consumption levels in the column 'Zużycie paliwa średnie[g/s]'.
         A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
         Returns a list of time arrays (from the "Time" index) corresponding to each stable fuel consumption level.
         """
-        import pandas as pd
-        import numpy as np
 
         df = self.df.copy()
 
@@ -391,7 +435,7 @@ class DataFilter:
         - pd.DataFrame with the extracted data.
         """
         stable_functions = [
-            #self.identify_stable_rotation,
+            self.identify_stable_rotation,
             self.identify_stable_torque_nm,
             #self.identify_stable_torque_percent,
             #self.identify_stable_fuel_consumption,
