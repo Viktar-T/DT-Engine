@@ -194,7 +194,7 @@ def main():
 
         # filtered_df_only_essential = data_filter.filter_columns()
         data_filter.filter_columns()
-        data_filter.synchronize_time()
+        filtered_df = data_filter.synchronize_time()
         filtered_df = data_filter.filter_stable_periods()
         
         # Proceed without re-initializing DataCleaner
@@ -232,7 +232,7 @@ def main():
         metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
         
         data_visualizer = DataVisualizer(filtered_df)
-        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]', 'Zużycie paliwa średnie[g/s]']
+        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
         data_visualizer.plot_columns(columns_to_plot)
 
         #for column_pair in required_columns:
@@ -240,9 +240,9 @@ def main():
         #    y_column = column_pair[1]
         #    data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
 
-        # x_column = 'Time'
-        # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
-        # data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
+        x_column = 'Time'
+        y_columns = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+        data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
 
         # x_column = 'Obroty[obr/min]'
         # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']
