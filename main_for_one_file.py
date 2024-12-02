@@ -252,16 +252,16 @@ def main():
         log_manager.log_info("Step 6: Filtered and Cleaned data saved successfully.")
 
 
-       ## Step 7: Transform data
-       #data_transformation = DataTransformation(
-       #    df=filtered_df,
-       #    names_of_files_under_procession=names_of_files_under_procession,
-       #    log_manager=log_manager,
-       #    metadata_manager=metadata_manager
-       #    )
-
-       ## Apply atmospheric power correction and show corrections in logs
-       #corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
+        # Step 7: Transform data
+        #data_transformation = DataTransformation(
+        #    df=filtered_df,
+        #    names_of_files_under_procession=names_of_files_under_procession,
+        #    log_manager=log_manager,
+        #    metadata_manager=metadata_manager
+        #    )
+#
+        ## Apply atmospheric power correction and show corrections in logs
+        #corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
 
         # Step 7.1: Visualize data 1
         step_7_file_name = f"7-{files_for_steps}"

@@ -17,6 +17,8 @@ class MetadataManager:
         self.names_of_files_under_procession = names_of_files_under_procession
         self.version = self._get_next_version()
         self.metadata = self._load_existing_metadata()
+        if not os.path.exists(self.metadata_dir):
+            os.makedirs(self.metadata_dir)
 
     def _get_next_version(self) -> str:
         existing_files = [f for f in os.listdir(self.metadata_dir) if f.startswith('metadata_v')]
@@ -32,8 +34,18 @@ class MetadataManager:
     def _load_existing_metadata(self) -> Dict[str, Any]:
         file_path = os.path.join(self.metadata_dir, f'metadata_{self.version}.json')
         if os.path.exists(file_path):
-            with open(file_path, 'r', encoding='utf-8') as f:
-                return json.load(f)
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except json.JSONDecodeError:
+                logger.error(f"Corrupted JSON file at {file_path}. Initializing empty metadata.")
+                return {}
+            except FileNotFoundError:
+                logger.info(f"Metadata file {file_path} not found. Initializing empty metadata.")
+                return {}
+            except Exception as e:
+                logger.error(f"Unexpected error loading metadata: {e}")
+                return {}
         return {}
 
     def update_metadata(self, step: int, key: str, value: Any):
@@ -49,10 +61,17 @@ class MetadataManager:
     def _save_metadata(self):
         file_path = os.path.join(self.metadata_dir, f'metadata_{self.version}.json')
         # Load existing metadata if the file exists
-        if os.path.exists(file_path):
+        try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 existing_metadata = json.load(f)
-        else:
+        except json.JSONDecodeError:
+            logger.error(f"Corrupted JSON file at {file_path}. Overwriting with new metadata.")
+            existing_metadata = {}
+        except FileNotFoundError:
+            logger.info(f"Metadata file {file_path} not found. Creating a new one.")
+            existing_metadata = {}
+        except Exception as e:
+            logger.error(f"Unexpected error loading existing metadata: {e}")
             existing_metadata = {}
         
         # Update existing metadata with new information

@@ -1,0 +1,21 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-02 15:14:22.071906",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-02 15:14:22.073782"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-02 15:14:24.471879",
+        "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
+            38535,
+            146
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-02 15:14:24.847491"
+    }
+}

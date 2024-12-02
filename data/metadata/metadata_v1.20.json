@@ -1,0 +1,134 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-02 15:28:22.658025",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-02 15:28:22.660208"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-02 15:28:25.267052",
+        "1600Nn obc ON _ 2018-12-06_ORIGEN.csv_shape": [
+            38535,
+            146
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-02 15:28:25.633723"
+    },
+    "3-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-02 15:28:26.101453",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-02 15:28:26.105908"
+    },
+    "4-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "from class DataValidator. Files for validation:": [
+            "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-02 15:28:26.732267"
+    },
+    "5-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-02 15:28:27.237397",
+        "filtered_data_shape after \"def filter_columns\":": [
+            38535,
+            146
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            3853,
+            18
+        ],
+        "Identified stable rotation levels:": 12,
+        "Stable rotation levels extracted. Average values:": [
+            1.7,
+            800.5,
+            1600.3,
+            1600.5,
+            1600.5,
+            1600.4,
+            1600.2,
+            1598.5,
+            1601.3,
+            1602.5,
+            1600.0,
+            800.5
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 15,
+        "Stable torque levels extracted. Average values:": [
+            0.9,
+            1.5,
+            50.0,
+            100.0,
+            150.0,
+            200.0,
+            249.8,
+            249.9,
+            274.9,
+            299.9,
+            324.9,
+            335.9,
+            335.0,
+            337.1,
+            1.6
+        ],
+        "Identified stable fuel consumption levels:": 17,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.03,
+            0.27,
+            0.58,
+            0.97,
+            1.43,
+            2.08,
+            2.66,
+            2.7,
+            3.2,
+            3.39,
+            3.5,
+            3.58,
+            3.75,
+            3.85,
+            1.79,
+            0.4,
+            0.16
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            3310,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            1865,
+            18
+        ],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-12-02 15:28:27.490421"
+    },
+    "6-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-12-02 15:28:28.018093",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-12-02 15:28:28.112366"
+    },
+    "7-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "7",
+        "step_name": "Visualize data",
+        "step_7_start_time": "2024-12-02 15:28:28.575054",
+        "step_7_status": "completed",
+        "step_7_end_time": "2024-12-02 15:28:40.492362",
+        "pipeline_status": "completed"
+    }
+}

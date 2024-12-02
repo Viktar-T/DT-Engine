@@ -127,11 +127,13 @@ class DataTransformation:
             if self.metadata_manager:
                 self.metadata_manager.update_metadata(
                     self.step_6_file_name,
-                    'Atmospheric power correction applied successfully.":',
-                    {"df.shape": self.df.shape, 
-                     "Max power correction": max_power_correction,
-                     "Max torque correction": max_torque_correction,
-                     "columns in df": self.df.columns}
+                    'Atmospheric power correction applied successfully.',
+                    {
+                        "df.shape": self.df.shape, 
+                        "Max power correction": max_power_correction,
+                        "Max torque correction": max_torque_correction,
+                        "columns in df": self.df.columns
+                    }
                 )
   
             return self.df  # Return the corrected DataFrame
