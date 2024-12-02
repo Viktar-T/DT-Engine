@@ -1,0 +1,142 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-02 13:21:08.727048",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-02 13:21:08.728937"
+    },
+    "2-main_file_name:RME zew _ 2018-12-20.csv, eco_file_name:RME zew _ 2018-12-20_eco.csv, Fuel:RME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-02 13:21:12.337563",
+        "RME zew _ 2018-12-20.csv_shape": [
+            22141,
+            146
+        ],
+        "RME zew _ 2018-12-20_eco.csv_shape": [
+            10,
+            9
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-02 13:21:12.574773"
+    },
+    "3-main_file_name:RME zew _ 2018-12-20.csv, eco_file_name:RME zew _ 2018-12-20_eco.csv, Fuel:RME": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-02 13:21:13.115696",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            },
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-02 13:21:13.121232"
+    },
+    "4-main_file_name:RME zew _ 2018-12-20.csv, eco_file_name:RME zew _ 2018-12-20_eco.csv, Fuel:RME": {
+        "from class DataValidator. Files for validation:": [
+            "RME zew _ 2018-12-20.csv",
+            "RME zew _ 2018-12-20_eco.csv"
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-02 13:21:13.661690"
+    },
+    "5-main_file_name:RME zew _ 2018-12-20.csv, eco_file_name:RME zew _ 2018-12-20_eco.csv, Fuel:RME": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-02 13:21:14.136095",
+        "filtered_data_shape after \"def filter_columns\":": [
+            22141,
+            146
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            2213,
+            18
+        ],
+        "Identified stable rotation levels:": 15,
+        "Stable rotation levels extracted. Average values:": [
+            2.5,
+            801.4,
+            1690.8,
+            2403.0,
+            2201.1,
+            1999.3,
+            1899.8,
+            1799.0,
+            1700.0,
+            1598.9,
+            1496.9,
+            1399.2,
+            1298.7,
+            801.4,
+            1700.8
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 13,
+        "Stable torque levels extracted. Average values:": [
+            1.2,
+            289.9,
+            291.3,
+            316.9,
+            328.8,
+            337.7,
+            341.2,
+            348.5,
+            354.6,
+            350.7,
+            354.3,
+            355.5,
+            3.3
+        ],
+        "Identified stable fuel consumption levels:": 15,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.02,
+            0.56,
+            3.5,
+            5.22,
+            5.11,
+            4.76,
+            4.59,
+            4.44,
+            4.2,
+            4.18,
+            3.99,
+            3.6,
+            3.39,
+            3.16,
+            0.54
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            2213,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            415,
+            18
+        ],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-12-02 13:21:14.340154"
+    },
+    "6-main_file_name:RME zew _ 2018-12-20.csv, eco_file_name:RME zew _ 2018-12-20_eco.csv, Fuel:RME": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-12-02 13:21:16.364688",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-12-02 13:21:16.401201"
+    },
+    "7-main_file_name:RME zew _ 2018-12-20.csv, eco_file_name:RME zew _ 2018-12-20_eco.csv, Fuel:RME": {
+        "step": "7",
+        "step_name": "Visualize data",
+        "step_7_start_time": "2024-12-02 13:21:17.212885",
+        "step_7_status": "completed",
+        "step_7_end_time": "2024-12-02 13:21:41.440116",
+        "pipeline_status": "completed"
+    }
+}

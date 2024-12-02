@@ -128,6 +128,7 @@ class DataValidator:
 
             metadata = pd.DataFrame({
                 "Column": df.columns,
+                "Total Values": df.count().values,
                 "Non-Null Count": df.notnull().sum().values,
                 "Null Count": df.isnull().sum().values,
                 "Unique Values": [df[col].nunique() for col in df.columns],

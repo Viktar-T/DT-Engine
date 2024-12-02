@@ -90,7 +90,7 @@ class DataCleaner:
         # !!! check !!!
         self.handle_missing_values()
         self.remove_duplicates()
-        self.handle_outliers()
+        #self.handle_outliers()
         
         if self.log_manager:
             self.log_manager.log_info("Data cleaning process completed.")

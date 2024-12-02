@@ -10,7 +10,9 @@ from src.utils.build_json_with_files import JSONBuilder
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
 from src.data_visualizer import DataVisualizer
+from src.data_transformation import DataTransformation
 from src.data_filter import DataFilter
+import json
 
 required_columns_for_validation_step = [
     'Ciś. pow. za turb.[Pa]', 
@@ -32,6 +34,7 @@ required_columns_for_validation_step = [
     'Zużycie paliwa średnie[g/s]'
 ]
 
+# !!! NOT USED !!!
 required_columns = [
     ['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'],
     ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'],
@@ -52,37 +55,28 @@ required_columns = [
     ['Czas [ms].72', 'Zużycie paliwa średnie[g/s]'],    
 ]
 
-# current_file = {
-#     "id": 4,
-#     "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
-#     "eco_file_name": "",
-#     "description": "empty",
-#     "diesel_test_type": "1600Nn obc",
-#     "fuel": "ON",
-#     "diesel_engine_name": "empty",
-#     "test_date": "2018-12-06"
-# }
+#current_file = {
+#            "id": 4,        # <--- change for windows id:1; linux id:4
+#            "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+#            "eco_file_name": "",
+#            "description": "empty",
+#            "diesel_test_type": "1600Nn obc",
+#            "fuel": "ON",
+#            "diesel_engine_name": "empty",
+#            "test_date": "2018-12-06"
+#        }
 
-current_file = {
-            "id": 4,        # <--- change for windows id:1; linux id:4
-            "main_file_name": "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
-            "eco_file_name": "",
-            "description": "empty",
-            "diesel_test_type": "1600Nn obc",
-            "fuel": "ON",
-            "diesel_engine_name": "empty",
-            "test_date": "2018-12-06"
-        }
-# current_file = {
-#             "id": 2,
-#             "main_file_name": "RME zew _ 2018-12-20.xlsx",
-#             "eco_file_name": "RME zew _ 2018-12-20_eco.xlsx",
-#             "description": "empty",
-#             "diesel_test_type": "zew",
-#             "fuel": "RME",
-#             "diesel_engine_name": "empty",
-#             "test_date": "2018-12-20"
-#         }
+def get_current_file_by_id(file_path, target_id):
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    for item in data["Lublin Diesel"]:
+        if item.get('id') == target_id:
+            # Return the entire dictionary
+            return item
+    return None
+id = 4
+current_file = get_current_file_by_id(os.path.join(RAW_DATA_DIR, 'files_with_raw_data_links.json'), id)
+
 
 names_of_files_under_procession = [current_file["main_file_name"], current_file["eco_file_name"], current_file["fuel"]]
 files_for_steps = f"main_file_name:{names_of_files_under_procession[0]}, eco_file_name:{names_of_files_under_procession[1]}, Fuel:{names_of_files_under_procession[2]}"
@@ -188,7 +182,7 @@ def main():
         proceed_to_next_step(4, log_manager)
         log_manager.log_info("Step 4: Metadata extracted successfully.")
 
-        # Step 5: Filter and then clean each chunk 
+        # Step 5: Filter and then clean 
         step_5_file_name = f"5-{files_for_steps}"
         log_manager.log_info("Continue data pipeline. Step 5: Filtering and preprocessing data...")
         metadata_manager.update_metadata(step_5_file_name, 'step', '5')
@@ -198,15 +192,36 @@ def main():
         # Use DataFilter to filter columns and synchronize time
         data_filter = DataFilter(
             df=raw_data_frames[0],
-            required_columns=required_columns,
+            required_columns=required_columns_for_validation_step,
             names_of_files_under_procession=names_of_files_under_procession,
             metadata_manager=metadata_manager,
             log_manager=log_manager
         )
 
-        # filtered_df_only_essential = data_filter.filter_columns()
+        
+        #data_visualizer = DataVisualizer(raw_data_frames[0]) # OK
+        #columns_to_plot = required_columns_for_validation_step
+        ##columns_to_plot = ['Zużycie paliwa średnie[g/s]']
+        #data_visualizer.plot_columns(columns_to_plot)
+
+        #filtered_df = data_filter.filter_columns()
         data_filter.filter_columns()
-        filtered_df = data_filter.synchronize_time()
+
+        #data_visualizer = DataVisualizer(filtered_df)
+        #log_manager.log_info("!!!!!!!!!!!!!-1-ERRO search!!!!!!!!!!!!!")
+        #columns_to_plot = required_columns_for_validation_step
+        ##columns_to_plot = ['Zużycie paliwa średnie[g/s]']
+        #data_visualizer.plot_columns(columns_to_plot)  #NOT OK
+
+        #filtered_df = data_filter.synchronize_time()
+        data_filter.synchronize_time()
+
+        #data_visualizer = DataVisualizer(filtered_df)
+        #log_manager.log_info("!!!!!!!!!!!!!-2-ERRO search!!!!!!!!!!!!!!!!!!!!")
+        #columns_to_plot = required_columns_for_validation_step
+        ##columns_to_plot = ['Zużycie paliwa średnie[g/s]']
+        #data_visualizer.plot_columns(columns_to_plot)  #NOT OK
+
         filtered_df = data_filter.filter_all_stable_periods()
         
         # Proceed without re-initializing DataCleaner
@@ -223,11 +238,11 @@ def main():
         metadata_manager.update_metadata(step_6_file_name, 'step', '6')
         metadata_manager.update_metadata(step_6_file_name, 'step_name', 'Save filtered data')
         metadata_manager.update_metadata(step_6_file_name, 'step_6_start_time', str(datetime.now()))
-        filtered_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'filtered_data_{names_of_files_under_procession[0]}.csv'), index=False)
-        log_manager.log_info(f"Filtered and Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.csv')}")
+        filtered_df.to_csv(os.path.join(PROCESSED_DATA_DIR, f'filtered_data_{names_of_files_under_procession[0]}'), index=False)
+        log_manager.log_info(f"Filtered and Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}')}")
         # cleaned_df.to_excel(os.path.join(PROCESSED_DATA_DIR, f'cleaned_data_{names_of_files_under_procession[0]}.xlsx'), index=False, engine='openpyxl')
         filtered_df.to_parquet(os.path.join(PROCESSED_DATA_DIR, 
-                                           f'cleaned_data_{names_of_files_under_procession[0]}.parquet'), 
+                                           f'cleaned_data_{names_of_files_under_procession[0]}'), 
                                            index=False)
         log_manager.log_info(f"Filtered and Cleaned data saved to {os.path.join(PROCESSED_DATA_DIR, 'filtered_data.parquet')}")
         log_manager.log_info("Step 6: Save cleaned data completed successfully.")
@@ -235,6 +250,18 @@ def main():
         metadata_manager.update_metadata(step_6_file_name, 'step_6_end_time', str(datetime.now()))
         proceed_to_next_step(6, log_manager)
         log_manager.log_info("Step 6: Filtered and Cleaned data saved successfully.")
+
+
+       ## Step 7: Transform data
+       #data_transformation = DataTransformation(
+       #    df=filtered_df,
+       #    names_of_files_under_procession=names_of_files_under_procession,
+       #    log_manager=log_manager,
+       #    metadata_manager=metadata_manager
+       #    )
+
+       ## Apply atmospheric power correction and show corrections in logs
+       #corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
 
         # Step 7.1: Visualize data 1
         step_7_file_name = f"7-{files_for_steps}"
@@ -253,10 +280,10 @@ def main():
         #    y_column = column_pair[1]
         #    data_visualizer.plot_parameter_vs_parameter(x_column, y_column)
 
-        x_column = 'Time'
-        #y_columns = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
-        y_columns = required_columns_for_validation_step
-        data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
+       #x_column = 'Time'
+       ##y_columns = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+       #y_columns = required_columns_for_validation_step
+       #data_visualizer.plot_parameter_vs_parameters(x_column, y_columns)
 
         # x_column = 'Obroty[obr/min]'
         # y_columns = ['Moment obrotowy[Nm]', 'Moc[kW]', 'MAF[kg/h]']

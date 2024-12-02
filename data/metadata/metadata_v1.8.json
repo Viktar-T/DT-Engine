@@ -1,0 +1,145 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-02 13:29:12.610061",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-02 13:29:12.612161"
+    },
+    "2-main_file_name:Zew Efekta Agrotronika _ 2019-05-17.csv, eco_file_name:, Fuel:Efekta Agrotronika": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-02 13:29:14.691515",
+        "Zew Efekta Agrotronika _ 2019-05-17.csv_shape": [
+            28344,
+            150
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-02 13:29:14.993113"
+    },
+    "3-main_file_name:Zew Efekta Agrotronika _ 2019-05-17.csv, eco_file_name:, Fuel:Efekta Agrotronika": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-02 13:29:15.533067",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-02 13:29:15.537092"
+    },
+    "4-main_file_name:Zew Efekta Agrotronika _ 2019-05-17.csv, eco_file_name:, Fuel:Efekta Agrotronika": {
+        "from class DataValidator. Files for validation:": [
+            "Zew Efekta Agrotronika _ 2019-05-17.csv",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-02 13:29:16.301090"
+    },
+    "5-main_file_name:Zew Efekta Agrotronika _ 2019-05-17.csv, eco_file_name:, Fuel:Efekta Agrotronika": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-02 13:29:18.239037",
+        "filtered_data_shape after \"def filter_columns\":": [
+            28344,
+            150
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            2834,
+            18
+        ],
+        "Identified stable rotation levels:": 17,
+        "Stable rotation levels extracted. Average values:": [
+            6.7,
+            800.5,
+            1706.6,
+            2403.0,
+            2301.3,
+            2199.7,
+            2100.2,
+            1999.9,
+            1900.7,
+            1799.5,
+            1700.1,
+            1599.8,
+            1497.3,
+            1399.8,
+            1298.9,
+            800.8,
+            1800.5
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 18,
+        "Stable torque levels extracted. Average values:": [
+            1.8,
+            298.9,
+            301.3,
+            301.6,
+            314.0,
+            331.9,
+            331.5,
+            334.7,
+            340.8,
+            349.2,
+            353.8,
+            361.8,
+            362.0,
+            371.2,
+            363.8,
+            366.5,
+            369.2,
+            2.6
+        ],
+        "Identified stable fuel consumption levels:": 20,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.04,
+            0.17,
+            0.26,
+            0.52,
+            4.99,
+            4.95,
+            4.91,
+            4.94,
+            4.65,
+            4.58,
+            4.42,
+            4.27,
+            4.2,
+            4.04,
+            3.97,
+            3.46,
+            3.26,
+            3.19,
+            3.05,
+            0.53
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            2834,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            947,
+            18
+        ],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-12-02 13:29:18.473077"
+    },
+    "6-main_file_name:Zew Efekta Agrotronika _ 2019-05-17.csv, eco_file_name:, Fuel:Efekta Agrotronika": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-12-02 13:29:19.419824",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-12-02 13:29:19.460056"
+    },
+    "7-main_file_name:Zew Efekta Agrotronika _ 2019-05-17.csv, eco_file_name:, Fuel:Efekta Agrotronika": {
+        "step": "7",
+        "step_name": "Visualize data",
+        "step_7_start_time": "2024-12-02 13:29:20.197567",
+        "step_7_status": "completed",
+        "step_7_end_time": "2024-12-02 13:29:43.147126",
+        "pipeline_status": "completed"
+    }
+}

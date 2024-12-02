@@ -32,6 +32,7 @@ class DataFilter:
         self.metadata_manager = metadata_manager
         self.log_manager = log_manager
 
+    # !!! 1. USED !!!
     def filter_columns(self) -> None:
         """
         Filters the DataFrame to include only the required columns.
@@ -39,8 +40,22 @@ class DataFilter:
         Returns:
         - pd.DataFrame: A filtered DataFrame containing only the required columns.
         """
+        self.column_pairs = []
+        for col_name in self.required_columns:
+            try:
+                idx = self.df.columns.get_loc(col_name)
+                if idx > 0:
+                    prev_col_name = self.df.columns[idx - 1]
+                    self.column_pairs.append([prev_col_name, col_name])
+                else:
+                    # If there is no previous column, include only the required column
+                    self.column_pairs.append([col_name])
+            except KeyError:
+                if self.log_manager:
+                    self.log_manager.log_warning(f"Column '{col_name}' not found in DataFrame.")
+        self.log_manager.log_info(f"!!!!!!!!Column pairs: {self.column_pairs}")            
         # Flatten the list of required columns
-        columns_to_keep = [col for pair in self.required_columns for col in pair]
+        columns_to_keep = [col for pair in self.column_pairs for col in pair]
 
         # Validate columns exist in the DataFrame
         missing_columns = [col for col in columns_to_keep if col not in self.df.columns]
@@ -59,7 +74,11 @@ class DataFilter:
         # Update self.df with filtered DataFrame
         self.df = filtered_df
         # No need to return filtered_df
-
+        # Clean the DataFrame using DataCleaner
+        #self._clean_dataframe()
+        return self.df
+    
+    # !!! 2. USED !!!
     def synchronize_time(self) -> None:
         """
         Synchronizes time for all sensors in the DataFrame.
@@ -68,7 +87,7 @@ class DataFilter:
         Returns:
         - pd.DataFrame: A DataFrame with synchronized time columns.
         """
-        sensors = [pair for pair in self.required_columns]
+        sensors = [pair for pair in self.column_pairs]
         # Use the time column of the first sensor as the reference time
         reference_time_col = sensors[0][0]
 
@@ -119,10 +138,71 @@ class DataFilter:
         self.log_manager.log_info(f"Filtered DataFrame shape. after synchronize_time(): {self.df.shape}")
         #self.log_manager.log_dataframe_in_chunks(self.df)
         # No need to return final_df
-        return final_df
+
+        # Clean the DataFrame us
+        self._clean_dataframe()
+
+        return self.df
     
-    
-    def identify_stable_rotation(self, threshold: int = 20, window: str = '10000ms') -> List[np.ndarray]:
+    # !!! 3. USED !!! 
+    def filter_all_stable_periods(self) -> pd.DataFrame:
+        """
+        Intersects the time arrays from multiple stable identification functions,
+        extracts corresponding data from the DataFrame.
+
+        Returns:
+        - pd.DataFrame with the extracted data.
+        """
+        stable_functions = [
+            self._identify_stable_rotation,
+            self._identify_stable_torque_nm,
+            self._identify_stable_fuel_consumption,
+            self._filter_high_temperature_oil
+            # Add more functions if needed
+        ]
+
+        # Collect all stable time sets
+        stable_time_sets = []
+        for func in stable_functions:
+            stable_time_arrays = func()
+            if not stable_time_arrays:
+                if self.log_manager:
+                    self.log_manager.log_warning(f"No stable periods identified by {func.__name__}.")
+                return pd.DataFrame()
+            # Combine all time arrays from this function into a set
+            times = set(np.concatenate(stable_time_arrays))
+            stable_time_sets.append(times)
+
+        # Find the intersection of all stable times
+        intersected_times = set.intersection(*stable_time_sets)
+
+        if not intersected_times:
+            if self.log_manager:
+                self.log_manager.log_warning("No overlapping stable periods found among all metrics.")
+            return pd.DataFrame()
+
+        extracted_df = self.df[self.df['Time'].isin(intersected_times)].copy()
+
+        if self.log_manager:
+            self.log_manager.log_info(f"Extracted {len(extracted_df)} rows of intersected stable data.")
+
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_5_file_name,
+                'filtered_data_shape after "extract_and_clean_data()":',
+                extracted_df.shape
+            )
+        
+        # Update self.df with the extracted DataFrame
+        self.df = extracted_df
+
+        if self.log_manager:
+            self.log_manager.log_info("DataFrame cleaned successfully using DataCleaner.")
+
+        # Return the cleaned DataFrame
+        return self.df
+
+    def _identify_stable_rotation(self, threshold: int = 20, window: str = '8000ms') -> List[np.ndarray]:
         """
         Identifies stable rotation levels in 'Obroty[obr/min]'.
         A rotation level is considered stable if its value changes by ≤ threshold over the specified window.
@@ -226,31 +306,8 @@ class DataFilter:
             )
 
         return stable_time_arrays
-    
-    # !!! NOT USED !!!
-    def identify_stable_torque_percent(self, threshold: float = 1.5, window: str = '30000ms') -> List[np.ndarray]:
-        """
-        Identifies stable torque levels in 'Moment obrotowy[Nm]'.
-        A torque value is considered stable if the change between consecutive readings is ≤ 10% of the average value over a 10-second window.
 
-        Returns:
-        - List of time arrays corresponding to each stable torque level.
-        """
-        if 'Moment obrotowy[Nm]' not in self.df.columns:
-            if self.log_manager:
-                self.log_manager.log_error("Column 'Moment obrotowy[Nm]' not found in DataFrame.")
-            return []
-
-        df = self.df.copy()
-        if self.df.index.name != 'Time':
-            if self.log_manager:
-                self.log_manager.log_error("Index 'Time' not set in DataFrame.")
-            return []
-
-        # Proceed with the rest of the method using df.index for time
-        # ...
-
-    def identify_stable_torque_nm(self, threshold: float = 1.5, window: str = '10000ms') -> List[np.ndarray]:
+    def _identify_stable_torque_nm(self, threshold: float = 1.6, window: str = '8000ms') -> List[np.ndarray]:
         """
         Identifies stable torque levels in 'Moment obrotowy[Nm]'.
         A torque level is considered stable if its value changes by ≤ threshold over the specified window.
@@ -369,32 +426,7 @@ class DataFilter:
 
         return stable_time_arrays
 
-    def _clean_stable_chunks(self, stable_time_arrays: List[np.ndarray]) -> None:
-        """
-        Cleans each chunk of data corresponding to stable_time_arrays using DataCleaner.
-        Updates self.df with the cleaned data.
-        """
-        cleaned_chunks = []
-
-        for idx, time_array in enumerate(stable_time_arrays):
-            extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
-
-            # Clean the chunk using DataCleaner
-            data_cleaner = DataCleaner(
-                df=extracted_df,
-                names_of_files_under_procession=self.names_of_files_under_procession,
-                metadata_manager=self.metadata_manager,
-                log_manager=self.log_manager
-            )
-            cleaned_df = data_cleaner.clean()
-            cleaned_chunks.append(cleaned_df)
-
-        # Combine cleaned chunks into a single DataFrame
-        self.df = pd.concat(cleaned_chunks).reset_index(drop=True)
-        if self.log_manager:
-            self.log_manager.log_info("All stable torque chunks have been cleaned and combined.")
-
-    def identify_stable_fuel_consumption(self, threshold: float = 2, window: str = '10000ms') -> List[np.ndarray]:
+    def _identify_stable_fuel_consumption(self, threshold: float = 0.1, window: str = '8000ms') -> List[np.ndarray]:
         """
         Identify stable fuel consumption levels in the column 'Zużycie paliwa średnie[g/s]'.
         A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
@@ -502,56 +534,7 @@ class DataFilter:
     
         return stable_time_arrays
 
-    def filter_all_stable_periods(self) -> pd.DataFrame:
-        """
-        Intersects the time arrays from multiple stable identification functions,
-        extracts corresponding data from the DataFrame.
-
-        Returns:
-        - pd.DataFrame with the extracted data.
-        """
-        stable_functions = [
-            self.identify_stable_rotation,
-            self.identify_stable_torque_nm,
-            #self.identify_stable_torque_percent,
-            self.identify_stable_fuel_consumption,
-            self.filter_high_temperature_oil
-            # Add more functions if needed
-        ]
-
-        # Collect all stable time sets
-        stable_time_sets = []
-        for func in stable_functions:
-            stable_time_arrays = func()
-            if not stable_time_arrays:
-                if self.log_manager:
-                    self.log_manager.log_warning(f"No stable periods identified by {func.__name__}.")
-                return pd.DataFrame()
-            # Combine all time arrays from this function into a set
-            times = set(np.concatenate(stable_time_arrays))
-            stable_time_sets.append(times)
-
-        # Find the intersection of all stable times
-        intersected_times = set.intersection(*stable_time_sets)
-
-        if not intersected_times:
-            if self.log_manager:
-                self.log_manager.log_warning("No overlapping stable periods found among all metrics.")
-            return pd.DataFrame()
-
-        extracted_df = self.df[self.df['Time'].isin(intersected_times)].copy()
-
-        if self.log_manager:
-            self.log_manager.log_info(f"Extracted {len(extracted_df)} rows of intersected stable data.")
-
-        if self.metadata_manager:
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'filtered_data_shape after "extract_and_clean_data()":', extracted_df.shape
-            )
-
-        return extracted_df
-
-    def filter_high_temperature_oil(self) -> List[np.ndarray]:
+    def _filter_high_temperature_oil(self) -> List[np.ndarray]:
         """
         Removes rows where 'Temp. oleju w misce[°C]' is less than 50.
         Returns:
@@ -587,3 +570,18 @@ class DataFilter:
         self.df = high_temp_df
         
         return high_temperature_oil_time_array
+
+    def _clean_dataframe(self) -> None:
+        """
+        Cleans the entire DataFrame using DataCleaner.
+        """
+        data_cleaner = DataCleaner(
+            df=self.df,
+            names_of_files_under_procession=self.names_of_files_under_procession,
+            metadata_manager=self.metadata_manager,
+            log_manager=self.log_manager
+        )
+        cleaned_df = data_cleaner.clean()
+        self.df = cleaned_df
+
+
