@@ -1,0 +1,158 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-02 17:27:54.555136",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-02 17:27:54.559135"
+    },
+    "2-main_file_name:Zew ch ON _ 2018-12-18.csv, eco_file_name:Zew ch ON _ 2018-12-18_eco.csv, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-02 17:27:56.026443",
+        "Zew ch ON _ 2018-12-18.csv_shape": [
+            31577,
+            150
+        ],
+        "Zew ch ON _ 2018-12-18_eco.csv_shape": [
+            10,
+            9
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-02 17:27:56.525444"
+    },
+    "3-main_file_name:Zew ch ON _ 2018-12-18.csv, eco_file_name:Zew ch ON _ 2018-12-18_eco.csv, Fuel:ON": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-02 17:27:56.970931",
+        "validation_results": [
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            },
+            {
+                "missing_required": [],
+                "missing_optional": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-02 17:27:56.984931"
+    },
+    "4-main_file_name:Zew ch ON _ 2018-12-18.csv, eco_file_name:Zew ch ON _ 2018-12-18_eco.csv, Fuel:ON": {
+        "from class DataValidator. Files for validation:": [
+            "Zew ch ON _ 2018-12-18.csv",
+            "Zew ch ON _ 2018-12-18_eco.csv"
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-02 17:27:57.699812"
+    },
+    "5-main_file_name:Zew ch ON _ 2018-12-18.csv, eco_file_name:Zew ch ON _ 2018-12-18_eco.csv, Fuel:ON": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-02 17:27:58.290760",
+        "filtered_data_shape after \"def filter_columns\":": [
+            31577,
+            150
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            3157,
+            18
+        ],
+        "Identified stable rotation levels:": 18,
+        "Stable rotation levels extracted. Average values:": [
+            6.7,
+            800.5,
+            1316.2,
+            1916.4,
+            2413.3,
+            2539.5,
+            2403.6,
+            2200.9,
+            1999.2,
+            1899.8,
+            1800.4,
+            1699.7,
+            1599.4,
+            1497.1,
+            1400.0,
+            1298.5,
+            1600.0,
+            800.5
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 17,
+        "Stable torque levels extracted. Average values:": [
+            1.6,
+            4.0,
+            293.6,
+            294.3,
+            325.8,
+            326.7,
+            339.2,
+            348.6,
+            352.4,
+            352.8,
+            360.0,
+            369.0,
+            364.3,
+            368.6,
+            370.2,
+            113.2,
+            2.2
+        ],
+        "Identified stable fuel consumption levels:": 22,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.06,
+            0.24,
+            0.32,
+            0.45,
+            0.77,
+            1.09,
+            4.87,
+            4.86,
+            4.89,
+            4.54,
+            4.5,
+            4.38,
+            4.34,
+            4.05,
+            3.82,
+            3.73,
+            3.43,
+            3.1,
+            3.04,
+            1.28,
+            0.17,
+            0.18
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            3157,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            1274,
+            18
+        ],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-12-02 17:27:58.530751",
+        "Atmospheric power correction applied successfully.": "!!!!!!!"
+    },
+    "6-main_file_name:Zew ch ON _ 2018-12-18.csv, eco_file_name:Zew ch ON _ 2018-12-18_eco.csv, Fuel:ON": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-12-02 17:27:59.203752",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-12-02 17:27:59.258822"
+    },
+    "8-main_file_name:Zew ch ON _ 2018-12-18.csv, eco_file_name:Zew ch ON _ 2018-12-18_eco.csv, Fuel:ON": {
+        "step": "8",
+        "step_name": "Visualize data",
+        "step_8_start_time": "2024-12-02 17:28:00.488505"
+    },
+    "0": {
+        "pipeline_status": "error: Could not interpret value `Ciśnienie atmosferyczne[hPa]` for `y`. An entry with this name does not appear in `data`.",
+        "error_time": "2024-12-02 17:28:06.384378"
+    }
+}

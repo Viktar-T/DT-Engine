@@ -29,6 +29,7 @@ class DataTransformation:
         self.names_of_files_under_procession = names_of_files_under_procession
         self.metadata_manager = metadata_manager
         self.log_manager = log_manager
+        self.data_cleaner = data_cleaner
 
     
     def atmospheric_power_correction(self, Z: float = 120000.0, displacement: float = 4.5, show_corrections: bool = False) -> pd.DataFrame:
@@ -127,12 +128,12 @@ class DataTransformation:
             if self.metadata_manager:
                 self.metadata_manager.update_metadata(
                     self.step_6_file_name,
-                    'Atmospheric power correction applied successfully.',
+                    'Atmospheric power correction applied successfully.', 
                     {
                         "df.shape": self.df.shape, 
                         "Max power correction": max_power_correction,
                         "Max torque correction": max_torque_correction,
-                        "columns in df": self.df.columns
+                        "columns in df": list(self.df.columns)
                     }
                 )
   
@@ -145,11 +146,46 @@ class DataTransformation:
             else:
                 print(error_message)
             return self.df  # Return the original DataFrame in case of error
-         
-                    
-                    
-    def temp_exhaust_gas_mean(self):
+                         
+    def exhaust_gas_mean_temperature_calculation(self):
         """
         Calculates the mean temperature of the exhaust gas.
         """
-        pass
+        # Required columns for mean calculation
+        temp_columns = [
+            "Temp. spalin 1/6[°C]",
+            "Temp. spalin 2/6[°C]",
+            "Temp. spalin 3/6[°C]",
+            "Temp. spalin 4/6[°C]"
+        ]
+
+        # Check if all required temperature columns are present
+        missing_columns = [col for col in temp_columns if col not in self.df.columns]
+        if missing_columns:
+            message = f"Missing temperature columns for mean calculation: {missing_columns}"
+            if self.log_manager:
+                self.log_manager.log_error(message)
+            else:
+                print(message)
+            return self.df  # Return original DataFrame if missing columns
+
+        # Calculate the mean temperature
+        self.df['Temp. spalin mean[°C]'] = self.df[temp_columns].mean(axis=1)
+        self.df.drop(columns=temp_columns, inplace=True)
+
+        if self.log_manager:
+            self.log_manager.log_info("Mean exhaust gas temperature calculated successfully.")
+
+        # Optionally update metadata
+        if self.metadata_manager:
+            self.metadata_manager.update_metadata(
+                self.step_6_file_name,
+                'Mean exhaust gas temperature calculated.',
+                {
+                    "New column": 'Temp. spalin mean[°C]',
+                    "df.shape": self.df.shape, 
+                    "columns in df": list(self.df.columns)
+                }
+            )
+
+        return self.df

@@ -253,26 +253,27 @@ def main():
 
 
         # Step 7: Transform data
-        #data_transformation = DataTransformation(
-        #    df=filtered_df,
-        #    names_of_files_under_procession=names_of_files_under_procession,
-        #    log_manager=log_manager,
-        #    metadata_manager=metadata_manager
-        #    )
-#
-        ## Apply atmospheric power correction and show corrections in logs
-        #corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
+        data_transformation = DataTransformation(
+           df=filtered_df,
+           names_of_files_under_procession=names_of_files_under_procession,
+           log_manager=log_manager,
+           metadata_manager=metadata_manager
+           )
 
-        # Step 7.1: Visualize data 1
-        step_7_file_name = f"7-{files_for_steps}"
-        log_manager.log_info("Continue data pipeline. Step 7: Visualizing data...")
-        metadata_manager.update_metadata(step_7_file_name, 'step', '7')
-        metadata_manager.update_metadata(step_7_file_name, 'step_name', 'Visualize data')
-        metadata_manager.update_metadata(step_7_file_name, 'step_7_start_time', str(datetime.now()))
+        # Apply atmospheric power correction and show corrections in logs
+        corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
+        corrected_df = data_transformation.exhaust_gas_mean_temperature_calculation()
+
+        # Step 8.1: Visualize data 1
+        step_8_file_name = f"8-{files_for_steps}"
+        log_manager.log_info("Continue data pipeline. Step 8: Visualizing data...")
+        metadata_manager.update_metadata(step_8_file_name, 'step', '8')
+        metadata_manager.update_metadata(step_8_file_name, 'step_name', 'Visualize data')
+        metadata_manager.update_metadata(step_8_file_name, 'step_8_start_time', str(datetime.now()))
         
         data_visualizer = DataVisualizer(filtered_df)
-        #columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
-        columns_to_plot = required_columns_for_validation_step
+        columns_to_plot = ['Obroty[obr/min]', 'Moment obrotowy[Nm]', 'Moc[kW]', 'Zużycie paliwa średnie[g/s]']
+        #columns_to_plot = required_columns_for_validation_step
         data_visualizer.plot_columns(columns_to_plot)
 
         #for column_pair in required_columns:
@@ -291,13 +292,13 @@ def main():
         
         # ...call other visualization methods as needed...
 
-        metadata_manager.update_metadata(step_7_file_name, 'step_7_status', 'completed')
-        metadata_manager.update_metadata(step_7_file_name, 'step_7_end_time', str(datetime.now()))
+        metadata_manager.update_metadata(step_8_file_name, 'step_7_status', 'completed')
+        metadata_manager.update_metadata(step_8_file_name, 'step_7_end_time', str(datetime.now()))
         proceed_to_next_step(7, log_manager)
-        log_manager.log_info("Step 7: Data visualization completed successfully.")
+        log_manager.log_info("Step 8: Data visualization completed successfully.")
 
         log_manager.log_info("Data pipeline completed successfully.")
-        metadata_manager.update_metadata(step_7_file_name, 'pipeline_status', 'completed')
+        metadata_manager.update_metadata(step_8_file_name, 'pipeline_status', 'completed')
 
     except Exception as e:
         log_manager.log_error(f"An error occurred: {e}")
