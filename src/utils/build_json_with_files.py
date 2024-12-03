@@ -5,6 +5,29 @@ import re
 from src.config import RAW_DATA_DIR
 from src.log_manager import LogManager
 
+test_type_pattern = re.compile(r"""
+    (
+        1600Nn\ obc |
+        Zew |
+        zew |
+        NRTC |
+        obc\ 1600 |
+        obc\ 1500 |
+        obc\ 2000 |
+        obc\ 2400 |
+        obc1600 |
+        obc1500 |
+        obc2000 |
+        obc2400 |
+        1500\ RPM |
+        1300\ RPM |
+        1700\ RPM |
+        1900\ RPM |
+        2100\ RPM |
+        2200\ RPM
+    )
+""", re.IGNORECASE | re.VERBOSE)
+
 class JSONBuilder:
     def __init__(self, data_dir, log_manager: LogManager = None):
         self.data_dir = data_dir
@@ -28,10 +51,10 @@ class JSONBuilder:
         date_match = re.search(r'\d{4}-\d{2}-\d{2}', file_name)
         test_date = date_match.group(0) if date_match else ""
 
-        fuel_match = re.search(r'(ON|B20|RME|Efekta Agrotronika)', file_name, re.IGNORECASE)
+        fuel_match = re.search(r'(ON|B20|RME|Efekta Agrotronika|HVO|HVO25)', file_name, re.IGNORECASE)
         fuel = fuel_match.group(0) if fuel_match else ""
 
-        test_type_match = re.search(r'(1600Nn obc|Zew|zew)', file_name, re.IGNORECASE)
+        test_type_match = re.search(test_type_pattern, file_name)
         test_type = test_type_match.group(0) if test_type_match else ""
 
         return test_date, fuel, test_type
@@ -39,9 +62,9 @@ class JSONBuilder:
     def build_json(self):
         if self.log_manager:
             self.log_manager.log_info("Building JSON data structure...")
-        # Scan the directory for .csv and .xlsx files
+        # Scan the directory for .csv, .xlsx, and .parquet files
         for file_name in os.listdir(self.data_dir):
-            if file_name.endswith('.csv') or file_name.endswith('.xlsx'):
+            if file_name.endswith('.csv') or file_name.endswith('.xlsx') or file_name.endswith('.parquet'):
                 if self.log_manager:
                     self.log_manager.log_info(f"Processing file: {file_name}")
                 # Create a new entry based on the template

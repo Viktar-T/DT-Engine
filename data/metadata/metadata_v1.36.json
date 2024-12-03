@@ -1,0 +1,74 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-03 17:59:07.984234",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-03 17:59:07.988217"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-03 17:59:37.162247",
+        "TRiL TMiE warunki - 2015-03.parquet_shape": [
+            12667,
+            6
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-03 17:59:37.250247"
+    },
+    "3-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-03 17:59:42.795393",
+        "validation_results": [
+            {
+                "missing_required": [
+                    "Ciś. pow. za turb.[Pa]",
+                    "Ciśnienie atmosferyczne[hPa]",
+                    "ECT - wyjście z sil.[°C]",
+                    "MAF[kg/h]",
+                    "Moc[kW]",
+                    "Moment obrotowy[Nm]",
+                    "Obroty[obr/min]",
+                    "Temp. oleju w misce[°C]",
+                    "Temp. otoczenia[°C]",
+                    "Temp. pal. na wyjściu sil.[°C]",
+                    "Temp. powietrza za turb.[°C]",
+                    "Temp. spalin 1/6[°C]",
+                    "Temp. spalin 2/6[°C]",
+                    "Temp. spalin 3/6[°C]",
+                    "Temp. spalin 4/6[°C]",
+                    "Wilgotność względna[%]",
+                    "Zużycie paliwa średnie[g/s]"
+                ],
+                "missing_optional": [],
+                "valid": false
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-03 17:59:42.821983"
+    },
+    "4-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "from class DataValidator. Files for validation:": [
+            "1600Nn obc ON _ 2018-12-06_ORIGEN.csv",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-03 17:59:44.988289"
+    },
+    "5-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN.csv, eco_file_name:, Fuel:ON": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-03 17:59:45.907079",
+        "filtered_data_shape after \"def filter_columns\":": [
+            12667,
+            23
+        ]
+    },
+    "0": {
+        "pipeline_status": "error: Cannot set a DataFrame with multiple columns to the single column Ciś. pow. za turb.[Pa]",
+        "error_time": "2024-12-03 17:59:46.047887"
+    }
+}

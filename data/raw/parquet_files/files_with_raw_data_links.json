@@ -1,0 +1,244 @@
+{
+    "Lublin Diesel": [
+        {
+            "id": 1,
+            "main_file_name": "NRTC 120M3lin 2014.11.17 - csv_files.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "NRTC",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 2,
+            "main_file_name": "BUMG ON 2300 - 2024-09.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "",
+            "fuel": "ON",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 3,
+            "main_file_name": "U75 2400 rpm - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 4,
+            "main_file_name": "U75 2200 RPM - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "2200 RPM",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 5,
+            "main_file_name": "BUMG ON 1300 RPM - 2024-09.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1300 RPM",
+            "fuel": "ON",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 6,
+            "main_file_name": "BUMG ON 1500 RPM - 2024-09.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1500 RPM",
+            "fuel": "ON",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 7,
+            "main_file_name": "BUMG ON 1700 RPM - 2024-09.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1700 RPM",
+            "fuel": "ON",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 8,
+            "main_file_name": "BUMG ON 1900 RPM - 2024-09.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1900 RPM",
+            "fuel": "ON",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 9,
+            "main_file_name": "BUMG ON 2100 RPM - 2024-09.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "2100 RPM",
+            "fuel": "ON",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 10,
+            "main_file_name": "HVO 1500 RPM - 2024-04.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1500 RPM",
+            "fuel": "HVO",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 11,
+            "main_file_name": "HVO25 1300 RPM - 2024-04.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1300 RPM",
+            "fuel": "HVO",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 12,
+            "main_file_name": "HVO25 1700 RPM - 2024-04.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1700 RPM",
+            "fuel": "HVO",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 13,
+            "main_file_name": "HVO25 1900 RPM powt\u00f3rka - 2024-04.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1900 RPM",
+            "fuel": "HVO",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 14,
+            "main_file_name": "HVO25 2100 RPM - 2024-04.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "2100 RPM",
+            "fuel": "HVO",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 15,
+            "main_file_name": "HVO25 Badanie rozruchu - 2024-04.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "",
+            "fuel": "HVO",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 16,
+            "main_file_name": "obc 1600 - csv_files.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "obc 1600",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 17,
+            "main_file_name": "obc 2000 - csv_files.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "obc 2000",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 18,
+            "main_file_name": "obc 2400 - csv_files.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "obc 2400",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 19,
+            "main_file_name": "obc1500_5s - csv_files.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "obc1500",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 20,
+            "main_file_name": "U75 1300 RPM - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1300 RPM",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 21,
+            "main_file_name": "U75 1500 RPM - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1500 RPM",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 22,
+            "main_file_name": "U75 1700 RPM II tiL II st G3 - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1700 RPM",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 23,
+            "main_file_name": "U75 1900 RPM TiL II st I grupa - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "1900 RPM",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        },
+        {
+            "id": 24,
+            "main_file_name": "U75 2100 RPM - 2024-05.parquet",
+            "eco_file_name": "",
+            "description": "empty",
+            "diesel_test_type": "2100 RPM",
+            "fuel": "",
+            "diesel_engine_name": "empty",
+            "test_date": ""
+        }
+    ]
+}

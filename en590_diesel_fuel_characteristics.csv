@@ -1,0 +1,22 @@
+Property,Unit,Lower Limit,Upper Limit,Test Method
+Cetane number,-,51.0,,EN ISO 5165
+Cetane index,-,46.0,,EN ISO 4264
+Density at 15°C,kg/m³,820,845,EN ISO 3675/EN ISO 12185
+Viscosity at 40°C,mm²/s,2.0,4.5,EN ISO 3104
+Sulphur content,mg/kg,,10,EN ISO 20846/20884
+Flash point,°C,55,,EN ISO 2719
+Carbon residue,% m/m,,0.3,EN ISO 10370
+Ash content,% m/m,,0.01,EN ISO 6245
+Water content,mg/kg,,200,EN ISO 12937
+Total contamination,mg/kg,,24,EN ISO 12662
+FAME content,% v/v,,7,EN 14078
+Polycyclic aromatic hydrocarbons,% m/m,,8,EN ISO 12916
+Copper strip corrosion,index,Class 1,Class 1,EN ISO 2160
+Lubricity,µm,,460,EN ISO 12156-1
+Oxidation Stability,h,20,,EN 15751
+Distillation recovered at 250°C,% v/v,,65,EN ISO 3405
+Distillation recovered at 350°C,% v/v,85,,EN ISO 3405
+95% recovered at,°C,,360,EN ISO 3405
+Cold Filter Plugging Point (winter),°C,,-15,-
+Cold Filter Plugging Point (summer),°C,,-5,-
+Manganese content,mg/l,,2.0,EN 16576

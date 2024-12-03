@@ -1,0 +1,10 @@
+{
+    "1-Build files_with_raw_data_links.json": {
+        "pipeline_status": "started",
+        "step": "1",
+        "step_name": "Build files_with_raw_data_links.json",
+        "start_time": "2024-12-03 17:49:18.779344",
+        "step_1_status": "completed",
+        "step_1_end_time": "2024-12-03 17:49:18.783345"
+    }
+}

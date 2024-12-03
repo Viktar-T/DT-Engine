@@ -1,0 +1,22 @@
+Property,Unit,Lower Limit,Upper Limit,Test Method,diesel_fuel_for_dt
+Cetane number,-,51.0,0.0,EN ISO 5165,51.0
+Cetane index,-,46.0,0.0,EN ISO 4264,46.0
+Density at 15°C,kg/m³,820.0,845.0,EN ISO 3675/EN ISO 12185,832.5
+Viscosity at 40°C,mm²/s,2.0,4.5,EN ISO 3104,3.25
+Sulphur content,mg/kg,0.0,10.0,EN ISO 20846/20884,10.0
+Flash point,°C,55.0,0.0,EN ISO 2719,55.0
+Carbon residue,% m/m,0.0,0.3,EN ISO 10370,0.3
+Ash content,% m/m,0.0,0.01,EN ISO 6245,0.01
+Water content,mg/kg,0.0,200.0,EN ISO 12937,200.0
+Total contamination,mg/kg,0.0,24.0,EN ISO 12662,24.0
+FAME content,% v/v,0.0,7.0,EN 14078,7.0
+Polycyclic aromatic hydrocarbons,% m/m,0.0,8.0,EN ISO 12916,8.0
+Copper strip corrosion,index,0.0,0.0,EN ISO 2160,0.0
+Lubricity,µm,0.0,460.0,EN ISO 12156-1,460.0
+Oxidation Stability,h,20.0,0.0,EN 15751,20.0
+Distillation recovered at 250°C,% v/v,0.0,65.0,EN ISO 3405,65.0
+Distillation recovered at 350°C,% v/v,85.0,0.0,EN ISO 3405,85.0
+95% recovered at,°C,0.0,360.0,EN ISO 3405,360.0
+Cold Filter Plugging Point (winter),°C,0.0,-15.0,-,-15.0
+Cold Filter Plugging Point (summer),°C,0.0,-5.0,-,-5.0
+Manganese content,mg/l,0.0,2.0,EN 16576,2.0

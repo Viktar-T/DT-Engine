@@ -7,10 +7,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 RAW_DATA_DIR = os.getenv('RAW_DATA_DIR', os.path.join(DATA_DIR, 'raw'))
 PROCESSED_DATA_DIR = os.getenv('PROCESSED_DATA_DIR', os.path.join(DATA_DIR, 'processed'))
+FUELS_DATA_DIR = os.path.join(DATA_DIR, 'fuels')
 MODELS_DIR = os.path.join(DATA_DIR, 'models')
 METADATA_DIR = os.path.join(DATA_DIR, 'metadata')
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
 NOTEBOOKS_DIR = os.path.join(BASE_DIR, 'notebooks')
+PARQUET_DATA_DIR = os.path.join(RAW_DATA_DIR, 'parquet_files')
 
 # Model Metadata
 MODEL_METADATA_DIR = os.path.join(MODELS_DIR, 'metadata')
@@ -56,6 +58,7 @@ def ensure_directories_exist():
         VISUALIZATIONS_DIR,
         LOGS_DIR,
         METADATA_DIR,
+        PARQUET_DATA_DIR,
     ]
     for directory in required_dirs:
         if not os.path.exists(directory):

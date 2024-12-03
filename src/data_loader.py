@@ -42,7 +42,7 @@ class DataLoader:
             self.log_manager.log_info(f"DataLoader initialized with raw data path: {self.raw_data_path}")
 
     # !!!! I have files_with_raw_data_links.json. Don't used in main.py !!!!    
-    def list_files(self, extensions: List[str] = ["csv", "xlsx"]) -> List[str]:
+    def list_files(self, extensions: List[str] = ["csv", "xlsx", "parquet"]) -> List[str]:
         """
         List all files in the raw data directory with the specified extensions.
 
@@ -159,6 +159,8 @@ class DataLoader:
             data = pd.read_csv(file_path)
         elif file_name.endswith('.xlsx'):
             data = pd.read_excel(file_path)
+        elif file_name.endswith('.parquet'):
+            data = pd.read_parquet(file_path)
         else:
             if self.log_manager:
                 self.log_manager.log_error(f"Unsupported file format: {file_name}")
@@ -194,7 +196,7 @@ class DataLoader:
         data_frames = []
         for file in files:
             try:
-                df = self.load_file(file)
+                df = self.load_data(file)
                 data_frames.append(df)
                 if self.log_manager:
                     self.log_manager.log_info(f"Successfully loaded: {file}")
