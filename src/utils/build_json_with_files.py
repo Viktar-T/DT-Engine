@@ -2,31 +2,9 @@ import os
 import json
 import logging
 import re
-from src.config import RAW_DATA_DIR
+from src.config import RAW_DATA_DIR, LOGS_DIR
 from src.log_manager import LogManager
 
-test_type_pattern = re.compile(r"""
-    (
-        1600Nn\ obc |
-        Zew |
-        zew |
-        NRTC |
-        obc\ 1600 |
-        obc\ 1500 |
-        obc\ 2000 |
-        obc\ 2400 |
-        obc1600 |
-        obc1500 |
-        obc2000 |
-        obc2400 |
-        1500\ RPM |
-        1300\ RPM |
-        1700\ RPM |
-        1900\ RPM |
-        2100\ RPM |
-        2200\ RPM
-    )
-""", re.IGNORECASE | re.VERBOSE)
 
 class JSONBuilder:
     def __init__(self, data_dir, log_manager: LogManager = None):
@@ -48,13 +26,53 @@ class JSONBuilder:
 
     def parse_file_name(self, file_name):
         # Extract test_date, fuel, and test_type from the file name
-        date_match = re.search(r'\d{4}-\d{2}-\d{2}', file_name)
+        date_match = re.search(r'\d{4}-\d{2}-\d{2}|\d{4}-\d{2}', file_name)
         test_date = date_match.group(0) if date_match else ""
 
-        fuel_match = re.search(r'(ON|B20|RME|Efekta Agrotronika|HVO|HVO25)', file_name, re.IGNORECASE)
-        fuel = fuel_match.group(0) if fuel_match else ""
+        pattern_fuel = re.search(r"""
+            (
+                ON |                # Matches 'ON'
+                B20 |               # Matches 'B20'
+                RME |               # Matches 'RME'
+                Efekta\ Agrotronika | # Matches 'Efekta Agrotronika'
+                HVO |               # Matches 'HVO'
+                HVO25 |             # Matches 'HVO25'
+                AG2 |               # Matches 'AG2'
+                U75 |               # Matches 'U75'
+                BIOW |              # Matches 'BIOW'
+                BIOW50 |            # Matches 'BIOW50'
+                ONE |               # Matches 'ONE'
+                Efecta |            # Matches 'Efecta'
+                Verwa |             # Matches 'Verwa'
+                Verva |             # Matches 'Verva'
+                HHO                 # Matches 'HHO'
+            )
+        """, file_name, re.IGNORECASE | re.VERBOSE)
+        fuel = pattern_fuel.group(0) if pattern_fuel else ""
 
-        test_type_match = re.search(test_type_pattern, file_name)
+        pattern_test_type = re.compile(r"""
+            (
+                1600Nn\ obc |  # Matches '1600Nn obc'
+                Zew |          # Matches 'Zew'
+                zew |          # Matches 'zew'
+                NRTC |         # Matches 'NRTC'
+                obc\ 1600 |    # Matches 'obc 1600'
+                obc\ 1500 |    # Matches 'obc 1500'
+                obc\ 2000 |    # Matches 'obc 2000'
+                obc\ 2400 |    # Matches 'obc 2400'
+                obc1600 |      # Matches 'obc1600'
+                obc1500 |      # Matches 'obc1500'
+                obc2000 |      # Matches 'obc2000'
+                obc2400 |      # Matches 'obc2400'
+                1500\ RPM |    # Matches '1500 RPM'
+                1300\ RPM |    # Matches '1300 RPM'
+                1700\ RPM |    # Matches '1700 RPM'
+                1900\ RPM |    # Matches '1900 RPM'
+                2100\ RPM |    # Matches '2100 RPM'
+                2200\ RPM      # Matches '2200 RPM'
+            )
+        """, re.IGNORECASE | re.VERBOSE)
+        test_type_match = pattern_test_type.search(file_name)
         test_type = test_type_match.group(0) if test_type_match else ""
 
         return test_date, fuel, test_type
@@ -114,7 +132,10 @@ if __name__ == "__main__":
     log_manager = LogManager(logs_dir=LOGS_DIR)
 
     # Create an instance of JSONBuilder with log_manager
+    # folder_with_files = 'C:/Users/vtaustyka/OneDrive/100 JOB-CAREER-BUSINESS/130 Science/pr. Digital Twin (Diesel Engine)/LUBLIN - grant NAWA-2022, DT-2024/all_csv'
+    # builder = JSONBuilder(folder_with_files, log_manager=log_manager)
     builder = JSONBuilder(RAW_DATA_DIR, log_manager=log_manager)
+
     
     # Build the JSON data
     builder.build_json()

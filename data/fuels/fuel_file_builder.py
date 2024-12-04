@@ -66,6 +66,6 @@ fuel_df['diesel_fuel_for_dt'] = np.where(
 )
 
 # Outputting the DataFrame to various file formats
-fuel_df.to_csv(os.path.join(FUELS_DATA_DIR, 'en590_diesel_fuel_characteristics.csv'), index=False)
-fuel_df.to_excel(os.path.join(FUELS_DATA_DIR, 'en590_diesel_fuel_characteristics.xlsx'), index=False)
-fuel_df.to_parquet(os.path.join(FUELS_DATA_DIR, 'en590_diesel_fuel_characteristics.parquet'), index=False)
+fuel_df.to_csv(os.path.join(FUELS_DATA_DIR, 'diesel_fuel_characteristics.csv'), index=False)
+fuel_df.to_excel(os.path.join(FUELS_DATA_DIR, 'diesel_fuel_characteristics.xlsx'), index=False)
+fuel_df.to_parquet(os.path.join(FUELS_DATA_DIR, 'diesel_fuel_characteristics.parquet'), index=False)
