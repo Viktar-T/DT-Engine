@@ -1,6 +1,0 @@
-2024-12-05 14:31:29,535 - INFO - Starting data pipeline...
-2024-12-05 14:31:29,535 - INFO - Continue data pipeline. Step 2: Loading raw data...
-2024-12-05 14:31:29,536 - INFO - DataLoader initialized with raw data path: /home/viktar-taustyka/GitHubRepos/DT-Engine/data/raw/parquet_files
-2024-12-05 14:31:29,537 - INFO - Loading main file: TiL II st Zew B20 IRiL - 2019-11.parquet
-2024-12-05 14:31:29,537 - INFO - Loading data from file: /home/viktar-taustyka/GitHubRepos/DT-Engine/data/raw/parquet_files/TiL II st Zew B20 IRiL - 2019-11.parquet
-2024-12-05 14:31:29,602 - ERROR - An error occurred: 'latin-1' codec can't encode characters in position 2-3: ordinal not in range(256)
