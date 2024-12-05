@@ -2,7 +2,16 @@ import os
 import json
 import logging
 import re
-from src.config import RAW_DATA_DIR, LOGS_DIR
+from src.config import (
+    RAW_DATA_DIR, 
+    PROCESSED_DATA_DIR, 
+    METADATA_DIR, 
+    LOGS_DIR, 
+    RAW_PARQUET_DATA_DIR, 
+    RAUGH_CSV_DATA_DIR, 
+    RAUGH_XLSX_DATA_DIR, 
+    RAUGH_PARQUT_DATA_DIR
+)
 from src.log_manager import LogManager
 
 
@@ -71,28 +80,34 @@ class JSONBuilder:
     def build_json(self):
         if self.log_manager:
             self.log_manager.log_info("Building JSON data structure...")
-        # Scan the directory for .csv, .xlsx, and .parquet files
+        files_dict = {}
+        pattern = re.compile(r'^(.*?)(_eco)?\.(csv|xlsx|parquet)$', re.IGNORECASE)
+        
         for file_name in os.listdir(self.data_dir):
-            if file_name.endswith('.csv') or file_name.endswith('.xlsx') or file_name.endswith('.parquet'):
-                if self.log_manager:
-                    self.log_manager.log_info(f"Processing file: {file_name}")
-                # Create a new entry based on the template
-                entry = self.template.copy()
-                test_date, fuel, test_type = self.parse_file_name(file_name)
-                entry["test_date"] = test_date
-                entry["fuel"] = fuel if fuel else "diesel"
-                entry["diesel_test_type"] = test_type
-
-                if "eco" in file_name.lower():
+            match = pattern.match(file_name)
+            if match:
+                base_name, eco_suffix, ext = match.groups()
+                key = base_name.lower()
+                if key not in files_dict:
+                    entry = self.template.copy()
+                    test_date, fuel, test_type = self.parse_file_name(base_name)
+                    entry["test_date"] = test_date
+                    entry["fuel"] = fuel if fuel else "diesel"
+                    entry["diesel_test_type"] = test_type
+                    entry["id"] = self.current_id
+                    self.current_id += 1
+                    files_dict[key] = entry
+                else:
+                    entry = files_dict[key]
+                
+                if eco_suffix:
                     entry["eco_file_name"] = file_name
                 else:
                     entry["main_file_name"] = file_name
-
-                # Assign a new ID to the entry
-                entry["id"] = self.current_id
-                self.current_id += 1
-                # Add the entry to the JSON structure
-                self.json_data["Lublin Diesel"].append(entry)
+        
+        for entry in files_dict.values():
+            self.json_data["Lublin Diesel"].append(entry)
+        
         if self.log_manager:
             self.log_manager.log_info("JSON data structure built successfully.")
 
@@ -114,15 +129,16 @@ if __name__ == "__main__":
     # Create an instance of JSONBuilder with log_manager
     # folder_with_files = 'C:/Users/vtaustyka/OneDrive/100 JOB-CAREER-BUSINESS/130 Science/pr. Digital Twin (Diesel Engine)/LUBLIN - grant NAWA-2022, DT-2024/all_csv'
     # builder = JSONBuilder(folder_with_files, log_manager=log_manager)
-    RAW_PARQUET_DATA_DIR = os.path.join(RAW_DATA_DIR, 'parquet_files')
-    builder = JSONBuilder(RAW_PARQUET_DATA_DIR, log_manager=log_manager)
+    directories_for_processing = [RAW_PARQUET_DATA_DIR, RAUGH_CSV_DATA_DIR, RAUGH_XLSX_DATA_DIR, RAUGH_PARQUT_DATA_DIR]
+    dir_for_proc = directories_for_processing[0]
+    builder = JSONBuilder(dir_for_proc, log_manager=log_manager)
 
     
     # Build the JSON data
     builder.build_json()
     
     # Define the output file path
-    output_file_path = os.path.join(RAW_PARQUET_DATA_DIR, 'files_with_raw_data_links.json')
+    output_file_path = os.path.join(dir_for_proc, 'files_with_raw_data_links.json')
     
     # Save the JSON data to the file
     builder.save_json(output_file_path)

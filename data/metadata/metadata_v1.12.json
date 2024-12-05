@@ -1,0 +1,13 @@
+{
+    "2-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-05 15:11:00.691286",
+        "TiL II st Zew B20 IRiL - 2019-11.parquet_shape": [
+            30120,
+            151
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-05 15:11:00.793348"
+    }
+}

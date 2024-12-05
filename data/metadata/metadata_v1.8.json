@@ -1,0 +1,70 @@
+{
+    "2-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-05 14:41:17.778628",
+        "TiL II st Zew B20 IRiL - 2019-11.parquet_shape": [
+            30120,
+            151
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-05 14:41:17.890463"
+    },
+    "3-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-05 14:42:10.110655",
+        "validation_results": [
+            {
+                "missing_required": [
+                    "Ciś. pow. za turb.[Pa]"
+                ],
+                "missing_optional": [],
+                "valid": false
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-05 14:42:10.115403"
+    },
+    "4-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "from class DataValidator. Files for validation:": [
+            "TiL II st Zew B20 IRiL - 2019-11.parquet",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-05 14:42:11.778620"
+    },
+    "5-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-05 14:42:16.503243",
+        "filtered_data_shape after \"def filter_columns\":": [
+            30120,
+            152
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            0,
+            18
+        ],
+        "Identified stable rotation levels:": 0,
+        "Stable rotation levels extracted. Average values:": [],
+        "step_5_status": "completed",
+        "step_5_end_time": "2024-12-05 14:42:16.577357"
+    },
+    "6-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "6",
+        "step_name": "Save filtered data",
+        "step_6_start_time": "2024-12-05 14:42:17.449995",
+        "step_6_status": "completed",
+        "step_6_end_time": "2024-12-05 14:42:17.453183"
+    },
+    "8-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "8",
+        "step_name": "Visualize data",
+        "step_8_start_time": "2024-12-05 14:42:18.387724"
+    },
+    "0": {
+        "pipeline_status": "error: Could not interpret value `Obroty[obr/min]` for `y`. An entry with this name does not appear in `data`.",
+        "error_time": "2024-12-05 14:42:18.490384"
+    }
+}

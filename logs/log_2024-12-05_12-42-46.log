@@ -1,0 +1,15 @@
+2024-12-05 12:42:46,542 - INFO - JSONBuilder initialized.
+2024-12-05 12:42:46,542 - INFO - Building JSON data structure...
+2024-12-05 12:42:46,542 - INFO - Processing file: RME zew _ 2018-12-20_eco.csv
+2024-12-05 12:42:46,543 - INFO - Processing file: 1600Nn obc ON _ 2018-12-06_ORIGEN-for-analyse.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: Zew ch ON _ 2018-12-18_eco.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: TiL II st Zew B20 IRiL _ 2019-11-06.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: RME zew _ 2018-12-20.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: 1600Nn obc ON _ 2018-12-06_ORIGEN.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: Zew Efekta Agrotronika _ 2019-05-17.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: 1600Nn obc ON _ 2018-12-06.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: Zew ch ON _ 2018-12-18.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: Zew Efekta Agrotronika _ 2019-05-17_eco.csv
+2024-12-05 12:42:46,544 - INFO - Processing file: TiL II st Zew B20 IRiL _ 2019-11-06_eco.csv
+2024-12-05 12:42:46,545 - INFO - JSON data structure built successfully.
+2024-12-05 12:42:46,545 - INFO - JSON file created at /home/viktar-taustyka/GitHubRepos/DT-Engine/data/raw/raugh/csv_raugh/files_with_raw_data_links.json

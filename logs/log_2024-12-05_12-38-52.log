@@ -1,0 +1,4 @@
+2024-12-05 12:38:52,579 - INFO - JSONBuilder initialized.
+2024-12-05 12:38:52,579 - INFO - Building JSON data structure...
+2024-12-05 12:38:52,579 - INFO - JSON data structure built successfully.
+2024-12-05 12:38:52,579 - INFO - JSON file created at /home/viktar-taustyka/GitHubRepos/DT-Engine/data/raw/raugh/csv_raugh/files_with_raw_data_links.json

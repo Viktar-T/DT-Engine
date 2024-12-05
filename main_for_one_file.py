@@ -5,7 +5,16 @@ from datetime import datetime
 from src.data_loader import DataLoader
 from src.data_validator import DataValidator
 from src.data_cleaner import DataCleaner
-from src.config import RAW_DATA_DIR, PROCESSED_DATA_DIR, METADATA_DIR, LOGS_DIR
+from src.config import (
+    RAW_DATA_DIR, 
+    PROCESSED_DATA_DIR, 
+    METADATA_DIR, 
+    LOGS_DIR, 
+    RAW_PARQUET_DATA_DIR, 
+    RAUGH_CSV_DATA_DIR, 
+    RAUGH_XLSX_DATA_DIR, 
+    RAUGH_PARQUT_DATA_DIR
+)
 from src.utils.build_json_with_files import JSONBuilder
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
@@ -35,25 +44,25 @@ required_columns_for_validation_step = [
 ]
 
 # !!! NOT USED !!!
-required_columns = [
-    ['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'],
-    ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'],
-    ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'],
-    ['Czas [ms].25', 'MAF[kg/h]'],
-    ['Czas [ms].26', 'Moc[kW]'],
-    ['Czas [ms].27', 'Moment obrotowy[Nm]'],
-    ['Czas [ms].29', 'Obroty[obr/min]'],
-    ['Czas [ms].46', 'Temp. oleju w misce[°C]'],
-    ['Czas [ms].48', 'Temp. otoczenia[°C]'],
-    ['Czas [ms].50', 'Temp. pal. na wyjściu sil.[°C]'],
-    ['Czas [ms].55', 'Temp. powietrza za turb.[°C]'],
-    ['Czas [ms].56', 'Temp. spalin 1/6[°C]'],
-    ['Czas [ms].57', 'Temp. spalin 2/6[°C]'],
-    ['Czas [ms].58', 'Temp. spalin 3/6[°C]'],
-    ['Czas [ms].59', 'Temp. spalin 4/6[°C]'],
-    ['Czas [ms].64', 'Wilgotność względna[%]'],
-    ['Czas [ms].72', 'Zużycie paliwa średnie[g/s]'],    
-]
+#required_columns = [
+#    ['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'],
+#    ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'],
+#    ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'],
+#    ['Czas [ms].25', 'MAF[kg/h]'],
+#    ['Czas [ms].26', 'Moc[kW]'],
+#    ['Czas [ms].27', 'Moment obrotowy[Nm]'],
+#    ['Czas [ms].29', 'Obroty[obr/min]'],
+#    ['Czas [ms].46', 'Temp. oleju w misce[°C]'],
+#    ['Czas [ms].48', 'Temp. otoczenia[°C]'],
+#    ['Czas [ms].50', 'Temp. pal. na wyjściu sil.[°C]'],
+#    ['Czas [ms].55', 'Temp. powietrza za turb.[°C]'],
+#    ['Czas [ms].56', 'Temp. spalin 1/6[°C]'],
+#    ['Czas [ms].57', 'Temp. spalin 2/6[°C]'],
+#    ['Czas [ms].58', 'Temp. spalin 3/6[°C]'],
+#    ['Czas [ms].59', 'Temp. spalin 4/6[°C]'],
+#    ['Czas [ms].64', 'Wilgotność względna[%]'],
+#    ['Czas [ms].72', 'Zużycie paliwa średnie[g/s]'],    
+#]
 
 #current_file = {
 #            "id": 4,        # <--- change for windows id:1; linux id:4
@@ -74,8 +83,10 @@ def get_current_file_by_id(file_path, target_id):
             # Return the entire dictionary
             return item
     return None
-id = 4
-current_file = get_current_file_by_id(os.path.join(RAW_DATA_DIR, 'files_with_raw_data_links.json'), id)
+id = 37
+directories_for_processing = [RAW_PARQUET_DATA_DIR, RAUGH_CSV_DATA_DIR, RAUGH_XLSX_DATA_DIR, RAUGH_PARQUT_DATA_DIR]
+DIR_FOR_PROC = directories_for_processing[0]
+current_file = get_current_file_by_id(os.path.join(DIR_FOR_PROC, 'files_with_raw_data_links.json'), id)
 
 
 names_of_files_under_procession = [current_file["main_file_name"], current_file["eco_file_name"], current_file["fuel"]]
@@ -99,24 +110,24 @@ def main():
                                  names_of_files_under_procession=names_of_files_under_procession)
         log_manager.log_info("Starting data pipeline...")
 
-        # Step 1: Build files_with_raw_data_links.json
+        ## Step 1: Build files_with_raw_data_links.json
         metadata_manager = MetadataManager(metadata_dir=METADATA_DIR, 
                                            names_of_files_under_procession=names_of_files_under_procession)
-        metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'pipeline_status', 'started')
-        metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step', '1')
-        metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step_name', 'Build files_with_raw_data_links.json')
-        metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'start_time', str(datetime.now()))
-
-        log_manager.log_info("Step 1: Building files_with_raw_data_links.json...")
-        builder = JSONBuilder(RAW_DATA_DIR)
-        builder.build_json()
-        output_file_path = os.path.join(RAW_DATA_DIR, 'files_with_raw_data_links.json')
-        builder.save_json(output_file_path)
-        log_manager.log_info("Step 1: files_with_raw_data_links.json built successfully.")
-        metadata_manager.update_metadata("1-Build files_with_raw_data_links.json", 'step_1_status', 'completed')
-        metadata_manager.update_metadata("1-Build files_with_raw_data_links.json", 'step_1_end_time', str(datetime.now()))
-        proceed_to_next_step(1, log_manager)
-        log_manager.log_info("Step 1: files_with_raw_data_links.json built successfully.")
+        #metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'pipeline_status', 'started')
+        #metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step', '1')
+        #metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'step_name', 'Build files_with_raw_data_links.json')
+        #metadata_manager.update_metadata('1-Build files_with_raw_data_links.json', 'start_time', str(datetime.now()))
+#
+        #log_manager.log_info("Step 1: Building files_with_raw_data_links.json...")
+        #builder = JSONBuilder(RAW_PARQUET_DATA_DIR)
+        #builder.build_json()
+        #output_file_path = os.path.join(RAW_PARQUET_DATA_DIR, 'files_with_raw_data_links.json')
+        #builder.save_json(output_file_path)
+        #log_manager.log_info("Step 1: files_with_raw_data_links.json built successfully.")
+        #metadata_manager.update_metadata("1-Build files_with_raw_data_links.json", 'step_1_status', 'completed')
+        #metadata_manager.update_metadata("1-Build files_with_raw_data_links.json", 'step_1_end_time', str(datetime.now()))
+        #proceed_to_next_step(1, log_manager)
+        #log_manager.log_info("Step 1: files_with_raw_data_links.json built successfully.")
 
         # Step 2: Load raw data
         step_2_file_name = f"2-{files_for_steps}"
@@ -124,15 +135,15 @@ def main():
         metadata_manager.update_metadata(step_2_file_name, 'step', '2')
         metadata_manager.update_metadata(step_2_file_name, 'step_name', 'Load raw data')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_start_time', str(datetime.now()))
-        data_loader = DataLoader(RAW_DATA_DIR, 
+        data_loader = DataLoader(DIR_FOR_PROC, 
                                  names_of_files_under_procession=names_of_files_under_procession,
                                  metadata_manager=metadata_manager, 
                                  log_manager=log_manager)
         raw_data_frames = data_loader.select_from_json_and_load_data(selected_id=current_file["id"])
         metadata_manager.update_metadata(step_2_file_name, 'step_2_status', 'completed')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_end_time', str(datetime.now()))
-        proceed_to_next_step(2, log_manager)
         log_manager.log_info("Step 2: Raw data loaded successfully.")
+        proceed_to_next_step(2, log_manager)        
 
         # Step 3: Validate data
         step_3_file_name = f"3-{files_for_steps}"

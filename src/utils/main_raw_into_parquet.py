@@ -1,9 +1,15 @@
 import os
 import pandas as pd
+import logging
+import chardet
 from src.config import RAW_DATA_DIR
 
+def detect_encoding(file_path):
+    with open(file_path, 'rb') as f:
+        result = chardet.detect(f.read(100000))  # Read first 100KB
+        return result['encoding']
+
 def transform_csv_to_parquet():
-    #source_dir = os.path.join(RAW_DATA_DIR, 'csv_files')
     source_dir = os.path.join(RAW_DATA_DIR, 'all_csv')
     target_dir = os.path.join(RAW_DATA_DIR, 'parquet_files')
 
@@ -14,7 +20,13 @@ def transform_csv_to_parquet():
         for file in files:
             if file.endswith('.csv'):
                 csv_file_path = os.path.join(root, file)
-                df = pd.read_csv(csv_file_path, delimiter=';', encoding='cp1250')
+                # Detect encoding
+                encoding = detect_encoding(csv_file_path)
+                df = pd.read_csv(csv_file_path, delimiter=';', encoding=encoding)
+
+                # Log file name and DataFrame columns
+                #logging.info(f"Processing file: {csv_file_path}")
+                #logging.info(f"Columns in DataFrame: {df.columns.tolist()}")
 
                 # Deduplicate column names
                 def deduplicate_columns(columns):
@@ -43,4 +55,17 @@ def transform_csv_to_parquet():
                 df.to_parquet(output_file_path)
 
 if __name__ == '__main__':
+    # For Python 3.9 and above
+    logging.basicConfig(level=logging.INFO, encoding='utf-8', format='%(levelname)s: %(message)s')
+
+    # For Python versions earlier than 3.9, use the custom handler method
+    # import sys
+    # handler = logging.StreamHandler(sys.stdout)
+    # handler.setLevel(logging.INFO)
+    # handler.setFormatter(logging.Formatter('%(levelname)s: %(message)s'))
+    # handler.encoding = 'utf-8'
+    # logger = logging.getLogger()
+    # logger.addHandler(handler)
+    # logger.setLevel(logging.INFO)
+
     transform_csv_to_parquet()

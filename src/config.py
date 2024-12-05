@@ -12,7 +12,12 @@ MODELS_DIR = os.path.join(DATA_DIR, 'models')
 METADATA_DIR = os.path.join(DATA_DIR, 'metadata')
 LOGS_DIR = os.path.join(BASE_DIR, 'logs')
 NOTEBOOKS_DIR = os.path.join(BASE_DIR, 'notebooks')
-PARQUET_DATA_DIR = os.path.join(RAW_DATA_DIR, 'parquet_files')
+#PARQUET_DATA_DIR = os.path.join(RAW_DATA_DIR, 'parquet_files')
+RAW_PARQUET_DATA_DIR = os.path.join(RAW_DATA_DIR, 'parquet_files')
+RAUGH_DATA_DIR = os.path.join(RAW_DATA_DIR, 'raugh')
+RAUGH_CSV_DATA_DIR = os.path.join(RAUGH_DATA_DIR, 'csv_raugh')
+RAUGH_XLSX_DATA_DIR = os.path.join(RAUGH_DATA_DIR, 'xlsx_raugh')
+RAUGH_PARQUT_DATA_DIR = os.path.join(RAUGH_DATA_DIR, 'parquet_raugh')
 
 # Model Metadata
 MODEL_METADATA_DIR = os.path.join(MODELS_DIR, 'metadata')
@@ -58,7 +63,11 @@ def ensure_directories_exist():
         VISUALIZATIONS_DIR,
         LOGS_DIR,
         METADATA_DIR,
-        PARQUET_DATA_DIR,
+        RAW_PARQUET_DATA_DIR,
+        RAUGH_DATA_DIR,
+        RAUGH_CSV_DATA_DIR,
+        RAUGH_XLSX_DATA_DIR,
+        RAUGH_PARQUT_DATA_DIR,
     ]
     for directory in required_dirs:
         if not os.path.exists(directory):

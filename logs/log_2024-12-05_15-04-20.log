@@ -1,0 +1,7 @@
+2024-12-05 15:04:20,934 - INFO - Starting data pipeline...
+2024-12-05 15:04:20,934 - INFO - Continue data pipeline. Step 2: Loading raw data...
+2024-12-05 15:04:20,935 - INFO - DataLoader initialized with raw data path: /home/viktar-taustyka/GitHubRepos/DT-Engine/data/raw/parquet_files
+2024-12-05 15:04:20,936 - INFO - Loading main file: TiL II st Zew B20 IRiL - 2019-11.parquet
+2024-12-05 15:04:25,951 - INFO - Data encoder: None
+2024-12-05 15:04:25,951 - INFO - Loading data from file: /home/viktar-taustyka/GitHubRepos/DT-Engine/data/raw/parquet_files/TiL II st Zew B20 IRiL - 2019-11.parquet
+2024-12-05 15:04:25,959 - ERROR - An error occurred: read_table() got an unexpected keyword argument 'encoding'

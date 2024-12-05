@@ -7,6 +7,8 @@ from typing import List, Union
 from src.config import RAW_DATA_DIR
 from src.metadata_manager import MetadataManager
 from src.log_manager import LogManager
+from ftfy import fix_text, fix_encoding
+import chardet
 
 # Set up logging
 # logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -161,6 +163,7 @@ class DataLoader:
             data = pd.read_excel(file_path)
         elif file_name.endswith('.parquet'):
             data = pd.read_parquet(file_path)
+            data.columns = [fix_encoding(col) for col in data.columns]
         else:
             if self.log_manager:
                 self.log_manager.log_error(f"Unsupported file format: {file_name}")

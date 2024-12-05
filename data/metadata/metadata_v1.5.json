@@ -1,0 +1,62 @@
+{
+    "2-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2024-12-05 13:24:37.238622",
+        "TiL II st Zew B20 IRiL - 2019-11.parquet_shape": [
+            30120,
+            151
+        ],
+        "step_2_status": "completed",
+        "step_2_end_time": "2024-12-05 13:24:37.369530"
+    },
+    "3-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2024-12-05 13:24:48.302918",
+        "validation_results": [
+            {
+                "missing_required": [
+                    "Ciś. pow. za turb.[Pa]",
+                    "Ciśnienie atmosferyczne[hPa]",
+                    "ECT - wyjście z sil.[°C]",
+                    "Temp. oleju w misce[°C]",
+                    "Temp. otoczenia[°C]",
+                    "Temp. pal. na wyjściu sil.[°C]",
+                    "Temp. powietrza za turb.[°C]",
+                    "Temp. spalin 1/6[°C]",
+                    "Temp. spalin 2/6[°C]",
+                    "Temp. spalin 3/6[°C]",
+                    "Temp. spalin 4/6[°C]",
+                    "Wilgotność względna[%]",
+                    "Zużycie paliwa średnie[g/s]"
+                ],
+                "missing_optional": [],
+                "valid": false
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2024-12-05 13:24:48.315302"
+    },
+    "4-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "from class DataValidator. Files for validation:": [
+            "TiL II st Zew B20 IRiL - 2019-11.parquet",
+            ""
+        ],
+        "step_4_status": "completed",
+        "step_4_end_time": "2024-12-05 13:24:49.818216"
+    },
+    "5-main_file_name:TiL II st Zew B20 IRiL - 2019-11.parquet, eco_file_name:, Fuel:B20": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2024-12-05 13:24:52.440461",
+        "filtered_data_shape after \"def filter_columns\":": [
+            30120,
+            164
+        ]
+    },
+    "0": {
+        "pipeline_status": "error: Cannot set a DataFrame with multiple columns to the single column Ciś. pow. za turb.[Pa]",
+        "error_time": "2024-12-05 13:24:52.455643"
+    }
+}
