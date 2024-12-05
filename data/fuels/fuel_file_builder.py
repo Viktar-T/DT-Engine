@@ -21,12 +21,12 @@ fuel_data = {
         "mg/kg", "mg/kg", "% v/v", "% m/m", "index", "µm", "h",
         "% v/v", "% v/v", "°C", "°C", "°C", "mg/l"
     ],
-    "Lower Limit": [
+    "EN590 Lower Limit": [
         51.0, 46.0, 820, 2.0, None, 55, None, None,
         None, None, None, None, "Class 1", None, 20,
         None, 85, None, None, None, None
     ],
-    "Upper Limit": [
+    "EN590 Upper Limit": [
         None, None, 845, 4.5, 10, None, 0.30, 0.01,
         200, 24, 7, 8, "Class 1", 460, None,
         65, None, 360, -15, -5, 2.0
@@ -38,30 +38,43 @@ fuel_data = {
         "EN ISO 2160", "EN ISO 12156-1", "EN 15751", "EN ISO 3405",
         "EN ISO 3405", "EN ISO 3405", "-", "-", "EN 16576"
     ], 
-    'diesel_fuel_for_dt': [None] * rows_num
+    'diesel_fuel_for_dt': [None] * rows_num,
+    "BIOW_for_dt": [None] * rows_num,
+    "ON_for_dt": [None] * rows_num,
+    "Diesel_for_dt": [None] * rows_num,
+    "Verwa_for_dt": [None] * rows_num,
+    "BIOW50_for_dt": [None] * rows_num,
+    "U75_for_dt": [None] * rows_num,
+    "HVO25_for_dt": [None] * rows_num,
+    "Efecta_for_dt": [None] * rows_num,
+    "Efecta Agrotronika_for_dt": [None] * rows_num,
+    "B20_for_dt": [None] * rows_num,
+    "AG2_for_dt": [None] * rows_num,
+    "HHO_for_dt": [None] * rows_num
+
 }
 
 # Converting the dictionary into a DataFrame
 fuel_df = pd.DataFrame(fuel_data)
 
 # Step 1: Convert 'Lower Limit' to numeric, coercing errors
-fuel_df['Lower Limit'] = pd.to_numeric(fuel_df['Lower Limit'], errors='coerce')
+fuel_df['EN590 Lower Limit'] = pd.to_numeric(fuel_df['EN590 Lower Limit'], errors='coerce')
 # Step 2: Handle NaN values in 'Lower Limit'
-fuel_df['Lower Limit'] = fuel_df['Lower Limit'].fillna(0)
+fuel_df['EN590 Lower Limit'] = fuel_df['EN590 Lower Limit'].fillna(0)
 
 # Step 3: Convert 'Upper Limit' to numeric, coercing errors
-fuel_df['Upper Limit'] = pd.to_numeric(fuel_df['Upper Limit'], errors='coerce')
+fuel_df['EN590 Upper Limit'] = pd.to_numeric(fuel_df['EN590 Upper Limit'], errors='coerce')
 # Step 4: Handle NaN values in 'Upper Limit'
-fuel_df['Upper Limit'] = fuel_df['Upper Limit'].fillna(0)
+fuel_df['EN590 Upper Limit'] = fuel_df['EN590 Upper Limit'].fillna(0)
 
 # Add "diesel_fuel_for_dt" column based on "Lower Limit" and "Upper Limit"
 fuel_df['diesel_fuel_for_dt'] = np.where(
-    (fuel_df['Lower Limit'] != 0) & (fuel_df['Upper Limit'] != 0),
-    (fuel_df['Lower Limit'] + fuel_df['Upper Limit']) / 2,
+    (fuel_df['EN590 Lower Limit'] != 0) & (fuel_df['EN590 Upper Limit'] != 0),
+    (fuel_df['EN590 Lower Limit'] + fuel_df['EN590 Upper Limit']) / 2,
     np.where(
-        fuel_df['Lower Limit'] != 0,
-        fuel_df['Lower Limit'],
-        fuel_df['Upper Limit']
+        fuel_df['EN590 Lower Limit'] != 0,
+        fuel_df['EN590 Lower Limit'],
+        fuel_df['EN590 Upper Limit']
     )
 )
 
