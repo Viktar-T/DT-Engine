@@ -43,6 +43,8 @@ required_columns_for_validation_step = [
     'Zużycie paliwa średnie[g/s]'
 ]
 
+required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
+
 # !!! NOT USED !!!
 #required_columns = [
 #    ['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'],
@@ -90,11 +92,9 @@ current_file = get_current_file_by_id(os.path.join(DIR_FOR_PROC, 'files_with_raw
 
 
 names_of_files_under_procession = [current_file["main_file_name"], current_file["eco_file_name"], current_file["fuel"]]
-files_for_steps = f"main_file_name:{names_of_files_under_procession[0]}, eco_file_name:{names_of_files_under_procession[1]}, Fuel:{names_of_files_under_procession[2]}"
-
-required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
-
-# Configure logging
+files_for_steps = f"main_file_name:{names_of_files_under_procession[0]}, 
+                    eco_file_name:{names_of_files_under_procession[1]}, 
+                    Fuel:{names_of_files_under_procession[2]}"
 
 
 def proceed_to_next_step(step_number, log_manager):
