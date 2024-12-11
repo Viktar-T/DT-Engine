@@ -1,34 +1,23 @@
-Property,Unit,EN590 Lower Limit,EN590 Upper Limit,Test Method,Description,diesel_fuel_for_dt
-Cetane number,-,51.0,0.0,EN ISO 5165,,51.0
-Cetane index,-,46.0,0.0,EN ISO 4264,,46.0
-Density at 15°C,kg/m³,820.0,845.0,EN ISO 3675/EN ISO 12185,,832.5
-Viscosity at 40°C,mm²/s,2.0,4.5,EN ISO 3104,,3.25
-Sulphur content,mg/kg,0.0,10.0,EN ISO 20846/20884,,10.0
-Flash point,°C,55.0,0.0,EN ISO 2719,,55.0
-Carbon residue,% m/m,0.0,0.3,EN ISO 10370,,0.3
-Ash content,% m/m,0.0,0.01,EN ISO 6245,,0.01
-Water content,mg/kg,0.0,200.0,EN ISO 12937,,200.0
-Total contamination,mg/kg,0.0,24.0,EN ISO 12662,,24.0
-FAME content,% v/v,0.0,7.0,EN 14078,,7.0
-Polycyclic aromatic hydrocarbons,% m/m,0.0,8.0,EN ISO 12916,,8.0
-Copper strip corrosion,index,0.0,0.0,EN ISO 2160,,0.0
-Lubricity,µm,0.0,460.0,EN ISO 12156-1,,460.0
-Oxidation Stability,h,20.0,0.0,EN 15751,,20.0
-Distillation recovered at 250°C,% v/v,0.0,65.0,EN ISO 3405,,65.0
-Distillation recovered at 350°C,% v/v,85.0,0.0,EN ISO 3405,,85.0
-95% recovered at,°C,0.0,360.0,EN ISO 3405,,360.0
-Cold Filter Plugging Point (winter),°C,0.0,-15.0,-,,-15.0
-Cold Filter Plugging Point (summer),°C,0.0,-5.0,-,,-5.0
-Manganese content,mg/l,0.0,2.0,EN 16576,,2.0
-Short description,,0.0,0.0,,,0.0
-ON_Diesel_fuel_for_dt,,0.0,0.0,,Standard diesel fuel for testing.,0.0
-Verwa_for_dt,,0.0,0.0,,Improved diesel fuel with the trade name Verwa.,0.0
-BIOW_for_dt,,0.0,0.0,,Pure methyl esters of used frying oils.,0.0
-BIOW50_for_dt,,0.0,0.0,,50% pure methyl esters of used frying oils.,0.0
-U75_for_dt,,0.0,0.0,,75% methyl esters of waste vegetable oils with 25% diesel oil.,0.0
-HVO_for_dt,,0.0,0.0,,Hydrogenated vegetable oil.,0.0
-HVO25_for_dt,,0.0,0.0,,25% hydrogenated vegetable oil volume fraction.,0.0
-Efecta_Agrotronika_for_dt,,0.0,0.0,,Improved diesel fuel named Efecta Agrotronika.,0.0
-B20_for_dt,,0.0,0.0,,Diesel oil with 20% rapeseed oil methyl esters.,0.0
-HHO_for_dt,,0.0,0.0,,Hydrogenated heating oil.,0.0
-AG2,,0.0,0.0,,Diesel oil with 2% nanosilver dissolved in water (not used for training models).,0.0
+Property,Unit,Test Method,EN590 Lower Limit,EN590 Upper Limit,Verwa_from_ORLEN Lower Limit,Verwa_from_ORLEN Upper Limit,HVO Lower Limit,HVO Upper Limit,HVO25 Lower Limit,HVO25 Upper Limit,BIOW Lower Limit,BIOW Upper Limit,BIOW50 Lower Limit,BIOW50 Upper Limit,diesel_fuel_for_dt,Verwa_for_dt,HVO_for_dt,HVO25_for_dt,BIOW_for_dt,BIOW50_for_dt,U75_for_dt,Efecta_Agrotronika_for_dt,B20_for_dt,HHO_for_dt
+Cetane number,-,EN ISO 5165,51.0,0.0,51.0,0.0,80.0,99.0,60.0,65.0,45.0,51.0,47.0,49.0,51.0,51.0,89.5,62.5,48.0,48.0,,51.0,,
+Cetane index,-,EN ISO 4264,46.0,0.0,46.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,46.0,46.0,0.0,0.0,0.0,0.0,,46.0,,
+Density at 15°C,kg/m³,EN ISO 3675/EN ISO 12185,820.0,845.0,815.0,845.0,770.0,790.0,800.0,820.0,870.0,885.0,850.0,870.0,832.5,830.0,780.0,810.0,877.5,860.0,,832.5,,
+Viscosity at 40°C,mm²/s,EN ISO 3104,2.0,4.5,2.0,4.5,2.5,3.5,2.8,3.5,4.9,5.6,3.5,4.5,3.25,3.25,3.0,3.15,5.25,4.0,,3.25,,
+Sulphur content,mg/kg,EN ISO 20846/20884,0.0,10.0,0.0,0.0,0.0,5.0,0.0,10.0,0.0,0.0,0.0,0.0,10.0,0.0,5.0,10.0,0.0,0.0,,10.0,,
+Flash point,°C,EN ISO 2719,55.0,0.0,56.0,0.0,61.0,0.0,55.0,0.0,130.0,160.0,100.0,130.0,55.0,56.0,61.0,55.0,145.0,115.0,,55.0,,
+Carbon residue,% m/m,EN ISO 10370,0.0,0.3,0.0,0.3,0.0,0.1,0.0,0.15,0.0,0.0,0.0,0.0,0.3,0.3,0.1,0.15,0.0,0.0,,0.3,,
+Ash content,% m/m,EN ISO 6245,0.0,0.01,0.0,0.01,0.0,0.001,0.0,0.005,0.0,0.0,0.0,0.0,0.01,0.01,0.001,0.005,0.0,0.0,,0.01,,
+Water content,mg/kg,EN ISO 12937,0.0,200.0,0.0,200.0,0.0,200.0,0.0,200.0,0.0,0.0,0.0,0.0,200.0,200.0,200.0,200.0,0.0,0.0,,200.0,,
+Total contamination,mg/kg,EN ISO 12662,0.0,24.0,0.0,24.0,0.0,10.0,0.0,20.0,0.0,0.0,0.0,0.0,24.0,24.0,10.0,20.0,0.0,0.0,,24.0,,
+FAME content,% v/v,EN 14078,0.0,7.0,0.0,7.0,0.0,0.0,0.0,0.0,96.5,100.0,40.0,42.0,7.0,7.0,0.0,0.0,98.25,41.0,,7.0,,
+Polycyclic aromatic hydrocarbons,% m/m,EN ISO 12916,0.0,8.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,8.0,0.0,0.0,0.0,0.0,0.0,,8.0,,
+Copper strip corrosion,index,EN ISO 2160,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,,
+Lubricity,µm,EN ISO 12156-1,0.0,460.0,0.0,460.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,460.0,460.0,0.0,0.0,0.0,0.0,,460.0,,
+Oxidation Stability,h,EN 15751,20.0,0.0,20.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,20.0,20.0,0.0,0.0,0.0,0.0,,20.0,,
+Distillation recovered at 250°C,% v/v,EN ISO 3405,0.0,65.0,0.0,65.0,0.0,0.0,35.0,45.0,0.0,0.0,0.0,0.0,65.0,65.0,0.0,40.0,0.0,0.0,,65.0,,
+Distillation recovered at 350°C,% v/v,EN ISO 3405,85.0,0.0,5.0,0.0,0.0,360.0,90.0,95.0,0.0,0.0,0.0,0.0,85.0,5.0,360.0,92.5,0.0,0.0,,85.0,,
+95% recovered at,°C,EN ISO 3405,0.0,360.0,0.0,360.0,0.0,320.0,350.0,360.0,0.0,0.0,0.0,0.0,360.0,360.0,320.0,355.0,0.0,0.0,,360.0,,
+Cold Filter Plugging Point (winter),°C,-,0.0,-15.0,0.0,-10.0,-34.0,0.0,-15.0,-10.0,0.0,0.0,0.0,0.0,-15.0,-10.0,-34.0,-12.5,0.0,0.0,,-15.0,,
+Cold Filter Plugging Point (summer),°C,-,0.0,-5.0,0.0,0.0,0.0,-5.0,-5.0,0.0,0.0,0.0,0.0,0.0,-5.0,0.0,-5.0,-5.0,0.0,0.0,,-5.0,,
+Manganese content,mg/l,EN 16576,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,,2.0,,
+Short description,,,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,mixture of methyl esters of waste vegetable oils 75% with diesel oil – 25% volume fraction,??? improved diesel fuel with the trade name Efecta Agrotronika,mixture of diesel oil with rapeseed oil methyl esters 20% volume fraction,??hydrogenated heating oil

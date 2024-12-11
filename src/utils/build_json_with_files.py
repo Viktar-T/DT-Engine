@@ -41,20 +41,22 @@ class JSONBuilder:
         pattern_fuel = re.search(r"""
             (
                 ON |                # Matches 'ON'
-                B20 |               # Matches 'B20'
+                B20 |               # Matches 'B20', rapeseed oil methyl esters 20% volume fraction
                 RME |               # Matches 'RME'
                 HVO25 |             # Matches 'HVO25'
                 HVO |               # Matches 'HVO'
                 AG2 |               # Matches 'AG2'
-                U75 |               # Matches 'U75'
-                BIOW50 |            # Matches 'BIOW50'
-                BIOW |              # Matches 'BIOW'
+                U75 |               # Matches 'U75', methyl esters of waste vegetable oils 75% with diesel oil – 25% volume fraction
+                BIOW50 |            # Matches 'BIOW50', Waste cooking oils (WCO) methyl esters
+                BIOW |              # Matches 'BIOW', Waste frying oils (WFO) methyl esters
                 ONE |               # Matches 'ONE'
                 Efecta |            # Matches 'Efecta'
                 Efekta\ Agrotronika | # Matches 'Efekta Agrotronika'
                 Verwa |             # Matches 'Verwa'
-                Verva |             # Matches 'Verva'
-                HHO                 # Matches 'HHO'
+                Verva |             # Matches 'Verva', ulepszonego oleju napędowego o nazwie handlowej Verwa
+                HHO                 # Matches 'HHO', dodatku gazu Brauna do kolektora dolotowego, 
+                                    # Brown's Gas (HHO) to the intake manifold. 
+                                    # HHO is a mixture of 2/3 hydrogen and 1/3 oxygen by volume
             )
         """, file_name, re.IGNORECASE | re.VERBOSE)
         fuel = pattern_fuel.group(0) if pattern_fuel else ""
@@ -63,8 +65,10 @@ class JSONBuilder:
             (
                 NRTC |                 # Matches 'NRTC'
                 NRTS |                 # Matches 'NRTS'
-                TRiL |                 # Matches 'TRiL'
+                TRiL |                 # Matches 'TRiL' charakterystyka obciążeniowa,
+                IRiL |                 # Matches 'IRiL' charakterystyka zewnętrzna,
                 TMiE |                 # Matches 'TMiE'
+                Tans II |               # Matches 'Tans II' charakterystyka obciążeniowa
                 obc\ ?\d{3,4} |        # Matches 'obc 1500', 'obc1500'
                 \d{4}\ RPM |           # Matches '1500 RPM'
                 \d{4}p?\ rpm |         # Matches '2000p rpm'
