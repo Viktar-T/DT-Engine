@@ -94,6 +94,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         metadata_manager.update_metadata(step_3_file_name, 'step_name', 'Validate data')
         metadata_manager.update_metadata(step_3_file_name, 'step_3_start_time', str(datetime.now()))
 
+        # don't use "required_columns_eco"
         required_columns_list = [required_columns_for_validation_step, required_columns_eco]
         validator = DataValidator(
             raw_data_frames, 
