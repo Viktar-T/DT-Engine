@@ -14,6 +14,15 @@ from src.config import (
 )
 from src.log_manager import LogManager
 
+chosen_fuels = [
+    {"DF": ["ON", "Diesel", "diesel"]},
+    {"HVO": ["HVO", "Hydrotreated Vegetable Oil"]},
+    {"HVO25 - 25%HVO+75%DF": ["HVO25"]},
+    {"RME": ["RME", "Rapeseed Methyl Ester"]},
+    {"EDF": ["Efecta", "Efekta", "Efekta Agrotronika", "Efecta Diesel Fuel"]},
+    {"UCOME": ["BIOW", "UCOME", "Used Cooking Oil Methyl Esters"]},
+    
+]
 
 class JSONBuilder:
     def __init__(self, data_dir, log_manager: LogManager = None):
@@ -24,7 +33,7 @@ class JSONBuilder:
             "eco_file_name": "",
             "description": "",
             "diesel_test_type": "",
-            "fuel": "diesel",
+            "fuel": "",
             "diesel_engine_name": "",
         }
         self.json_data = {"Lublin Diesel": []}
@@ -33,7 +42,7 @@ class JSONBuilder:
         if self.log_manager:
             self.log_manager.log_info("JSONBuilder initialized.")
 
-    def parse_file_name(self, file_name):
+    def _parse_file_name(self, file_name):
         # Extract test_date, fuel, and test_type from the file name
         date_match = re.search(r'\d{4}-\d{2}-\d{2}|\d{4}-\d{2}', file_name)
         test_date = date_match.group(0) if date_match else ""
@@ -94,7 +103,7 @@ class JSONBuilder:
                 key = base_name.lower()
                 if key not in files_dict:
                     entry = self.template.copy()
-                    test_date, fuel, test_type = self.parse_file_name(base_name)
+                    test_date, fuel, test_type = self._parse_file_name(base_name)
                     entry["test_date"] = test_date
                     entry["fuel"] = fuel if fuel else "diesel"
                     entry["diesel_test_type"] = test_type
@@ -122,6 +131,29 @@ class JSONBuilder:
         if self.log_manager:
             self.log_manager.log_info(f"JSON file created at {output_file_path}")
 
+def filter_chosen_fuels(json_file_path, output_file_path):
+    import json
+    fuel_map = {}
+    
+    # Build a dict where each fuel variant -> key
+    for group in chosen_fuels:
+        for key, fuels in group.items():
+            for f in fuels:
+                fuel_map[f.lower()] = key
+
+    with open(json_file_path, 'r') as f:
+        data = json.load(f)
+
+    filtered = []
+    for item in data["Lublin Diesel"]:
+        if item["fuel"].lower() in fuel_map:
+            item["fuel"] = fuel_map[item["fuel"].lower()]
+            filtered.append(item)
+
+    data["Lublin Diesel"] = filtered
+    with open(output_file_path, 'w') as f:
+        json.dump(data, f, indent=4)
+
 if __name__ == "__main__":
     # Configure logging
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -146,3 +178,6 @@ if __name__ == "__main__":
     
     # Save the JSON data to the file
     builder.save_json(output_file_path)
+
+    # Filter chosen fuels and save to a new file
+    filter_chosen_fuels(output_file_path, os.path.join(dir_for_proc, 'only_chosen_fuels.json'))

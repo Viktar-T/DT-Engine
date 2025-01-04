@@ -1,6 +1,6 @@
 [
     {
-      "name": "DF",
+      "short_name": "DF",
       "description": "Diesel Fuel",
       "properties": {
         "Cetane number": [54.1, "-"],
@@ -11,7 +11,7 @@
       }
     },
     {
-      "name": "EDF",
+      "short_name": "EDF",
       "description": "Efecta Diesel Fuel",
       "properties": {
         "Cetane number": [53, "-"],
@@ -22,8 +22,8 @@
       }
     },
     {
-      "name": "RME",
-      "description": "Rapeseed Methyl Ester (biodiesel)",
+      "short_name": "RME",
+      "description": "Rapeseed Methyl Ester (first-generation biodiesel)",
       "properties": {
         "Cetane number": [56, "-"],
         "Density at 15 °C": [880, "kg/m3"],
@@ -33,7 +33,7 @@
       }
     },
     {
-      "name": "HVO",
+      "short_name": "HVO",
       "description": "Hydrotreated Vegetable Oil",
       "properties": {
         "Cetane number": [74.5, "-"],
@@ -44,7 +44,18 @@
       }
     },
     {
-      "name": "UCOME",
+      "short_name": "HVO25",
+      "description": "25 % HVO + 75 % Diesel Fuel",
+      "properties": {
+        "Cetane number": [59.2, "-"],
+        "Density at 15 °C": [818.75, "kg/m3"],
+        "Viscosity at 40 °C": [2.91, "mm2/s"],
+        "Flash point": [69.45, "°C"],
+        "LHV (Lower Heating Value)": [43.025, "MJ/kg"]
+      }
+    },
+    {
+      "short_name": "UCOME",
       "description": "Used Cooking Oil Methyl Esters (second-generation biodiesel)",
       "properties": {
         "Cetane number": [58, "-"],
@@ -55,4 +66,3 @@
       }
     }
   ]
-  

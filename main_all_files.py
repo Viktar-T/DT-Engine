@@ -8,6 +8,7 @@ from src.config import (
     RAW_DATA_DIR, 
     PROCESSED_DATA_DIR, 
     PROCESSED_DATA_SEPARATE_FILES_DIR,
+    PROCESSED_DATA_WITH_FUELS_FILE_DIR,
     METADATA_DIR, 
     LOGS_DIR, 
     RAW_PARQUET_DATA_DIR, 
@@ -44,7 +45,8 @@ required_columns_for_validation_step = [
 
 required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
 
-json_path = os.path.join(RAW_PARQUET_DATA_DIR, 'files_with_raw_data_links.json')
+# json_path = os.path.join(RAW_PARQUET_DATA_DIR, 'files_with_raw_data_links.json')
+json_path = os.path.join(RAW_PARQUET_DATA_DIR, 'only_chosen_fuels.json')
 with open(json_path, 'r') as f:
     json_data_links = json.load(f)
 
@@ -172,8 +174,12 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
         corrected_df = data_transformation.exhaust_gas_mean_temperature_calculation()
 
+        #Step 8: Add fuel data
+        
+
         # Save transformed data
-        transformed_data_parquet_path = os.path.join(PROCESSED_DATA_SEPARATE_FILES_DIR, f'transformed_data_{main_file_name}.parquet')
+        #transformed_data_parquet_path = os.path.join(PROCESSED_DATA_SEPARATE_FILES_DIR, f'transformed_data_{main_file_name}.parquet')
+        transformed_data_parquet_path = os.path.join(PROCESSED_DATA_WITH_FUELS_FILE_DIR, f'{main_file_name}_tr_f.parquet')
         corrected_df.to_parquet(transformed_data_parquet_path, index=False)
 
         metadata_manager.update_metadata(step_6_file_name, 'step_7_status', 'completed')
