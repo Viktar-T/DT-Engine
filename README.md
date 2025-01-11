@@ -21,11 +21,8 @@ C:\Users\taustykav\AppData\Local\miniconda3\Library\bin
 6. conda env create -f environmentWindows.yml
 
 7. To activate this environment, use
-#
 #     $ conda activate DT-Engine-env
-#
 # To deactivate an active environment, use
-#
 #     $ conda deactivate
 
 PROCESSING

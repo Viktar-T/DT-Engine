@@ -1,0 +1,1172 @@
+{
+    "Step 2. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:46.860760"
+    },
+    "2-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1200 obc - 2015-05.parquet_shape": [
+            23360,
+            143
+        ]
+    },
+    "pipeline_error": {
+        "pipeline_status": "error: File 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\raw\\parquet_files\\empty' does not exist.",
+        "error_time": "2025-01-10 15:47:12.049736"
+    },
+    "Step 2. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:48.024973"
+    },
+    "2-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1300 obc - 2015-05.parquet_shape": [
+            25399,
+            143
+        ]
+    },
+    "Step 2. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:48.348996"
+    },
+    "2-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "1400 Efecta TiL I rok II st - 2019-04.parquet_shape": [
+            31960,
+            143
+        ]
+    },
+    "Step 2. Item with ID:5. Files: main_file_name:1400 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:48.537056"
+    },
+    "2-main_file_name:1400 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1400 obc - 2015-05.parquet_shape": [
+            26054,
+            143
+        ]
+    },
+    "Step 2. Item with ID:8. Files: main_file_name:1500 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:48.722817"
+    },
+    "2-main_file_name:1500 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1500 obc - 2015-05.parquet_shape": [
+            22063,
+            143
+        ]
+    },
+    "Step 2. Item with ID:9. Files: main_file_name:1600 Efecta TiL II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:48.887787"
+    },
+    "2-main_file_name:1600 Efecta TiL II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "1600 Efecta TiL II st - 2019-04.parquet_shape": [
+            33328,
+            143
+        ]
+    },
+    "Step 2. Item with ID:10. Files: main_file_name:1600 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.077833"
+    },
+    "2-main_file_name:1600 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1600 obc - 2015-05.parquet_shape": [
+            35613,
+            143
+        ]
+    },
+    "Step 2. Item with ID:14. Files: main_file_name:1600Nn obc ON _ 2018-12-06 - 2018-12.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.279338"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06 - 2018-12.parquet, eco_file_name:empty, Fuel:DF": {
+        "1600Nn obc ON _ 2018-12-06 - 2018-12.parquet_shape": [
+            38535,
+            1
+        ]
+    },
+    "Step 2. Item with ID:15. Files: main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN - 2018-12.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.400404"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN - 2018-12.parquet, eco_file_name:empty, Fuel:DF": {
+        "1600Nn obc ON _ 2018-12-06_ORIGEN - 2018-12.parquet_shape": [
+            38535,
+            1
+        ]
+    },
+    "Step 2. Item with ID:16. Files: main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN-for-analyse - 2018-12.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.492576"
+    },
+    "2-main_file_name:1600Nn obc ON _ 2018-12-06_ORIGEN-for-analyse - 2018-12.parquet, eco_file_name:empty, Fuel:DF": {
+        "1600Nn obc ON _ 2018-12-06_ORIGEN-for-analyse - 2018-12.parquet_shape": [
+            38535,
+            1
+        ]
+    },
+    "Step 2. Item with ID:17. Files: main_file_name:1700 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.607141"
+    },
+    "2-main_file_name:1700 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1700 obc - 2015-05.parquet_shape": [
+            25242,
+            143
+        ]
+    },
+    "Step 2. Item with ID:19. Files: main_file_name:1800 Efecta TiL I rok IIst - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.775032"
+    },
+    "2-main_file_name:1800 Efecta TiL I rok IIst - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "1800 Efecta TiL I rok IIst - 2019-04.parquet_shape": [
+            47085,
+            143
+        ]
+    },
+    "Step 2. Item with ID:22. Files: main_file_name:1900 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:49.983616"
+    },
+    "2-main_file_name:1900 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1900 obc - 2015-05.parquet_shape": [
+            26678,
+            143
+        ]
+    },
+    "Step 2. Item with ID:24. Files: main_file_name:2000 Efecta TiL II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:50.252797"
+    },
+    "2-main_file_name:2000 Efecta TiL II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "2000 Efecta TiL II st - 2019-04.parquet_shape": [
+            34604,
+            143
+        ]
+    },
+    "Step 2. Item with ID:27. Files: main_file_name:2015.01.16 NRTC T3 cz1_4 - 2015-01.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:50.449467"
+    },
+    "2-main_file_name:2015.01.16 NRTC T3 cz1_4 - 2015-01.parquet, eco_file_name:empty, Fuel:DF": {
+        "2015.01.16 NRTC T3 cz1_4 - 2015-01.parquet_shape": [
+            34465,
+            143
+        ]
+    },
+    "Step 2. Item with ID:28. Files: main_file_name:2015.05.13 zewnętrzna - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:50.651667"
+    },
+    "2-main_file_name:2015.05.13 zewnętrzna - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "2015.05.13 zewnętrzna - 2015-05.parquet_shape": [
+            25213,
+            143
+        ]
+    },
+    "Step 2. Item with ID:29. Files: main_file_name:2100 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:50.813152"
+    },
+    "2-main_file_name:2100 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "2100 obc - 2015-05.parquet_shape": [
+            24938,
+            143
+        ]
+    },
+    "Step 2. Item with ID:31. Files: main_file_name:2200 Efecta TiL IIst - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:50.975475"
+    },
+    "2-main_file_name:2200 Efecta TiL IIst - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "2200 Efecta TiL IIst - 2019-04.parquet_shape": [
+            30715,
+            143
+        ]
+    },
+    "Step 2. Item with ID:32. Files: main_file_name:2200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:51.150593"
+    },
+    "2-main_file_name:2200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "2200 obc - 2015-05.parquet_shape": [
+            26752,
+            143
+        ]
+    },
+    "Step 2. Item with ID:35. Files: main_file_name:2300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:51.304718"
+    },
+    "2-main_file_name:2300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "2300 obc - 2015-05.parquet_shape": [
+            26052,
+            143
+        ]
+    },
+    "Step 2. Item with ID:37. Files: main_file_name:2400 Efecta TIL IIst - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:51.467874"
+    },
+    "2-main_file_name:2400 Efecta TIL IIst - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "2400 Efecta TIL IIst - 2019-04.parquet_shape": [
+            42411,
+            143
+        ]
+    },
+    "Step 2. Item with ID:41. Files: main_file_name:BUMA ON 2400 - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:51.799822"
+    },
+    "2-main_file_name:BUMA ON 2400 - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMA ON 2400 - 2024-09.parquet_shape": [
+            33240,
+            143
+        ]
+    },
+    "Step 2. Item with ID:48. Files: main_file_name:BUMG ON 1300 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.007475"
+    },
+    "2-main_file_name:BUMG ON 1300 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1300 RPM - 2024-09.parquet_shape": [
+            24680,
+            143
+        ]
+    },
+    "Step 2. Item with ID:49. Files: main_file_name:BUMG ON 1400 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.157366"
+    },
+    "2-main_file_name:BUMG ON 1400 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1400 RPM - 2024-09.parquet_shape": [
+            25669,
+            143
+        ]
+    },
+    "Step 2. Item with ID:50. Files: main_file_name:BUMG ON 1500 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.350323"
+    },
+    "2-main_file_name:BUMG ON 1500 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1500 RPM - 2024-09.parquet_shape": [
+            25556,
+            3
+        ]
+    },
+    "Step 2. Item with ID:51. Files: main_file_name:BUMG ON 1600 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.494642"
+    },
+    "2-main_file_name:BUMG ON 1600 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1600 RPM - 2024-09.parquet_shape": [
+            3059,
+            3
+        ]
+    },
+    "Step 2. Item with ID:52. Files: main_file_name:BUMG ON 1700 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.537858"
+    },
+    "2-main_file_name:BUMG ON 1700 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1700 RPM - 2024-09.parquet_shape": [
+            30434,
+            143
+        ]
+    },
+    "Step 2. Item with ID:53. Files: main_file_name:BUMG ON 1800 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.724867"
+    },
+    "2-main_file_name:BUMG ON 1800 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1800 RPM - 2024-09.parquet_shape": [
+            31317,
+            143
+        ]
+    },
+    "Step 2. Item with ID:54. Files: main_file_name:BUMG ON 1900 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:52.940094"
+    },
+    "2-main_file_name:BUMG ON 1900 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 1900 RPM - 2024-09.parquet_shape": [
+            31040,
+            143
+        ]
+    },
+    "Step 2. Item with ID:55. Files: main_file_name:BUMG ON 2000 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:53.124736"
+    },
+    "2-main_file_name:BUMG ON 2000 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 2000 RPM - 2024-09.parquet_shape": [
+            30254,
+            143
+        ]
+    },
+    "Step 2. Item with ID:56. Files: main_file_name:BUMG ON 2100 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:53.370785"
+    },
+    "2-main_file_name:BUMG ON 2100 RPM - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 2100 RPM - 2024-09.parquet_shape": [
+            38633,
+            143
+        ]
+    },
+    "Step 2. Item with ID:57. Files: main_file_name:BUMG ON 2200 - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:53.607181"
+    },
+    "2-main_file_name:BUMG ON 2200 - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 2200 - 2024-09.parquet_shape": [
+            45538,
+            143
+        ]
+    },
+    "Step 2. Item with ID:58. Files: main_file_name:BUMG ON 2300 - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:54.020388"
+    },
+    "2-main_file_name:BUMG ON 2300 - 2024-09.parquet, eco_file_name:empty, Fuel:DF": {
+        "BUMG ON 2300 - 2024-09.parquet_shape": [
+            33682,
+            143
+        ]
+    },
+    "Step 2. Item with ID:59. Files: main_file_name:Dyp BIOW 1300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:54.221547"
+    },
+    "2-main_file_name:Dyp BIOW 1300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1300 rpm - 2023-05.parquet_shape": [
+            54912,
+            143
+        ]
+    },
+    "Step 2. Item with ID:60. Files: main_file_name:Dyp BIOW 1400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:54.463723"
+    },
+    "2-main_file_name:Dyp BIOW 1400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1400 rpm - 2023-05.parquet_shape": [
+            41216,
+            143
+        ]
+    },
+    "Step 2. Item with ID:61. Files: main_file_name:Dyp BIOW 1500 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:54.677219"
+    },
+    "2-main_file_name:Dyp BIOW 1500 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1500 rpm - 2023-05.parquet_shape": [
+            42060,
+            143
+        ]
+    },
+    "Step 2. Item with ID:62. Files: main_file_name:Dyp BIOW 1500 rpm 2 - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:54.896776"
+    },
+    "2-main_file_name:Dyp BIOW 1500 rpm 2 - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1500 rpm 2 - 2023-05.parquet_shape": [
+            46013,
+            143
+        ]
+    },
+    "Step 2. Item with ID:63. Files: main_file_name:Dyp BIOW 1700 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:55.113042"
+    },
+    "2-main_file_name:Dyp BIOW 1700 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1700 rpm - 2023-05.parquet_shape": [
+            36739,
+            143
+        ]
+    },
+    "Step 2. Item with ID:64. Files: main_file_name:Dyp BIOW 1800 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:55.436780"
+    },
+    "2-main_file_name:Dyp BIOW 1800 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1800 rpm - 2023-05.parquet_shape": [
+            38728,
+            143
+        ]
+    },
+    "Step 2. Item with ID:65. Files: main_file_name:Dyp BIOW 1900 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:55.623150"
+    },
+    "2-main_file_name:Dyp BIOW 1900 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 1900 rpm - 2023-05.parquet_shape": [
+            46469,
+            143
+        ]
+    },
+    "Step 2. Item with ID:66. Files: main_file_name:Dyp BIOW 2000 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:55.829451"
+    },
+    "2-main_file_name:Dyp BIOW 2000 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 2000 rpm - 2023-05.parquet_shape": [
+            29290,
+            139
+        ]
+    },
+    "Step 2. Item with ID:67. Files: main_file_name:Dyp BIOW 2001 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:56.032164"
+    },
+    "2-main_file_name:Dyp BIOW 2001 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 2001 rpm - 2023-05.parquet_shape": [
+            38282,
+            143
+        ]
+    },
+    "Step 2. Item with ID:68. Files: main_file_name:Dyp BIOW 2100 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:56.244051"
+    },
+    "2-main_file_name:Dyp BIOW 2100 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 2100 rpm - 2023-05.parquet_shape": [
+            32621,
+            139
+        ]
+    },
+    "Step 2. Item with ID:69. Files: main_file_name:Dyp BIOW 2200 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:56.456337"
+    },
+    "2-main_file_name:Dyp BIOW 2200 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 2200 rpm - 2023-05.parquet_shape": [
+            41627,
+            157
+        ]
+    },
+    "Step 2. Item with ID:70. Files: main_file_name:Dyp BIOW 2300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:56.695642"
+    },
+    "2-main_file_name:Dyp BIOW 2300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 2300 rpm - 2023-05.parquet_shape": [
+            28035,
+            139
+        ]
+    },
+    "Step 2. Item with ID:71. Files: main_file_name:Dyp BIOW 2400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:56.989178"
+    },
+    "2-main_file_name:Dyp BIOW 2400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:UCOME": {
+        "Dyp BIOW 2400 rpm - 2023-05.parquet_shape": [
+            38607,
+            143
+        ]
+    },
+    "Step 2. Item with ID:85. Files: main_file_name:Dyp ONE 1300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:57.183704"
+    },
+    "2-main_file_name:Dyp ONE 1300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1300 rpm - 2023-05.parquet_shape": [
+            33998,
+            143
+        ]
+    },
+    "Step 2. Item with ID:86. Files: main_file_name:Dyp ONE 1400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:57.372686"
+    },
+    "2-main_file_name:Dyp ONE 1400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1400 rpm - 2023-05.parquet_shape": [
+            34867,
+            139
+        ]
+    },
+    "Step 2. Item with ID:87. Files: main_file_name:Dyp ONE 1500 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:57.559126"
+    },
+    "2-main_file_name:Dyp ONE 1500 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1500 rpm - 2023-05.parquet_shape": [
+            36361,
+            139
+        ]
+    },
+    "Step 2. Item with ID:88. Files: main_file_name:Dyp ONE 1600 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:57.753225"
+    },
+    "2-main_file_name:Dyp ONE 1600 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1600 rpm - 2023-05.parquet_shape": [
+            28971,
+            139
+        ]
+    },
+    "Step 2. Item with ID:89. Files: main_file_name:Dyp ONE 1600 rpm próba 1 - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:57.924678"
+    },
+    "2-main_file_name:Dyp ONE 1600 rpm próba 1 - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1600 rpm próba 1 - 2023-05.parquet_shape": [
+            26649,
+            139
+        ]
+    },
+    "Step 2. Item with ID:90. Files: main_file_name:Dyp ONE 1700 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:58.086834"
+    },
+    "2-main_file_name:Dyp ONE 1700 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1700 rpm - 2023-05.parquet_shape": [
+            45869,
+            143
+        ]
+    },
+    "Step 2. Item with ID:91. Files: main_file_name:Dyp ONE 1800 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:58.291625"
+    },
+    "2-main_file_name:Dyp ONE 1800 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1800 rpm - 2023-05.parquet_shape": [
+            54967,
+            143
+        ]
+    },
+    "Step 2. Item with ID:92. Files: main_file_name:Dyp ONE 1900 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:58.688933"
+    },
+    "2-main_file_name:Dyp ONE 1900 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 1900 rpm - 2023-05.parquet_shape": [
+            45750,
+            143
+        ]
+    },
+    "Step 2. Item with ID:93. Files: main_file_name:Dyp ONE 2000 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:59.050380"
+    },
+    "2-main_file_name:Dyp ONE 2000 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 2000 rpm - 2023-05.parquet_shape": [
+            47459,
+            143
+        ]
+    },
+    "Step 2. Item with ID:94. Files: main_file_name:Dyp ONE 2100 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:59.484160"
+    },
+    "2-main_file_name:Dyp ONE 2100 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 2100 rpm - 2023-05.parquet_shape": [
+            55857,
+            141
+        ]
+    },
+    "Step 2. Item with ID:95. Files: main_file_name:Dyp ONE 2200 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:59.738024"
+    },
+    "2-main_file_name:Dyp ONE 2200 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 2200 rpm - 2023-05.parquet_shape": [
+            43501,
+            139
+        ]
+    },
+    "Step 2. Item with ID:96. Files: main_file_name:Dyp ONE 2300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:46:59.946917"
+    },
+    "2-main_file_name:Dyp ONE 2300 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 2300 rpm - 2023-05.parquet_shape": [
+            33955,
+            139
+        ]
+    },
+    "Step 2. Item with ID:97. Files: main_file_name:Dyp ONE 2400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:00.132620"
+    },
+    "2-main_file_name:Dyp ONE 2400 rpm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Dyp ONE 2400 rpm - 2023-05.parquet_shape": [
+            37444,
+            143
+        ]
+    },
+    "Step 2. Item with ID:102. Files: main_file_name:HVO 1500 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:00.307806"
+    },
+    "2-main_file_name:HVO 1500 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO": {
+        "HVO 1500 RPM - 2024-04.parquet_shape": [
+            34355,
+            143
+        ]
+    },
+    "Step 2. Item with ID:103. Files: main_file_name:HVO25 1300 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:00.609993"
+    },
+    "2-main_file_name:HVO25 1300 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1300 RPM - 2024-04.parquet_shape": [
+            31532,
+            143
+        ]
+    },
+    "Step 2. Item with ID:104. Files: main_file_name:HVO25 1400 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:00.857021"
+    },
+    "2-main_file_name:HVO25 1400 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1400 - 2024-03.parquet_shape": [
+            35862,
+            143
+        ]
+    },
+    "Step 2. Item with ID:105. Files: main_file_name:HVO25 1600 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:01.048380"
+    },
+    "2-main_file_name:HVO25 1600 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1600 - 2024-03.parquet_shape": [
+            43559,
+            143
+        ]
+    },
+    "Step 2. Item with ID:106. Files: main_file_name:HVO25 1700 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:01.252780"
+    },
+    "2-main_file_name:HVO25 1700 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1700 RPM - 2024-04.parquet_shape": [
+            38070,
+            143
+        ]
+    },
+    "Step 2. Item with ID:107. Files: main_file_name:HVO25 1800 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:01.427721"
+    },
+    "2-main_file_name:HVO25 1800 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1800 - 2024-03.parquet_shape": [
+            34124,
+            143
+        ]
+    },
+    "Step 2. Item with ID:108. Files: main_file_name:HVO25 1900 RPM - 2024-01.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:01.620228"
+    },
+    "2-main_file_name:HVO25 1900 RPM - 2024-01.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1900 RPM - 2024-01.parquet_shape": [
+            39166,
+            143
+        ]
+    },
+    "Step 2. Item with ID:109. Files: main_file_name:HVO25 1900 RPM powtorka - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:01.983497"
+    },
+    "2-main_file_name:HVO25 1900 RPM powtorka - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 1900 RPM powtorka - 2024-04.parquet_shape": [
+            36614,
+            143
+        ]
+    },
+    "Step 2. Item with ID:110. Files: main_file_name:HVO25 2000 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:02.513634"
+    },
+    "2-main_file_name:HVO25 2000 - 2024-03.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 2000 - 2024-03.parquet_shape": [
+            35164,
+            143
+        ]
+    },
+    "Step 2. Item with ID:111. Files: main_file_name:HVO25 2100 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:02.877109"
+    },
+    "2-main_file_name:HVO25 2100 RPM - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 2100 RPM - 2024-04.parquet_shape": [
+            37667,
+            143
+        ]
+    },
+    "Step 2. Item with ID:112. Files: main_file_name:HVO25 2200 obc od 0 do 320 Nm - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:03.102764"
+    },
+    "2-main_file_name:HVO25 2200 obc od 0 do 320 Nm - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 2200 obc od 0 do 320 Nm - 2024-04.parquet_shape": [
+            36604,
+            139
+        ]
+    },
+    "Step 2. Item with ID:113. Files: main_file_name:HVO25 2300 RPM - 2024-01.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:03.293438"
+    },
+    "2-main_file_name:HVO25 2300 RPM - 2024-01.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 2300 RPM - 2024-01.parquet_shape": [
+            36731,
+            143
+        ]
+    },
+    "Step 2. Item with ID:114. Files: main_file_name:HVO25 2400 - 2024-01.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:03.546048"
+    },
+    "2-main_file_name:HVO25 2400 - 2024-01.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 2400 - 2024-01.parquet_shape": [
+            46220,
+            143
+        ]
+    },
+    "Step 2. Item with ID:115. Files: main_file_name:HVO25 Badanie rozruchu - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:03.790356"
+    },
+    "2-main_file_name:HVO25 Badanie rozruchu - 2024-04.parquet, eco_file_name:empty, Fuel:HVO25": {
+        "HVO25 Badanie rozruchu - 2024-04.parquet_shape": [
+            21635,
+            143
+        ]
+    },
+    "Step 2. Item with ID:116. Files: main_file_name:IRiL 1600 RPM ON - 2023-01.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:03.977604"
+    },
+    "2-main_file_name:IRiL 1600 RPM ON - 2023-01.parquet, eco_file_name:empty, Fuel:DF": {
+        "IRiL 1600 RPM ON - 2023-01.parquet_shape": [
+            47462,
+            153
+        ]
+    },
+    "Step 2. Item with ID:117. Files: main_file_name:IRiL 2000 Nm ON - 2023-01.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:04.308113"
+    },
+    "2-main_file_name:IRiL 2000 Nm ON - 2023-01.parquet, eco_file_name:empty, Fuel:DF": {
+        "IRiL 2000 Nm ON - 2023-01.parquet_shape": [
+            40634,
+            143
+        ]
+    },
+    "Step 2. Item with ID:118. Files: main_file_name:MAF niskie prędkości - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:04.506471"
+    },
+    "2-main_file_name:MAF niskie prędkości - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "MAF niskie prędkości - 2023-05.parquet_shape": [
+            14642,
+            139
+        ]
+    },
+    "Step 2. Item with ID:119. Files: main_file_name:NP 800 do 1200 rpm 0Nm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:04.670315"
+    },
+    "2-main_file_name:NP 800 do 1200 rpm 0Nm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "NP 800 do 1200 rpm 0Nm - 2023-05.parquet_shape": [
+            7462,
+            139
+        ]
+    },
+    "Step 2. Item with ID:120. Files: main_file_name:NP 800 do 1200 rpm 25Nm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:04.841867"
+    },
+    "2-main_file_name:NP 800 do 1200 rpm 25Nm - 2023-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "NP 800 do 1200 rpm 25Nm - 2023-05.parquet_shape": [
+            13968,
+            139
+        ]
+    },
+    "Step 2. Item with ID:121. Files: main_file_name:NRTC 120M3lin 2014.11.17 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:05.007042"
+    },
+    "2-main_file_name:NRTC 120M3lin 2014.11.17 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC 120M3lin 2014.11.17 - 2014-11.parquet_shape": [
+            6001,
+            145
+        ]
+    },
+    "Step 2. Item with ID:122. Files: main_file_name:NRTC Load cor cz1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:05.151912"
+    },
+    "2-main_file_name:NRTC Load cor cz1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC Load cor cz1 - 2015-04.parquet_shape": [
+            9300,
+            139
+        ]
+    },
+    "Step 2. Item with ID:123. Files: main_file_name:NRTC RPM kor cz1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:05.528920"
+    },
+    "2-main_file_name:NRTC RPM kor cz1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC RPM kor cz1 - 2015-04.parquet_shape": [
+            9300,
+            139
+        ]
+    },
+    "Step 2. Item with ID:124. Files: main_file_name:NRTC RPM Load cor cz1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:05.686377"
+    },
+    "2-main_file_name:NRTC RPM Load cor cz1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC RPM Load cor cz1 - 2015-04.parquet_shape": [
+            9300,
+            139
+        ]
+    },
+    "Step 2. Item with ID:125. Files: main_file_name:NRTC T3 cały - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:05.852696"
+    },
+    "2-main_file_name:NRTC T3 cały - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC T3 cały - 2015-05.parquet_shape": [
+            62652,
+            139
+        ]
+    },
+    "Step 2. Item with ID:126. Files: main_file_name:NRTC T3 cz1 stand - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:06.079930"
+    },
+    "2-main_file_name:NRTC T3 cz1 stand - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC T3 cz1 stand - 2015-04.parquet_shape": [
+            9300,
+            139
+        ]
+    },
+    "Step 2. Item with ID:127. Files: main_file_name:NRTC T3 cz1 stand p2 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:06.306657"
+    },
+    "2-main_file_name:NRTC T3 cz1 stand p2 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTC T3 cz1 stand p2 - 2015-04.parquet_shape": [
+            9300,
+            139
+        ]
+    },
+    "Step 2. Item with ID:128. Files: main_file_name:NRTS 140M3skok - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:06.475618"
+    },
+    "2-main_file_name:NRTS 140M3skok - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "NRTS 140M3skok - 2014-11.parquet_shape": [
+            7300,
+            149
+        ]
+    },
+    "Step 2. Item with ID:129. Files: main_file_name:obc 1600 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:06.648358"
+    },
+    "2-main_file_name:obc 1600 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "obc 1600 - 2014-11.parquet_shape": [
+            26396,
+            149
+        ]
+    },
+    "Step 2. Item with ID:130. Files: main_file_name:Obc 1800 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:07.051904"
+    },
+    "2-main_file_name:Obc 1800 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "Obc 1800 - 2015-04.parquet_shape": [
+            28546,
+            143
+        ]
+    },
+    "Step 2. Item with ID:131. Files: main_file_name:obc 2000 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:07.296554"
+    },
+    "2-main_file_name:obc 2000 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "obc 2000 - 2014-11.parquet_shape": [
+            26809,
+            149
+        ]
+    },
+    "Step 2. Item with ID:132. Files: main_file_name:Obc 2000 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:07.520654"
+    },
+    "2-main_file_name:Obc 2000 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "Obc 2000 - 2015-04.parquet_shape": [
+            21567,
+            143
+        ]
+    },
+    "Step 2. Item with ID:133. Files: main_file_name:obc 2400 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:08.284878"
+    },
+    "2-main_file_name:obc 2400 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "obc 2400 - 2014-11.parquet_shape": [
+            25097,
+            149
+        ]
+    },
+    "Step 2. Item with ID:134. Files: main_file_name:Obc 2400 I Istg 1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:08.611654"
+    },
+    "2-main_file_name:Obc 2400 I Istg 1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "Obc 2400 I Istg 1 - 2015-04.parquet_shape": [
+            31472,
+            143
+        ]
+    },
+    "Step 2. Item with ID:135. Files: main_file_name:obc1500_1s - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:08.974798"
+    },
+    "2-main_file_name:obc1500_1s - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "obc1500_1s - 2014-11.parquet_shape": [
+            9567,
+            149
+        ]
+    },
+    "Step 2. Item with ID:136. Files: main_file_name:obc1500_3s - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:09.166430"
+    },
+    "2-main_file_name:obc1500_3s - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "obc1500_3s - 2014-11.parquet_shape": [
+            10956,
+            149
+        ]
+    },
+    "Step 2. Item with ID:137. Files: main_file_name:obc1500_5s - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:09.394315"
+    },
+    "2-main_file_name:obc1500_5s - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "obc1500_5s - 2014-11.parquet_shape": [
+            7704,
+            149
+        ]
+    },
+    "Step 2. Item with ID:138. Files: main_file_name:Rejestracja z cyklu NRTC T3 cz1 - 1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:09.542120"
+    },
+    "2-main_file_name:Rejestracja z cyklu NRTC T3 cz1 - 1 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "Rejestracja z cyklu NRTC T3 cz1 - 1 - 2015-04.parquet_shape": [
+            9399,
+            139
+        ]
+    },
+    "Step 2. Item with ID:139. Files: main_file_name:Rejestracja z cyklu NRTC T3 cz1 - 2 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:09.697227"
+    },
+    "2-main_file_name:Rejestracja z cyklu NRTC T3 cz1 - 2 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "Rejestracja z cyklu NRTC T3 cz1 - 2 - 2015-04.parquet_shape": [
+            9400,
+            139
+        ]
+    },
+    "Step 2. Item with ID:140. Files: main_file_name:Rejestracja z cyklu NRTC T3 cz1 - 3 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:10.076179"
+    },
+    "2-main_file_name:Rejestracja z cyklu NRTC T3 cz1 - 3 - 2015-04.parquet, eco_file_name:empty, Fuel:DF": {
+        "Rejestracja z cyklu NRTC T3 cz1 - 3 - 2015-04.parquet_shape": [
+            9300,
+            139
+        ]
+    },
+    "Step 2. Item with ID:141. Files: main_file_name:RME zew _ 2018-12-20 - 2018-12.parquet, eco_file_name:empty, Fuel:RME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:10.315319"
+    },
+    "2-main_file_name:RME zew _ 2018-12-20 - 2018-12.parquet, eco_file_name:empty, Fuel:RME": {
+        "RME zew _ 2018-12-20 - 2018-12.parquet_shape": [
+            22141,
+            1
+        ]
+    },
+    "Step 2. Item with ID:142. Files: main_file_name:RME zew _ 2018-12-20_eco - 2018-12.parquet, eco_file_name:empty, Fuel:RME": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:10.582083"
+    },
+    "2-main_file_name:RME zew _ 2018-12-20_eco - 2018-12.parquet, eco_file_name:empty, Fuel:RME": {
+        "RME zew _ 2018-12-20_eco - 2018-12.parquet_shape": [
+            10,
+            1
+        ]
+    },
+    "Step 2. Item with ID:143. Files: main_file_name:Rozruch 1900 150 Nm - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:10.677000"
+    },
+    "2-main_file_name:Rozruch 1900 150 Nm - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Rozruch 1900 150 Nm - 2015-05.parquet_shape": [
+            29950,
+            153
+        ]
+    },
+    "Step 2. Item with ID:152. Files: main_file_name:TMiE II st warunki - 2015-03.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:10.949201"
+    },
+    "2-main_file_name:TMiE II st warunki - 2015-03.parquet, eco_file_name:empty, Fuel:DF": {
+        "TMiE II st warunki - 2015-03.parquet_shape": [
+            18774,
+            139
+        ]
+    },
+    "Step 2. Item with ID:159. Files: main_file_name:TRiL 1 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:11.124681"
+    },
+    "2-main_file_name:TRiL 1 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "TRiL 1 - 2014-11.parquet_shape": [
+            971,
+            145
+        ]
+    },
+    "Step 2. Item with ID:160. Files: main_file_name:TRil 2 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:11.308052"
+    },
+    "2-main_file_name:TRil 2 - 2014-11.parquet, eco_file_name:empty, Fuel:DF": {
+        "TRil 2 - 2014-11.parquet_shape": [
+            17420,
+            145
+        ]
+    },
+    "Step 2. Item with ID:161. Files: main_file_name:TRiL TMiE warunki - 2015-03.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:11.549442"
+    },
+    "2-main_file_name:TRiL TMiE warunki - 2015-03.parquet, eco_file_name:empty, Fuel:DF": {
+        "TRiL TMiE warunki - 2015-03.parquet_shape": [
+            12667,
+            139
+        ]
+    },
+    "Step 2. Item with ID:176. Files: main_file_name:Zew Efekta Agrotronika - 2019-05.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-10 15:47:11.842041"
+    },
+    "2-main_file_name:Zew Efekta Agrotronika - 2019-05.parquet, eco_file_name:empty, Fuel:EDF": {
+        "Zew Efekta Agrotronika - 2019-05.parquet_shape": [
+            28344,
+            151
+        ]
+    }
+}

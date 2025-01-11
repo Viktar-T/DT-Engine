@@ -21,6 +21,7 @@ from src.log_manager import LogManager
 from src.data_visualizer import DataVisualizer
 from src.data_transformation import DataTransformation
 from src.data_filter import DataFilter
+from src.data_add_to_df import AddAdditionalDataToEachFile
 import json
 
 required_columns_for_validation_step = [
@@ -61,10 +62,10 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
     input_file_path = os.path.join(RAW_PARQUET_DATA_DIR, main_file_name)
     
     if not os.path.exists(input_file_path):
-        log_manager.log_error(f"File with ID:{json_item_id} not found: {input_file_path}")
+        log_manager.log_error(f"!!!---File with ID:{json_item_id} not found: {input_file_path}.---!!!")
         return
     
-    log_manager.log_info(f"Processing file with ID:{json_item_id}: {main_file_name}")
+    log_manager.log_info(f"!!!---Processing file with ID:{json_item_id}: {main_file_name}.---!!!")
 
     names_of_files_under_procession = [main_file_name, eco_file_name, fuel_name]
     files_for_steps = f"main_file_name:{main_file_name}, eco_file_name:{eco_file_name}, Fuel:{fuel_name}"
@@ -175,19 +176,29 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         corrected_df = data_transformation.exhaust_gas_mean_temperature_calculation()
 
         #Step 8: Add fuel data
+        step_8_file_name = f"Step 8. Item with ID:{json_item_id}. Files: {files_for_steps}"
+        log_manager.log_info("Step 8: Adding fuel data...")
         
+        add_fuel_obj = AddAdditionalDataToEachFile(
+            df=corrected_df,
+            names_of_files_under_procession=names_of_files_under_procession,
+            metadata_manager=metadata_manager,
+            log_manager=log_manager
+        )
+        df_with_fuel = add_fuel_obj.add_fuel()
+        metadata_manager.update_metadata(step_8_file_name, 'step_8_status', 'completed')
+        metadata_manager.update_metadata(step_8_file_name, 'step_8_end_time', str(datetime.now()))
+        log_manager.log_info("Step 8: Fuel data added successfully.")
 
         # Save transformed data
         #transformed_data_parquet_path = os.path.join(PROCESSED_DATA_SEPARATE_FILES_DIR, f'transformed_data_{main_file_name}.parquet')
         transformed_data_parquet_path = os.path.join(PROCESSED_DATA_WITH_FUELS_FILE_DIR, f'{main_file_name}_tr_f.parquet')
-        corrected_df.to_parquet(transformed_data_parquet_path, index=False)
-
-        metadata_manager.update_metadata(step_6_file_name, 'step_7_status', 'completed')
-        metadata_manager.update_metadata(step_6_file_name, 'step_7_end_time', str(datetime.now()))
-        log_manager.log_info("Step 7: Data transformation completed successfully.")
+        df_with_fuel.to_parquet(transformed_data_parquet_path, index=False)
 
         # Pipeline completed for this file
-        log_manager.log_info("Data pipeline completed successfully.")
+        log_manager.log_info(f"Data pipeline completed successfully for file with"
+                             f"ID:{json_item_id}: {main_file_name}")
+        log_manager.log_info("!!!--Data pipeline completed successfully.--!!!")
         metadata_manager.update_metadata(step_6_file_name, 'pipeline_status', 'completed')
 
     except Exception as e:

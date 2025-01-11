@@ -22,6 +22,7 @@ class DataLoader:
 
     def __init__(self, raw_data_path: str = RAW_DATA_DIR, 
                  names_of_files_under_procession: List[str] = None,
+                 json_path: str = None,
                  metadata_manager: MetadataManager = None, 
                  log_manager: LogManager = None):
         """
@@ -34,6 +35,7 @@ class DataLoader:
         """
         self.raw_data_path = raw_data_path
         self.names_of_files_under_procession = names_of_files_under_procession
+        self.json_path = json_path
         if not os.path.exists(self.raw_data_path):
             if log_manager:
                 log_manager.log_error(f"Directory '{self.raw_data_path}' does not exist.")
@@ -67,7 +69,7 @@ class DataLoader:
     # !!!! used in main.py !!!!
     def select_from_json_and_load_data(self, selected_id: int) -> List[pd.DataFrame]:
         """
-        Select data files to load based on 'files_with_raw_data_links.json' and a provided 'id'.
+        Select data files to load based on 'self.json_path.json' and a provided 'id'.
 
         Parameters:
         - selected_id: The ID of the data entry to load.
@@ -75,17 +77,15 @@ class DataLoader:
         Returns:
         - List of DataFrames loaded from the selected files.
         """
-        # Define the path to the JSON file
-        json_file_path = os.path.join(self.raw_data_path, 'files_with_raw_data_links.json')
 
         # Check if the JSON file exists
-        if not os.path.exists(json_file_path):
+        if not os.path.exists(self.json_path):
             if self.log_manager:
-                self.log_manager.log_error(f"JSON file '{json_file_path}' does not exist.")
-            raise FileNotFoundError(f"JSON file '{json_file_path}' does not exist.")
+                self.log_manager.log_error(f"JSON file '{self.json_path}' does not exist.")
+            raise FileNotFoundError(f"JSON file '{self.json_path}' does not exist.")
 
         # Open and read the JSON file
-        with open(json_file_path, 'r', encoding='utf-8') as f:
+        with open(self.json_path, 'r', encoding='utf-8') as f:
             data_links = json.load(f)
 
         # Flatten the JSON structure to a list of entries
@@ -149,6 +149,9 @@ class DataLoader:
         Returns:
         - DataFrame containing the loaded data, or None if the file format is unsupported.
         """
+        if file_name == "empty":
+            return None
+        
         file_path = os.path.join(self.raw_data_path, file_name)
         if not os.path.exists(file_path):
             if self.log_manager:

@@ -17,7 +17,7 @@ from src.log_manager import LogManager
 chosen_fuels = [
     {"DF": ["ON", "Diesel", "diesel"]},
     {"HVO": ["HVO", "Hydrotreated Vegetable Oil"]},
-    {"HVO25 - 25%HVO+75%DF": ["HVO25"]},
+    {"HVO25": ["HVO25", "25%HVO+75%DF"]},
     {"RME": ["RME", "Rapeseed Methyl Ester"]},
     {"EDF": ["Efecta", "Efekta", "Efekta Agrotronika", "Efecta Diesel Fuel"]},
     {"UCOME": ["BIOW", "UCOME", "Used Cooking Oil Methyl Esters"]},
@@ -29,12 +29,12 @@ class JSONBuilder:
         self.data_dir = data_dir
         self.template = {
             "id": 0,
-            "main_file_name": "",
-            "eco_file_name": "",
-            "description": "",
-            "diesel_test_type": "",
-            "fuel": "",
-            "diesel_engine_name": "",
+            "main_file_name": "empty",
+            "eco_file_name": "empty",
+            "description": "empty",
+            "diesel_test_type": "empty",
+            "fuel": "empty",
+            "diesel_engine_name": "empty",
         }
         self.json_data = {"Lublin Diesel": []}
         self.current_id = 1  # Initialize the ID counter
