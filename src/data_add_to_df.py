@@ -32,44 +32,46 @@ class AddAdditionalDataToEachFile:
 
     def add_fuel(self) -> pd.DataFrame:
         """
-        Adds fuel properties to the DataFrame based on matching short names in the fuel data JSON.
+        Adds fuel properties to the DataFrame based on matching fuel name in the given fuel data.
 
         Returns:
-            pd.DataFrame: Updated DataFrame with additional columns.
+            pd.DataFrame: Updated DataFrame with additional columns containing fuel properties.
         """
         if self.log_manager:
             self.log_manager.log_info("Starting add_fuel process.")
-        
-        # Load fuel data
-        try:
-            #with open(FUELS_DATA_DIR, "r") as f:
-            #    fuels_data = json.load(f)
-            fuels_data_dict = {fuel["short_name"]: fuel["properties"] for fuel in self.fuels_data}
-        except (FileNotFoundError, json.JSONDecodeError) as e:
+
+        # Identify the fuel name from names_of_files_under_procession
+        if not self.names_of_files_under_procession or len(self.names_of_files_under_procession) < 3:
             if self.log_manager:
-                self.log_manager.error(f"Error reading fuels data: {e}")
-            raise
+                self.log_manager.log_error("Fuel name not found in names_of_files_under_procession.")
+            raise ValueError("Fuel name is not provided or invalid in names_of_files_under_procession.")
+        
+        fuel_name = self.names_of_files_under_procession[2]
 
-        # Process each row in the DataFrame
-        for index, row in self.df.iterrows():
-            fuel_short_name = row.get("fuel", "")
-            fuel_properties = fuels_data_dict.get(fuel_short_name)
-            
-            if fuel_properties:
-                for prop_name, prop_val in fuel_properties.items():
-                    column_name = f"{prop_name}, {prop_val[1]}"
-                    self.df.at[index, column_name] = prop_val[0]
+        # Match the fuel_name with fuels_data
+        matched_fuel_data = next((fuel for fuel in self.fuels_data if fuel["short_name"] == fuel_name), None)
+        if not matched_fuel_data:
+            if self.log_manager:
+                self.log_manager.log_error(f"Fuel '{fuel_name}' not found in fuels_data.")
+            raise ValueError(f"Fuel '{fuel_name}' not found in fuels_data.")
 
-        # Construct step_8_file_name
-        self.step_8_file_name = self._construct_file_name()
+        # Extract properties from the matched fuel data
+        fuel_properties = matched_fuel_data["properties"]
 
-        # Update metadata if applicable
-        self._update_metadata()
+        # Add new columns for fuel properties
+        for prop_name, prop_val in fuel_properties.items():
+            column_name = f"{prop_name}, {prop_val[1]}" if prop_val[1] != "-" else prop_name
+            self.df[column_name] = prop_val[0]  # Assign the same value for all rows
 
-        # Log final DataFrame details
-        self._log_dataframe_details()
+        # Log the update
+        if self.log_manager:
+            self.log_manager.log_info(
+                f"Fuel properties for '{fuel_name}' added to DataFrame. Columns added: {list(fuel_properties.keys())}"
+            )
 
+        # Return the updated DataFrame
         return self.df
+
 
     def _construct_file_name(self) -> str:
         """

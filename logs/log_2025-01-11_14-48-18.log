@@ -1,0 +1,12 @@
+2025-01-11 14:48:18,389 - INFO - !!!---Processing file with ID:1: 1200 obc - 2015-05.parquet.---!!!
+2025-01-11 14:48:18,389 - INFO - Step 2: Loading raw data...
+2025-01-11 14:48:18,393 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
+2025-01-11 14:48:18,393 - ERROR - An error occurred: exists: path should be string, bytes, os.PathLike or integer, not NoneType
+2025-01-11 14:48:18,395 - INFO - !!!---Processing file with ID:2: 1300 obc - 2015-05.parquet.---!!!
+2025-01-11 14:48:18,396 - INFO - Step 2: Loading raw data...
+2025-01-11 14:48:18,401 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
+2025-01-11 14:48:18,401 - ERROR - An error occurred: exists: path should be string, bytes, os.PathLike or integer, not NoneType
+2025-01-11 14:48:18,406 - INFO - !!!---Processing file with ID:4: 1400 Efecta TiL I rok II st - 2019-04.parquet.---!!!
+2025-01-11 14:48:18,407 - INFO - Step 2: Loading raw data...
+2025-01-11 14:48:18,413 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
+2025-01-11 14:48:18,414 - ERROR - An error occurred: exists: path should be string, bytes, os.PathLike or integer, not NoneType
