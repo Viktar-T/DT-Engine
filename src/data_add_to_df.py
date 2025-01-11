@@ -11,6 +11,7 @@ class AddAdditionalDataToEachFile:
         self, 
         df: pd.DataFrame,
         names_of_files_under_procession: Optional[List[str]] = None,
+        fuels_data: Optional[List[dict]] = None,
         metadata_manager: Optional[MetadataManager] = None,
         log_manager: Optional[LogManager] = None
     ):
@@ -25,6 +26,7 @@ class AddAdditionalDataToEachFile:
         """
         self.df = df
         self.names_of_files_under_procession = names_of_files_under_procession
+        self.fuels_data = fuels_data
         self.metadata_manager = metadata_manager
         self.log_manager = log_manager
 
@@ -36,13 +38,13 @@ class AddAdditionalDataToEachFile:
             pd.DataFrame: Updated DataFrame with additional columns.
         """
         if self.log_manager:
-            self.log_manager.info("Starting add_fuel process.")
+            self.log_manager.log_info("Starting add_fuel process.")
         
         # Load fuel data
         try:
-            with open(FUELS_DATA_DIR, "r") as f:
-                fuels_data = json.load(f)
-            fuels_data_dict = {fuel["short_name"]: fuel["properties"] for fuel in fuels_data}
+            #with open(FUELS_DATA_DIR, "r") as f:
+            #    fuels_data = json.load(f)
+            fuels_data_dict = {fuel["short_name"]: fuel["properties"] for fuel in self.fuels_data}
         except (FileNotFoundError, json.JSONDecodeError) as e:
             if self.log_manager:
                 self.log_manager.error(f"Error reading fuels data: {e}")
@@ -104,8 +106,8 @@ class AddAdditionalDataToEachFile:
         Logs details of the DataFrame after processing.
         """
         if self.log_manager:
-            self.log_manager.info(f"DataFrame shape after processing: {self.df.shape}")
-            self.log_manager.info(f"Columns in DataFrame: {list(self.df.columns)}")
-            self.log_manager.info("add_fuel process completed successfully.")
+            self.log_manager.log_info(f"DataFrame shape after processing: {self.df.shape}")
+            self.log_manager.log_info(f"Columns in DataFrame: {list(self.df.columns)}")
+            self.log_manager.log_info("add_fuel process completed successfully.")
 
 

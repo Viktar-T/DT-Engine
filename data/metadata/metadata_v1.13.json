@@ -1,0 +1,13 @@
+{
+    "Step 2. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-11 11:23:30.905888"
+    },
+    "2-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1200 obc - 2015-05.parquet_shape": [
+            23360,
+            143
+        ]
+    }
+}

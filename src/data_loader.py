@@ -20,7 +20,7 @@ class DataLoader:
     Supports CSV and Excel files and includes basic validation checks.
     """
 
-    def __init__(self, raw_data_path: str = RAW_DATA_DIR, 
+    def __init__(self, raw_data_path: str = None, 
                  names_of_files_under_procession: List[str] = None,
                  json_path: str = None,
                  metadata_manager: MetadataManager = None, 
@@ -122,16 +122,16 @@ class DataLoader:
                 raise FileNotFoundError(f"Main file '{main_file_name}' not found or failed to load.")
 
         # Load the eco file using the existing load_data method
-        if eco_file_name:
-            if self.log_manager:
-                self.log_manager.log_info(f"Loading eco file: {eco_file_name}")
-            df_eco = self.load_data(eco_file_name)
-            if df_eco is not None:
-                data_frames.append(df_eco)
-            else:
-                if self.log_manager:
-                    self.log_manager.log_error(f"Failed to load eco file '{eco_file_name}'.")
-                raise FileNotFoundError(f"Eco file '{eco_file_name}' not found or failed to load.")
+        #if eco_file_name:
+        #    if self.log_manager:
+        #        self.log_manager.log_info(f"Loading eco file: {eco_file_name}")
+        #    df_eco = self.load_data(eco_file_name)
+        #    if df_eco is not None:
+        #        data_frames.append(df_eco)
+        #    else:
+        #        if self.log_manager:
+        #            self.log_manager.log_error(f"Failed to load eco file '{eco_file_name}'.")
+        #        raise FileNotFoundError(f"Eco file '{eco_file_name}' not found or failed to load.")
 
         if self.log_manager:
             self.log_manager.log_info("Data files loaded successfully.")
