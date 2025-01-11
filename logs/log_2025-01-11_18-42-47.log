@@ -1,30 +1,30 @@
-2025-01-11 13:39:43,670 - INFO - !!!---Processing file with ID:1: 1200 obc - 2015-05.parquet.---!!!
-2025-01-11 13:39:43,670 - INFO - Step 2: Loading raw data...
-2025-01-11 13:39:43,674 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
-2025-01-11 13:39:43,675 - INFO - Loading main file: 1200 obc - 2015-05.parquet
-2025-01-11 13:39:43,675 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1200 obc - 2015-05.parquet
-2025-01-11 13:39:43,801 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1200 obc - 2015-05.parquet
-2025-01-11 13:39:43,802 - INFO - Data Frame Shape: (23360, 143)
-2025-01-11 13:39:43,802 - INFO - Data Frame Columns: ['Czas [ms]', 'Ciś. pow. przed turb.[Pa]', 'Czas [ms].1', 'Ciś. pow. za turb.[Pa]', 'Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]', 'Czas [ms].3', 'Ciśnienie oleju[bar]', 'Czas [ms].4', 'Ciśnienie spalin[Pa]', 'Czas [ms].5', 'Dopeł. zb. 1/3[-]', 'Czas [ms].6', 'Dopeł. zb. 2/3[-]', 'Czas [ms].7', 'Dopeł. zb. 3/3[-]', 'Czas [ms].8', 'Dopełnianie[-]', 'Czas [ms].9', 'Duży obieg[-]', 'Czas [ms].10', 'ECT - wejście do sil.[°C]', 'Czas [ms].11', 'ECT - wyjście z sil.[°C]', 'Czas [ms].12', 'Główny obieg - przepływ[m³/h]', 'Czas [ms].13', 'Główny obieg - temp.[°C]', 'Czas [ms].14', 'GPReg_Setpoint0[°C]', 'Czas [ms].15', 'GPReg_Setpoint1[°C]', 'Czas [ms].16', 'GPReg_Setpoint2[°C]', 'Czas [ms].17', 'Hamulec, lewa komora, temp.[°C]', 'Czas [ms].18', 'Hamulec, prawa komora, temp.[°C]', 'Czas [ms].19', 'Hamulec, przepływ wody[m³/h]', 'Czas [ms].20', 'Ilość paliwa w zbiorniku[g]', 'Czas [ms].21', 'Kond. - przepływ wody[l/min]', 'Czas [ms].22', 'Kontrolka zb. 1/3 [-]', 'Czas [ms].23', 'Kontrolka zb. 2/3 [-]', 'Czas [ms].24', 'Kontrolka zb. 3/3 [-]', 'Czas [ms].25', 'MAF[kg/h]', 'Czas [ms].26', 'Moc[kW]', 'Czas [ms].27', 'Moment obrotowy[Nm]', 'Czas [ms].28', 'Moment Tryb3[Nm]', 'Czas [ms].29', 'Obroty[obr/min]', 'Czas [ms].30', 'Poz. paliwa zb. 1/3[mm]', 'Czas [ms].31', 'Poz. paliwa zb. 2/3[mm]', 'Czas [ms].32', 'Poz. paliwa zb. 3/3[mm]', 'Czas [ms].33', 'Przekaź. pompy paliwa[-]', 'Czas [ms].34', 'Przekaźnik zapłonu[-]', 'Czas [ms].35', 'Przepustnica[%]', 'Czas [ms].36', 'Przepustnica Tryb0[%]', 'Czas [ms].37', 'Przyklad[bar]', 'Czas [ms].38', 'PWM Tryb0[%]', 'Czas [ms].39', 'Rozrusznik[-]', 'Czas [ms].40', 'RPM Tryb3[obr/min]', 'Czas [ms].41', 'Starter[-]', 'Czas [ms].42', 'Stycz. chłodni went.[-]', 'Czas [ms].43', 'Temp. oleju przed wym.[°C]', 'Czas [ms].44', 'Temp. oleju w misce[°C]', 'Czas [ms].45', 'Temp. oleju za wym.[°C]', 'Czas [ms].46', 'Temp. otoczenia[°C]', 'Czas [ms].47', 'Temp. pal. na wejściu sil.[°C]', 'Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]', 'Czas [ms].49', 'Temp. paliwa w zb. 1/3[°C]', 'Czas [ms].50', 'Temp. paliwa w zb. 2/3[°C]', 'Czas [ms].51', 'Temp. paliwa w zb. 3/3[°C]', 'Czas [ms].52', 'Temp. powietrza przed turb.[°C]', 'Czas [ms].53', 'Temp. powietrza za turb.[°C]', 'Czas [ms].54', 'Temp. spalin 1/6[°C]', 'Czas [ms].55', 'Temp. spalin 2/6[°C]', 'Czas [ms].56', 'Temp. spalin 3/6[°C]', 'Czas [ms].57', 'Temp. spalin 4/6[°C]', 'Czas [ms].58', 'Temp. spalin za turbiną 1/2[°C]', 'Czas [ms].59', 'Temp. spalin za turbiną 2/2[°C]', 'Czas [ms].60', 'Temp.pal.na wyjściu[°C]', 'Czas [ms].61', 'Temp.paliwa żądana[°C]', 'Czas [ms].62', 'Wilgotność względna[%]', 'Czas [ms].63', 'Wyłącznik bezpieczeństwa[-]', 'Czas [ms].64', 'Zapłon[-]', 'Czas [ms].65', 'Zaw. zb. paliwa 1/3[-]', 'Czas [ms].66', 'Zaw. zb. paliwa 2/3[-]', 'Czas [ms].67', 'Zaw. zb. paliwa 3/3[-]', 'Czas [ms].68', 'Zawór reg. chł. cieczy[-]', 'Czas [ms].69', 'Zużycie paliwa bieżące[g/s]', 'Czas [ms].70', 'Zużycie paliwa średnie[g/s]', 'Unnamed: 142']
-2025-01-11 13:39:43,805 - INFO - Data files loaded successfully.
-2025-01-11 13:39:43,808 - INFO - Step 2: Raw data loaded successfully.
-2025-01-11 13:39:43,808 - INFO - Step 3: Validating data...
-2025-01-11 13:39:43,814 - INFO - DataValidator initialized.
-2025-01-11 13:39:43,814 - INFO - Starting column validation for multiple DataFrames...
-2025-01-11 13:39:43,814 - INFO - Starting schema validation for multiple DataFrames...
-2025-01-11 13:39:43,816 - INFO - DataFrame 0 - Schema validation passed.
-2025-01-11 13:39:43,816 - INFO - Checking for duplicate columns in multiple DataFrames...
-2025-01-11 13:39:43,816 - INFO - DataFrame 0: No duplicate columns found.
-2025-01-11 13:39:43,816 - INFO - Validation reports summarizing the results for each DataFrame
-2025-01-11 13:39:43,817 - INFO - =================
+2025-01-11 18:42:47,700 - INFO - !!!---Processing file with ID:1: 1200 obc - 2015-05.parquet.---!!!
+2025-01-11 18:42:47,700 - INFO - Step 2: Loading raw data...
+2025-01-11 18:42:47,700 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
+2025-01-11 18:42:47,700 - INFO - Loading main file: 1200 obc - 2015-05.parquet
+2025-01-11 18:42:47,700 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1200 obc - 2015-05.parquet
+2025-01-11 18:42:47,792 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1200 obc - 2015-05.parquet
+2025-01-11 18:42:47,792 - INFO - Data Frame Shape: (23360, 143)
+2025-01-11 18:42:47,792 - INFO - Data Frame Columns: ['Czas [ms]', 'Ciś. pow. przed turb.[Pa]', 'Czas [ms].1', 'Ciś. pow. za turb.[Pa]', 'Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]', 'Czas [ms].3', 'Ciśnienie oleju[bar]', 'Czas [ms].4', 'Ciśnienie spalin[Pa]', 'Czas [ms].5', 'Dopeł. zb. 1/3[-]', 'Czas [ms].6', 'Dopeł. zb. 2/3[-]', 'Czas [ms].7', 'Dopeł. zb. 3/3[-]', 'Czas [ms].8', 'Dopełnianie[-]', 'Czas [ms].9', 'Duży obieg[-]', 'Czas [ms].10', 'ECT - wejście do sil.[°C]', 'Czas [ms].11', 'ECT - wyjście z sil.[°C]', 'Czas [ms].12', 'Główny obieg - przepływ[m³/h]', 'Czas [ms].13', 'Główny obieg - temp.[°C]', 'Czas [ms].14', 'GPReg_Setpoint0[°C]', 'Czas [ms].15', 'GPReg_Setpoint1[°C]', 'Czas [ms].16', 'GPReg_Setpoint2[°C]', 'Czas [ms].17', 'Hamulec, lewa komora, temp.[°C]', 'Czas [ms].18', 'Hamulec, prawa komora, temp.[°C]', 'Czas [ms].19', 'Hamulec, przepływ wody[m³/h]', 'Czas [ms].20', 'Ilość paliwa w zbiorniku[g]', 'Czas [ms].21', 'Kond. - przepływ wody[l/min]', 'Czas [ms].22', 'Kontrolka zb. 1/3 [-]', 'Czas [ms].23', 'Kontrolka zb. 2/3 [-]', 'Czas [ms].24', 'Kontrolka zb. 3/3 [-]', 'Czas [ms].25', 'MAF[kg/h]', 'Czas [ms].26', 'Moc[kW]', 'Czas [ms].27', 'Moment obrotowy[Nm]', 'Czas [ms].28', 'Moment Tryb3[Nm]', 'Czas [ms].29', 'Obroty[obr/min]', 'Czas [ms].30', 'Poz. paliwa zb. 1/3[mm]', 'Czas [ms].31', 'Poz. paliwa zb. 2/3[mm]', 'Czas [ms].32', 'Poz. paliwa zb. 3/3[mm]', 'Czas [ms].33', 'Przekaź. pompy paliwa[-]', 'Czas [ms].34', 'Przekaźnik zapłonu[-]', 'Czas [ms].35', 'Przepustnica[%]', 'Czas [ms].36', 'Przepustnica Tryb0[%]', 'Czas [ms].37', 'Przyklad[bar]', 'Czas [ms].38', 'PWM Tryb0[%]', 'Czas [ms].39', 'Rozrusznik[-]', 'Czas [ms].40', 'RPM Tryb3[obr/min]', 'Czas [ms].41', 'Starter[-]', 'Czas [ms].42', 'Stycz. chłodni went.[-]', 'Czas [ms].43', 'Temp. oleju przed wym.[°C]', 'Czas [ms].44', 'Temp. oleju w misce[°C]', 'Czas [ms].45', 'Temp. oleju za wym.[°C]', 'Czas [ms].46', 'Temp. otoczenia[°C]', 'Czas [ms].47', 'Temp. pal. na wejściu sil.[°C]', 'Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]', 'Czas [ms].49', 'Temp. paliwa w zb. 1/3[°C]', 'Czas [ms].50', 'Temp. paliwa w zb. 2/3[°C]', 'Czas [ms].51', 'Temp. paliwa w zb. 3/3[°C]', 'Czas [ms].52', 'Temp. powietrza przed turb.[°C]', 'Czas [ms].53', 'Temp. powietrza za turb.[°C]', 'Czas [ms].54', 'Temp. spalin 1/6[°C]', 'Czas [ms].55', 'Temp. spalin 2/6[°C]', 'Czas [ms].56', 'Temp. spalin 3/6[°C]', 'Czas [ms].57', 'Temp. spalin 4/6[°C]', 'Czas [ms].58', 'Temp. spalin za turbiną 1/2[°C]', 'Czas [ms].59', 'Temp. spalin za turbiną 2/2[°C]', 'Czas [ms].60', 'Temp.pal.na wyjściu[°C]', 'Czas [ms].61', 'Temp.paliwa żądana[°C]', 'Czas [ms].62', 'Wilgotność względna[%]', 'Czas [ms].63', 'Wyłącznik bezpieczeństwa[-]', 'Czas [ms].64', 'Zapłon[-]', 'Czas [ms].65', 'Zaw. zb. paliwa 1/3[-]', 'Czas [ms].66', 'Zaw. zb. paliwa 2/3[-]', 'Czas [ms].67', 'Zaw. zb. paliwa 3/3[-]', 'Czas [ms].68', 'Zawór reg. chł. cieczy[-]', 'Czas [ms].69', 'Zużycie paliwa bieżące[g/s]', 'Czas [ms].70', 'Zużycie paliwa średnie[g/s]', 'Unnamed: 142']
+2025-01-11 18:42:47,808 - INFO - Data files loaded successfully.
+2025-01-11 18:42:47,813 - INFO - Step 2: Raw data loaded successfully.
+2025-01-11 18:42:47,813 - INFO - Step 3: Validating data...
+2025-01-11 18:42:47,818 - INFO - DataValidator initialized.
+2025-01-11 18:42:47,819 - INFO - Starting column validation for multiple DataFrames...
+2025-01-11 18:42:47,819 - INFO - Starting schema validation for multiple DataFrames...
+2025-01-11 18:42:47,820 - INFO - DataFrame 0 - Schema validation passed.
+2025-01-11 18:42:47,820 - INFO - Checking for duplicate columns in multiple DataFrames...
+2025-01-11 18:42:47,820 - INFO - DataFrame 0: No duplicate columns found.
+2025-01-11 18:42:47,821 - INFO - Validation reports summarizing the results for each DataFrame
+2025-01-11 18:42:47,821 - INFO - =================
 Validation Report for DataFrame Num=0, file_name:'1200 obc - 2015-05.parquet'(0 - main Data Frame; 1 - eco Data Frame; 2 - fuels):
 DataFrame Shape: (23360, 143) (Rows, Columns) <--- !!!!!!!!!
 All Required Columns: Present
 All Optional Columns: Present
-2025-01-11 13:39:43,817 - INFO - Step 3: Data validated successfully.
-2025-01-11 13:39:43,821 - INFO - Starting metadata extraction for multiple DataFrames...
-2025-01-11 13:39:43,821 - INFO - Processing DataFrame 1/1 with shape (23360, 143)...
-2025-01-11 13:39:43,927 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1200 obc - 2015-05.parquet', 'empty', 'DF', 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\fuels\\fuels.json'],None:
+2025-01-11 18:42:47,822 - INFO - Step 3: Data validated successfully.
+2025-01-11 18:42:47,825 - INFO - Starting metadata extraction for multiple DataFrames...
+2025-01-11 18:42:47,825 - INFO - Processing DataFrame 1/1 with shape (23360, 143)...
+2025-01-11 18:42:47,925 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1200 obc - 2015-05.parquet', 'empty', 'DF'],None:
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
 |     | Column                           |   Total Values |   Non-Null Count |   Null Count |   Unique Values | Data Type   |
 +=====+==================================+================+==================+==============+=================+=============+
@@ -314,148 +314,148 @@ All Optional Columns: Present
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
 | 142 | Unnamed: 142                     |              0 |                0 |        23360 |               0 | float64     |
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
-2025-01-11 13:39:43,960 - INFO - Metadata extraction completed for all DataFrames.
-2025-01-11 13:39:43,965 - INFO - Step 4: Metadata extracted successfully.
-2025-01-11 13:39:43,967 - INFO - Step 5: Filtering and preprocessing data...
-2025-01-11 13:39:43,976 - INFO - Column pairs: [['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'], ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'], ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'], ['Czas [ms].25', 'MAF[kg/h]'], ['Czas [ms].26', 'Moc[kW]'], ['Czas [ms].27', 'Moment obrotowy[Nm]'], ['Czas [ms].29', 'Obroty[obr/min]'], ['Czas [ms].44', 'Temp. oleju w misce[°C]'], ['Czas [ms].46', 'Temp. otoczenia[°C]'], ['Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]'], ['Czas [ms].53', 'Temp. powietrza za turb.[°C]'], ['Czas [ms].54', 'Temp. spalin 1/6[°C]'], ['Czas [ms].55', 'Temp. spalin 2/6[°C]'], ['Czas [ms].56', 'Temp. spalin 3/6[°C]'], ['Czas [ms].57', 'Temp. spalin 4/6[°C]'], ['Czas [ms].62', 'Wilgotność względna[%]'], ['Czas [ms].70', 'Zużycie paliwa średnie[g/s]']]
-2025-01-11 13:39:43,983 - INFO - Filtered DataFrame to include 34 columns.
-2025-01-11 13:39:44,065 - INFO - Time columns synchronized successfully.
-2025-01-11 13:39:44,068 - INFO - Filtered DataFrame shape. after synchronize_time(): (2336, 18)
-2025-01-11 13:39:44,069 - INFO - DataCleaner initialized.
-2025-01-11 13:39:44,070 - INFO - Starting data cleaning process.
-2025-01-11 13:39:44,081 - INFO - Data cleaning process completed.
-2025-01-11 13:39:44,082 - INFO - Starting identify_stable_rotation with threshold=20 and window='8000ms'
-2025-01-11 13:39:44,082 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:44,083 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:44,083 - INFO - 'Time' column set as index.
-2025-01-11 13:39:44,083 - INFO - Computing rolling max and min of 'Obroty[obr/min]'.
-2025-01-11 13:39:44,085 - INFO - Identified 1816 points where rotation difference ≤ threshold.
-2025-01-11 13:39:44,087 - INFO - Labeled stable regions into 23 groups.
-2025-01-11 13:39:44,089 - INFO - Group 1: Found 3 stable time points.
-2025-01-11 13:39:44,091 - INFO - Group 3: Found 3 stable time points.
-2025-01-11 13:39:44,091 - INFO - Group 5: Found 940 stable time points.
-2025-01-11 13:39:44,092 - INFO - Group 7: Found 96 stable time points.
-2025-01-11 13:39:44,092 - INFO - Group 9: Found 71 stable time points.
-2025-01-11 13:39:44,093 - INFO - Group 11: Found 43 stable time points.
-2025-01-11 13:39:44,093 - INFO - Group 13: Found 119 stable time points.
-2025-01-11 13:39:44,093 - INFO - Group 15: Found 108 stable time points.
-2025-01-11 13:39:44,094 - INFO - Group 17: Found 62 stable time points.
-2025-01-11 13:39:44,094 - INFO - Group 19: Found 39 stable time points.
-2025-01-11 13:39:44,094 - INFO - Group 21: Found 43 stable time points.
-2025-01-11 13:39:44,095 - INFO - Group 23: Found 289 stable time points.
-2025-01-11 13:39:44,096 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:44,096 - INFO - Identified 12 stable rotation levels.
-2025-01-11 13:39:44,098 - INFO - Group 0: Mean rotation = 2.0 RPM.
-2025-01-11 13:39:44,100 - INFO - Group 1: Mean rotation = 803.3 RPM.
-2025-01-11 13:39:44,103 - INFO - Group 2: Mean rotation = 1200.2 RPM.
-2025-01-11 13:39:44,104 - INFO - Group 3: Mean rotation = 1200.2 RPM.
-2025-01-11 13:39:44,105 - INFO - Group 4: Mean rotation = 1199.1 RPM.
-2025-01-11 13:39:44,109 - INFO - Group 5: Mean rotation = 1199.6 RPM.
-2025-01-11 13:39:44,111 - INFO - Group 6: Mean rotation = 1200.2 RPM.
-2025-01-11 13:39:44,112 - INFO - Group 7: Mean rotation = 1198.8 RPM.
-2025-01-11 13:39:44,114 - INFO - Group 8: Mean rotation = 1203.0 RPM.
-2025-01-11 13:39:44,116 - INFO - Group 9: Mean rotation = 1198.5 RPM.
-2025-01-11 13:39:44,120 - INFO - Group 10: Mean rotation = 1301.7 RPM.
-2025-01-11 13:39:44,121 - INFO - Group 11: Mean rotation = 800.4 RPM.
-2025-01-11 13:39:44,122 - INFO - Stable rotation levels extracted. Average values: [2.0, 803.3, 1200.2, 1200.2, 1199.1, 1199.6, 1200.2, 1198.8, 1203.0, 1198.5, 1301.7, 800.4]
-2025-01-11 13:39:44,129 - INFO - !!!---> Starting identify_stable_torque_nm with threshold=1.6 and window='8000ms'
-2025-01-11 13:39:44,129 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:44,130 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:44,131 - INFO - 'Time' column set as index.
-2025-01-11 13:39:44,131 - INFO - Computing rolling max and min of 'Moment obrotowy[Nm]'.
-2025-01-11 13:39:44,134 - INFO - Rolling object parameters:
-2025-01-11 13:39:44,134 - INFO -  - window: 8000ms
-2025-01-11 13:39:44,135 - INFO -  - min_periods: 1
-2025-01-11 13:39:44,135 - INFO -  - center: False
-2025-01-11 13:39:44,135 - INFO -  - win_type: None
-2025-01-11 13:39:44,136 - INFO -  - axis: 0
-2025-01-11 13:39:44,136 - INFO -  - method: single
-2025-01-11 13:39:44,136 - INFO -  - closed: None
-2025-01-11 13:39:44,137 - INFO - Identified 1437 points where torque difference ≤ threshold.
-2025-01-11 13:39:44,139 - INFO - Labeled stable regions into 27 groups.
-2025-01-11 13:39:44,143 - INFO - Group 1: Found 337 stable time points.
-2025-01-11 13:39:44,144 - INFO - Group 3: Found 75 stable time points.
-2025-01-11 13:39:44,144 - INFO - Group 5: Found 55 stable time points.
-2025-01-11 13:39:44,145 - INFO - Group 7: Found 27 stable time points.
-2025-01-11 13:39:44,145 - INFO - Group 9: Found 4 stable time points.
-2025-01-11 13:39:44,145 - INFO - Group 11: Found 42 stable time points.
-2025-01-11 13:39:44,146 - INFO - Group 13: Found 75 stable time points.
-2025-01-11 13:39:44,146 - INFO - Group 15: Found 51 stable time points.
-2025-01-11 13:39:44,146 - INFO - Group 17: Found 66 stable time points.
-2025-01-11 13:39:44,147 - INFO - Group 19: Found 52 stable time points.
-2025-01-11 13:39:44,147 - INFO - Group 21: Found 31 stable time points.
-2025-01-11 13:39:44,148 - INFO - Group 23: Found 104 stable time points.
-2025-01-11 13:39:44,150 - INFO - Group 25: Found 55 stable time points.
-2025-01-11 13:39:44,151 - INFO - Group 27: Found 463 stable time points.
-2025-01-11 13:39:44,152 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:44,153 - INFO - Identified 14 stable torque levels.
-2025-01-11 13:39:44,154 - INFO - Group 0: Mean torque = 0.5 Nm.
-2025-01-11 13:39:44,155 - INFO - Group 1: Mean torque = 25.2 Nm.
-2025-01-11 13:39:44,160 - INFO - Group 2: Mean torque = 50.1 Nm.
-2025-01-11 13:39:44,161 - INFO - Group 3: Mean torque = 75.1 Nm.
-2025-01-11 13:39:44,163 - INFO - Group 4: Mean torque = 50.2 Nm.
-2025-01-11 13:39:44,165 - INFO - Group 5: Mean torque = 75.0 Nm.
-2025-01-11 13:39:44,167 - INFO - Group 6: Mean torque = 100.0 Nm.
-2025-01-11 13:39:44,170 - INFO - Group 7: Mean torque = 125.1 Nm.
-2025-01-11 13:39:44,171 - INFO - Group 8: Mean torque = 150.0 Nm.
-2025-01-11 13:39:44,175 - INFO - Group 9: Mean torque = 174.9 Nm.
-2025-01-11 13:39:44,177 - INFO - Group 10: Mean torque = 199.9 Nm.
-2025-01-11 13:39:44,179 - INFO - Group 11: Mean torque = 224.9 Nm.
-2025-01-11 13:39:44,180 - INFO - Group 12: Mean torque = 250.0 Nm.
-2025-01-11 13:39:44,182 - INFO - Group 13: Mean torque = 0.9 Nm.
-2025-01-11 13:39:44,183 - INFO - Stable torque levels extracted. Average values: [0.5, 25.2, 50.1, 75.1, 50.2, 75.0, 100.0, 125.1, 150.0, 174.9, 199.9, 224.9, 250.0, 0.9]
-2025-01-11 13:39:44,188 - INFO - Starting identify_stable_fuel_consumption with threshold=0.1 and window='8000ms'
-2025-01-11 13:39:44,189 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:44,191 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:44,193 - INFO - 'Time' column set as index.
-2025-01-11 13:39:44,193 - INFO - Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.
-2025-01-11 13:39:44,195 - INFO - Rolling object parameters:
-2025-01-11 13:39:44,195 - INFO -  - window: 8000ms
-2025-01-11 13:39:44,196 - INFO -  - min_periods: 1
-2025-01-11 13:39:44,196 - INFO -  - center: False
-2025-01-11 13:39:44,196 - INFO -  - axis: 0
-2025-01-11 13:39:44,197 - INFO -  - method: single
-2025-01-11 13:39:44,197 - INFO -  - closed: None
-2025-01-11 13:39:44,198 - INFO - Identified 1540 points where fuel consumption difference ≤ threshold.
-2025-01-11 13:39:44,201 - INFO - Labeled stable regions into 28 groups.
-2025-01-11 13:39:44,204 - INFO - Group 1: Found 1 stable time points.
-2025-01-11 13:39:44,204 - INFO - Group 3: Found 211 stable time points.
-2025-01-11 13:39:44,204 - INFO - Group 5: Found 87 stable time points.
-2025-01-11 13:39:44,205 - INFO - Group 7: Found 332 stable time points.
-2025-01-11 13:39:44,205 - INFO - Group 9: Found 158 stable time points.
-2025-01-11 13:39:44,205 - INFO - Group 11: Found 93 stable time points.
-2025-01-11 13:39:44,206 - INFO - Group 13: Found 46 stable time points.
-2025-01-11 13:39:44,208 - INFO - Group 15: Found 2 stable time points.
-2025-01-11 13:39:44,209 - INFO - Group 17: Found 25 stable time points.
-2025-01-11 13:39:44,210 - INFO - Group 19: Found 67 stable time points.
-2025-01-11 13:39:44,210 - INFO - Group 21: Found 101 stable time points.
-2025-01-11 13:39:44,210 - INFO - Group 23: Found 39 stable time points.
-2025-01-11 13:39:44,210 - INFO - Group 25: Found 107 stable time points.
-2025-01-11 13:39:44,211 - INFO - Group 27: Found 271 stable time points.
-2025-01-11 13:39:44,212 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:44,212 - INFO - Identified 14 stable fuel consumption levels.
-2025-01-11 13:39:44,213 - INFO - Group 0: Mean fuel consumption = 0.85 g/s.
-2025-01-11 13:39:44,215 - INFO - Group 1: Mean fuel consumption = 0.29 g/s.
-2025-01-11 13:39:44,217 - INFO - Group 2: Mean fuel consumption = 0.46 g/s.
-2025-01-11 13:39:44,219 - INFO - Group 3: Mean fuel consumption = 0.7 g/s.
-2025-01-11 13:39:44,220 - INFO - Group 4: Mean fuel consumption = 1.03 g/s.
-2025-01-11 13:39:44,221 - INFO - Group 5: Mean fuel consumption = 1.27 g/s.
-2025-01-11 13:39:44,222 - INFO - Group 6: Mean fuel consumption = 1.42 g/s.
-2025-01-11 13:39:44,225 - INFO - Group 7: Mean fuel consumption = 1.51 g/s.
-2025-01-11 13:39:44,227 - INFO - Group 8: Mean fuel consumption = 1.67 g/s.
-2025-01-11 13:39:44,228 - INFO - Group 9: Mean fuel consumption = 1.85 g/s.
-2025-01-11 13:39:44,229 - INFO - Group 10: Mean fuel consumption = 2.02 g/s.
-2025-01-11 13:39:44,231 - INFO - Group 11: Mean fuel consumption = 2.36 g/s.
-2025-01-11 13:39:44,233 - INFO - Group 12: Mean fuel consumption = 0.31 g/s.
-2025-01-11 13:39:44,234 - INFO - Group 13: Mean fuel consumption = 0.17 g/s.
-2025-01-11 13:39:44,235 - INFO - Stable fuel consumption levels extracted. Average values: [0.85, 0.29, 0.46, 0.7, 1.03, 1.27, 1.42, 1.51, 1.67, 1.85, 2.02, 2.36, 0.31, 0.17]
-2025-01-11 13:39:44,239 - INFO - Starting filter_high_temperature_oil.
-2025-01-11 13:39:44,243 - INFO - Removed 0 rows where oil temperature was less than 50°C.
-2025-01-11 13:39:44,255 - INFO - Extracted 992 rows of intersected stable data.
-2025-01-11 13:39:44,261 - INFO - DataFrame cleaned successfully using DataCleaner.
-2025-01-11 13:39:44,262 - INFO - Starting metadata extraction for multiple DataFrames...
-2025-01-11 13:39:44,262 - INFO - Processing DataFrame 1/1 with shape (992, 18)...
-2025-01-11 13:39:44,277 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1200 obc - 2015-05.parquet', 'empty', 'DF', 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\fuels\\fuels.json'],DataFrame after filtering::
+2025-01-11 18:42:47,974 - INFO - Metadata extraction completed for all DataFrames.
+2025-01-11 18:42:47,980 - INFO - Step 4: Metadata extracted successfully.
+2025-01-11 18:42:47,980 - INFO - Step 5: Filtering and preprocessing data...
+2025-01-11 18:42:47,984 - INFO - Column pairs: [['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'], ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'], ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'], ['Czas [ms].25', 'MAF[kg/h]'], ['Czas [ms].26', 'Moc[kW]'], ['Czas [ms].27', 'Moment obrotowy[Nm]'], ['Czas [ms].29', 'Obroty[obr/min]'], ['Czas [ms].44', 'Temp. oleju w misce[°C]'], ['Czas [ms].46', 'Temp. otoczenia[°C]'], ['Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]'], ['Czas [ms].53', 'Temp. powietrza za turb.[°C]'], ['Czas [ms].54', 'Temp. spalin 1/6[°C]'], ['Czas [ms].55', 'Temp. spalin 2/6[°C]'], ['Czas [ms].56', 'Temp. spalin 3/6[°C]'], ['Czas [ms].57', 'Temp. spalin 4/6[°C]'], ['Czas [ms].62', 'Wilgotność względna[%]'], ['Czas [ms].70', 'Zużycie paliwa średnie[g/s]']]
+2025-01-11 18:42:47,988 - INFO - Filtered DataFrame to include 34 columns.
+2025-01-11 18:42:48,044 - INFO - Time columns synchronized successfully.
+2025-01-11 18:42:48,047 - INFO - Filtered DataFrame shape. after synchronize_time(): (2336, 18)
+2025-01-11 18:42:48,048 - INFO - DataCleaner initialized.
+2025-01-11 18:42:48,048 - INFO - Starting data cleaning process.
+2025-01-11 18:42:48,058 - INFO - Data cleaning process completed.
+2025-01-11 18:42:48,060 - INFO - Starting identify_stable_rotation with threshold=20 and window='8000ms'
+2025-01-11 18:42:48,060 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:48,061 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:48,062 - INFO - 'Time' column set as index.
+2025-01-11 18:42:48,062 - INFO - Computing rolling max and min of 'Obroty[obr/min]'.
+2025-01-11 18:42:48,063 - INFO - Identified 1816 points where rotation difference ≤ threshold.
+2025-01-11 18:42:48,063 - INFO - Labeled stable regions into 23 groups.
+2025-01-11 18:42:48,066 - INFO - Group 1: Found 3 stable time points.
+2025-01-11 18:42:48,067 - INFO - Group 3: Found 3 stable time points.
+2025-01-11 18:42:48,067 - INFO - Group 5: Found 940 stable time points.
+2025-01-11 18:42:48,067 - INFO - Group 7: Found 96 stable time points.
+2025-01-11 18:42:48,068 - INFO - Group 9: Found 71 stable time points.
+2025-01-11 18:42:48,068 - INFO - Group 11: Found 43 stable time points.
+2025-01-11 18:42:48,068 - INFO - Group 13: Found 119 stable time points.
+2025-01-11 18:42:48,069 - INFO - Group 15: Found 108 stable time points.
+2025-01-11 18:42:48,069 - INFO - Group 17: Found 62 stable time points.
+2025-01-11 18:42:48,069 - INFO - Group 19: Found 39 stable time points.
+2025-01-11 18:42:48,070 - INFO - Group 21: Found 43 stable time points.
+2025-01-11 18:42:48,070 - INFO - Group 23: Found 289 stable time points.
+2025-01-11 18:42:48,071 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:48,071 - INFO - Identified 12 stable rotation levels.
+2025-01-11 18:42:48,073 - INFO - Group 0: Mean rotation = 2.0 RPM.
+2025-01-11 18:42:48,075 - INFO - Group 1: Mean rotation = 803.3 RPM.
+2025-01-11 18:42:48,077 - INFO - Group 2: Mean rotation = 1200.2 RPM.
+2025-01-11 18:42:48,079 - INFO - Group 3: Mean rotation = 1200.2 RPM.
+2025-01-11 18:42:48,081 - INFO - Group 4: Mean rotation = 1199.1 RPM.
+2025-01-11 18:42:48,082 - INFO - Group 5: Mean rotation = 1199.6 RPM.
+2025-01-11 18:42:48,083 - INFO - Group 6: Mean rotation = 1200.2 RPM.
+2025-01-11 18:42:48,086 - INFO - Group 7: Mean rotation = 1198.8 RPM.
+2025-01-11 18:42:48,087 - INFO - Group 8: Mean rotation = 1203.0 RPM.
+2025-01-11 18:42:48,088 - INFO - Group 9: Mean rotation = 1198.5 RPM.
+2025-01-11 18:42:48,089 - INFO - Group 10: Mean rotation = 1301.7 RPM.
+2025-01-11 18:42:48,090 - INFO - Group 11: Mean rotation = 800.4 RPM.
+2025-01-11 18:42:48,090 - INFO - Stable rotation levels extracted. Average values: [2.0, 803.3, 1200.2, 1200.2, 1199.1, 1199.6, 1200.2, 1198.8, 1203.0, 1198.5, 1301.7, 800.4]
+2025-01-11 18:42:48,096 - INFO - !!!---> Starting identify_stable_torque_nm with threshold=1.6 and window='8000ms'
+2025-01-11 18:42:48,097 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:48,097 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:48,098 - INFO - 'Time' column set as index.
+2025-01-11 18:42:48,098 - INFO - Computing rolling max and min of 'Moment obrotowy[Nm]'.
+2025-01-11 18:42:48,099 - INFO - Rolling object parameters:
+2025-01-11 18:42:48,099 - INFO -  - window: 8000ms
+2025-01-11 18:42:48,100 - INFO -  - min_periods: 1
+2025-01-11 18:42:48,100 - INFO -  - center: False
+2025-01-11 18:42:48,100 - INFO -  - win_type: None
+2025-01-11 18:42:48,101 - INFO -  - axis: 0
+2025-01-11 18:42:48,101 - INFO -  - method: single
+2025-01-11 18:42:48,101 - INFO -  - closed: None
+2025-01-11 18:42:48,102 - INFO - Identified 1437 points where torque difference ≤ threshold.
+2025-01-11 18:42:48,103 - INFO - Labeled stable regions into 27 groups.
+2025-01-11 18:42:48,105 - INFO - Group 1: Found 337 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 3: Found 75 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 5: Found 55 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 7: Found 27 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 9: Found 4 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 11: Found 42 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 13: Found 75 stable time points.
+2025-01-11 18:42:48,105 - INFO - Group 15: Found 51 stable time points.
+2025-01-11 18:42:48,108 - INFO - Group 17: Found 66 stable time points.
+2025-01-11 18:42:48,108 - INFO - Group 19: Found 52 stable time points.
+2025-01-11 18:42:48,108 - INFO - Group 21: Found 31 stable time points.
+2025-01-11 18:42:48,108 - INFO - Group 23: Found 104 stable time points.
+2025-01-11 18:42:48,111 - INFO - Group 25: Found 55 stable time points.
+2025-01-11 18:42:48,111 - INFO - Group 27: Found 463 stable time points.
+2025-01-11 18:42:48,112 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:48,112 - INFO - Identified 14 stable torque levels.
+2025-01-11 18:42:48,113 - INFO - Group 0: Mean torque = 0.5 Nm.
+2025-01-11 18:42:48,114 - INFO - Group 1: Mean torque = 25.2 Nm.
+2025-01-11 18:42:48,115 - INFO - Group 2: Mean torque = 50.1 Nm.
+2025-01-11 18:42:48,117 - INFO - Group 3: Mean torque = 75.1 Nm.
+2025-01-11 18:42:48,119 - INFO - Group 4: Mean torque = 50.2 Nm.
+2025-01-11 18:42:48,120 - INFO - Group 5: Mean torque = 75.0 Nm.
+2025-01-11 18:42:48,121 - INFO - Group 6: Mean torque = 100.0 Nm.
+2025-01-11 18:42:48,122 - INFO - Group 7: Mean torque = 125.1 Nm.
+2025-01-11 18:42:48,123 - INFO - Group 8: Mean torque = 150.0 Nm.
+2025-01-11 18:42:48,125 - INFO - Group 9: Mean torque = 174.9 Nm.
+2025-01-11 18:42:48,125 - INFO - Group 10: Mean torque = 199.9 Nm.
+2025-01-11 18:42:48,128 - INFO - Group 11: Mean torque = 224.9 Nm.
+2025-01-11 18:42:48,129 - INFO - Group 12: Mean torque = 250.0 Nm.
+2025-01-11 18:42:48,130 - INFO - Group 13: Mean torque = 0.9 Nm.
+2025-01-11 18:42:48,130 - INFO - Stable torque levels extracted. Average values: [0.5, 25.2, 50.1, 75.1, 50.2, 75.0, 100.0, 125.1, 150.0, 174.9, 199.9, 224.9, 250.0, 0.9]
+2025-01-11 18:42:48,134 - INFO - Starting identify_stable_fuel_consumption with threshold=0.1 and window='8000ms'
+2025-01-11 18:42:48,135 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:48,135 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:48,136 - INFO - 'Time' column set as index.
+2025-01-11 18:42:48,136 - INFO - Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.
+2025-01-11 18:42:48,137 - INFO - Rolling object parameters:
+2025-01-11 18:42:48,137 - INFO -  - window: 8000ms
+2025-01-11 18:42:48,137 - INFO -  - min_periods: 1
+2025-01-11 18:42:48,138 - INFO -  - center: False
+2025-01-11 18:42:48,138 - INFO -  - axis: 0
+2025-01-11 18:42:48,138 - INFO -  - method: single
+2025-01-11 18:42:48,138 - INFO -  - closed: None
+2025-01-11 18:42:48,139 - INFO - Identified 1540 points where fuel consumption difference ≤ threshold.
+2025-01-11 18:42:48,141 - INFO - Labeled stable regions into 28 groups.
+2025-01-11 18:42:48,141 - INFO - Group 1: Found 1 stable time points.
+2025-01-11 18:42:48,141 - INFO - Group 3: Found 211 stable time points.
+2025-01-11 18:42:48,141 - INFO - Group 5: Found 87 stable time points.
+2025-01-11 18:42:48,146 - INFO - Group 7: Found 332 stable time points.
+2025-01-11 18:42:48,146 - INFO - Group 9: Found 158 stable time points.
+2025-01-11 18:42:48,146 - INFO - Group 11: Found 93 stable time points.
+2025-01-11 18:42:48,147 - INFO - Group 13: Found 46 stable time points.
+2025-01-11 18:42:48,147 - INFO - Group 15: Found 2 stable time points.
+2025-01-11 18:42:48,147 - INFO - Group 17: Found 25 stable time points.
+2025-01-11 18:42:48,147 - INFO - Group 19: Found 67 stable time points.
+2025-01-11 18:42:48,148 - INFO - Group 21: Found 101 stable time points.
+2025-01-11 18:42:48,148 - INFO - Group 23: Found 39 stable time points.
+2025-01-11 18:42:48,148 - INFO - Group 25: Found 107 stable time points.
+2025-01-11 18:42:48,148 - INFO - Group 27: Found 271 stable time points.
+2025-01-11 18:42:48,149 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:48,150 - INFO - Identified 14 stable fuel consumption levels.
+2025-01-11 18:42:48,150 - INFO - Group 0: Mean fuel consumption = 0.85 g/s.
+2025-01-11 18:42:48,151 - INFO - Group 1: Mean fuel consumption = 0.29 g/s.
+2025-01-11 18:42:48,152 - INFO - Group 2: Mean fuel consumption = 0.46 g/s.
+2025-01-11 18:42:48,152 - INFO - Group 3: Mean fuel consumption = 0.7 g/s.
+2025-01-11 18:42:48,152 - INFO - Group 4: Mean fuel consumption = 1.03 g/s.
+2025-01-11 18:42:48,156 - INFO - Group 5: Mean fuel consumption = 1.27 g/s.
+2025-01-11 18:42:48,157 - INFO - Group 6: Mean fuel consumption = 1.42 g/s.
+2025-01-11 18:42:48,158 - INFO - Group 7: Mean fuel consumption = 1.51 g/s.
+2025-01-11 18:42:48,160 - INFO - Group 8: Mean fuel consumption = 1.67 g/s.
+2025-01-11 18:42:48,162 - INFO - Group 9: Mean fuel consumption = 1.85 g/s.
+2025-01-11 18:42:48,163 - INFO - Group 10: Mean fuel consumption = 2.02 g/s.
+2025-01-11 18:42:48,164 - INFO - Group 11: Mean fuel consumption = 2.36 g/s.
+2025-01-11 18:42:48,164 - INFO - Group 12: Mean fuel consumption = 0.31 g/s.
+2025-01-11 18:42:48,165 - INFO - Group 13: Mean fuel consumption = 0.17 g/s.
+2025-01-11 18:42:48,166 - INFO - Stable fuel consumption levels extracted. Average values: [0.85, 0.29, 0.46, 0.7, 1.03, 1.27, 1.42, 1.51, 1.67, 1.85, 2.02, 2.36, 0.31, 0.17]
+2025-01-11 18:42:48,170 - INFO - Starting filter_high_temperature_oil.
+2025-01-11 18:42:48,170 - INFO - Removed 0 rows where oil temperature was less than 50°C.
+2025-01-11 18:42:48,182 - INFO - Extracted 992 rows of intersected stable data.
+2025-01-11 18:42:48,184 - INFO - DataFrame cleaned successfully using DataCleaner.
+2025-01-11 18:42:48,184 - INFO - Starting metadata extraction for multiple DataFrames...
+2025-01-11 18:42:48,185 - INFO - Processing DataFrame 1/1 with shape (992, 18)...
+2025-01-11 18:42:48,192 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1200 obc - 2015-05.parquet', 'empty', 'DF'],DataFrame after filtering::
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
 |    | Column                         |   Total Values |   Non-Null Count |   Null Count |   Unique Values | Data Type      |
 +====+================================+================+==================+==============+=================+================+
@@ -495,51 +495,52 @@ All Optional Columns: Present
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
 | 17 | Zużycie paliwa średnie[g/s]    |            992 |              992 |            0 |             717 | float64        |
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
-2025-01-11 13:39:44,281 - INFO - Metadata extraction completed for all DataFrames.
-2025-01-11 13:39:44,287 - INFO - Step 5: Data filtered and preprocessed successfully.
-2025-01-11 13:39:44,288 - INFO - Step 6: Transforming data...
-2025-01-11 13:39:44,288 - INFO - Starting atmospheric power correction.
-2025-01-11 13:39:44,296 - INFO - Average power correction: -0.65%
-2025-01-11 13:39:44,297 - INFO - Maximum power correction: -0.33%
-2025-01-11 13:39:44,297 - INFO - Average torque correction: -0.65%
-2025-01-11 13:39:44,298 - INFO - Maximum torque correction: -0.33%
-2025-01-11 13:39:44,303 - INFO - Atmospheric power correction applied successfully.
-2025-01-11 13:39:44,316 - INFO - Mean exhaust gas temperature calculated successfully.
-2025-01-11 13:39:44,319 - INFO - Step 8: Adding fuel data...
-2025-01-11 13:39:44,319 - INFO - Starting add_fuel process.
-2025-01-11 13:39:44,401 - INFO - DataFrame shape after processing: (992, 12)
-2025-01-11 13:39:44,401 - INFO - Columns in DataFrame: ['Time', 'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 'Zużycie paliwa średnie[g/s]', 'Temp. spalin mean[°C]']
-2025-01-11 13:39:44,401 - INFO - add_fuel process completed successfully.
-2025-01-11 13:39:44,405 - INFO - Step 8: Fuel data added successfully.
-2025-01-11 13:39:44,411 - INFO - Data pipeline completed successfully for file withID:1: 1200 obc - 2015-05.parquet
-2025-01-11 13:39:44,412 - INFO - !!!--Data pipeline completed successfully.--!!!
-2025-01-11 13:39:44,414 - INFO - !!!---Processing file with ID:2: 1300 obc - 2015-05.parquet.---!!!
-2025-01-11 13:39:44,414 - INFO - Step 2: Loading raw data...
-2025-01-11 13:39:44,419 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
-2025-01-11 13:39:44,420 - INFO - Loading main file: 1300 obc - 2015-05.parquet
-2025-01-11 13:39:44,420 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1300 obc - 2015-05.parquet
-2025-01-11 13:39:44,466 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1300 obc - 2015-05.parquet
-2025-01-11 13:39:44,467 - INFO - Data Frame Shape: (25399, 143)
-2025-01-11 13:39:44,467 - INFO - Data Frame Columns: ['Czas [ms]', 'Ciś. pow. przed turb.[Pa]', 'Czas [ms].1', 'Ciś. pow. za turb.[Pa]', 'Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]', 'Czas [ms].3', 'Ciśnienie oleju[bar]', 'Czas [ms].4', 'Ciśnienie spalin[Pa]', 'Czas [ms].5', 'Dopeł. zb. 1/3[-]', 'Czas [ms].6', 'Dopeł. zb. 2/3[-]', 'Czas [ms].7', 'Dopeł. zb. 3/3[-]', 'Czas [ms].8', 'Dopełnianie[-]', 'Czas [ms].9', 'Duży obieg[-]', 'Czas [ms].10', 'ECT - wejście do sil.[°C]', 'Czas [ms].11', 'ECT - wyjście z sil.[°C]', 'Czas [ms].12', 'Główny obieg - przepływ[m³/h]', 'Czas [ms].13', 'Główny obieg - temp.[°C]', 'Czas [ms].14', 'GPReg_Setpoint0[°C]', 'Czas [ms].15', 'GPReg_Setpoint1[°C]', 'Czas [ms].16', 'GPReg_Setpoint2[°C]', 'Czas [ms].17', 'Hamulec, lewa komora, temp.[°C]', 'Czas [ms].18', 'Hamulec, prawa komora, temp.[°C]', 'Czas [ms].19', 'Hamulec, przepływ wody[m³/h]', 'Czas [ms].20', 'Ilość paliwa w zbiorniku[g]', 'Czas [ms].21', 'Kond. - przepływ wody[l/min]', 'Czas [ms].22', 'Kontrolka zb. 1/3 [-]', 'Czas [ms].23', 'Kontrolka zb. 2/3 [-]', 'Czas [ms].24', 'Kontrolka zb. 3/3 [-]', 'Czas [ms].25', 'MAF[kg/h]', 'Czas [ms].26', 'Moc[kW]', 'Czas [ms].27', 'Moment obrotowy[Nm]', 'Czas [ms].28', 'Moment Tryb3[Nm]', 'Czas [ms].29', 'Obroty[obr/min]', 'Czas [ms].30', 'Poz. paliwa zb. 1/3[mm]', 'Czas [ms].31', 'Poz. paliwa zb. 2/3[mm]', 'Czas [ms].32', 'Poz. paliwa zb. 3/3[mm]', 'Czas [ms].33', 'Przekaź. pompy paliwa[-]', 'Czas [ms].34', 'Przekaźnik zapłonu[-]', 'Czas [ms].35', 'Przepustnica[%]', 'Czas [ms].36', 'Przepustnica Tryb0[%]', 'Czas [ms].37', 'Przyklad[bar]', 'Czas [ms].38', 'PWM Tryb0[%]', 'Czas [ms].39', 'Rozrusznik[-]', 'Czas [ms].40', 'RPM Tryb3[obr/min]', 'Czas [ms].41', 'Starter[-]', 'Czas [ms].42', 'Stycz. chłodni went.[-]', 'Czas [ms].43', 'Temp. oleju przed wym.[°C]', 'Czas [ms].44', 'Temp. oleju w misce[°C]', 'Czas [ms].45', 'Temp. oleju za wym.[°C]', 'Czas [ms].46', 'Temp. otoczenia[°C]', 'Czas [ms].47', 'Temp. pal. na wejściu sil.[°C]', 'Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]', 'Czas [ms].49', 'Temp. paliwa w zb. 1/3[°C]', 'Czas [ms].50', 'Temp. paliwa w zb. 2/3[°C]', 'Czas [ms].51', 'Temp. paliwa w zb. 3/3[°C]', 'Czas [ms].52', 'Temp. powietrza przed turb.[°C]', 'Czas [ms].53', 'Temp. powietrza za turb.[°C]', 'Czas [ms].54', 'Temp. spalin 1/6[°C]', 'Czas [ms].55', 'Temp. spalin 2/6[°C]', 'Czas [ms].56', 'Temp. spalin 3/6[°C]', 'Czas [ms].57', 'Temp. spalin 4/6[°C]', 'Czas [ms].58', 'Temp. spalin za turbiną 1/2[°C]', 'Czas [ms].59', 'Temp. spalin za turbiną 2/2[°C]', 'Czas [ms].60', 'Temp.pal.na wyjściu[°C]', 'Czas [ms].61', 'Temp.paliwa żądana[°C]', 'Czas [ms].62', 'Wilgotność względna[%]', 'Czas [ms].63', 'Wyłącznik bezpieczeństwa[-]', 'Czas [ms].64', 'Zapłon[-]', 'Czas [ms].65', 'Zaw. zb. paliwa 1/3[-]', 'Czas [ms].66', 'Zaw. zb. paliwa 2/3[-]', 'Czas [ms].67', 'Zaw. zb. paliwa 3/3[-]', 'Czas [ms].68', 'Zawór reg. chł. cieczy[-]', 'Czas [ms].69', 'Zużycie paliwa bieżące[g/s]', 'Czas [ms].70', 'Zużycie paliwa średnie[g/s]', 'Unnamed: 142']
-2025-01-11 13:39:44,471 - INFO - Data files loaded successfully.
-2025-01-11 13:39:44,477 - INFO - Step 2: Raw data loaded successfully.
-2025-01-11 13:39:44,477 - INFO - Step 3: Validating data...
-2025-01-11 13:39:44,487 - INFO - DataValidator initialized.
-2025-01-11 13:39:44,487 - INFO - Starting column validation for multiple DataFrames...
-2025-01-11 13:39:44,488 - INFO - Starting schema validation for multiple DataFrames...
-2025-01-11 13:39:44,489 - INFO - DataFrame 0 - Schema validation passed.
-2025-01-11 13:39:44,491 - INFO - Checking for duplicate columns in multiple DataFrames...
-2025-01-11 13:39:44,492 - INFO - DataFrame 0: No duplicate columns found.
-2025-01-11 13:39:44,509 - INFO - Validation reports summarizing the results for each DataFrame
-2025-01-11 13:39:44,510 - INFO - =================
+2025-01-11 18:42:48,200 - INFO - Metadata extraction completed for all DataFrames.
+2025-01-11 18:42:48,204 - INFO - Step 5: Data filtered and preprocessed successfully.
+2025-01-11 18:42:48,204 - INFO - Step 6: Transforming data...
+2025-01-11 18:42:48,204 - INFO - Starting atmospheric power correction.
+2025-01-11 18:42:48,208 - INFO - Average power correction: -0.65%
+2025-01-11 18:42:48,208 - INFO - Maximum power correction: -0.33%
+2025-01-11 18:42:48,208 - INFO - Average torque correction: -0.65%
+2025-01-11 18:42:48,208 - INFO - Maximum torque correction: -0.33%
+2025-01-11 18:42:48,216 - INFO - Atmospheric power correction applied successfully.
+2025-01-11 18:42:48,220 - INFO - Mean exhaust gas temperature calculated successfully.
+2025-01-11 18:42:48,222 - INFO - Step 8: Adding fuel data...
+2025-01-11 18:42:48,222 - INFO - Starting add_fuel process.
+2025-01-11 18:42:48,223 - INFO - Fuel properties for 'DF' added to DataFrame. Columns added: ['Cetane number', 'Density at 15 C', 'Viscosity at 40 C', 'Flash point', 'LHV (Lower Heating Value)']
+2025-01-11 18:42:48,225 - INFO - DataFrame shape after processing: (992, 17)
+2025-01-11 18:42:48,225 - INFO - Columns in DataFrame: ['Time', 'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 'Zużycie paliwa średnie[g/s]', 'Temp. spalin mean[°C]', 'Cetane number', 'Density at 15 C, kg/m3', 'Viscosity at 40 C, mm2/s', 'Flash point, C', 'LHV (Lower Heating Value), MJ/kg']
+2025-01-11 18:42:48,225 - INFO - add_fuel process completed successfully.
+2025-01-11 18:42:48,234 - INFO - Step 8: Fuel data added successfully.
+2025-01-11 18:42:48,238 - INFO - Data pipeline completed successfully for file withID:1: 1200 obc - 2015-05.parquet
+2025-01-11 18:42:48,242 - INFO - !!!--Data pipeline completed successfully.--!!!
+2025-01-11 18:42:48,246 - INFO - !!!---Processing file with ID:2: 1300 obc - 2015-05.parquet.---!!!
+2025-01-11 18:42:48,246 - INFO - Step 2: Loading raw data...
+2025-01-11 18:42:48,252 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
+2025-01-11 18:42:48,253 - INFO - Loading main file: 1300 obc - 2015-05.parquet
+2025-01-11 18:42:48,253 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1300 obc - 2015-05.parquet
+2025-01-11 18:42:48,275 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1300 obc - 2015-05.parquet
+2025-01-11 18:42:48,292 - INFO - Data Frame Shape: (25399, 143)
+2025-01-11 18:42:48,292 - INFO - Data Frame Columns: ['Czas [ms]', 'Ciś. pow. przed turb.[Pa]', 'Czas [ms].1', 'Ciś. pow. za turb.[Pa]', 'Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]', 'Czas [ms].3', 'Ciśnienie oleju[bar]', 'Czas [ms].4', 'Ciśnienie spalin[Pa]', 'Czas [ms].5', 'Dopeł. zb. 1/3[-]', 'Czas [ms].6', 'Dopeł. zb. 2/3[-]', 'Czas [ms].7', 'Dopeł. zb. 3/3[-]', 'Czas [ms].8', 'Dopełnianie[-]', 'Czas [ms].9', 'Duży obieg[-]', 'Czas [ms].10', 'ECT - wejście do sil.[°C]', 'Czas [ms].11', 'ECT - wyjście z sil.[°C]', 'Czas [ms].12', 'Główny obieg - przepływ[m³/h]', 'Czas [ms].13', 'Główny obieg - temp.[°C]', 'Czas [ms].14', 'GPReg_Setpoint0[°C]', 'Czas [ms].15', 'GPReg_Setpoint1[°C]', 'Czas [ms].16', 'GPReg_Setpoint2[°C]', 'Czas [ms].17', 'Hamulec, lewa komora, temp.[°C]', 'Czas [ms].18', 'Hamulec, prawa komora, temp.[°C]', 'Czas [ms].19', 'Hamulec, przepływ wody[m³/h]', 'Czas [ms].20', 'Ilość paliwa w zbiorniku[g]', 'Czas [ms].21', 'Kond. - przepływ wody[l/min]', 'Czas [ms].22', 'Kontrolka zb. 1/3 [-]', 'Czas [ms].23', 'Kontrolka zb. 2/3 [-]', 'Czas [ms].24', 'Kontrolka zb. 3/3 [-]', 'Czas [ms].25', 'MAF[kg/h]', 'Czas [ms].26', 'Moc[kW]', 'Czas [ms].27', 'Moment obrotowy[Nm]', 'Czas [ms].28', 'Moment Tryb3[Nm]', 'Czas [ms].29', 'Obroty[obr/min]', 'Czas [ms].30', 'Poz. paliwa zb. 1/3[mm]', 'Czas [ms].31', 'Poz. paliwa zb. 2/3[mm]', 'Czas [ms].32', 'Poz. paliwa zb. 3/3[mm]', 'Czas [ms].33', 'Przekaź. pompy paliwa[-]', 'Czas [ms].34', 'Przekaźnik zapłonu[-]', 'Czas [ms].35', 'Przepustnica[%]', 'Czas [ms].36', 'Przepustnica Tryb0[%]', 'Czas [ms].37', 'Przyklad[bar]', 'Czas [ms].38', 'PWM Tryb0[%]', 'Czas [ms].39', 'Rozrusznik[-]', 'Czas [ms].40', 'RPM Tryb3[obr/min]', 'Czas [ms].41', 'Starter[-]', 'Czas [ms].42', 'Stycz. chłodni went.[-]', 'Czas [ms].43', 'Temp. oleju przed wym.[°C]', 'Czas [ms].44', 'Temp. oleju w misce[°C]', 'Czas [ms].45', 'Temp. oleju za wym.[°C]', 'Czas [ms].46', 'Temp. otoczenia[°C]', 'Czas [ms].47', 'Temp. pal. na wejściu sil.[°C]', 'Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]', 'Czas [ms].49', 'Temp. paliwa w zb. 1/3[°C]', 'Czas [ms].50', 'Temp. paliwa w zb. 2/3[°C]', 'Czas [ms].51', 'Temp. paliwa w zb. 3/3[°C]', 'Czas [ms].52', 'Temp. powietrza przed turb.[°C]', 'Czas [ms].53', 'Temp. powietrza za turb.[°C]', 'Czas [ms].54', 'Temp. spalin 1/6[°C]', 'Czas [ms].55', 'Temp. spalin 2/6[°C]', 'Czas [ms].56', 'Temp. spalin 3/6[°C]', 'Czas [ms].57', 'Temp. spalin 4/6[°C]', 'Czas [ms].58', 'Temp. spalin za turbiną 1/2[°C]', 'Czas [ms].59', 'Temp. spalin za turbiną 2/2[°C]', 'Czas [ms].60', 'Temp.pal.na wyjściu[°C]', 'Czas [ms].61', 'Temp.paliwa żądana[°C]', 'Czas [ms].62', 'Wilgotność względna[%]', 'Czas [ms].63', 'Wyłącznik bezpieczeństwa[-]', 'Czas [ms].64', 'Zapłon[-]', 'Czas [ms].65', 'Zaw. zb. paliwa 1/3[-]', 'Czas [ms].66', 'Zaw. zb. paliwa 2/3[-]', 'Czas [ms].67', 'Zaw. zb. paliwa 3/3[-]', 'Czas [ms].68', 'Zawór reg. chł. cieczy[-]', 'Czas [ms].69', 'Zużycie paliwa bieżące[g/s]', 'Czas [ms].70', 'Zużycie paliwa średnie[g/s]', 'Unnamed: 142']
+2025-01-11 18:42:48,299 - INFO - Data files loaded successfully.
+2025-01-11 18:42:48,301 - INFO - Step 2: Raw data loaded successfully.
+2025-01-11 18:42:48,301 - INFO - Step 3: Validating data...
+2025-01-11 18:42:48,312 - INFO - DataValidator initialized.
+2025-01-11 18:42:48,312 - INFO - Starting column validation for multiple DataFrames...
+2025-01-11 18:42:48,312 - INFO - Starting schema validation for multiple DataFrames...
+2025-01-11 18:42:48,312 - INFO - DataFrame 0 - Schema validation passed.
+2025-01-11 18:42:48,312 - INFO - Checking for duplicate columns in multiple DataFrames...
+2025-01-11 18:42:48,312 - INFO - DataFrame 0: No duplicate columns found.
+2025-01-11 18:42:48,312 - INFO - Validation reports summarizing the results for each DataFrame
+2025-01-11 18:42:48,312 - INFO - =================
 Validation Report for DataFrame Num=0, file_name:'1300 obc - 2015-05.parquet'(0 - main Data Frame; 1 - eco Data Frame; 2 - fuels):
 DataFrame Shape: (25399, 143) (Rows, Columns) <--- !!!!!!!!!
 All Required Columns: Present
 All Optional Columns: Present
-2025-01-11 13:39:44,534 - INFO - Step 3: Data validated successfully.
-2025-01-11 13:39:44,605 - INFO - Starting metadata extraction for multiple DataFrames...
-2025-01-11 13:39:44,607 - INFO - Processing DataFrame 1/1 with shape (25399, 143)...
-2025-01-11 13:39:44,731 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1300 obc - 2015-05.parquet', 'empty', 'DF', 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\fuels\\fuels.json'],None:
+2025-01-11 18:42:48,312 - INFO - Step 3: Data validated successfully.
+2025-01-11 18:42:48,325 - INFO - Starting metadata extraction for multiple DataFrames...
+2025-01-11 18:42:48,325 - INFO - Processing DataFrame 1/1 with shape (25399, 143)...
+2025-01-11 18:42:48,425 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1300 obc - 2015-05.parquet', 'empty', 'DF'],None:
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
 |     | Column                           |   Total Values |   Non-Null Count |   Null Count |   Unique Values | Data Type   |
 +=====+==================================+================+==================+==============+=================+=============+
@@ -829,168 +830,168 @@ All Optional Columns: Present
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
 | 142 | Unnamed: 142                     |              0 |                0 |        25399 |               0 | float64     |
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
-2025-01-11 13:39:44,767 - INFO - Metadata extraction completed for all DataFrames.
-2025-01-11 13:39:44,772 - INFO - Step 4: Metadata extracted successfully.
-2025-01-11 13:39:44,772 - INFO - Step 5: Filtering and preprocessing data...
-2025-01-11 13:39:44,781 - INFO - Column pairs: [['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'], ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'], ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'], ['Czas [ms].25', 'MAF[kg/h]'], ['Czas [ms].26', 'Moc[kW]'], ['Czas [ms].27', 'Moment obrotowy[Nm]'], ['Czas [ms].29', 'Obroty[obr/min]'], ['Czas [ms].44', 'Temp. oleju w misce[°C]'], ['Czas [ms].46', 'Temp. otoczenia[°C]'], ['Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]'], ['Czas [ms].53', 'Temp. powietrza za turb.[°C]'], ['Czas [ms].54', 'Temp. spalin 1/6[°C]'], ['Czas [ms].55', 'Temp. spalin 2/6[°C]'], ['Czas [ms].56', 'Temp. spalin 3/6[°C]'], ['Czas [ms].57', 'Temp. spalin 4/6[°C]'], ['Czas [ms].62', 'Wilgotność względna[%]'], ['Czas [ms].70', 'Zużycie paliwa średnie[g/s]']]
-2025-01-11 13:39:44,787 - INFO - Filtered DataFrame to include 34 columns.
-2025-01-11 13:39:44,872 - INFO - Time columns synchronized successfully.
-2025-01-11 13:39:44,876 - INFO - Filtered DataFrame shape. after synchronize_time(): (2540, 18)
-2025-01-11 13:39:44,877 - INFO - DataCleaner initialized.
-2025-01-11 13:39:44,877 - INFO - Starting data cleaning process.
-2025-01-11 13:39:44,889 - INFO - Data cleaning process completed.
-2025-01-11 13:39:44,891 - INFO - Starting identify_stable_rotation with threshold=20 and window='8000ms'
-2025-01-11 13:39:44,892 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:44,893 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:44,893 - INFO - 'Time' column set as index.
-2025-01-11 13:39:44,893 - INFO - Computing rolling max and min of 'Obroty[obr/min]'.
-2025-01-11 13:39:44,895 - INFO - Identified 2119 points where rotation difference ≤ threshold.
-2025-01-11 13:39:44,896 - INFO - Labeled stable regions into 21 groups.
-2025-01-11 13:39:44,899 - INFO - Group 1: Found 3 stable time points.
-2025-01-11 13:39:44,900 - INFO - Group 3: Found 14 stable time points.
-2025-01-11 13:39:44,900 - INFO - Group 5: Found 611 stable time points.
-2025-01-11 13:39:44,901 - INFO - Group 7: Found 396 stable time points.
-2025-01-11 13:39:44,901 - INFO - Group 9: Found 122 stable time points.
-2025-01-11 13:39:44,902 - INFO - Group 11: Found 75 stable time points.
-2025-01-11 13:39:44,902 - INFO - Group 13: Found 56 stable time points.
-2025-01-11 13:39:44,902 - INFO - Group 15: Found 54 stable time points.
-2025-01-11 13:39:44,903 - INFO - Group 17: Found 385 stable time points.
-2025-01-11 13:39:44,903 - INFO - Group 19: Found 282 stable time points.
-2025-01-11 13:39:44,903 - INFO - Group 21: Found 121 stable time points.
-2025-01-11 13:39:44,904 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:44,904 - INFO - Identified 11 stable rotation levels.
-2025-01-11 13:39:44,906 - INFO - Group 0: Mean rotation = 6.7 RPM.
-2025-01-11 13:39:44,908 - INFO - Group 1: Mean rotation = 801.4 RPM.
-2025-01-11 13:39:44,910 - INFO - Group 2: Mean rotation = 1299.5 RPM.
-2025-01-11 13:39:44,911 - INFO - Group 3: Mean rotation = 1299.8 RPM.
-2025-01-11 13:39:44,913 - INFO - Group 4: Mean rotation = 1300.0 RPM.
-2025-01-11 13:39:44,914 - INFO - Group 5: Mean rotation = 1300.8 RPM.
-2025-01-11 13:39:44,916 - INFO - Group 6: Mean rotation = 1299.7 RPM.
-2025-01-11 13:39:44,918 - INFO - Group 7: Mean rotation = 1298.8 RPM.
-2025-01-11 13:39:44,920 - INFO - Group 8: Mean rotation = 1300.0 RPM.
-2025-01-11 13:39:44,921 - INFO - Group 9: Mean rotation = 1300.1 RPM.
-2025-01-11 13:39:44,922 - INFO - Group 10: Mean rotation = 800.4 RPM.
-2025-01-11 13:39:44,922 - INFO - Stable rotation levels extracted. Average values: [6.7, 801.4, 1299.5, 1299.8, 1300.0, 1300.8, 1299.7, 1298.8, 1300.0, 1300.1, 800.4]
-2025-01-11 13:39:44,930 - INFO - !!!---> Starting identify_stable_torque_nm with threshold=1.6 and window='8000ms'
-2025-01-11 13:39:44,930 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:44,931 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:44,933 - INFO - 'Time' column set as index.
-2025-01-11 13:39:44,934 - INFO - Computing rolling max and min of 'Moment obrotowy[Nm]'.
-2025-01-11 13:39:44,936 - INFO - Rolling object parameters:
-2025-01-11 13:39:44,936 - INFO -  - window: 8000ms
-2025-01-11 13:39:44,936 - INFO -  - min_periods: 1
-2025-01-11 13:39:44,937 - INFO -  - center: False
-2025-01-11 13:39:44,937 - INFO -  - win_type: None
-2025-01-11 13:39:44,937 - INFO -  - axis: 0
-2025-01-11 13:39:44,937 - INFO -  - method: single
-2025-01-11 13:39:44,938 - INFO -  - closed: None
-2025-01-11 13:39:44,938 - INFO - Identified 1674 points where torque difference ≤ threshold.
-2025-01-11 13:39:44,941 - INFO - Labeled stable regions into 31 groups.
-2025-01-11 13:39:44,944 - INFO - Group 1: Found 312 stable time points.
-2025-01-11 13:39:44,944 - INFO - Group 3: Found 77 stable time points.
-2025-01-11 13:39:44,945 - INFO - Group 5: Found 65 stable time points.
-2025-01-11 13:39:44,945 - INFO - Group 7: Found 67 stable time points.
-2025-01-11 13:39:44,945 - INFO - Group 9: Found 75 stable time points.
-2025-01-11 13:39:44,946 - INFO - Group 11: Found 71 stable time points.
-2025-01-11 13:39:44,946 - INFO - Group 13: Found 150 stable time points.
-2025-01-11 13:39:44,947 - INFO - Group 15: Found 113 stable time points.
-2025-01-11 13:39:44,947 - INFO - Group 17: Found 65 stable time points.
-2025-01-11 13:39:44,947 - INFO - Group 19: Found 38 stable time points.
-2025-01-11 13:39:44,948 - INFO - Group 21: Found 30 stable time points.
-2025-01-11 13:39:44,949 - INFO - Group 23: Found 33 stable time points.
-2025-01-11 13:39:44,951 - INFO - Group 25: Found 57 stable time points.
-2025-01-11 13:39:44,951 - INFO - Group 27: Found 107 stable time points.
-2025-01-11 13:39:44,953 - INFO - Group 29: Found 1 stable time points.
-2025-01-11 13:39:44,954 - INFO - Group 31: Found 413 stable time points.
-2025-01-11 13:39:44,955 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:44,958 - INFO - Identified 16 stable torque levels.
-2025-01-11 13:39:44,962 - INFO - Group 0: Mean torque = 0.3 Nm.
-2025-01-11 13:39:44,963 - INFO - Group 1: Mean torque = 25.2 Nm.
-2025-01-11 13:39:44,968 - INFO - Group 2: Mean torque = 50.1 Nm.
-2025-01-11 13:39:44,971 - INFO - Group 3: Mean torque = 75.1 Nm.
-2025-01-11 13:39:44,975 - INFO - Group 4: Mean torque = 100.0 Nm.
-2025-01-11 13:39:44,977 - INFO - Group 5: Mean torque = 125.0 Nm.
-2025-01-11 13:39:44,979 - INFO - Group 6: Mean torque = 150.0 Nm.
-2025-01-11 13:39:44,985 - INFO - Group 7: Mean torque = 175.0 Nm.
-2025-01-11 13:39:44,989 - INFO - Group 8: Mean torque = 200.0 Nm.
-2025-01-11 13:39:44,993 - INFO - Group 9: Mean torque = 225.0 Nm.
-2025-01-11 13:39:44,994 - INFO - Group 10: Mean torque = 249.9 Nm.
-2025-01-11 13:39:44,996 - INFO - Group 11: Mean torque = 274.9 Nm.
-2025-01-11 13:39:45,000 - INFO - Group 12: Mean torque = 299.9 Nm.
-2025-01-11 13:39:45,003 - INFO - Group 13: Mean torque = 318.5 Nm.
-2025-01-11 13:39:45,006 - INFO - Group 14: Mean torque = 314.7 Nm.
-2025-01-11 13:39:45,011 - INFO - Group 15: Mean torque = 0.8 Nm.
-2025-01-11 13:39:45,011 - INFO - Stable torque levels extracted. Average values: [0.3, 25.2, 50.1, 75.1, 100.0, 125.0, 150.0, 175.0, 200.0, 225.0, 249.9, 274.9, 299.9, 318.5, 314.7, 0.8]
-2025-01-11 13:39:45,018 - INFO - Starting identify_stable_fuel_consumption with threshold=0.1 and window='8000ms'
-2025-01-11 13:39:45,020 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:45,020 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:45,021 - INFO - 'Time' column set as index.
-2025-01-11 13:39:45,022 - INFO - Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.
-2025-01-11 13:39:45,025 - INFO - Rolling object parameters:
-2025-01-11 13:39:45,025 - INFO -  - window: 8000ms
-2025-01-11 13:39:45,026 - INFO -  - min_periods: 1
-2025-01-11 13:39:45,026 - INFO -  - center: False
-2025-01-11 13:39:45,027 - INFO -  - axis: 0
-2025-01-11 13:39:45,027 - INFO -  - method: single
-2025-01-11 13:39:45,027 - INFO -  - closed: None
-2025-01-11 13:39:45,028 - INFO - Identified 1177 points where fuel consumption difference ≤ threshold.
-2025-01-11 13:39:45,029 - INFO - Labeled stable regions into 45 groups.
-2025-01-11 13:39:45,036 - INFO - Group 1: Found 31 stable time points.
-2025-01-11 13:39:45,037 - INFO - Group 3: Found 62 stable time points.
-2025-01-11 13:39:45,040 - INFO - Group 5: Found 42 stable time points.
-2025-01-11 13:39:45,041 - INFO - Group 7: Found 24 stable time points.
-2025-01-11 13:39:45,042 - INFO - Group 9: Found 31 stable time points.
-2025-01-11 13:39:45,043 - INFO - Group 11: Found 43 stable time points.
-2025-01-11 13:39:45,043 - INFO - Group 13: Found 46 stable time points.
-2025-01-11 13:39:45,043 - INFO - Group 15: Found 46 stable time points.
-2025-01-11 13:39:45,044 - INFO - Group 17: Found 41 stable time points.
-2025-01-11 13:39:45,044 - INFO - Group 19: Found 64 stable time points.
-2025-01-11 13:39:45,045 - INFO - Group 21: Found 71 stable time points.
-2025-01-11 13:39:45,045 - INFO - Group 23: Found 49 stable time points.
-2025-01-11 13:39:45,046 - INFO - Group 25: Found 1 stable time points.
-2025-01-11 13:39:45,046 - INFO - Group 27: Found 1 stable time points.
-2025-01-11 13:39:45,047 - INFO - Group 29: Found 8 stable time points.
-2025-01-11 13:39:45,049 - INFO - Group 31: Found 32 stable time points.
-2025-01-11 13:39:45,050 - INFO - Group 33: Found 59 stable time points.
-2025-01-11 13:39:45,052 - INFO - Group 35: Found 87 stable time points.
-2025-01-11 13:39:45,053 - INFO - Group 37: Found 66 stable time points.
-2025-01-11 13:39:45,055 - INFO - Group 39: Found 51 stable time points.
-2025-01-11 13:39:45,055 - INFO - Group 41: Found 111 stable time points.
-2025-01-11 13:39:45,056 - INFO - Group 43: Found 87 stable time points.
-2025-01-11 13:39:45,058 - INFO - Group 45: Found 124 stable time points.
-2025-01-11 13:39:45,060 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:45,060 - INFO - Identified 23 stable fuel consumption levels.
-2025-01-11 13:39:45,062 - INFO - Group 0: Mean fuel consumption = 0.04 g/s.
-2025-01-11 13:39:45,063 - INFO - Group 1: Mean fuel consumption = 0.34 g/s.
-2025-01-11 13:39:45,064 - INFO - Group 2: Mean fuel consumption = 0.36 g/s.
-2025-01-11 13:39:45,067 - INFO - Group 3: Mean fuel consumption = 0.42 g/s.
-2025-01-11 13:39:45,069 - INFO - Group 4: Mean fuel consumption = 0.34 g/s.
-2025-01-11 13:39:45,072 - INFO - Group 5: Mean fuel consumption = 0.48 g/s.
-2025-01-11 13:39:45,077 - INFO - Group 6: Mean fuel consumption = 1.24 g/s.
-2025-01-11 13:39:45,079 - INFO - Group 7: Mean fuel consumption = 1.34 g/s.
-2025-01-11 13:39:45,080 - INFO - Group 8: Mean fuel consumption = 1.33 g/s.
-2025-01-11 13:39:45,082 - INFO - Group 9: Mean fuel consumption = 1.56 g/s.
-2025-01-11 13:39:45,084 - INFO - Group 10: Mean fuel consumption = 1.83 g/s.
-2025-01-11 13:39:45,087 - INFO - Group 11: Mean fuel consumption = 2.01 g/s.
-2025-01-11 13:39:45,088 - INFO - Group 12: Mean fuel consumption = 2.19 g/s.
-2025-01-11 13:39:45,089 - INFO - Group 13: Mean fuel consumption = 2.2 g/s.
-2025-01-11 13:39:45,092 - INFO - Group 14: Mean fuel consumption = 2.21 g/s.
-2025-01-11 13:39:45,094 - INFO - Group 15: Mean fuel consumption = 2.26 g/s.
-2025-01-11 13:39:45,096 - INFO - Group 16: Mean fuel consumption = 2.4 g/s.
-2025-01-11 13:39:45,097 - INFO - Group 17: Mean fuel consumption = 2.6 g/s.
-2025-01-11 13:39:45,098 - INFO - Group 18: Mean fuel consumption = 2.74 g/s.
-2025-01-11 13:39:45,101 - INFO - Group 19: Mean fuel consumption = 2.68 g/s.
-2025-01-11 13:39:45,103 - INFO - Group 20: Mean fuel consumption = 0.32 g/s.
-2025-01-11 13:39:45,104 - INFO - Group 21: Mean fuel consumption = 0.29 g/s.
-2025-01-11 13:39:45,105 - INFO - Group 22: Mean fuel consumption = 0.17 g/s.
-2025-01-11 13:39:45,105 - INFO - Stable fuel consumption levels extracted. Average values: [0.04, 0.34, 0.36, 0.42, 0.34, 0.48, 1.24, 1.34, 1.33, 1.56, 1.83, 2.01, 2.19, 2.2, 2.21, 2.26, 2.4, 2.6, 2.74, 2.68, 0.32, 0.29, 0.17]
-2025-01-11 13:39:45,112 - INFO - Starting filter_high_temperature_oil.
-2025-01-11 13:39:45,113 - INFO - Removed 0 rows where oil temperature was less than 50°C.
-2025-01-11 13:39:45,127 - INFO - Extracted 760 rows of intersected stable data.
-2025-01-11 13:39:45,129 - INFO - DataFrame cleaned successfully using DataCleaner.
-2025-01-11 13:39:45,130 - INFO - Starting metadata extraction for multiple DataFrames...
-2025-01-11 13:39:45,130 - INFO - Processing DataFrame 1/1 with shape (760, 18)...
-2025-01-11 13:39:45,139 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1300 obc - 2015-05.parquet', 'empty', 'DF', 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\fuels\\fuels.json'],DataFrame after filtering::
+2025-01-11 18:42:48,486 - INFO - Metadata extraction completed for all DataFrames.
+2025-01-11 18:42:48,491 - INFO - Step 4: Metadata extracted successfully.
+2025-01-11 18:42:48,492 - INFO - Step 5: Filtering and preprocessing data...
+2025-01-11 18:42:48,500 - INFO - Column pairs: [['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'], ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'], ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'], ['Czas [ms].25', 'MAF[kg/h]'], ['Czas [ms].26', 'Moc[kW]'], ['Czas [ms].27', 'Moment obrotowy[Nm]'], ['Czas [ms].29', 'Obroty[obr/min]'], ['Czas [ms].44', 'Temp. oleju w misce[°C]'], ['Czas [ms].46', 'Temp. otoczenia[°C]'], ['Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]'], ['Czas [ms].53', 'Temp. powietrza za turb.[°C]'], ['Czas [ms].54', 'Temp. spalin 1/6[°C]'], ['Czas [ms].55', 'Temp. spalin 2/6[°C]'], ['Czas [ms].56', 'Temp. spalin 3/6[°C]'], ['Czas [ms].57', 'Temp. spalin 4/6[°C]'], ['Czas [ms].62', 'Wilgotność względna[%]'], ['Czas [ms].70', 'Zużycie paliwa średnie[g/s]']]
+2025-01-11 18:42:48,501 - INFO - Filtered DataFrame to include 34 columns.
+2025-01-11 18:42:48,559 - INFO - Time columns synchronized successfully.
+2025-01-11 18:42:48,559 - INFO - Filtered DataFrame shape. after synchronize_time(): (2540, 18)
+2025-01-11 18:42:48,559 - INFO - DataCleaner initialized.
+2025-01-11 18:42:48,559 - INFO - Starting data cleaning process.
+2025-01-11 18:42:48,581 - INFO - Data cleaning process completed.
+2025-01-11 18:42:48,581 - INFO - Starting identify_stable_rotation with threshold=20 and window='8000ms'
+2025-01-11 18:42:48,581 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:48,581 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:48,581 - INFO - 'Time' column set as index.
+2025-01-11 18:42:48,581 - INFO - Computing rolling max and min of 'Obroty[obr/min]'.
+2025-01-11 18:42:48,581 - INFO - Identified 2119 points where rotation difference ≤ threshold.
+2025-01-11 18:42:48,581 - INFO - Labeled stable regions into 21 groups.
+2025-01-11 18:42:48,589 - INFO - Group 1: Found 3 stable time points.
+2025-01-11 18:42:48,590 - INFO - Group 3: Found 14 stable time points.
+2025-01-11 18:42:48,590 - INFO - Group 5: Found 611 stable time points.
+2025-01-11 18:42:48,591 - INFO - Group 7: Found 396 stable time points.
+2025-01-11 18:42:48,592 - INFO - Group 9: Found 122 stable time points.
+2025-01-11 18:42:48,592 - INFO - Group 11: Found 75 stable time points.
+2025-01-11 18:42:48,593 - INFO - Group 13: Found 56 stable time points.
+2025-01-11 18:42:48,594 - INFO - Group 15: Found 54 stable time points.
+2025-01-11 18:42:48,594 - INFO - Group 17: Found 385 stable time points.
+2025-01-11 18:42:48,594 - INFO - Group 19: Found 282 stable time points.
+2025-01-11 18:42:48,595 - INFO - Group 21: Found 121 stable time points.
+2025-01-11 18:42:48,596 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:48,597 - INFO - Identified 11 stable rotation levels.
+2025-01-11 18:42:48,598 - INFO - Group 0: Mean rotation = 6.7 RPM.
+2025-01-11 18:42:48,599 - INFO - Group 1: Mean rotation = 801.4 RPM.
+2025-01-11 18:42:48,600 - INFO - Group 2: Mean rotation = 1299.5 RPM.
+2025-01-11 18:42:48,601 - INFO - Group 3: Mean rotation = 1299.8 RPM.
+2025-01-11 18:42:48,601 - INFO - Group 4: Mean rotation = 1300.0 RPM.
+2025-01-11 18:42:48,601 - INFO - Group 5: Mean rotation = 1300.8 RPM.
+2025-01-11 18:42:48,601 - INFO - Group 6: Mean rotation = 1299.7 RPM.
+2025-01-11 18:42:48,601 - INFO - Group 7: Mean rotation = 1298.8 RPM.
+2025-01-11 18:42:48,601 - INFO - Group 8: Mean rotation = 1300.0 RPM.
+2025-01-11 18:42:48,607 - INFO - Group 9: Mean rotation = 1300.1 RPM.
+2025-01-11 18:42:48,608 - INFO - Group 10: Mean rotation = 800.4 RPM.
+2025-01-11 18:42:48,609 - INFO - Stable rotation levels extracted. Average values: [6.7, 801.4, 1299.5, 1299.8, 1300.0, 1300.8, 1299.7, 1298.8, 1300.0, 1300.1, 800.4]
+2025-01-11 18:42:48,614 - INFO - !!!---> Starting identify_stable_torque_nm with threshold=1.6 and window='8000ms'
+2025-01-11 18:42:48,615 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:48,615 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:48,616 - INFO - 'Time' column set as index.
+2025-01-11 18:42:48,616 - INFO - Computing rolling max and min of 'Moment obrotowy[Nm]'.
+2025-01-11 18:42:48,617 - INFO - Rolling object parameters:
+2025-01-11 18:42:48,617 - INFO -  - window: 8000ms
+2025-01-11 18:42:48,618 - INFO -  - min_periods: 1
+2025-01-11 18:42:48,618 - INFO -  - center: False
+2025-01-11 18:42:48,618 - INFO -  - win_type: None
+2025-01-11 18:42:48,618 - INFO -  - axis: 0
+2025-01-11 18:42:48,620 - INFO -  - method: single
+2025-01-11 18:42:48,620 - INFO -  - closed: None
+2025-01-11 18:42:48,620 - INFO - Identified 1674 points where torque difference ≤ threshold.
+2025-01-11 18:42:48,620 - INFO - Labeled stable regions into 31 groups.
+2025-01-11 18:42:48,623 - INFO - Group 1: Found 312 stable time points.
+2025-01-11 18:42:48,624 - INFO - Group 3: Found 77 stable time points.
+2025-01-11 18:42:48,624 - INFO - Group 5: Found 65 stable time points.
+2025-01-11 18:42:48,624 - INFO - Group 7: Found 67 stable time points.
+2025-01-11 18:42:48,625 - INFO - Group 9: Found 75 stable time points.
+2025-01-11 18:42:48,625 - INFO - Group 11: Found 71 stable time points.
+2025-01-11 18:42:48,625 - INFO - Group 13: Found 150 stable time points.
+2025-01-11 18:42:48,626 - INFO - Group 15: Found 113 stable time points.
+2025-01-11 18:42:48,626 - INFO - Group 17: Found 65 stable time points.
+2025-01-11 18:42:48,627 - INFO - Group 19: Found 38 stable time points.
+2025-01-11 18:42:48,627 - INFO - Group 21: Found 30 stable time points.
+2025-01-11 18:42:48,627 - INFO - Group 23: Found 33 stable time points.
+2025-01-11 18:42:48,627 - INFO - Group 25: Found 57 stable time points.
+2025-01-11 18:42:48,628 - INFO - Group 27: Found 107 stable time points.
+2025-01-11 18:42:48,628 - INFO - Group 29: Found 1 stable time points.
+2025-01-11 18:42:48,629 - INFO - Group 31: Found 413 stable time points.
+2025-01-11 18:42:48,630 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:48,630 - INFO - Identified 16 stable torque levels.
+2025-01-11 18:42:48,631 - INFO - Group 0: Mean torque = 0.3 Nm.
+2025-01-11 18:42:48,632 - INFO - Group 1: Mean torque = 25.2 Nm.
+2025-01-11 18:42:48,633 - INFO - Group 2: Mean torque = 50.1 Nm.
+2025-01-11 18:42:48,633 - INFO - Group 3: Mean torque = 75.1 Nm.
+2025-01-11 18:42:48,633 - INFO - Group 4: Mean torque = 100.0 Nm.
+2025-01-11 18:42:48,633 - INFO - Group 5: Mean torque = 125.0 Nm.
+2025-01-11 18:42:48,633 - INFO - Group 6: Mean torque = 150.0 Nm.
+2025-01-11 18:42:48,633 - INFO - Group 7: Mean torque = 175.0 Nm.
+2025-01-11 18:42:48,639 - INFO - Group 8: Mean torque = 200.0 Nm.
+2025-01-11 18:42:48,640 - INFO - Group 9: Mean torque = 225.0 Nm.
+2025-01-11 18:42:48,641 - INFO - Group 10: Mean torque = 249.9 Nm.
+2025-01-11 18:42:48,644 - INFO - Group 11: Mean torque = 274.9 Nm.
+2025-01-11 18:42:48,645 - INFO - Group 12: Mean torque = 299.9 Nm.
+2025-01-11 18:42:48,647 - INFO - Group 13: Mean torque = 318.5 Nm.
+2025-01-11 18:42:48,648 - INFO - Group 14: Mean torque = 314.7 Nm.
+2025-01-11 18:42:48,649 - INFO - Group 15: Mean torque = 0.8 Nm.
+2025-01-11 18:42:48,649 - INFO - Stable torque levels extracted. Average values: [0.3, 25.2, 50.1, 75.1, 100.0, 125.0, 150.0, 175.0, 200.0, 225.0, 249.9, 274.9, 299.9, 318.5, 314.7, 0.8]
+2025-01-11 18:42:48,653 - INFO - Starting identify_stable_fuel_consumption with threshold=0.1 and window='8000ms'
+2025-01-11 18:42:48,654 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:48,654 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:48,655 - INFO - 'Time' column set as index.
+2025-01-11 18:42:48,655 - INFO - Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.
+2025-01-11 18:42:48,656 - INFO - Rolling object parameters:
+2025-01-11 18:42:48,656 - INFO -  - window: 8000ms
+2025-01-11 18:42:48,657 - INFO -  - min_periods: 1
+2025-01-11 18:42:48,657 - INFO -  - center: False
+2025-01-11 18:42:48,657 - INFO -  - axis: 0
+2025-01-11 18:42:48,658 - INFO -  - method: single
+2025-01-11 18:42:48,658 - INFO -  - closed: None
+2025-01-11 18:42:48,659 - INFO - Identified 1177 points where fuel consumption difference ≤ threshold.
+2025-01-11 18:42:48,660 - INFO - Labeled stable regions into 45 groups.
+2025-01-11 18:42:48,662 - INFO - Group 1: Found 31 stable time points.
+2025-01-11 18:42:48,662 - INFO - Group 3: Found 62 stable time points.
+2025-01-11 18:42:48,664 - INFO - Group 5: Found 42 stable time points.
+2025-01-11 18:42:48,664 - INFO - Group 7: Found 24 stable time points.
+2025-01-11 18:42:48,664 - INFO - Group 9: Found 31 stable time points.
+2025-01-11 18:42:48,665 - INFO - Group 11: Found 43 stable time points.
+2025-01-11 18:42:48,665 - INFO - Group 13: Found 46 stable time points.
+2025-01-11 18:42:48,665 - INFO - Group 15: Found 46 stable time points.
+2025-01-11 18:42:48,666 - INFO - Group 17: Found 41 stable time points.
+2025-01-11 18:42:48,666 - INFO - Group 19: Found 64 stable time points.
+2025-01-11 18:42:48,666 - INFO - Group 21: Found 71 stable time points.
+2025-01-11 18:42:48,667 - INFO - Group 23: Found 49 stable time points.
+2025-01-11 18:42:48,667 - INFO - Group 25: Found 1 stable time points.
+2025-01-11 18:42:48,668 - INFO - Group 27: Found 1 stable time points.
+2025-01-11 18:42:48,668 - INFO - Group 29: Found 8 stable time points.
+2025-01-11 18:42:48,668 - INFO - Group 31: Found 32 stable time points.
+2025-01-11 18:42:48,669 - INFO - Group 33: Found 59 stable time points.
+2025-01-11 18:42:48,670 - INFO - Group 35: Found 87 stable time points.
+2025-01-11 18:42:48,670 - INFO - Group 37: Found 66 stable time points.
+2025-01-11 18:42:48,670 - INFO - Group 39: Found 51 stable time points.
+2025-01-11 18:42:48,670 - INFO - Group 41: Found 111 stable time points.
+2025-01-11 18:42:48,671 - INFO - Group 43: Found 87 stable time points.
+2025-01-11 18:42:48,671 - INFO - Group 45: Found 124 stable time points.
+2025-01-11 18:42:48,672 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:48,672 - INFO - Identified 23 stable fuel consumption levels.
+2025-01-11 18:42:48,673 - INFO - Group 0: Mean fuel consumption = 0.04 g/s.
+2025-01-11 18:42:48,674 - INFO - Group 1: Mean fuel consumption = 0.34 g/s.
+2025-01-11 18:42:48,676 - INFO - Group 2: Mean fuel consumption = 0.36 g/s.
+2025-01-11 18:42:48,677 - INFO - Group 3: Mean fuel consumption = 0.42 g/s.
+2025-01-11 18:42:48,678 - INFO - Group 4: Mean fuel consumption = 0.34 g/s.
+2025-01-11 18:42:48,679 - INFO - Group 5: Mean fuel consumption = 0.48 g/s.
+2025-01-11 18:42:48,681 - INFO - Group 6: Mean fuel consumption = 1.24 g/s.
+2025-01-11 18:42:48,683 - INFO - Group 7: Mean fuel consumption = 1.34 g/s.
+2025-01-11 18:42:48,684 - INFO - Group 8: Mean fuel consumption = 1.33 g/s.
+2025-01-11 18:42:48,685 - INFO - Group 9: Mean fuel consumption = 1.56 g/s.
+2025-01-11 18:42:48,687 - INFO - Group 10: Mean fuel consumption = 1.83 g/s.
+2025-01-11 18:42:48,688 - INFO - Group 11: Mean fuel consumption = 2.01 g/s.
+2025-01-11 18:42:48,689 - INFO - Group 12: Mean fuel consumption = 2.19 g/s.
+2025-01-11 18:42:48,690 - INFO - Group 13: Mean fuel consumption = 2.2 g/s.
+2025-01-11 18:42:48,691 - INFO - Group 14: Mean fuel consumption = 2.21 g/s.
+2025-01-11 18:42:48,694 - INFO - Group 15: Mean fuel consumption = 2.26 g/s.
+2025-01-11 18:42:48,695 - INFO - Group 16: Mean fuel consumption = 2.4 g/s.
+2025-01-11 18:42:48,697 - INFO - Group 17: Mean fuel consumption = 2.6 g/s.
+2025-01-11 18:42:48,698 - INFO - Group 18: Mean fuel consumption = 2.74 g/s.
+2025-01-11 18:42:48,699 - INFO - Group 19: Mean fuel consumption = 2.68 g/s.
+2025-01-11 18:42:48,699 - INFO - Group 20: Mean fuel consumption = 0.32 g/s.
+2025-01-11 18:42:48,699 - INFO - Group 21: Mean fuel consumption = 0.29 g/s.
+2025-01-11 18:42:48,699 - INFO - Group 22: Mean fuel consumption = 0.17 g/s.
+2025-01-11 18:42:48,699 - INFO - Stable fuel consumption levels extracted. Average values: [0.04, 0.34, 0.36, 0.42, 0.34, 0.48, 1.24, 1.34, 1.33, 1.56, 1.83, 2.01, 2.19, 2.2, 2.21, 2.26, 2.4, 2.6, 2.74, 2.68, 0.32, 0.29, 0.17]
+2025-01-11 18:42:48,706 - INFO - Starting filter_high_temperature_oil.
+2025-01-11 18:42:48,707 - INFO - Removed 0 rows where oil temperature was less than 50°C.
+2025-01-11 18:42:48,720 - INFO - Extracted 760 rows of intersected stable data.
+2025-01-11 18:42:48,722 - INFO - DataFrame cleaned successfully using DataCleaner.
+2025-01-11 18:42:48,723 - INFO - Starting metadata extraction for multiple DataFrames...
+2025-01-11 18:42:48,723 - INFO - Processing DataFrame 1/1 with shape (760, 18)...
+2025-01-11 18:42:48,731 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1300 obc - 2015-05.parquet', 'empty', 'DF'],DataFrame after filtering::
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
 |    | Column                         |   Total Values |   Non-Null Count |   Null Count |   Unique Values | Data Type      |
 +====+================================+================+==================+==============+=================+================+
@@ -1030,51 +1031,52 @@ All Optional Columns: Present
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
 | 17 | Zużycie paliwa średnie[g/s]    |            760 |              760 |            0 |             603 | float64        |
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
-2025-01-11 13:39:45,145 - INFO - Metadata extraction completed for all DataFrames.
-2025-01-11 13:39:45,153 - INFO - Step 5: Data filtered and preprocessed successfully.
-2025-01-11 13:39:45,153 - INFO - Step 6: Transforming data...
-2025-01-11 13:39:45,154 - INFO - Starting atmospheric power correction.
-2025-01-11 13:39:45,161 - INFO - Average power correction: -0.66%
-2025-01-11 13:39:45,161 - INFO - Maximum power correction: -0.42%
-2025-01-11 13:39:45,162 - INFO - Average torque correction: -0.70%
-2025-01-11 13:39:45,162 - INFO - Maximum torque correction: -0.42%
-2025-01-11 13:39:45,163 - INFO - Atmospheric power correction applied successfully.
-2025-01-11 13:39:45,170 - INFO - Mean exhaust gas temperature calculated successfully.
-2025-01-11 13:39:45,172 - INFO - Step 8: Adding fuel data...
-2025-01-11 13:39:45,175 - INFO - Starting add_fuel process.
-2025-01-11 13:39:45,239 - INFO - DataFrame shape after processing: (760, 12)
-2025-01-11 13:39:45,239 - INFO - Columns in DataFrame: ['Time', 'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 'Zużycie paliwa średnie[g/s]', 'Temp. spalin mean[°C]']
-2025-01-11 13:39:45,239 - INFO - add_fuel process completed successfully.
-2025-01-11 13:39:45,245 - INFO - Step 8: Fuel data added successfully.
-2025-01-11 13:39:45,251 - INFO - Data pipeline completed successfully for file withID:2: 1300 obc - 2015-05.parquet
-2025-01-11 13:39:45,251 - INFO - !!!--Data pipeline completed successfully.--!!!
-2025-01-11 13:39:45,255 - INFO - !!!---Processing file with ID:4: 1400 Efecta TiL I rok II st - 2019-04.parquet.---!!!
-2025-01-11 13:39:45,255 - INFO - Step 2: Loading raw data...
-2025-01-11 13:39:45,263 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
-2025-01-11 13:39:45,264 - INFO - Loading main file: 1400 Efecta TiL I rok II st - 2019-04.parquet
-2025-01-11 13:39:45,264 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1400 Efecta TiL I rok II st - 2019-04.parquet
-2025-01-11 13:39:45,315 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1400 Efecta TiL I rok II st - 2019-04.parquet
-2025-01-11 13:39:45,316 - INFO - Data Frame Shape: (31960, 143)
-2025-01-11 13:39:45,317 - INFO - Data Frame Columns: ['Czas [ms]', 'Ciś. pow. przed turb.[Pa]', 'Czas [ms].1', 'Ciś. pow. za turb.[Pa]', 'Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]', 'Czas [ms].3', 'Ciśnienie oleju[bar]', 'Czas [ms].4', 'Ciśnienie spalin[Pa]', 'Czas [ms].5', 'Dopeł. zb. 1/3[-]', 'Czas [ms].6', 'Dopeł. zb. 2/3[-]', 'Czas [ms].7', 'Dopeł. zb. 3/3[-]', 'Czas [ms].8', 'Dopełnianie[-]', 'Czas [ms].9', 'Duży obieg[-]', 'Czas [ms].10', 'ECT - wejście do sil.[°C]', 'Czas [ms].11', 'ECT - wyjście z sil.[°C]', 'Czas [ms].12', 'Główny obieg - przepływ[m³/h]', 'Czas [ms].13', 'Główny obieg - temp.[°C]', 'Czas [ms].14', 'GPReg_Setpoint0[°C]', 'Czas [ms].15', 'GPReg_Setpoint1[°C]', 'Czas [ms].16', 'GPReg_Setpoint2[°C]', 'Czas [ms].17', 'Hamulec, lewa komora, temp.[°C]', 'Czas [ms].18', 'Hamulec, prawa komora, temp.[°C]', 'Czas [ms].19', 'Hamulec, przepływ wody[m³/h]', 'Czas [ms].20', 'Ilość paliwa w zbiorniku[g]', 'Czas [ms].21', 'Kond. - przepływ wody[l/min]', 'Czas [ms].22', 'Kontrolka zb. 1/3 [-]', 'Czas [ms].23', 'Kontrolka zb. 2/3 [-]', 'Czas [ms].24', 'Kontrolka zb. 3/3 [-]', 'Czas [ms].25', 'MAF[kg/h]', 'Czas [ms].26', 'Moc[kW]', 'Czas [ms].27', 'Moment obrotowy[Nm]', 'Czas [ms].28', 'Moment Tryb3[Nm]', 'Czas [ms].29', 'Obroty[obr/min]', 'Czas [ms].30', 'Poz. paliwa zb. 1/3[mm]', 'Czas [ms].31', 'Poz. paliwa zb. 2/3[mm]', 'Czas [ms].32', 'Poz. paliwa zb. 3/3[mm]', 'Czas [ms].33', 'Przekaź. pompy paliwa[-]', 'Czas [ms].34', 'Przekaźnik zapłonu[-]', 'Czas [ms].35', 'Przepustnica[%]', 'Czas [ms].36', 'Przepustnica Tryb0[%]', 'Czas [ms].37', 'Przyklad[bar]', 'Czas [ms].38', 'PWM Tryb0[%]', 'Czas [ms].39', 'Rozrusznik[-]', 'Czas [ms].40', 'RPM Tryb3[obr/min]', 'Czas [ms].41', 'Starter[-]', 'Czas [ms].42', 'Stycz. chłodni went.[-]', 'Czas [ms].43', 'Temp. oleju przed wym.[°C]', 'Czas [ms].44', 'Temp. oleju w misce[°C]', 'Czas [ms].45', 'Temp. oleju za wym.[°C]', 'Czas [ms].46', 'Temp. otoczenia[°C]', 'Czas [ms].47', 'Temp. pal. na wejściu sil.[°C]', 'Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]', 'Czas [ms].49', 'Temp. paliwa w zb. 1/3[°C]', 'Czas [ms].50', 'Temp. paliwa w zb. 2/3[°C]', 'Czas [ms].51', 'Temp. paliwa w zb. 3/3[°C]', 'Czas [ms].52', 'Temp. powietrza przed turb.[°C]', 'Czas [ms].53', 'Temp. powietrza za turb.[°C]', 'Czas [ms].54', 'Temp. spalin 1/6[°C]', 'Czas [ms].55', 'Temp. spalin 2/6[°C]', 'Czas [ms].56', 'Temp. spalin 3/6[°C]', 'Czas [ms].57', 'Temp. spalin 4/6[°C]', 'Czas [ms].58', 'Temp. spalin za turbiną 1/2[°C]', 'Czas [ms].59', 'Temp. spalin za turbiną 2/2[°C]', 'Czas [ms].60', 'Temp.pal.na wyjściu[°C]', 'Czas [ms].61', 'Temp.paliwa żądana[°C]', 'Czas [ms].62', 'Wilgotność względna[%]', 'Czas [ms].63', 'Wyłącznik bezpieczeństwa[-]', 'Czas [ms].64', 'Zapłon[-]', 'Czas [ms].65', 'Zaw. zb. paliwa 1/3[-]', 'Czas [ms].66', 'Zaw. zb. paliwa 2/3[-]', 'Czas [ms].67', 'Zaw. zb. paliwa 3/3[-]', 'Czas [ms].68', 'Zawór reg. chł. cieczy[-]', 'Czas [ms].69', 'Zużycie paliwa bieżące[g/s]', 'Czas [ms].70', 'Zużycie paliwa średnie[g/s]', 'Unnamed: 142']
-2025-01-11 13:39:45,322 - INFO - Data files loaded successfully.
-2025-01-11 13:39:45,331 - INFO - Step 2: Raw data loaded successfully.
-2025-01-11 13:39:45,331 - INFO - Step 3: Validating data...
-2025-01-11 13:39:45,345 - INFO - DataValidator initialized.
-2025-01-11 13:39:45,346 - INFO - Starting column validation for multiple DataFrames...
-2025-01-11 13:39:45,346 - INFO - Starting schema validation for multiple DataFrames...
-2025-01-11 13:39:45,347 - INFO - DataFrame 0 - Schema validation passed.
-2025-01-11 13:39:45,348 - INFO - Checking for duplicate columns in multiple DataFrames...
-2025-01-11 13:39:45,349 - INFO - DataFrame 0: No duplicate columns found.
-2025-01-11 13:39:45,349 - INFO - Validation reports summarizing the results for each DataFrame
-2025-01-11 13:39:45,350 - INFO - =================
+2025-01-11 18:42:48,738 - INFO - Metadata extraction completed for all DataFrames.
+2025-01-11 18:42:48,744 - INFO - Step 5: Data filtered and preprocessed successfully.
+2025-01-11 18:42:48,744 - INFO - Step 6: Transforming data...
+2025-01-11 18:42:48,745 - INFO - Starting atmospheric power correction.
+2025-01-11 18:42:48,753 - INFO - Average power correction: -0.66%
+2025-01-11 18:42:48,753 - INFO - Maximum power correction: -0.42%
+2025-01-11 18:42:48,754 - INFO - Average torque correction: -0.70%
+2025-01-11 18:42:48,754 - INFO - Maximum torque correction: -0.42%
+2025-01-11 18:42:48,755 - INFO - Atmospheric power correction applied successfully.
+2025-01-11 18:42:48,760 - INFO - Mean exhaust gas temperature calculated successfully.
+2025-01-11 18:42:48,763 - INFO - Step 8: Adding fuel data...
+2025-01-11 18:42:48,765 - INFO - Starting add_fuel process.
+2025-01-11 18:42:48,766 - INFO - Fuel properties for 'DF' added to DataFrame. Columns added: ['Cetane number', 'Density at 15 C', 'Viscosity at 40 C', 'Flash point', 'LHV (Lower Heating Value)']
+2025-01-11 18:42:48,769 - INFO - DataFrame shape after processing: (760, 17)
+2025-01-11 18:42:48,769 - INFO - Columns in DataFrame: ['Time', 'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 'Zużycie paliwa średnie[g/s]', 'Temp. spalin mean[°C]', 'Cetane number', 'Density at 15 C, kg/m3', 'Viscosity at 40 C, mm2/s', 'Flash point, C', 'LHV (Lower Heating Value), MJ/kg']
+2025-01-11 18:42:48,769 - INFO - add_fuel process completed successfully.
+2025-01-11 18:42:48,776 - INFO - Step 8: Fuel data added successfully.
+2025-01-11 18:42:48,783 - INFO - Data pipeline completed successfully for file withID:2: 1300 obc - 2015-05.parquet
+2025-01-11 18:42:48,784 - INFO - !!!--Data pipeline completed successfully.--!!!
+2025-01-11 18:42:48,787 - INFO - !!!---Processing file with ID:4: 1400 Efecta TiL I rok II st - 2019-04.parquet.---!!!
+2025-01-11 18:42:48,787 - INFO - Step 2: Loading raw data...
+2025-01-11 18:42:48,796 - INFO - DataLoader initialized with raw data path: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
+2025-01-11 18:42:48,797 - INFO - Loading main file: 1400 Efecta TiL I rok II st - 2019-04.parquet
+2025-01-11 18:42:48,797 - INFO - Loading data from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1400 Efecta TiL I rok II st - 2019-04.parquet
+2025-01-11 18:42:48,837 - INFO - Data loaded successfully from file: c:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\1400 Efecta TiL I rok II st - 2019-04.parquet
+2025-01-11 18:42:48,837 - INFO - Data Frame Shape: (31960, 143)
+2025-01-11 18:42:48,837 - INFO - Data Frame Columns: ['Czas [ms]', 'Ciś. pow. przed turb.[Pa]', 'Czas [ms].1', 'Ciś. pow. za turb.[Pa]', 'Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]', 'Czas [ms].3', 'Ciśnienie oleju[bar]', 'Czas [ms].4', 'Ciśnienie spalin[Pa]', 'Czas [ms].5', 'Dopeł. zb. 1/3[-]', 'Czas [ms].6', 'Dopeł. zb. 2/3[-]', 'Czas [ms].7', 'Dopeł. zb. 3/3[-]', 'Czas [ms].8', 'Dopełnianie[-]', 'Czas [ms].9', 'Duży obieg[-]', 'Czas [ms].10', 'ECT - wejście do sil.[°C]', 'Czas [ms].11', 'ECT - wyjście z sil.[°C]', 'Czas [ms].12', 'Główny obieg - przepływ[m³/h]', 'Czas [ms].13', 'Główny obieg - temp.[°C]', 'Czas [ms].14', 'GPReg_Setpoint0[°C]', 'Czas [ms].15', 'GPReg_Setpoint1[°C]', 'Czas [ms].16', 'GPReg_Setpoint2[°C]', 'Czas [ms].17', 'Hamulec, lewa komora, temp.[°C]', 'Czas [ms].18', 'Hamulec, prawa komora, temp.[°C]', 'Czas [ms].19', 'Hamulec, przepływ wody[m³/h]', 'Czas [ms].20', 'Ilość paliwa w zbiorniku[g]', 'Czas [ms].21', 'Kond. - przepływ wody[l/min]', 'Czas [ms].22', 'Kontrolka zb. 1/3 [-]', 'Czas [ms].23', 'Kontrolka zb. 2/3 [-]', 'Czas [ms].24', 'Kontrolka zb. 3/3 [-]', 'Czas [ms].25', 'MAF[kg/h]', 'Czas [ms].26', 'Moc[kW]', 'Czas [ms].27', 'Moment obrotowy[Nm]', 'Czas [ms].28', 'Moment Tryb3[Nm]', 'Czas [ms].29', 'Obroty[obr/min]', 'Czas [ms].30', 'Poz. paliwa zb. 1/3[mm]', 'Czas [ms].31', 'Poz. paliwa zb. 2/3[mm]', 'Czas [ms].32', 'Poz. paliwa zb. 3/3[mm]', 'Czas [ms].33', 'Przekaź. pompy paliwa[-]', 'Czas [ms].34', 'Przekaźnik zapłonu[-]', 'Czas [ms].35', 'Przepustnica[%]', 'Czas [ms].36', 'Przepustnica Tryb0[%]', 'Czas [ms].37', 'Przyklad[bar]', 'Czas [ms].38', 'PWM Tryb0[%]', 'Czas [ms].39', 'Rozrusznik[-]', 'Czas [ms].40', 'RPM Tryb3[obr/min]', 'Czas [ms].41', 'Starter[-]', 'Czas [ms].42', 'Stycz. chłodni went.[-]', 'Czas [ms].43', 'Temp. oleju przed wym.[°C]', 'Czas [ms].44', 'Temp. oleju w misce[°C]', 'Czas [ms].45', 'Temp. oleju za wym.[°C]', 'Czas [ms].46', 'Temp. otoczenia[°C]', 'Czas [ms].47', 'Temp. pal. na wejściu sil.[°C]', 'Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]', 'Czas [ms].49', 'Temp. paliwa w zb. 1/3[°C]', 'Czas [ms].50', 'Temp. paliwa w zb. 2/3[°C]', 'Czas [ms].51', 'Temp. paliwa w zb. 3/3[°C]', 'Czas [ms].52', 'Temp. powietrza przed turb.[°C]', 'Czas [ms].53', 'Temp. powietrza za turb.[°C]', 'Czas [ms].54', 'Temp. spalin 1/6[°C]', 'Czas [ms].55', 'Temp. spalin 2/6[°C]', 'Czas [ms].56', 'Temp. spalin 3/6[°C]', 'Czas [ms].57', 'Temp. spalin 4/6[°C]', 'Czas [ms].58', 'Temp. spalin za turbiną 1/2[°C]', 'Czas [ms].59', 'Temp. spalin za turbiną 2/2[°C]', 'Czas [ms].60', 'Temp.pal.na wyjściu[°C]', 'Czas [ms].61', 'Temp.paliwa żądana[°C]', 'Czas [ms].62', 'Wilgotność względna[%]', 'Czas [ms].63', 'Wyłącznik bezpieczeństwa[-]', 'Czas [ms].64', 'Zapłon[-]', 'Czas [ms].65', 'Zaw. zb. paliwa 1/3[-]', 'Czas [ms].66', 'Zaw. zb. paliwa 2/3[-]', 'Czas [ms].67', 'Zaw. zb. paliwa 3/3[-]', 'Czas [ms].68', 'Zawór reg. chł. cieczy[-]', 'Czas [ms].69', 'Zużycie paliwa bieżące[g/s]', 'Czas [ms].70', 'Zużycie paliwa średnie[g/s]', 'Unnamed: 142']
+2025-01-11 18:42:48,846 - INFO - Data files loaded successfully.
+2025-01-11 18:42:48,851 - INFO - Step 2: Raw data loaded successfully.
+2025-01-11 18:42:48,852 - INFO - Step 3: Validating data...
+2025-01-11 18:42:48,863 - INFO - DataValidator initialized.
+2025-01-11 18:42:48,863 - INFO - Starting column validation for multiple DataFrames...
+2025-01-11 18:42:48,863 - INFO - Starting schema validation for multiple DataFrames...
+2025-01-11 18:42:48,865 - INFO - DataFrame 0 - Schema validation passed.
+2025-01-11 18:42:48,865 - INFO - Checking for duplicate columns in multiple DataFrames...
+2025-01-11 18:42:48,865 - INFO - DataFrame 0: No duplicate columns found.
+2025-01-11 18:42:48,866 - INFO - Validation reports summarizing the results for each DataFrame
+2025-01-11 18:42:48,866 - INFO - =================
 Validation Report for DataFrame Num=0, file_name:'1400 Efecta TiL I rok II st - 2019-04.parquet'(0 - main Data Frame; 1 - eco Data Frame; 2 - fuels):
 DataFrame Shape: (31960, 143) (Rows, Columns) <--- !!!!!!!!!
 All Required Columns: Present
 All Optional Columns: Present
-2025-01-11 13:39:45,351 - INFO - Step 3: Data validated successfully.
-2025-01-11 13:39:45,363 - INFO - Starting metadata extraction for multiple DataFrames...
-2025-01-11 13:39:45,363 - INFO - Processing DataFrame 1/1 with shape (31960, 143)...
-2025-01-11 13:39:45,498 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1400 Efecta TiL I rok II st - 2019-04.parquet', 'empty', 'EDF', 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\fuels\\fuels.json'],None:
+2025-01-11 18:42:48,867 - INFO - Step 3: Data validated successfully.
+2025-01-11 18:42:48,873 - INFO - Starting metadata extraction for multiple DataFrames...
+2025-01-11 18:42:48,873 - INFO - Processing DataFrame 1/1 with shape (31960, 143)...
+2025-01-11 18:42:48,992 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1400 Efecta TiL I rok II st - 2019-04.parquet', 'empty', 'EDF'],None:
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
 |     | Column                           |   Total Values |   Non-Null Count |   Null Count |   Unique Values | Data Type   |
 +=====+==================================+================+==================+==============+=================+=============+
@@ -1364,158 +1366,158 @@ All Optional Columns: Present
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
 | 142 | Unnamed: 142                     |              0 |                0 |        31960 |               0 | float64     |
 +-----+----------------------------------+----------------+------------------+--------------+-----------------+-------------+
-2025-01-11 13:39:45,530 - INFO - Metadata extraction completed for all DataFrames.
-2025-01-11 13:39:45,538 - INFO - Step 4: Metadata extracted successfully.
-2025-01-11 13:39:45,538 - INFO - Step 5: Filtering and preprocessing data...
-2025-01-11 13:39:45,548 - INFO - Column pairs: [['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'], ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'], ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'], ['Czas [ms].25', 'MAF[kg/h]'], ['Czas [ms].26', 'Moc[kW]'], ['Czas [ms].27', 'Moment obrotowy[Nm]'], ['Czas [ms].29', 'Obroty[obr/min]'], ['Czas [ms].44', 'Temp. oleju w misce[°C]'], ['Czas [ms].46', 'Temp. otoczenia[°C]'], ['Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]'], ['Czas [ms].53', 'Temp. powietrza za turb.[°C]'], ['Czas [ms].54', 'Temp. spalin 1/6[°C]'], ['Czas [ms].55', 'Temp. spalin 2/6[°C]'], ['Czas [ms].56', 'Temp. spalin 3/6[°C]'], ['Czas [ms].57', 'Temp. spalin 4/6[°C]'], ['Czas [ms].62', 'Wilgotność względna[%]'], ['Czas [ms].70', 'Zużycie paliwa średnie[g/s]']]
-2025-01-11 13:39:45,555 - INFO - Filtered DataFrame to include 34 columns.
-2025-01-11 13:39:45,637 - INFO - Time columns synchronized successfully.
-2025-01-11 13:39:45,641 - INFO - Filtered DataFrame shape. after synchronize_time(): (3195, 18)
-2025-01-11 13:39:45,642 - INFO - DataCleaner initialized.
-2025-01-11 13:39:45,642 - INFO - Starting data cleaning process.
-2025-01-11 13:39:45,652 - INFO - Data cleaning process completed.
-2025-01-11 13:39:45,652 - INFO - Starting identify_stable_rotation with threshold=20 and window='8000ms'
-2025-01-11 13:39:45,652 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:45,653 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:45,653 - INFO - 'Time' column set as index.
-2025-01-11 13:39:45,654 - INFO - Computing rolling max and min of 'Obroty[obr/min]'.
-2025-01-11 13:39:45,655 - INFO - Identified 2975 points where rotation difference ≤ threshold.
-2025-01-11 13:39:45,656 - INFO - Labeled stable regions into 9 groups.
-2025-01-11 13:39:45,659 - INFO - Group 1: Found 3 stable time points.
-2025-01-11 13:39:45,660 - INFO - Group 3: Found 156 stable time points.
-2025-01-11 13:39:45,660 - INFO - Group 5: Found 2549 stable time points.
-2025-01-11 13:39:45,661 - INFO - Group 7: Found 152 stable time points.
-2025-01-11 13:39:45,661 - INFO - Group 9: Found 115 stable time points.
-2025-01-11 13:39:45,662 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:45,663 - INFO - Identified 5 stable rotation levels.
-2025-01-11 13:39:45,664 - INFO - Group 0: Mean rotation = 2.0 RPM.
-2025-01-11 13:39:45,665 - INFO - Group 1: Mean rotation = 800.5 RPM.
-2025-01-11 13:39:45,666 - INFO - Group 2: Mean rotation = 1399.7 RPM.
-2025-01-11 13:39:45,667 - INFO - Group 3: Mean rotation = 1399.9 RPM.
-2025-01-11 13:39:45,668 - INFO - Group 4: Mean rotation = 800.6 RPM.
-2025-01-11 13:39:45,668 - INFO - Stable rotation levels extracted. Average values: [2.0, 800.5, 1399.7, 1399.9, 800.6]
-2025-01-11 13:39:45,675 - INFO - !!!---> Starting identify_stable_torque_nm with threshold=1.6 and window='8000ms'
-2025-01-11 13:39:45,676 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:45,676 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:45,677 - INFO - 'Time' column set as index.
-2025-01-11 13:39:45,678 - INFO - Computing rolling max and min of 'Moment obrotowy[Nm]'.
-2025-01-11 13:39:45,679 - INFO - Rolling object parameters:
-2025-01-11 13:39:45,679 - INFO -  - window: 8000ms
-2025-01-11 13:39:45,680 - INFO -  - min_periods: 1
-2025-01-11 13:39:45,680 - INFO -  - center: False
-2025-01-11 13:39:45,680 - INFO -  - win_type: None
-2025-01-11 13:39:45,681 - INFO -  - axis: 0
-2025-01-11 13:39:45,681 - INFO -  - method: single
-2025-01-11 13:39:45,681 - INFO -  - closed: None
-2025-01-11 13:39:45,682 - INFO - Identified 2340 points where torque difference ≤ threshold.
-2025-01-11 13:39:45,685 - INFO - Labeled stable regions into 33 groups.
-2025-01-11 13:39:45,687 - INFO - Group 1: Found 633 stable time points.
-2025-01-11 13:39:45,687 - INFO - Group 3: Found 132 stable time points.
-2025-01-11 13:39:45,688 - INFO - Group 5: Found 100 stable time points.
-2025-01-11 13:39:45,688 - INFO - Group 7: Found 96 stable time points.
-2025-01-11 13:39:45,688 - INFO - Group 9: Found 93 stable time points.
-2025-01-11 13:39:45,689 - INFO - Group 11: Found 88 stable time points.
-2025-01-11 13:39:45,689 - INFO - Group 13: Found 88 stable time points.
-2025-01-11 13:39:45,690 - INFO - Group 15: Found 96 stable time points.
-2025-01-11 13:39:45,690 - INFO - Group 17: Found 91 stable time points.
-2025-01-11 13:39:45,691 - INFO - Group 19: Found 84 stable time points.
-2025-01-11 13:39:45,692 - INFO - Group 21: Found 82 stable time points.
-2025-01-11 13:39:45,693 - INFO - Group 23: Found 87 stable time points.
-2025-01-11 13:39:45,693 - INFO - Group 25: Found 83 stable time points.
-2025-01-11 13:39:45,694 - INFO - Group 27: Found 7 stable time points.
-2025-01-11 13:39:45,695 - INFO - Group 29: Found 175 stable time points.
-2025-01-11 13:39:45,695 - INFO - Group 31: Found 127 stable time points.
-2025-01-11 13:39:45,696 - INFO - Group 33: Found 278 stable time points.
-2025-01-11 13:39:45,697 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:45,697 - INFO - Identified 17 stable torque levels.
-2025-01-11 13:39:45,700 - INFO - Group 0: Mean torque = 1.4 Nm.
-2025-01-11 13:39:45,702 - INFO - Group 1: Mean torque = 25.1 Nm.
-2025-01-11 13:39:45,704 - INFO - Group 2: Mean torque = 50.1 Nm.
-2025-01-11 13:39:45,705 - INFO - Group 3: Mean torque = 75.1 Nm.
-2025-01-11 13:39:45,706 - INFO - Group 4: Mean torque = 100.0 Nm.
-2025-01-11 13:39:45,708 - INFO - Group 5: Mean torque = 125.0 Nm.
-2025-01-11 13:39:45,710 - INFO - Group 6: Mean torque = 150.0 Nm.
-2025-01-11 13:39:45,712 - INFO - Group 7: Mean torque = 175.0 Nm.
-2025-01-11 13:39:45,713 - INFO - Group 8: Mean torque = 200.0 Nm.
-2025-01-11 13:39:45,714 - INFO - Group 9: Mean torque = 225.0 Nm.
-2025-01-11 13:39:45,716 - INFO - Group 10: Mean torque = 249.9 Nm.
-2025-01-11 13:39:45,719 - INFO - Group 11: Mean torque = 274.9 Nm.
-2025-01-11 13:39:45,720 - INFO - Group 12: Mean torque = 299.9 Nm.
-2025-01-11 13:39:45,721 - INFO - Group 13: Mean torque = 324.8 Nm.
-2025-01-11 13:39:45,722 - INFO - Group 14: Mean torque = 325.0 Nm.
-2025-01-11 13:39:45,726 - INFO - Group 15: Mean torque = 344.9 Nm.
-2025-01-11 13:39:45,727 - INFO - Group 16: Mean torque = 1.8 Nm.
-2025-01-11 13:39:45,728 - INFO - Stable torque levels extracted. Average values: [1.4, 25.1, 50.1, 75.1, 100.0, 125.0, 150.0, 175.0, 200.0, 225.0, 249.9, 274.9, 299.9, 324.8, 325.0, 344.9, 1.8]
-2025-01-11 13:39:45,735 - INFO - Starting identify_stable_fuel_consumption with threshold=0.1 and window='8000ms'
-2025-01-11 13:39:45,736 - INFO - DataFrame copied for processing.
-2025-01-11 13:39:45,736 - INFO - 'Time' column is already in datetime format.
-2025-01-11 13:39:45,737 - INFO - 'Time' column set as index.
-2025-01-11 13:39:45,737 - INFO - Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.
-2025-01-11 13:39:45,739 - INFO - Rolling object parameters:
-2025-01-11 13:39:45,739 - INFO -  - window: 8000ms
-2025-01-11 13:39:45,740 - INFO -  - min_periods: 1
-2025-01-11 13:39:45,740 - INFO -  - center: False
-2025-01-11 13:39:45,742 - INFO -  - axis: 0
-2025-01-11 13:39:45,742 - INFO -  - method: single
-2025-01-11 13:39:45,742 - INFO -  - closed: None
-2025-01-11 13:39:45,743 - INFO - Identified 2313 points where fuel consumption difference ≤ threshold.
-2025-01-11 13:39:45,745 - INFO - Labeled stable regions into 45 groups.
-2025-01-11 13:39:45,747 - INFO - Group 1: Found 40 stable time points.
-2025-01-11 13:39:45,747 - INFO - Group 3: Found 165 stable time points.
-2025-01-11 13:39:45,748 - INFO - Group 5: Found 189 stable time points.
-2025-01-11 13:39:45,748 - INFO - Group 7: Found 150 stable time points.
-2025-01-11 13:39:45,749 - INFO - Group 9: Found 161 stable time points.
-2025-01-11 13:39:45,750 - INFO - Group 11: Found 138 stable time points.
-2025-01-11 13:39:45,751 - INFO - Group 13: Found 59 stable time points.
-2025-01-11 13:39:45,751 - INFO - Group 15: Found 28 stable time points.
-2025-01-11 13:39:45,752 - INFO - Group 17: Found 121 stable time points.
-2025-01-11 13:39:45,752 - INFO - Group 19: Found 92 stable time points.
-2025-01-11 13:39:45,753 - INFO - Group 21: Found 119 stable time points.
-2025-01-11 13:39:45,753 - INFO - Group 23: Found 107 stable time points.
-2025-01-11 13:39:45,754 - INFO - Group 25: Found 60 stable time points.
-2025-01-11 13:39:45,754 - INFO - Group 27: Found 100 stable time points.
-2025-01-11 13:39:45,755 - INFO - Group 29: Found 97 stable time points.
-2025-01-11 13:39:45,755 - INFO - Group 31: Found 113 stable time points.
-2025-01-11 13:39:45,755 - INFO - Group 33: Found 61 stable time points.
-2025-01-11 13:39:45,755 - INFO - Group 35: Found 193 stable time points.
-2025-01-11 13:39:45,756 - INFO - Group 37: Found 13 stable time points.
-2025-01-11 13:39:45,756 - INFO - Group 39: Found 139 stable time points.
-2025-01-11 13:39:45,757 - INFO - Group 41: Found 95 stable time points.
-2025-01-11 13:39:45,758 - INFO - Group 43: Found 58 stable time points.
-2025-01-11 13:39:45,759 - INFO - Group 45: Found 15 stable time points.
-2025-01-11 13:39:45,761 - INFO - Dropped temporary 'Stable' and 'Group' columns.
-2025-01-11 13:39:45,761 - INFO - Identified 23 stable fuel consumption levels.
-2025-01-11 13:39:45,762 - INFO - Group 0: Mean fuel consumption = 0.07 g/s.
-2025-01-11 13:39:45,763 - INFO - Group 1: Mean fuel consumption = 0.21 g/s.
-2025-01-11 13:39:45,765 - INFO - Group 2: Mean fuel consumption = 0.42 g/s.
-2025-01-11 13:39:45,767 - INFO - Group 3: Mean fuel consumption = 0.42 g/s.
-2025-01-11 13:39:45,769 - INFO - Group 4: Mean fuel consumption = 0.56 g/s.
-2025-01-11 13:39:45,771 - INFO - Group 5: Mean fuel consumption = 0.74 g/s.
-2025-01-11 13:39:45,772 - INFO - Group 6: Mean fuel consumption = 0.9 g/s.
-2025-01-11 13:39:45,773 - INFO - Group 7: Mean fuel consumption = 0.94 g/s.
-2025-01-11 13:39:45,775 - INFO - Group 8: Mean fuel consumption = 1.09 g/s.
-2025-01-11 13:39:45,777 - INFO - Group 9: Mean fuel consumption = 1.25 g/s.
-2025-01-11 13:39:45,779 - INFO - Group 10: Mean fuel consumption = 1.45 g/s.
-2025-01-11 13:39:45,780 - INFO - Group 11: Mean fuel consumption = 1.68 g/s.
-2025-01-11 13:39:45,782 - INFO - Group 12: Mean fuel consumption = 1.88 g/s.
-2025-01-11 13:39:45,784 - INFO - Group 13: Mean fuel consumption = 2.1 g/s.
-2025-01-11 13:39:45,786 - INFO - Group 14: Mean fuel consumption = 2.33 g/s.
-2025-01-11 13:39:45,787 - INFO - Group 15: Mean fuel consumption = 2.5 g/s.
-2025-01-11 13:39:45,789 - INFO - Group 16: Mean fuel consumption = 2.7 g/s.
-2025-01-11 13:39:45,791 - INFO - Group 17: Mean fuel consumption = 2.85 g/s.
-2025-01-11 13:39:45,793 - INFO - Group 18: Mean fuel consumption = 2.94 g/s.
-2025-01-11 13:39:45,794 - INFO - Group 19: Mean fuel consumption = 2.98 g/s.
-2025-01-11 13:39:45,796 - INFO - Group 20: Mean fuel consumption = 0.33 g/s.
-2025-01-11 13:39:45,798 - INFO - Group 21: Mean fuel consumption = 0.19 g/s.
-2025-01-11 13:39:45,801 - INFO - Group 22: Mean fuel consumption = 0.17 g/s.
-2025-01-11 13:39:45,802 - INFO - Stable fuel consumption levels extracted. Average values: [0.07, 0.21, 0.42, 0.42, 0.56, 0.74, 0.9, 0.94, 1.09, 1.25, 1.45, 1.68, 1.88, 2.1, 2.33, 2.5, 2.7, 2.85, 2.94, 2.98, 0.33, 0.19, 0.17]
-2025-01-11 13:39:45,810 - INFO - Starting filter_high_temperature_oil.
-2025-01-11 13:39:45,811 - INFO - Removed 0 rows where oil temperature was less than 50°C.
-2025-01-11 13:39:45,837 - INFO - Extracted 1624 rows of intersected stable data.
-2025-01-11 13:39:45,843 - INFO - DataFrame cleaned successfully using DataCleaner.
-2025-01-11 13:39:45,844 - INFO - Starting metadata extraction for multiple DataFrames...
-2025-01-11 13:39:45,845 - INFO - Processing DataFrame 1/1 with shape (1624, 18)...
-2025-01-11 13:39:45,855 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1400 Efecta TiL I rok II st - 2019-04.parquet', 'empty', 'EDF', 'c:\\Users\\vtaustyka\\PycharmProjects\\DT-Engine\\data\\fuels\\fuels.json'],DataFrame after filtering::
+2025-01-11 18:42:49,043 - INFO - Metadata extraction completed for all DataFrames.
+2025-01-11 18:42:49,049 - INFO - Step 4: Metadata extracted successfully.
+2025-01-11 18:42:49,049 - INFO - Step 5: Filtering and preprocessing data...
+2025-01-11 18:42:49,056 - INFO - Column pairs: [['Czas [ms].1', 'Ciś. pow. za turb.[Pa]'], ['Czas [ms].2', 'Ciśnienie atmosferyczne[hPa]'], ['Czas [ms].11', 'ECT - wyjście z sil.[°C]'], ['Czas [ms].25', 'MAF[kg/h]'], ['Czas [ms].26', 'Moc[kW]'], ['Czas [ms].27', 'Moment obrotowy[Nm]'], ['Czas [ms].29', 'Obroty[obr/min]'], ['Czas [ms].44', 'Temp. oleju w misce[°C]'], ['Czas [ms].46', 'Temp. otoczenia[°C]'], ['Czas [ms].48', 'Temp. pal. na wyjściu sil.[°C]'], ['Czas [ms].53', 'Temp. powietrza za turb.[°C]'], ['Czas [ms].54', 'Temp. spalin 1/6[°C]'], ['Czas [ms].55', 'Temp. spalin 2/6[°C]'], ['Czas [ms].56', 'Temp. spalin 3/6[°C]'], ['Czas [ms].57', 'Temp. spalin 4/6[°C]'], ['Czas [ms].62', 'Wilgotność względna[%]'], ['Czas [ms].70', 'Zużycie paliwa średnie[g/s]']]
+2025-01-11 18:42:49,060 - INFO - Filtered DataFrame to include 34 columns.
+2025-01-11 18:42:49,125 - INFO - Time columns synchronized successfully.
+2025-01-11 18:42:49,125 - INFO - Filtered DataFrame shape. after synchronize_time(): (3195, 18)
+2025-01-11 18:42:49,125 - INFO - DataCleaner initialized.
+2025-01-11 18:42:49,125 - INFO - Starting data cleaning process.
+2025-01-11 18:42:49,144 - INFO - Data cleaning process completed.
+2025-01-11 18:42:49,144 - INFO - Starting identify_stable_rotation with threshold=20 and window='8000ms'
+2025-01-11 18:42:49,144 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:49,144 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:49,144 - INFO - 'Time' column set as index.
+2025-01-11 18:42:49,144 - INFO - Computing rolling max and min of 'Obroty[obr/min]'.
+2025-01-11 18:42:49,144 - INFO - Identified 2975 points where rotation difference ≤ threshold.
+2025-01-11 18:42:49,151 - INFO - Labeled stable regions into 9 groups.
+2025-01-11 18:42:49,153 - INFO - Group 1: Found 3 stable time points.
+2025-01-11 18:42:49,153 - INFO - Group 3: Found 156 stable time points.
+2025-01-11 18:42:49,153 - INFO - Group 5: Found 2549 stable time points.
+2025-01-11 18:42:49,154 - INFO - Group 7: Found 152 stable time points.
+2025-01-11 18:42:49,154 - INFO - Group 9: Found 115 stable time points.
+2025-01-11 18:42:49,155 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:49,155 - INFO - Identified 5 stable rotation levels.
+2025-01-11 18:42:49,156 - INFO - Group 0: Mean rotation = 2.0 RPM.
+2025-01-11 18:42:49,158 - INFO - Group 1: Mean rotation = 800.5 RPM.
+2025-01-11 18:42:49,160 - INFO - Group 2: Mean rotation = 1399.7 RPM.
+2025-01-11 18:42:49,161 - INFO - Group 3: Mean rotation = 1399.9 RPM.
+2025-01-11 18:42:49,163 - INFO - Group 4: Mean rotation = 800.6 RPM.
+2025-01-11 18:42:49,163 - INFO - Stable rotation levels extracted. Average values: [2.0, 800.5, 1399.7, 1399.9, 800.6]
+2025-01-11 18:42:49,168 - INFO - !!!---> Starting identify_stable_torque_nm with threshold=1.6 and window='8000ms'
+2025-01-11 18:42:49,170 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:49,170 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:49,171 - INFO - 'Time' column set as index.
+2025-01-11 18:42:49,171 - INFO - Computing rolling max and min of 'Moment obrotowy[Nm]'.
+2025-01-11 18:42:49,173 - INFO - Rolling object parameters:
+2025-01-11 18:42:49,173 - INFO -  - window: 8000ms
+2025-01-11 18:42:49,173 - INFO -  - min_periods: 1
+2025-01-11 18:42:49,173 - INFO -  - center: False
+2025-01-11 18:42:49,174 - INFO -  - win_type: None
+2025-01-11 18:42:49,174 - INFO -  - axis: 0
+2025-01-11 18:42:49,175 - INFO -  - method: single
+2025-01-11 18:42:49,175 - INFO -  - closed: None
+2025-01-11 18:42:49,176 - INFO - Identified 2340 points where torque difference ≤ threshold.
+2025-01-11 18:42:49,177 - INFO - Labeled stable regions into 33 groups.
+2025-01-11 18:42:49,177 - INFO - Group 1: Found 633 stable time points.
+2025-01-11 18:42:49,177 - INFO - Group 3: Found 132 stable time points.
+2025-01-11 18:42:49,177 - INFO - Group 5: Found 100 stable time points.
+2025-01-11 18:42:49,181 - INFO - Group 7: Found 96 stable time points.
+2025-01-11 18:42:49,181 - INFO - Group 9: Found 93 stable time points.
+2025-01-11 18:42:49,181 - INFO - Group 11: Found 88 stable time points.
+2025-01-11 18:42:49,182 - INFO - Group 13: Found 88 stable time points.
+2025-01-11 18:42:49,182 - INFO - Group 15: Found 96 stable time points.
+2025-01-11 18:42:49,182 - INFO - Group 17: Found 91 stable time points.
+2025-01-11 18:42:49,183 - INFO - Group 19: Found 84 stable time points.
+2025-01-11 18:42:49,183 - INFO - Group 21: Found 82 stable time points.
+2025-01-11 18:42:49,183 - INFO - Group 23: Found 87 stable time points.
+2025-01-11 18:42:49,184 - INFO - Group 25: Found 83 stable time points.
+2025-01-11 18:42:49,184 - INFO - Group 27: Found 7 stable time points.
+2025-01-11 18:42:49,184 - INFO - Group 29: Found 175 stable time points.
+2025-01-11 18:42:49,185 - INFO - Group 31: Found 127 stable time points.
+2025-01-11 18:42:49,185 - INFO - Group 33: Found 278 stable time points.
+2025-01-11 18:42:49,186 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:49,186 - INFO - Identified 17 stable torque levels.
+2025-01-11 18:42:49,186 - INFO - Group 0: Mean torque = 1.4 Nm.
+2025-01-11 18:42:49,186 - INFO - Group 1: Mean torque = 25.1 Nm.
+2025-01-11 18:42:49,186 - INFO - Group 2: Mean torque = 50.1 Nm.
+2025-01-11 18:42:49,191 - INFO - Group 3: Mean torque = 75.1 Nm.
+2025-01-11 18:42:49,192 - INFO - Group 4: Mean torque = 100.0 Nm.
+2025-01-11 18:42:49,194 - INFO - Group 5: Mean torque = 125.0 Nm.
+2025-01-11 18:42:49,196 - INFO - Group 6: Mean torque = 150.0 Nm.
+2025-01-11 18:42:49,197 - INFO - Group 7: Mean torque = 175.0 Nm.
+2025-01-11 18:42:49,199 - INFO - Group 8: Mean torque = 200.0 Nm.
+2025-01-11 18:42:49,200 - INFO - Group 9: Mean torque = 225.0 Nm.
+2025-01-11 18:42:49,201 - INFO - Group 10: Mean torque = 249.9 Nm.
+2025-01-11 18:42:49,202 - INFO - Group 11: Mean torque = 274.9 Nm.
+2025-01-11 18:42:49,203 - INFO - Group 12: Mean torque = 299.9 Nm.
+2025-01-11 18:42:49,204 - INFO - Group 13: Mean torque = 324.8 Nm.
+2025-01-11 18:42:49,204 - INFO - Group 14: Mean torque = 325.0 Nm.
+2025-01-11 18:42:49,204 - INFO - Group 15: Mean torque = 344.9 Nm.
+2025-01-11 18:42:49,213 - INFO - Group 16: Mean torque = 1.8 Nm.
+2025-01-11 18:42:49,214 - INFO - Stable torque levels extracted. Average values: [1.4, 25.1, 50.1, 75.1, 100.0, 125.0, 150.0, 175.0, 200.0, 225.0, 249.9, 274.9, 299.9, 324.8, 325.0, 344.9, 1.8]
+2025-01-11 18:42:49,218 - INFO - Starting identify_stable_fuel_consumption with threshold=0.1 and window='8000ms'
+2025-01-11 18:42:49,220 - INFO - DataFrame copied for processing.
+2025-01-11 18:42:49,220 - INFO - 'Time' column is already in datetime format.
+2025-01-11 18:42:49,221 - INFO - 'Time' column set as index.
+2025-01-11 18:42:49,221 - INFO - Computing rolling max and min of 'Zużycie paliwa średnie[g/s]'.
+2025-01-11 18:42:49,223 - INFO - Rolling object parameters:
+2025-01-11 18:42:49,223 - INFO -  - window: 8000ms
+2025-01-11 18:42:49,223 - INFO -  - min_periods: 1
+2025-01-11 18:42:49,223 - INFO -  - center: False
+2025-01-11 18:42:49,224 - INFO -  - axis: 0
+2025-01-11 18:42:49,224 - INFO -  - method: single
+2025-01-11 18:42:49,224 - INFO -  - closed: None
+2025-01-11 18:42:49,225 - INFO - Identified 2313 points where fuel consumption difference ≤ threshold.
+2025-01-11 18:42:49,227 - INFO - Labeled stable regions into 45 groups.
+2025-01-11 18:42:49,229 - INFO - Group 1: Found 40 stable time points.
+2025-01-11 18:42:49,230 - INFO - Group 3: Found 165 stable time points.
+2025-01-11 18:42:49,232 - INFO - Group 5: Found 189 stable time points.
+2025-01-11 18:42:49,232 - INFO - Group 7: Found 150 stable time points.
+2025-01-11 18:42:49,232 - INFO - Group 9: Found 161 stable time points.
+2025-01-11 18:42:49,233 - INFO - Group 11: Found 138 stable time points.
+2025-01-11 18:42:49,233 - INFO - Group 13: Found 59 stable time points.
+2025-01-11 18:42:49,233 - INFO - Group 15: Found 28 stable time points.
+2025-01-11 18:42:49,234 - INFO - Group 17: Found 121 stable time points.
+2025-01-11 18:42:49,234 - INFO - Group 19: Found 92 stable time points.
+2025-01-11 18:42:49,234 - INFO - Group 21: Found 119 stable time points.
+2025-01-11 18:42:49,235 - INFO - Group 23: Found 107 stable time points.
+2025-01-11 18:42:49,235 - INFO - Group 25: Found 60 stable time points.
+2025-01-11 18:42:49,235 - INFO - Group 27: Found 100 stable time points.
+2025-01-11 18:42:49,236 - INFO - Group 29: Found 97 stable time points.
+2025-01-11 18:42:49,236 - INFO - Group 31: Found 113 stable time points.
+2025-01-11 18:42:49,236 - INFO - Group 33: Found 61 stable time points.
+2025-01-11 18:42:49,237 - INFO - Group 35: Found 193 stable time points.
+2025-01-11 18:42:49,238 - INFO - Group 37: Found 13 stable time points.
+2025-01-11 18:42:49,238 - INFO - Group 39: Found 139 stable time points.
+2025-01-11 18:42:49,238 - INFO - Group 41: Found 95 stable time points.
+2025-01-11 18:42:49,238 - INFO - Group 43: Found 58 stable time points.
+2025-01-11 18:42:49,239 - INFO - Group 45: Found 15 stable time points.
+2025-01-11 18:42:49,239 - INFO - Dropped temporary 'Stable' and 'Group' columns.
+2025-01-11 18:42:49,240 - INFO - Identified 23 stable fuel consumption levels.
+2025-01-11 18:42:49,241 - INFO - Group 0: Mean fuel consumption = 0.07 g/s.
+2025-01-11 18:42:49,242 - INFO - Group 1: Mean fuel consumption = 0.21 g/s.
+2025-01-11 18:42:49,244 - INFO - Group 2: Mean fuel consumption = 0.42 g/s.
+2025-01-11 18:42:49,245 - INFO - Group 3: Mean fuel consumption = 0.42 g/s.
+2025-01-11 18:42:49,246 - INFO - Group 4: Mean fuel consumption = 0.56 g/s.
+2025-01-11 18:42:49,248 - INFO - Group 5: Mean fuel consumption = 0.74 g/s.
+2025-01-11 18:42:49,250 - INFO - Group 6: Mean fuel consumption = 0.9 g/s.
+2025-01-11 18:42:49,251 - INFO - Group 7: Mean fuel consumption = 0.94 g/s.
+2025-01-11 18:42:49,253 - INFO - Group 8: Mean fuel consumption = 1.09 g/s.
+2025-01-11 18:42:49,253 - INFO - Group 9: Mean fuel consumption = 1.25 g/s.
+2025-01-11 18:42:49,253 - INFO - Group 10: Mean fuel consumption = 1.45 g/s.
+2025-01-11 18:42:49,253 - INFO - Group 11: Mean fuel consumption = 1.68 g/s.
+2025-01-11 18:42:49,257 - INFO - Group 12: Mean fuel consumption = 1.88 g/s.
+2025-01-11 18:42:49,258 - INFO - Group 13: Mean fuel consumption = 2.1 g/s.
+2025-01-11 18:42:49,259 - INFO - Group 14: Mean fuel consumption = 2.33 g/s.
+2025-01-11 18:42:49,261 - INFO - Group 15: Mean fuel consumption = 2.5 g/s.
+2025-01-11 18:42:49,263 - INFO - Group 16: Mean fuel consumption = 2.7 g/s.
+2025-01-11 18:42:49,265 - INFO - Group 17: Mean fuel consumption = 2.85 g/s.
+2025-01-11 18:42:49,266 - INFO - Group 18: Mean fuel consumption = 2.94 g/s.
+2025-01-11 18:42:49,266 - INFO - Group 19: Mean fuel consumption = 2.98 g/s.
+2025-01-11 18:42:49,267 - INFO - Group 20: Mean fuel consumption = 0.33 g/s.
+2025-01-11 18:42:49,268 - INFO - Group 21: Mean fuel consumption = 0.19 g/s.
+2025-01-11 18:42:49,270 - INFO - Group 22: Mean fuel consumption = 0.17 g/s.
+2025-01-11 18:42:49,270 - INFO - Stable fuel consumption levels extracted. Average values: [0.07, 0.21, 0.42, 0.42, 0.56, 0.74, 0.9, 0.94, 1.09, 1.25, 1.45, 1.68, 1.88, 2.1, 2.33, 2.5, 2.7, 2.85, 2.94, 2.98, 0.33, 0.19, 0.17]
+2025-01-11 18:42:49,277 - INFO - Starting filter_high_temperature_oil.
+2025-01-11 18:42:49,278 - INFO - Removed 0 rows where oil temperature was less than 50°C.
+2025-01-11 18:42:49,296 - INFO - Extracted 1624 rows of intersected stable data.
+2025-01-11 18:42:49,300 - INFO - DataFrame cleaned successfully using DataCleaner.
+2025-01-11 18:42:49,301 - INFO - Starting metadata extraction for multiple DataFrames...
+2025-01-11 18:42:49,302 - INFO - Processing DataFrame 1/1 with shape (1624, 18)...
+2025-01-11 18:42:49,308 - INFO - Metadata for DataFrame 0, names_of_files_under_procession:['1400 Efecta TiL I rok II st - 2019-04.parquet', 'empty', 'EDF'],DataFrame after filtering::
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
 |    | Column                         |   Total Values |   Non-Null Count |   Null Count |   Unique Values | Data Type      |
 +====+================================+================+==================+==============+=================+================+
@@ -1555,21 +1557,22 @@ All Optional Columns: Present
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
 | 17 | Zużycie paliwa średnie[g/s]    |           1624 |             1624 |            0 |            1110 | float64        |
 +----+--------------------------------+----------------+------------------+--------------+-----------------+----------------+
-2025-01-11 13:39:45,861 - INFO - Metadata extraction completed for all DataFrames.
-2025-01-11 13:39:45,872 - INFO - Step 5: Data filtered and preprocessed successfully.
-2025-01-11 13:39:45,875 - INFO - Step 6: Transforming data...
-2025-01-11 13:39:45,876 - INFO - Starting atmospheric power correction.
-2025-01-11 13:39:45,886 - INFO - Average power correction: -2.70%
-2025-01-11 13:39:45,886 - INFO - Maximum power correction: -0.84%
-2025-01-11 13:39:45,887 - INFO - Average torque correction: -2.70%
-2025-01-11 13:39:45,887 - INFO - Maximum torque correction: -0.84%
-2025-01-11 13:39:45,889 - INFO - Atmospheric power correction applied successfully.
-2025-01-11 13:39:45,896 - INFO - Mean exhaust gas temperature calculated successfully.
-2025-01-11 13:39:45,904 - INFO - Step 8: Adding fuel data...
-2025-01-11 13:39:45,904 - INFO - Starting add_fuel process.
-2025-01-11 13:39:46,033 - INFO - DataFrame shape after processing: (1624, 12)
-2025-01-11 13:39:46,033 - INFO - Columns in DataFrame: ['Time', 'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 'Zużycie paliwa średnie[g/s]', 'Temp. spalin mean[°C]']
-2025-01-11 13:39:46,034 - INFO - add_fuel process completed successfully.
-2025-01-11 13:39:46,127 - INFO - Step 8: Fuel data added successfully.
-2025-01-11 13:39:46,148 - INFO - Data pipeline completed successfully for file withID:4: 1400 Efecta TiL I rok II st - 2019-04.parquet
-2025-01-11 13:39:46,161 - INFO - !!!--Data pipeline completed successfully.--!!!
+2025-01-11 18:42:49,316 - INFO - Metadata extraction completed for all DataFrames.
+2025-01-11 18:42:49,322 - INFO - Step 5: Data filtered and preprocessed successfully.
+2025-01-11 18:42:49,323 - INFO - Step 6: Transforming data...
+2025-01-11 18:42:49,323 - INFO - Starting atmospheric power correction.
+2025-01-11 18:42:49,329 - INFO - Average power correction: -2.70%
+2025-01-11 18:42:49,330 - INFO - Maximum power correction: -0.84%
+2025-01-11 18:42:49,330 - INFO - Average torque correction: -2.70%
+2025-01-11 18:42:49,332 - INFO - Maximum torque correction: -0.84%
+2025-01-11 18:42:49,333 - INFO - Atmospheric power correction applied successfully.
+2025-01-11 18:42:49,338 - INFO - Mean exhaust gas temperature calculated successfully.
+2025-01-11 18:42:49,342 - INFO - Step 8: Adding fuel data...
+2025-01-11 18:42:49,342 - INFO - Starting add_fuel process.
+2025-01-11 18:42:49,344 - INFO - Fuel properties for 'EDF' added to DataFrame. Columns added: ['Cetane number', 'Density at 15 C', 'Viscosity at 40 C', 'Flash point', 'LHV (Lower Heating Value)']
+2025-01-11 18:42:49,349 - INFO - DataFrame shape after processing: (1624, 17)
+2025-01-11 18:42:49,350 - INFO - Columns in DataFrame: ['Time', 'Ciś. pow. za turb.[Pa]', 'ECT - wyjście z sil.[°C]', 'MAF[kg/h]', 'Moc[kW]', 'Moment obrotowy[Nm]', 'Obroty[obr/min]', 'Temp. oleju w misce[°C]', 'Temp. pal. na wyjściu sil.[°C]', 'Temp. powietrza za turb.[°C]', 'Zużycie paliwa średnie[g/s]', 'Temp. spalin mean[°C]', 'Cetane number', 'Density at 15 C, kg/m3', 'Viscosity at 40 C, mm2/s', 'Flash point, C', 'LHV (Lower Heating Value), MJ/kg']
+2025-01-11 18:42:49,350 - INFO - add_fuel process completed successfully.
+2025-01-11 18:42:49,353 - INFO - Step 8: Fuel data added successfully.
+2025-01-11 18:42:49,365 - INFO - Data pipeline completed successfully for file withID:4: 1400 Efecta TiL I rok II st - 2019-04.parquet
+2025-01-11 18:42:49,366 - INFO - !!!--Data pipeline completed successfully.--!!!

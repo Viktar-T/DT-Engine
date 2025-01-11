@@ -9,6 +9,7 @@ from src.config import (
     PROCESSED_DATA_DIR, 
     PROCESSED_DATA_SEPARATE_FILES_DIR,
     PROCESSED_DATA_WITH_FUELS_FILE_DIR,
+    FUELS_DATA_DIR,
     METADATA_DIR, 
     LOGS_DIR, 
     RAW_PARQUET_DATA_DIR, 
@@ -51,6 +52,10 @@ json_path = os.path.join(RAW_PARQUET_DATA_DIR, 'only_chosen_fuels.json')
 with open(json_path, 'r') as f:
     json_data_links = json.load(f)
 
+fuel_file = os.path.join(FUELS_DATA_DIR, 'fuels.json')
+with open(fuel_file, 'r') as f:
+    fuels_data = json.load(f)
+
 
 def process_file(item: dict, metadata_manager: MetadataManager, log_manager: LogManager) -> None:
     """Process a single item (file) through the entire data pipeline."""
@@ -78,10 +83,10 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         metadata_manager.update_metadata(step_2_file_name, 'step_name', 'Load raw data')
         metadata_manager.update_metadata(step_2_file_name, 'step_2_start_time', str(datetime.now()))
 
-        data_loader = DataLoader(
-            RAW_PARQUET_DATA_DIR, 
-            raw_data_path=input_file_path,
+        data_loader = DataLoader( 
+            raw_data_path=RAW_PARQUET_DATA_DIR,
             names_of_files_under_procession=names_of_files_under_procession,
+            json_path=json_path,
             metadata_manager=metadata_manager, 
             log_manager=log_manager
         )
@@ -183,6 +188,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         add_fuel_obj = AddAdditionalDataToEachFile(
             df=corrected_df,
             names_of_files_under_procession=names_of_files_under_procession,
+            fuels_data=fuels_data,
             metadata_manager=metadata_manager,
             log_manager=log_manager
         )

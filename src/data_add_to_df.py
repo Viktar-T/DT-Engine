@@ -68,6 +68,9 @@ class AddAdditionalDataToEachFile:
             self.log_manager.log_info(
                 f"Fuel properties for '{fuel_name}' added to DataFrame. Columns added: {list(fuel_properties.keys())}"
             )
+        self.step_8_file_name = self._construct_file_name()
+        self._update_metadata()
+        self._log_dataframe_details()
 
         # Return the updated DataFrame
         return self.df
