@@ -80,6 +80,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
 
         data_loader = DataLoader(
             RAW_PARQUET_DATA_DIR, 
+            raw_data_path=input_file_path,
             names_of_files_under_procession=names_of_files_under_procession,
             metadata_manager=metadata_manager, 
             log_manager=log_manager

@@ -1,0 +1,9 @@
+2025-01-11 18:13:59,029 - INFO - !!!---Processing file with ID:1: 1200 obc - 2015-05.parquet.---!!!
+2025-01-11 18:13:59,029 - INFO - Step 2: Loading raw data...
+2025-01-11 18:13:59,033 - ERROR - An error occurred: DataLoader.__init__() got multiple values for argument 'raw_data_path'
+2025-01-11 18:13:59,036 - INFO - !!!---Processing file with ID:2: 1300 obc - 2015-05.parquet.---!!!
+2025-01-11 18:13:59,037 - INFO - Step 2: Loading raw data...
+2025-01-11 18:13:59,047 - ERROR - An error occurred: DataLoader.__init__() got multiple values for argument 'raw_data_path'
+2025-01-11 18:13:59,052 - INFO - !!!---Processing file with ID:4: 1400 Efecta TiL I rok II st - 2019-04.parquet.---!!!
+2025-01-11 18:13:59,052 - INFO - Step 2: Loading raw data...
+2025-01-11 18:13:59,062 - ERROR - An error occurred: DataLoader.__init__() got multiple values for argument 'raw_data_path'
