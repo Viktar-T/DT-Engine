@@ -1,4 +1,0 @@
-2025-01-04 16:58:10,703 - INFO - JSONBuilder initialized.
-2025-01-04 16:58:10,704 - INFO - Building JSON data structure...
-2025-01-04 16:58:10,710 - INFO - JSON data structure built successfully.
-2025-01-04 16:58:10,717 - INFO - JSON file created at C:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\files_with_raw_data_links.json

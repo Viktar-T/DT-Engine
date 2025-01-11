@@ -53,7 +53,7 @@ class DataFilter:
             except KeyError:
                 if self.log_manager:
                     self.log_manager.log_warning(f"Column '{col_name}' not found in DataFrame.")
-        self.log_manager.log_info(f"!!!!!!!!Column pairs: {self.column_pairs}")            
+        self.log_manager.log_info(f"Column pairs: {self.column_pairs}")            
         # Flatten the list of required columns
         columns_to_keep = [col for pair in self.column_pairs for col in pair]
 

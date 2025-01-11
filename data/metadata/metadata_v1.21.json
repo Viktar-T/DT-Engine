@@ -1,0 +1,578 @@
+{
+    "Step 2. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-11 13:29:54.504446",
+        "step_2_status": "completed",
+        "step_2_end_time": "2025-01-11 13:29:54.608565"
+    },
+    "2-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1200 obc - 2015-05.parquet_shape": [
+            23360,
+            143
+        ]
+    },
+    "Step 3. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2025-01-11 13:29:54.614560",
+        "validation_results": [
+            {
+                "missing_required_columns": [],
+                "missing_optional_columns": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2025-01-11 13:29:54.628562"
+    },
+    "4-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "from class DataValidator. Files for validation:": [
+            "1200 obc - 2015-05.parquet",
+            "empty",
+            "DF"
+        ]
+    },
+    "Step 4. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step_4_status": "completed",
+        "step_4_end_time": "2025-01-11 13:29:54.772582"
+    },
+    "Step 5. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2025-01-11 13:29:54.780584",
+        "step_5_status": "completed",
+        "step_5_end_time": "2025-01-11 13:29:55.058587"
+    },
+    "5-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "filtered_data_shape after \"def filter_columns\":": [
+            23360,
+            143
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            2336,
+            18
+        ],
+        "Identified stable rotation levels:": 12,
+        "Stable rotation levels extracted. Average values:": [
+            2.0,
+            803.3,
+            1200.2,
+            1200.2,
+            1199.1,
+            1199.6,
+            1200.2,
+            1198.8,
+            1203.0,
+            1198.5,
+            1301.7,
+            800.4
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 14,
+        "Stable torque levels extracted. Average values:": [
+            0.5,
+            25.2,
+            50.1,
+            75.1,
+            50.2,
+            75.0,
+            100.0,
+            125.1,
+            150.0,
+            174.9,
+            199.9,
+            224.9,
+            250.0,
+            0.9
+        ],
+        "Identified stable fuel consumption levels:": 14,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.85,
+            0.29,
+            0.46,
+            0.7,
+            1.03,
+            1.27,
+            1.42,
+            1.51,
+            1.67,
+            1.85,
+            2.02,
+            2.36,
+            0.31,
+            0.17
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            2336,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            992,
+            18
+        ],
+        "Atmospheric power correction applied successfully.": {
+            "df.shape": [
+                992,
+                15
+            ],
+            "Max power correction": -0.32603157568758534,
+            "Max torque correction": -0.32603157568757346,
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Temp. spalin 1/6[°C]",
+                "Temp. spalin 2/6[°C]",
+                "Temp. spalin 3/6[°C]",
+                "Temp. spalin 4/6[°C]",
+                "Zużycie paliwa średnie[g/s]"
+            ]
+        },
+        "Mean exhaust gas temperature calculated.": {
+            "New column": "Temp. spalin mean[°C]",
+            "df.shape": [
+                992,
+                12
+            ],
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Zużycie paliwa średnie[g/s]",
+                "Temp. spalin mean[°C]"
+            ]
+        }
+    },
+    "8-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Fuel data added successfully.": {
+            "df.shape": [
+                992,
+                12
+            ],
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Zużycie paliwa średnie[g/s]",
+                "Temp. spalin mean[°C]"
+            ]
+        }
+    },
+    "Step 8. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step_8_status": "completed",
+        "step_8_end_time": "2025-01-11 13:29:55.180585"
+    },
+    "Step 6. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "pipeline_status": "completed"
+    },
+    "Step 2. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-11 13:29:55.205585",
+        "step_2_status": "completed",
+        "step_2_end_time": "2025-01-11 13:29:55.263588"
+    },
+    "2-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "1300 obc - 2015-05.parquet_shape": [
+            25399,
+            143
+        ]
+    },
+    "Step 3. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2025-01-11 13:29:55.271590",
+        "validation_results": [
+            {
+                "missing_required_columns": [],
+                "missing_optional_columns": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2025-01-11 13:29:55.286591"
+    },
+    "4-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "from class DataValidator. Files for validation:": [
+            "1300 obc - 2015-05.parquet",
+            "empty",
+            "DF"
+        ]
+    },
+    "Step 4. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step_4_status": "completed",
+        "step_4_end_time": "2025-01-11 13:29:55.433596"
+    },
+    "Step 5. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2025-01-11 13:29:55.441606",
+        "step_5_status": "completed",
+        "step_5_end_time": "2025-01-11 13:29:55.905617"
+    },
+    "5-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "filtered_data_shape after \"def filter_columns\":": [
+            25399,
+            143
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            2540,
+            18
+        ],
+        "Identified stable rotation levels:": 11,
+        "Stable rotation levels extracted. Average values:": [
+            6.7,
+            801.4,
+            1299.5,
+            1299.8,
+            1300.0,
+            1300.8,
+            1299.7,
+            1298.8,
+            1300.0,
+            1300.1,
+            800.4
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 16,
+        "Stable torque levels extracted. Average values:": [
+            0.3,
+            25.2,
+            50.1,
+            75.1,
+            100.0,
+            125.0,
+            150.0,
+            175.0,
+            200.0,
+            225.0,
+            249.9,
+            274.9,
+            299.9,
+            318.5,
+            314.7,
+            0.8
+        ],
+        "Identified stable fuel consumption levels:": 23,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.04,
+            0.34,
+            0.36,
+            0.42,
+            0.34,
+            0.48,
+            1.24,
+            1.34,
+            1.33,
+            1.56,
+            1.83,
+            2.01,
+            2.19,
+            2.2,
+            2.21,
+            2.26,
+            2.4,
+            2.6,
+            2.74,
+            2.68,
+            0.32,
+            0.29,
+            0.17
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            2540,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            760,
+            18
+        ],
+        "Atmospheric power correction applied successfully.": {
+            "df.shape": [
+                760,
+                15
+            ],
+            "Max power correction": -0.4151009937801292,
+            "Max torque correction": -0.4151009937801215,
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Temp. spalin 1/6[°C]",
+                "Temp. spalin 2/6[°C]",
+                "Temp. spalin 3/6[°C]",
+                "Temp. spalin 4/6[°C]",
+                "Zużycie paliwa średnie[g/s]"
+            ]
+        },
+        "Mean exhaust gas temperature calculated.": {
+            "New column": "Temp. spalin mean[°C]",
+            "df.shape": [
+                760,
+                12
+            ],
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Zużycie paliwa średnie[g/s]",
+                "Temp. spalin mean[°C]"
+            ]
+        }
+    },
+    "8-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "Fuel data added successfully.": {
+            "df.shape": [
+                760,
+                12
+            ],
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Zużycie paliwa średnie[g/s]",
+                "Temp. spalin mean[°C]"
+            ]
+        }
+    },
+    "Step 8. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step_8_status": "completed",
+        "step_8_end_time": "2025-01-11 13:29:56.002619"
+    },
+    "Step 6. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "pipeline_status": "completed"
+    },
+    "Step 2. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "2",
+        "step_name": "Load raw data",
+        "step_2_start_time": "2025-01-11 13:29:56.025623",
+        "step_2_status": "completed",
+        "step_2_end_time": "2025-01-11 13:29:56.091622"
+    },
+    "2-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "1400 Efecta TiL I rok II st - 2019-04.parquet_shape": [
+            31960,
+            143
+        ]
+    },
+    "Step 3. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "3",
+        "step_name": "Validate data",
+        "step_3_start_time": "2025-01-11 13:29:56.097623",
+        "validation_results": [
+            {
+                "missing_required_columns": [],
+                "missing_optional_columns": [],
+                "valid": true
+            }
+        ],
+        "step_3_status": "completed",
+        "step_3_end_time": "2025-01-11 13:29:56.111624"
+    },
+    "4-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "from class DataValidator. Files for validation:": [
+            "1400 Efecta TiL I rok II st - 2019-04.parquet",
+            "empty",
+            "EDF"
+        ]
+    },
+    "Step 4. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step_4_status": "completed",
+        "step_4_end_time": "2025-01-11 13:29:56.279632"
+    },
+    "Step 5. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step": "5",
+        "step_name": "Filter and preprocess data",
+        "step_5_start_time": "2025-01-11 13:29:56.291646",
+        "step_5_status": "completed",
+        "step_5_end_time": "2025-01-11 13:29:56.637645"
+    },
+    "5-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "filtered_data_shape after \"def filter_columns\":": [
+            31960,
+            143
+        ],
+        "synchronized_data_shape after \"synchronize_time()\": ": [
+            3195,
+            18
+        ],
+        "Identified stable rotation levels:": 5,
+        "Stable rotation levels extracted. Average values:": [
+            2.0,
+            800.5,
+            1399.7,
+            1399.9,
+            800.6
+        ],
+        "Identified stable torque levels (Moment obrotowy[Nm]):": 17,
+        "Stable torque levels extracted. Average values:": [
+            1.4,
+            25.1,
+            50.1,
+            75.1,
+            100.0,
+            125.0,
+            150.0,
+            175.0,
+            200.0,
+            225.0,
+            249.9,
+            274.9,
+            299.9,
+            324.8,
+            325.0,
+            344.9,
+            1.8
+        ],
+        "Identified stable fuel consumption levels:": 23,
+        "Stable fuel consumption levels extracted. Average values:": [
+            0.07,
+            0.21,
+            0.42,
+            0.42,
+            0.56,
+            0.74,
+            0.9,
+            0.94,
+            1.09,
+            1.25,
+            1.45,
+            1.68,
+            1.88,
+            2.1,
+            2.33,
+            2.5,
+            2.7,
+            2.85,
+            2.94,
+            2.98,
+            0.33,
+            0.19,
+            0.17
+        ],
+        "Filtered data shape after \"filter_high_temperature_oil\":": [
+            3195,
+            18
+        ],
+        "filtered_data_shape after \"extract_and_clean_data()\":": [
+            1624,
+            18
+        ],
+        "Atmospheric power correction applied successfully.": {
+            "df.shape": [
+                1624,
+                15
+            ],
+            "Max power correction": -0.8447158636892634,
+            "Max torque correction": -0.8421639612814225,
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Temp. spalin 1/6[°C]",
+                "Temp. spalin 2/6[°C]",
+                "Temp. spalin 3/6[°C]",
+                "Temp. spalin 4/6[°C]",
+                "Zużycie paliwa średnie[g/s]"
+            ]
+        },
+        "Mean exhaust gas temperature calculated.": {
+            "New column": "Temp. spalin mean[°C]",
+            "df.shape": [
+                1624,
+                12
+            ],
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Zużycie paliwa średnie[g/s]",
+                "Temp. spalin mean[°C]"
+            ]
+        }
+    },
+    "8-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "Fuel data added successfully.": {
+            "df.shape": [
+                1624,
+                12
+            ],
+            "columns in df": [
+                "Time",
+                "Ciś. pow. za turb.[Pa]",
+                "ECT - wyjście z sil.[°C]",
+                "MAF[kg/h]",
+                "Moc[kW]",
+                "Moment obrotowy[Nm]",
+                "Obroty[obr/min]",
+                "Temp. oleju w misce[°C]",
+                "Temp. pal. na wyjściu sil.[°C]",
+                "Temp. powietrza za turb.[°C]",
+                "Zużycie paliwa średnie[g/s]",
+                "Temp. spalin mean[°C]"
+            ]
+        }
+    },
+    "Step 8. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step_8_status": "completed",
+        "step_8_end_time": "2025-01-11 13:29:56.824669"
+    },
+    "Step 6. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "pipeline_status": "completed"
+    }
+}

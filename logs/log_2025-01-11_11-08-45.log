@@ -1,5 +1,0 @@
-2025-01-11 11:08:45,656 - INFO - !!!---Processing file with ID:1: 1200 obc - 2015-05.parquet.---!!!
-2025-01-11 11:10:04,386 - INFO - Step 2: Loading raw data...
-2025-01-11 11:10:51,650 - INFO - DataLoader initialized with raw data path: C:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files
-2025-01-11 11:12:04,265 - ERROR - An error occurred: exists: path should be string, bytes, os.PathLike or integer, not NoneType
-2025-01-11 11:12:04,271 - INFO - !!!---Processing file with ID:2: 1300 obc - 2015-05.parquet.---!!!

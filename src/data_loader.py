@@ -174,15 +174,14 @@ class DataLoader:
         
         if self.log_manager:
             self.log_manager.log_info(f"Data loaded successfully from file: {file_path}")
+            self.log_manager.log_info(f"Data Frame Shape: {data.shape}")
             self.log_manager.log_info(f"Data Frame Columns: {list(data.columns)}")
-            self.log_manager.log_dataframe_in_chunks(data, file_name)
+            #self.log_manager.log_dataframe_in_chunks(data, file_name)
 
         #self.metadata_manager.update_metadata(f"{file_name}", f'{file_name}_columns', list(data.columns))
         step_2_file_name = f"2-main_file_name:{self.names_of_files_under_procession[0]}, eco_file_name:{self.names_of_files_under_procession[1]}, Fuel:{self.names_of_files_under_procession[2]}"
         self.metadata_manager.update_metadata(step_2_file_name, f'{file_name}_shape', data.shape)
 
-        if self.log_manager:
-            self.log_manager.log_info(f"Data Frame Shape: {data.shape}")
         return data
 
     

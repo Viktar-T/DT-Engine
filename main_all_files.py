@@ -107,7 +107,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         validator = DataValidator(
             raw_data_frames, 
             required_columns_list=required_columns_list, 
-            file_names=[main_file_name, eco_file_name],
+            file_names=[main_file_name, eco_file_name, fuel_name],
             names_of_files_under_procession=names_of_files_under_procession,
             log_manager=log_manager,
             metadata_manager=metadata_manager

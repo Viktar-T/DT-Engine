@@ -33,7 +33,7 @@ class DataValidator:
         self.required_columns_list = required_columns_list
         self.names_of_files_under_procession = names_of_files_under_procession
         self.optional_columns_list = optional_columns_list or [[] for _ in dfs]
-        self.file_names = file_names or [f"DataFrame_{i}" for i in range(len(dfs))]   # !!! duplication
+        self.file_names = file_names #or [f"DataFrame_{i}" for i in range(len(dfs))]   # !!! duplication
         self.missing_required_list = []
         self.missing_optional_list = []
         self.metadata_manager = metadata_manager
@@ -56,15 +56,15 @@ class DataValidator:
             missing_optional = [col for col in self.optional_columns_list[idx] if col not in df.columns]
             if missing_required and self.log_manager:
                 self.log_manager.log_error(f"DataFrame {idx}: Missing required columns: {missing_required}")
-            elif self.log_manager:
-                self.log_manager.log_info(f"DataFrame {idx}: All required columns are present.")
-            if missing_optional and self.log_manager:
-                self.log_manager.log_warning(f"DataFrame {idx}: Missing optional columns: {missing_optional}")
-            elif self.log_manager:
-                self.log_manager.log_info(f"DataFrame {idx}: All optional columns are present.")
+            #elif self.log_manager:
+            #    self.log_manager.log_info(f"DataFrame {idx}: All required columns are present.")
+            #if missing_optional and self.log_manager:
+            #    self.log_manager.log_warning(f"DataFrame {idx}: Missing optional columns: {missing_optional}")
+            #elif self.log_manager:
+            #    self.log_manager.log_info(f"DataFrame {idx}: All optional columns are present.")
             result = {
-                "missing_required": missing_required,
-                "missing_optional": missing_optional,
+                "missing_required_columns": missing_required,
+                "missing_optional_columns": missing_optional,
                 "valid": len(missing_required) == 0
             }
             self.missing_required_list.append(missing_required)
@@ -136,7 +136,8 @@ class DataValidator:
             })
             metadata_list.append(metadata)
             if self.log_manager:
-                self.log_manager.log_info(f"Metadata for DataFrame {idx}, names_of_files_under_procession:{self.names_of_files_under_procession}, {message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
+                self.log_manager.log_info(f"Metadata for DataFrame {idx}, names_of_files_under_procession:{self.names_of_files_under_procession}," 
+                                          f"{message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
 
         if self.log_manager:
             self.log_manager.log_info("Metadata extraction completed for all DataFrames.")
@@ -149,7 +150,8 @@ class DataValidator:
         for idx, df in enumerate(self.dfs):
             report = []
             report.append("=================")
-            report.append(f"Validation Report for DataFrame {idx} (0 - main Data Frame; 1 - eco Data Frame):")
+            report.append(f"Validation Report for DataFrame Num={idx}, file_name:'{self.file_names[idx]}'" 
+                          f"(0 - main Data Frame; 1 - eco Data Frame; 2 - fuels):")
             # Include the shape of the DataFrame
             report.append(f"DataFrame Shape: {df.shape} (Rows, Columns) <--- !!!!!!!!!")
             missing_required = self.missing_required_list[idx]
