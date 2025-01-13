@@ -36,7 +36,7 @@ data\raw\parquet_files
 "data\raw\parquet_files\files_with_raw_data_links.json"
 run:
 "C:\Users\vtaustyka\PycharmProjects\DT-Engine\src\utils\build_json_with_files.py"
-4. load, clean, filter, transform all .parquet files with only_chosen_fuels.json. Run "main_all_files.py":
+4. load, clean, filter, transform, add fuels properties. Under procession files .parquet files from only_chosen_fuels.json. Run "main_all_files.py":
 "C:\Users\vtaustyka\PycharmProjects\DT-Engine\main_all_files.py"
 5. 
 
