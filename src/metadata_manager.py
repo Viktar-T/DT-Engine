@@ -89,7 +89,8 @@ class MetadataManager:
     def monitor_metadata(self):
         # Implement monitoring logic here
         pass
-
+    
+    # not used in main_all_files.py te same method in data_validator.py
     def get_metadata(self) -> List[pd.DataFrame]:
         """
         Extract metadata for each DataFrame.
@@ -115,4 +116,4 @@ class MetadataManager:
             logger.info(f"Metadata for DataFrame {idx + 1} extracted: {metadata.shape[0]} columns processed.")
         
         logger.info("Metadata extraction completed for all DataFrames.")
-        return metadata_list
+        return metadata_list          # metadata_list is not used

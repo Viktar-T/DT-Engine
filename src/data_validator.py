@@ -112,6 +112,7 @@ class DataValidator:
             else:
                 self.log_manager.log_info(f"DataFrame {idx}: No duplicate columns found.")
 
+    # used in main_all_files.py te same method in data_manager.py
     def get_metadata(self, data_frames=None, message_for_logs=None) -> List[pd.DataFrame]:
         if data_frames is None:
             data_frames = self.dfs
@@ -136,8 +137,8 @@ class DataValidator:
             })
             metadata_list.append(metadata)
             if self.log_manager:
-                self.log_manager.log_info(f"Metadata for DataFrame {idx}, names_of_files_under_procession:{self.names_of_files_under_procession}," 
-                                          f"{message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
+                self.log_manager.log_info(f"Metadata for DataFrame {idx}, names_of_files_under_procession:{self.names_of_files_under_procession},") 
+                self.log_manager.log_info(f"{message_for_logs}:\n{tabulate(metadata, headers='keys', tablefmt='grid')}")
 
         if self.log_manager:
             self.log_manager.log_info("Metadata extraction completed for all DataFrames.")

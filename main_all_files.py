@@ -70,7 +70,12 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         log_manager.log_error(f"!!!---File with ID:{json_item_id} not found: {input_file_path}.---!!!")
         return
     
-    log_manager.log_info(f"!!!---Processing file with ID:{json_item_id}: {main_file_name}.---!!!")
+    log_manager.log_info(f"!!================================={json_item_id}========================================!!")
+    log_manager.log_info(f"json_item_id: {json_item_id}")
+    log_manager.log_info(f"main_file_name: {main_file_name}")
+    log_manager.log_info(f"eco_file_name: {eco_file_name}")
+    log_manager.log_info(f"fuel_name: {fuel_name}")
+    log_manager.log_info(f"----------------------------------")
 
     names_of_files_under_procession = [main_file_name, eco_file_name, fuel_name]
     files_for_steps = f"main_file_name:{main_file_name}, eco_file_name:{eco_file_name}, Fuel:{fuel_name}"
@@ -138,7 +143,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
 
         # Step 4: Extract metadata
         step_4_file_name = f"Step 4. Item with ID:{json_item_id}. Files: {files_for_steps}"
-        metadata_list = validator.get_metadata()
+        validator.get_metadata([raw_data_frames[0]], message_for_logs="DataFrame after Loadding:")
         metadata_manager.update_metadata(step_4_file_name, 'step_4_status', 'completed')
         metadata_manager.update_metadata(step_4_file_name, 'step_4_end_time', str(datetime.now()))
         log_manager.log_info("Step 4: Metadata extracted successfully.")
@@ -180,6 +185,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
 
         corrected_df = data_transformation.atmospheric_power_correction(show_corrections=True)
         corrected_df = data_transformation.exhaust_gas_mean_temperature_calculation()
+        validator.get_metadata([corrected_df], message_for_logs="DataFrame after data transformation:")
 
         #Step 8: Add fuel data
         step_8_file_name = f"Step 8. Item with ID:{json_item_id}. Files: {files_for_steps}"
@@ -193,6 +199,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
             log_manager=log_manager
         )
         df_with_fuel = add_fuel_obj.add_fuel()
+        validator.get_metadata([df_with_fuel], message_for_logs="DataFrame after adding fuels properties:")
         metadata_manager.update_metadata(step_8_file_name, 'step_8_status', 'completed')
         metadata_manager.update_metadata(step_8_file_name, 'step_8_end_time', str(datetime.now()))
         log_manager.log_info("Step 8: Fuel data added successfully.")
@@ -203,10 +210,9 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         df_with_fuel.to_parquet(transformed_data_parquet_path, index=False)
 
         # Pipeline completed for this file
-        log_manager.log_info(f"Data pipeline completed successfully for file with"
-                             f"ID:{json_item_id}: {main_file_name}")
-        log_manager.log_info("!!!--Data pipeline completed successfully.--!!!")
-        metadata_manager.update_metadata(step_6_file_name, 'pipeline_status', 'completed')
+        log_manager.log_info(f"!!--Data pipeline completed successfully for file with"
+                             f"ID:{json_item_id}: {main_file_name}.--!!!")
+        metadata_manager.update_metadata(step_8_file_name, 'pipeline_status', 'completed')
 
     except Exception as e:
         log_manager.log_error(f"An error occurred: {e}")

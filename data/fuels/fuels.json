@@ -4,9 +4,9 @@
       "description": "Diesel Fuel",
       "properties": {
         "Cetane number": [54.1, "-"],
-        "Density at 15 C": [837, "kg/m3"],
-        "Viscosity at 40 C": [2.94, "mm2/s"],
-        "Flash point": [70.5, "C"],
+        "Density at 15 °C": [837, "kg/m3"],
+        "Viscosity at 40 °C": [2.94, "mm2/s"],
+        "Flash point": [70.5, "°C"],
         "LHV (Lower Heating Value)": [42.8, "MJ/kg"]
       }
     },
@@ -15,9 +15,9 @@
       "description": "Efecta Diesel Fuel",
       "properties": {
         "Cetane number": [53, "-"],
-        "Density at 15 C": [826, "kg/m3"],
-        "Viscosity at 40 C": [2.84, "mm2/s"],
-        "Flash point": [69, "C"],
+        "Density at 15 °C": [826, "kg/m3"],
+        "Viscosity at 40 °C": [2.84, "mm2/s"],
+        "Flash point": [69, "°C"],
         "LHV (Lower Heating Value)": [44.951, "MJ/kg"]
       }
     },
@@ -26,9 +26,9 @@
       "description": "Rapeseed Methyl Ester (first-generation biodiesel)",
       "properties": {
         "Cetane number": [56, "-"],
-        "Density at 15 C": [880, "kg/m3"],
-        "Viscosity at 40 C": [4.64, "mm2/s"],
-        "Flash point": [130, "C"],
+        "Density at 15 °C": [880, "kg/m3"],
+        "Viscosity at 40 °C": [4.64, "mm2/s"],
+        "Flash point": [130, "°C"],
         "LHV (Lower Heating Value)": [38.864, "MJ/kg"]
       }
     },
@@ -37,9 +37,9 @@
       "description": "Hydrotreated Vegetable Oil",
       "properties": {
         "Cetane number": [74.5, "-"],
-        "Density at 15 C": [764, "kg/m3"],
-        "Viscosity at 40 C": [2.88, "mm2/s"],
-        "Flash point": [66.3, "C"],
+        "Density at 15 °C": [764, "kg/m3"],
+        "Viscosity at 40 °C": [2.88, "mm2/s"],
+        "Flash point": [66.3, "°C"],
         "LHV (Lower Heating Value)": [43.7, "MJ/kg"]
       }
     },
@@ -48,9 +48,9 @@
       "description": "25 % HVO + 75 % Diesel Fuel",
       "properties": {
         "Cetane number": [59.2, "-"],
-        "Density at 15 C": [818.75, "kg/m3"],
-        "Viscosity at 40 C": [2.91, "mm2/s"],
-        "Flash point": [69.45, "C"],
+        "Density at 15 °C": [818.75, "kg/m3"],
+        "Viscosity at 40 °C": [2.91, "mm2/s"],
+        "Flash point": [69.45, "°C"],
         "LHV (Lower Heating Value)": [43.025, "MJ/kg"]
       }
     },
@@ -59,9 +59,9 @@
       "description": "Used Cooking Oil Methyl Esters (second-generation biodiesel)",
       "properties": {
         "Cetane number": [58, "-"],
-        "Density at 15 C": [869, "kg/m3"],
-        "Viscosity at 40 C": [4.2, "mm2/s"],
-        "Flash point": [125, "C"],
+        "Density at 15 °C": [869, "kg/m3"],
+        "Viscosity at 40 °C": [4.2, "mm2/s"],
+        "Flash point": [125, "°C"],
         "LHV (Lower Heating Value)": [39.347, "MJ/kg"]
       }
     }

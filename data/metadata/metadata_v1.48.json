@@ -2,9 +2,9 @@
     "Step 2. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2025-01-11 18:42:47.700601",
+        "step_2_start_time": "2025-01-13 13:11:57.211762",
         "step_2_status": "completed",
-        "step_2_end_time": "2025-01-11 18:42:47.808530"
+        "step_2_end_time": "2025-01-13 13:11:57.276640"
     },
     "2-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "1200 obc - 2015-05.parquet_shape": [
@@ -15,7 +15,7 @@
     "Step 3. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step": "3",
         "step_name": "Validate data",
-        "step_3_start_time": "2025-01-11 18:42:47.816398",
+        "step_3_start_time": "2025-01-13 13:11:57.278076",
         "validation_results": [
             {
                 "missing_required_columns": [],
@@ -24,7 +24,7 @@
             }
         ],
         "step_3_status": "completed",
-        "step_3_end_time": "2025-01-11 18:42:47.825354"
+        "step_3_end_time": "2025-01-13 13:11:57.282086"
     },
     "4-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "from class DataValidator. Files for validation:": [
@@ -34,14 +34,14 @@
     },
     "Step 4. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step_4_status": "completed",
-        "step_4_end_time": "2025-01-11 18:42:47.977354"
+        "step_4_end_time": "2025-01-13 13:11:57.373608"
     },
     "Step 5. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step": "5",
         "step_name": "Filter and preprocess data",
-        "step_5_start_time": "2025-01-11 18:42:47.983011",
+        "step_5_start_time": "2025-01-13 13:11:57.375311",
         "step_5_status": "completed",
-        "step_5_end_time": "2025-01-11 18:42:48.202429"
+        "step_5_end_time": "2025-01-13 13:11:57.645937"
     },
     "5-main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "filtered_data_shape after \"def filter_columns\":": [
@@ -176,26 +176,24 @@
                 "Zużycie paliwa średnie[g/s]",
                 "Temp. spalin mean[°C]",
                 "Cetane number",
-                "Density at 15 C, kg/m3",
-                "Viscosity at 40 C, mm2/s",
-                "Flash point, C",
+                "Density at 15 °C, kg/m3",
+                "Viscosity at 40 °C, mm2/s",
+                "Flash point, °C",
                 "LHV (Lower Heating Value), MJ/kg"
             ]
         }
     },
     "Step 8. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step_8_status": "completed",
-        "step_8_end_time": "2025-01-11 18:42:48.233222"
-    },
-    "Step 6. Item with ID:1. Files: main_file_name:1200 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step_8_end_time": "2025-01-13 13:11:57.690733",
         "pipeline_status": "completed"
     },
     "Step 2. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2025-01-11 18:42:48.250279",
+        "step_2_start_time": "2025-01-13 13:11:57.704134",
         "step_2_status": "completed",
-        "step_2_end_time": "2025-01-11 18:42:48.301544"
+        "step_2_end_time": "2025-01-13 13:11:57.750973"
     },
     "2-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "1300 obc - 2015-05.parquet_shape": [
@@ -206,7 +204,7 @@
     "Step 3. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step": "3",
         "step_name": "Validate data",
-        "step_3_start_time": "2025-01-11 18:42:48.308697",
+        "step_3_start_time": "2025-01-13 13:11:57.753664",
         "validation_results": [
             {
                 "missing_required_columns": [],
@@ -215,7 +213,7 @@
             }
         ],
         "step_3_status": "completed",
-        "step_3_end_time": "2025-01-11 18:42:48.322671"
+        "step_3_end_time": "2025-01-13 13:11:57.759729"
     },
     "4-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "from class DataValidator. Files for validation:": [
@@ -225,14 +223,14 @@
     },
     "Step 4. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step_4_status": "completed",
-        "step_4_end_time": "2025-01-11 18:42:48.489056"
+        "step_4_end_time": "2025-01-13 13:11:57.844354"
     },
     "Step 5. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step": "5",
         "step_name": "Filter and preprocess data",
-        "step_5_start_time": "2025-01-11 18:42:48.498319",
+        "step_5_start_time": "2025-01-13 13:11:57.847869",
         "step_5_status": "completed",
-        "step_5_end_time": "2025-01-11 18:42:48.742776"
+        "step_5_end_time": "2025-01-13 13:11:58.301633"
     },
     "5-main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "filtered_data_shape after \"def filter_columns\":": [
@@ -377,26 +375,24 @@
                 "Zużycie paliwa średnie[g/s]",
                 "Temp. spalin mean[°C]",
                 "Cetane number",
-                "Density at 15 C, kg/m3",
-                "Viscosity at 40 C, mm2/s",
-                "Flash point, C",
+                "Density at 15 °C, kg/m3",
+                "Viscosity at 40 °C, mm2/s",
+                "Flash point, °C",
                 "LHV (Lower Heating Value), MJ/kg"
             ]
         }
     },
     "Step 8. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
         "step_8_status": "completed",
-        "step_8_end_time": "2025-01-11 18:42:48.769260"
-    },
-    "Step 6. Item with ID:2. Files: main_file_name:1300 obc - 2015-05.parquet, eco_file_name:empty, Fuel:DF": {
+        "step_8_end_time": "2025-01-13 13:11:58.333524",
         "pipeline_status": "completed"
     },
     "Step 2. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "step": "2",
         "step_name": "Load raw data",
-        "step_2_start_time": "2025-01-11 18:42:48.793366",
+        "step_2_start_time": "2025-01-13 13:11:58.343054",
         "step_2_status": "completed",
-        "step_2_end_time": "2025-01-11 18:42:48.849738"
+        "step_2_end_time": "2025-01-13 13:11:58.406958"
     },
     "2-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "1400 Efecta TiL I rok II st - 2019-04.parquet_shape": [
@@ -407,7 +403,7 @@
     "Step 3. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "step": "3",
         "step_name": "Validate data",
-        "step_3_start_time": "2025-01-11 18:42:48.852688",
+        "step_3_start_time": "2025-01-13 13:11:58.609550",
         "validation_results": [
             {
                 "missing_required_columns": [],
@@ -416,7 +412,7 @@
             }
         ],
         "step_3_status": "completed",
-        "step_3_end_time": "2025-01-11 18:42:48.871095"
+        "step_3_end_time": "2025-01-13 13:11:58.627231"
     },
     "4-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "from class DataValidator. Files for validation:": [
@@ -426,14 +422,14 @@
     },
     "Step 4. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "step_4_status": "completed",
-        "step_4_end_time": "2025-01-11 18:42:49.045348"
+        "step_4_end_time": "2025-01-13 13:11:58.720365"
     },
     "Step 5. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "step": "5",
         "step_name": "Filter and preprocess data",
-        "step_5_start_time": "2025-01-11 18:42:49.054981",
+        "step_5_start_time": "2025-01-13 13:11:58.838627",
         "step_5_status": "completed",
-        "step_5_end_time": "2025-01-11 18:42:49.319869"
+        "step_5_end_time": "2025-01-13 13:11:59.824095"
     },
     "5-main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "filtered_data_shape after \"def filter_columns\":": [
@@ -573,18 +569,16 @@
                 "Zużycie paliwa średnie[g/s]",
                 "Temp. spalin mean[°C]",
                 "Cetane number",
-                "Density at 15 C, kg/m3",
-                "Viscosity at 40 C, mm2/s",
-                "Flash point, C",
+                "Density at 15 °C, kg/m3",
+                "Viscosity at 40 °C, mm2/s",
+                "Flash point, °C",
                 "LHV (Lower Heating Value), MJ/kg"
             ]
         }
     },
     "Step 8. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
         "step_8_status": "completed",
-        "step_8_end_time": "2025-01-11 18:42:49.353568"
-    },
-    "Step 6. Item with ID:4. Files: main_file_name:1400 Efecta TiL I rok II st - 2019-04.parquet, eco_file_name:empty, Fuel:EDF": {
+        "step_8_end_time": "2025-01-13 13:11:59.920473",
         "pipeline_status": "completed"
     }
 }
