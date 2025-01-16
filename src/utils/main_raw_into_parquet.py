@@ -22,7 +22,7 @@ def transform_csv_to_parquet():
                 csv_file_path = os.path.join(root, file)
                 # Detect encoding
                 encoding = detect_encoding(csv_file_path)
-                df = pd.read_csv(csv_file_path, delimiter=';', encoding=encoding)
+                df = pd.read_csv(csv_file_path, sep=None, engine='python', encoding=encoding)
 
                 # Log file name and DataFrame columns
                 #logging.info(f"Processing file: {csv_file_path}")
