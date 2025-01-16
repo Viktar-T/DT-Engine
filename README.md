@@ -1,7 +1,7 @@
 BUILD ENVIRONMENT
 0. use one of:
 environmentUbuntu.yml 
-environmentUbuntu.yml
+environmentWindows.yml
 1. install miniconda or conda:
 https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html
 'conda --version'
