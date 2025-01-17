@@ -173,6 +173,7 @@ class DataFilter:
             times = set(np.concatenate(stable_time_arrays))
             stable_time_sets.append(times)
 
+        
         # Find the intersection of all stable times
         intersected_times = set.intersection(*stable_time_sets)
 
@@ -184,7 +185,7 @@ class DataFilter:
         extracted_df = self.df[self.df['Time'].isin(intersected_times)].copy()
 
         if self.log_manager:
-            self.log_manager.log_info(f"Extracted {len(extracted_df)} rows of intersected stable data.")
+            self.log_manager.log_info(f"For ALL filters extracted {len(extracted_df)} rows of intersected stable data.")
 
         if self.metadata_manager:
             self.metadata_manager.update_metadata(
@@ -551,6 +552,15 @@ class DataFilter:
         
         # Filter the DataFrame to include only rows where temperature ≥ 50°C
         high_temp_df = self.df[self.df['Temp. oleju w misce[°C]'] >= 50].copy()
+        
+        # Check whether oil temperature sensor is working properly
+        if len(high_temp_df) == 0:
+            temperature_oil_time_array_unchanged = [self.df['Time'].values]
+            if self.log_manager:
+                self.log_manager.log_warning("No rows found where oil temperature was ≥ 50°C.")
+                self.log_manager.log_info("'def _filter_high_temperature_oil()' was not used. The DataFrame was not changed.")
+            return temperature_oil_time_array_unchanged        
+
         num_removed = len(self.df) - len(high_temp_df)
         if self.log_manager:
             self.log_manager.log_info(f"Removed {num_removed} rows where oil temperature was less than 50°C.")
@@ -583,5 +593,18 @@ class DataFilter:
         )
         cleaned_df = data_cleaner.clean()
         self.df = cleaned_df
+
+    def _del_rotation(self, rotation_level_to_delet: float, window: int = 5) -> None:
+        min_val = rotation_level_to_delet - window
+        max_val = rotation_level_to_delet + window
+        before_count = len(self.df)
+        self.df = self.df[
+            (self.df['Obroty[obr/min]'] < min_val) | (self.df['Obroty[obr/min]'] > max_val)
+        ]
+        after_count = len(self.df)
+        if self.log_manager:
+            self.log_manager.log_info(
+                f"Removed {before_count - after_count} rows with rotation in [{min_val}, {max_val}]."
+            )
 
 
