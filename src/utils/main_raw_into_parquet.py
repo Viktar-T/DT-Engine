@@ -1,4 +1,5 @@
 import os
+import csv
 import pandas as pd
 import logging
 import chardet
@@ -8,6 +9,15 @@ def detect_encoding(file_path):
     with open(file_path, 'rb') as f:
         result = chardet.detect(f.read(100000))  # Read first 100KB
         return result['encoding']
+
+# Function to determine the delimiter
+def detect_delimiter(file_path, sample_size=1024):
+    encoding = detect_encoding(file_path)
+    with open(file_path, 'r', encoding=encoding) as file:
+        sample = file.read(sample_size)  # Read a sample of the file
+        sniffer = csv.Sniffer()
+        delimiter = sniffer.sniff(sample).delimiter
+    return delimiter
 
 def transform_csv_to_parquet():
     source_dir = os.path.join(RAW_DATA_DIR, 'all_csv')
@@ -20,9 +30,16 @@ def transform_csv_to_parquet():
         for file in files:
             if file.endswith('.csv'):
                 csv_file_path = os.path.join(root, file)
+                
+                detected_delimiter = detect_delimiter(csv_file_path)
+                print(f"File: {file}. Detected delimiter: {detected_delimiter}")
+
                 # Detect encoding
                 encoding = detect_encoding(csv_file_path)
-                df = pd.read_csv(csv_file_path, sep=None, engine='python', encoding=encoding)
+                #df = pd.read_csv(csv_file_path, sep=None, engine='python', encoding=encoding)
+                #df = pd.read_csv(csv_file_path, sep='[;,]', engine='python', encoding=encoding)
+                df = pd.read_csv(csv_file_path, delimiter=';', encoding=encoding)
+                #df = pd.read_csv(csv_file_path, delimiter=detect_delimiter, encoding=encoding)
 
                 # Log file name and DataFrame columns
                 #logging.info(f"Processing file: {csv_file_path}")

@@ -24,6 +24,8 @@ chosen_fuels = [
     
 ]
 
+eliminate_diesel_test_type = ["NRTC", "NRTS"]
+
 class JSONBuilder:
     def __init__(self, data_dir, log_manager: LogManager = None):
         self.data_dir = data_dir
@@ -72,6 +74,9 @@ class JSONBuilder:
 
         pattern_test_type = re.compile(r"""
             (
+                zewnętrzna |            # Matches 'zewnętrzna'
+                zew |                   # Matches 'zewnętrzna'
+                ZEW |                   # Matches 'zewnętrzna'
                 NRTC |                 # Matches 'NRTC'
                 NRTS |                 # Matches 'NRTS'
                 TRiL |                 # Matches 'TRiL' charakterystyka obciążeniowa,
@@ -124,6 +129,8 @@ class JSONBuilder:
         if self.log_manager:
             self.log_manager.log_info("JSON data structure built successfully.")
 
+        return self.json_data
+
     def save_json(self, output_file_path):
         # Save the JSON structure to a file
         with open(output_file_path, 'w') as json_file:
@@ -131,28 +138,27 @@ class JSONBuilder:
         if self.log_manager:
             self.log_manager.log_info(f"JSON file created at {output_file_path}")
 
-def filter_chosen_fuels(json_file_path, output_file_path):
-    import json
-    fuel_map = {}
-    
-    # Build a dict where each fuel variant -> key
-    for group in chosen_fuels:
-        for key, fuels in group.items():
-            for f in fuels:
-                fuel_map[f.lower()] = key
+    def filter_eliminated_test_types(self):
+        self.json_data["Lublin Diesel"] = [
+            item for item in self.json_data["Lublin Diesel"]
+            if item["diesel_test_type"] not in eliminate_diesel_test_type
+        ]
 
-    with open(json_file_path, 'r') as f:
-        data = json.load(f)
+        return self.json_data
 
-    filtered = []
-    for item in data["Lublin Diesel"]:
-        if item["fuel"].lower() in fuel_map:
-            item["fuel"] = fuel_map[item["fuel"].lower()]
-            filtered.append(item)
+    def filter_chosen_fuels(self):
+        fuel_map = {}
+        for group in chosen_fuels:
+            for key, fuels in group.items():
+                for f in fuels:
+                    fuel_map[f.lower()] = key
 
-    data["Lublin Diesel"] = filtered
-    with open(output_file_path, 'w') as f:
-        json.dump(data, f, indent=4)
+        filtered = []
+        for item in self.json_data["Lublin Diesel"]:
+            if item["fuel"].lower() in fuel_map:
+                item["fuel"] = fuel_map[item["fuel"].lower()]
+                filtered.append(item)
+        self.json_data["Lublin Diesel"] = filtered
 
 if __name__ == "__main__":
     # Configure logging
@@ -174,10 +180,15 @@ if __name__ == "__main__":
     builder.build_json()
     
     # Define the output file path
-    output_file_path = os.path.join(dir_for_proc, 'files_with_raw_data_links.json')
+    output_file_path_for_all = os.path.join(dir_for_proc, 'files_with_raw_data_links.json')
     
-    # Save the JSON data to the file
-    builder.save_json(output_file_path)
+    # Save the JSON data to the file -- all files
+    builder.save_json(output_file_path_for_all)
 
-    # Filter chosen fuels and save to a new file
-    filter_chosen_fuels(output_file_path, os.path.join(dir_for_proc, 'only_chosen_fuels.json'))
+    # Filter the JSON data
+    builder.filter_eliminated_test_types()
+    builder.filter_chosen_fuels()
+
+    # Save the JSON data to the file -- only chosen fuels
+    output_file_path_for_chosen = os.path.join(dir_for_proc, 'only_chosen_fuels.json')
+    builder.save_json(output_file_path_for_chosen)
