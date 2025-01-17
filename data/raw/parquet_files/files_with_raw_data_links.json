@@ -136,7 +136,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1600",
-            "fuel": "ON",
+            "fuel": "diesel",
             "diesel_engine_name": "empty",
             "test_date": "2018-12"
         },
@@ -226,7 +226,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2000",
-            "fuel": "ON",
+            "fuel": "diesel",
             "diesel_engine_name": "empty",
             "test_date": "2018-12"
         },
@@ -296,7 +296,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2200",
-            "fuel": "ON",
+            "fuel": "diesel",
             "diesel_engine_name": "empty",
             "test_date": "2018-12"
         },
@@ -386,7 +386,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2400",
-            "fuel": "ON",
+            "fuel": "BUMA",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -396,7 +396,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1400 RPM",
-            "fuel": "AG2",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -406,7 +406,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1600 RPM",
-            "fuel": "AG2",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -416,7 +416,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1800 RPM",
-            "fuel": "AG2",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -426,7 +426,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2000 RPM",
-            "fuel": "AG2",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -436,7 +436,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2200 RPM",
-            "fuel": "AG2",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -446,7 +446,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2400 RPM",
-            "fuel": "AG2",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -456,7 +456,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1300 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -466,7 +466,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1400 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -476,7 +476,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1500 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -486,7 +486,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1600 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -496,7 +496,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1700 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -506,7 +506,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1800 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -516,7 +516,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1900 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -526,7 +526,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2000 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -536,7 +536,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2100 RPM",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -546,7 +546,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2200",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -556,7 +556,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2300",
-            "fuel": "ON",
+            "fuel": "BUMG",
             "diesel_engine_name": "empty",
             "test_date": "2024-09"
         },
@@ -826,7 +826,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1300 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -836,7 +836,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1400 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -846,7 +846,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1500 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -856,7 +856,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1600 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -866,7 +866,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1600 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -876,7 +876,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1700 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -886,7 +886,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1800 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -896,7 +896,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "1900 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -906,7 +906,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2000 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -916,7 +916,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2100 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -926,7 +926,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2200 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -936,7 +936,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2300 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -946,7 +946,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "2400 rpm",
-            "fuel": "ON",
+            "fuel": "ONE",
             "diesel_engine_name": "empty",
             "test_date": "2023-05"
         },
@@ -1136,7 +1136,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "IRiL",
-            "fuel": "ON",
+            "fuel": "diesel",
             "diesel_engine_name": "empty",
             "test_date": "2023-01"
         },
@@ -1146,7 +1146,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "IRiL",
-            "fuel": "ON",
+            "fuel": "diesel",
             "diesel_engine_name": "empty",
             "test_date": "2023-01"
         },
@@ -1796,7 +1796,7 @@
             "eco_file_name": "empty",
             "description": "empty",
             "diesel_test_type": "Zew",
-            "fuel": "ON",
+            "fuel": "diesel",
             "diesel_engine_name": "empty",
             "test_date": "2018-12"
         },

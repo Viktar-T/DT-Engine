@@ -1,0 +1,5 @@
+2025-01-17 13:11:41,192 - INFO - JSONBuilder initialized.
+2025-01-17 13:11:41,192 - INFO - Building JSON data structure...
+2025-01-17 13:11:41,214 - INFO - JSON data structure built successfully.
+2025-01-17 13:11:41,221 - INFO - JSON file created at C:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\files_with_raw_data_links.json
+2025-01-17 13:11:41,226 - INFO - JSON file created at C:\Users\vtaustyka\PycharmProjects\DT-Engine\data\raw\parquet_files\only_chosen_fuels.json

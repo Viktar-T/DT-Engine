@@ -20,11 +20,13 @@ chosen_fuels = [
     {"HVO25": ["HVO25", "25%HVO+75%DF"]},
     {"RME": ["RME", "Rapeseed Methyl Ester"]},
     {"EDF": ["Efecta", "Efekta", "Efekta Agrotronika", "Efecta Diesel Fuel"]},
-    {"UCOME": ["BIOW", "UCOME", "Used Cooking Oil Methyl Esters"]},
-    
+    {"UCOME": ["BIOW", "UCOME", "Used Cooking Oil Methyl Esters"]},    
 ]
 
 eliminate_diesel_test_type = ["NRTC", "NRTS"]
+
+#BUMG AG2 – mieszanina oleju napędowego z dodatkiem nanosrebra (2%) rozpuszczonego w wodzie"
+eliminate_fuels =["BUMA", "BUMG", "BUMA ON", "BUMG ON" "AG2"]
 
 class JSONBuilder:
     def __init__(self, data_dir, log_manager: LogManager = None):
@@ -51,6 +53,7 @@ class JSONBuilder:
 
         pattern_fuel = re.search(r"""
             (
+                BUMA | BUMG | BUMA ON | BUMG ON | AG2
                 ON |                # Matches 'ON'
                 B20 |               # Matches 'B20', rapeseed oil methyl esters 20% volume fraction
                 RME |               # Matches 'RME'
@@ -145,6 +148,14 @@ class JSONBuilder:
         ]
 
         return self.json_data
+    
+    def filter_eliminated_fuel_types(self):
+        self.json_data["Lublin Diesel"] = [
+            item for item in self.json_data["Lublin Diesel"]
+            if item["fuel"] not in eliminate_fuels
+        ]
+
+        return self.json_data
 
     def filter_chosen_fuels(self):
         fuel_map = {}
@@ -187,6 +198,7 @@ if __name__ == "__main__":
 
     # Filter the JSON data
     builder.filter_eliminated_test_types()
+    # builder.filter_eliminated_fuel_types()  # dont required
     builder.filter_chosen_fuels()
 
     # Save the JSON data to the file -- only chosen fuels
