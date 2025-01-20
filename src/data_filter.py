@@ -429,15 +429,21 @@ class DataFilter:
 
         return stable_time_arrays
     
-    def _identify_stable_fuel_consumption_average_or_current(self):
-
-        stable_time_arrays_average = self._identify_stable_fuel_consumption_average()
-        stable_time_arrays_current = self._identify_stable_fuel_consumption_current()
+    def _identify_stable_fuel_consumption_average_or_current(self, threshold: float = 0.1, window: str = '8000ms'):
+        """
+        Decide whether to use average or current stable fuel consumption based on the number of stable points.
+        """
+        average_stable = self._identify_stable_fuel_consumption_average(threshold, window)
+        current_stable = self._identify_stable_fuel_consumption_current(threshold, window)
         
-        if not stable_time_arrays:
-            stable_time_arrays = self._identify_stable_fuel_consumption_current()
+        # Decision logic: choose the method with more stable points
+        if len(average_stable) >= len(current_stable):
+            self.log_manager.log_info("!!-->Using Average stable fuel consumption levels.")
+            return average_stable
+        else:
+            self.log_manager.log_info("!!!-->Using Current stable fuel consumption levels.")
+        return current_stable
 
-        return stable_time_arrays
 
     def _identify_stable_fuel_consumption_average(self, threshold: float = 0.1, window: str = '8000ms') -> List[np.ndarray]:
         """
@@ -529,7 +535,8 @@ class DataFilter:
         for idx, time_array in enumerate(stable_time_arrays):
             extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
             fuel_mean_value = round(extracted_df['Zużycie paliwa średnie[g/s]'].mean(), 2)
-            fuel_mean_values.append(fuel_mean_value)
+            if fuel_mean_value != 0:
+                fuel_mean_values.append(fuel_mean_value)
             if self.log_manager:
                 self.log_manager.log_info(f"Group {idx}: Mean fuel consumption = {fuel_mean_value} g/s.")
     
@@ -637,7 +644,8 @@ class DataFilter:
         for idx, time_array in enumerate(stable_time_arrays):
             extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
             fuel_mean_value = round(extracted_df['Zużycie paliwa bieżące[g/s]'].mean(), 2)
-            fuel_mean_values.append(fuel_mean_value)
+            if fuel_mean_value != 0:
+                fuel_mean_values.append(fuel_mean_value)
             if self.log_manager:
                 self.log_manager.log_info(f"Group {idx}: Mean fuel consumption = {fuel_mean_value} g/s.")
 
