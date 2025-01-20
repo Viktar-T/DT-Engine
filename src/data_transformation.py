@@ -47,6 +47,7 @@ class DataTransformation:
         # List of required columns for the calculation
         required_columns = [
             'Zużycie paliwa średnie[g/s]',
+            'Zużycie paliwa bieżące[g/s]',
             'Obroty[obr/min]',
             'Ciś. pow. za turb.[Pa]',
             'Ciśnienie atmosferyczne[hPa]',

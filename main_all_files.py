@@ -42,7 +42,8 @@ required_columns_for_validation_step = [
     'Temp. spalin 3/6[°C]', 
     'Temp. spalin 4/6[°C]', 
     'Wilgotność względna[%]', 
-    'Zużycie paliwa średnie[g/s]'
+    'Zużycie paliwa średnie[g/s]',
+    'Zużycie paliwa bieżące[g/s]',
 ]
 
 required_columns_eco = ["OBR", "Mo", "CO", "HC", "LAMBDA", "CO2", "O2", "NO", "PM"]
