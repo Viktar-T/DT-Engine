@@ -14,24 +14,25 @@ if not parquet_files:
     print("No parquet files found in the specified directory.")
     exit()
 
-required_columns_for_validation_step = [
-  "Time",
-  "Ciś. pow. za turb.[Pa]",
-  "ECT - wyjście z sil.[°C]",
-  "MAF[kg/h]",
-  "Moc[kW]",
-  "Moment obrotowy[Nm]",
-  "Obroty[obr/min]",
-  "Temp. oleju w misce[°C]",
-  "Temp. pal. na wyjściu sil.[°C]",
-  "Temp. powietrza za turb.[°C]",
-  "Zużycie paliwa średnie[g/s]",
-  "Temp. spalin mean[°C]",
-  "Cetane number",
-  "Density at 15 Â°C, kg/m3",
-  "Viscosity at 40 Â°C, mm2/s",
-  "Flash point, Â°C",
-  "LHV (Lower Heating Value), MJ/kg"
+# Updated columns list according to the new names provided
+columns_in_dfs = [
+    "Time",
+    "Turbo Pressure",
+    "Coolant Temp",
+    "MAF",
+    "Power",
+    "Torque",
+    "RPM",
+    "Oil Temp",
+    "Fuel Temp",
+    "Turbo Air Temp",
+    "Fuel Consump",
+    "Exhaust Temp",
+    "Cetane number",
+    "Density-15",
+    "Viscosity-40",
+    "Flash pt",
+    "LHV"
 ]
 
 # Read each file into a DataFrame with specified columns and store in a list
@@ -40,10 +41,11 @@ for f in parquet_files:
     try:
         df = pd.read_parquet(
             f,
-            columns=required_columns_for_validation_step,
+            columns=columns_in_dfs,
             engine='fastparquet'
         )
         dfs.append(df)
+        print(df.shape)
     except KeyError:
         print(f"File {f} does not contain all required columns. Skipping.")
 
