@@ -156,9 +156,7 @@ class DataFilter:
         stable_functions = [
             self._identify_stable_rotation,
             self._identify_stable_torque_nm,
-            self._identify_stable_fuel_consumption_average_or_current,
-            #self._identify_stable_fuel_consumption_average,
-            #self._identify_stable_fuel_consumption_current,
+            self._identify_stable_fuel_consumption,
             self._filter_high_temperature_oil
             # Add more functions if needed
         ]
@@ -200,11 +198,51 @@ class DataFilter:
         self.df = extracted_df
 
         if self.log_manager:
-            self.log_manager.log_info("DataFrame cleaned successfully using DataCleaner.")
-
+            self.log_manager.log_info("DataFrame filtered successfully using DataFilter.")
+        
         # Return the cleaned DataFrame
         return self.df
 
+    def delete_fuel_column_avr_or_current(self):
+        """
+        Compares unique values in the fuel consumption columns and retains the more informative one.
+        
+        If "Zużycie paliwa średnie[g/s]" has the same or more unique values than 
+        "Zużycie paliwa bieżące[g/s]", drop "Zużycie paliwa bieżące[g/s]"; otherwise, drop "Zużycie paliwa średnie[g/s]".
+        Returns the modified DataFrame.
+        """
+        avg_col = "Zużycie paliwa średnie[g/s]"
+        current_col = "Zużycie paliwa bieżące[g/s]"
+        
+        if self.log_manager:
+            self.log_manager.log_info("Starting delete_fuel_column_avr_or_current function.")
+        
+        # Check if both fuel consumption columns exist
+        if avg_col not in self.df.columns or current_col not in self.df.columns:
+            if self.log_manager:
+                self.log_manager.log_warning("One or both fuel consumption columns are missing; no deletion performed.")
+            return self.df
+
+        # Compare unique values in both columns
+        avg_unique = self.df[avg_col].nunique()
+        current_unique = self.df[current_col].nunique()
+        
+        if self.log_manager:
+            self.log_manager.log_info(f"Unique values - {avg_col}: {avg_unique}, {current_col}: {current_unique}.")
+        
+        if avg_unique >= current_unique:
+            if self.log_manager:
+                self.log_manager.log_info(f"Dropping column '{current_col}' (less informative).")
+            self.df.drop(columns=[current_col], inplace=True)
+        else:
+            if self.log_manager:
+                self.log_manager.log_info(f"Dropping column '{avg_col}' (less informative).")
+            self.df.drop(columns=[avg_col], inplace=True)
+        
+        if self.log_manager:
+            self.log_manager.log_info("Completed delete_fuel_column_avr_or_current function.")
+        return self.df
+    
     def _identify_stable_rotation(self, threshold: int = 20, window: str = '8000ms') -> List[np.ndarray]:
         """
         Identifies stable rotation levels in 'Obroty[obr/min]'.
@@ -428,31 +466,15 @@ class DataFilter:
             )
 
         return stable_time_arrays
-    
-    def _identify_stable_fuel_consumption_average_or_current(self, threshold: float = 0.1, window: str = '8000ms'):
-        """
-        Decide whether to use average or current stable fuel consumption based on the number of stable points.
-        """
-        average_stable = self._identify_stable_fuel_consumption_average(threshold, window)
-        current_stable = self._identify_stable_fuel_consumption_current(threshold, window)
-        
-        # Decision logic: choose the method with more stable points
-        if len(average_stable) >= len(current_stable):
-            self.log_manager.log_info("!!-->Using Average stable fuel consumption levels.")
-            return average_stable
-        else:
-            self.log_manager.log_info("!!!-->Using Current stable fuel consumption levels.")
-        return current_stable
 
-
-    def _identify_stable_fuel_consumption_average(self, threshold: float = 0.1, window: str = '8000ms') -> List[np.ndarray]:
+    def _identify_stable_fuel_consumption(self, threshold: float = 0.1, window: str = '8000ms') -> List[np.ndarray]:
         """
         Identify stable fuel consumption levels in the column 'Zużycie paliwa średnie[g/s]'.
         A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
         Returns a list of time arrays (from the "Time" index) corresponding to each stable fuel consumption level.
         """
         if self.log_manager:
-            self.log_manager.log_info(f"Starting identify_stable_fuel_consumption_average (średnie) with threshold={threshold} and window='{window}'")
+            self.log_manager.log_info(f"Starting identify_stable_fuel_consumption with threshold={threshold} and window='{window}'")
         
         # Check if 'Zużycie paliwa średnie[g/s]' column exists
         if 'Zużycie paliwa średnie[g/s]' not in self.df.columns:
@@ -535,8 +557,7 @@ class DataFilter:
         for idx, time_array in enumerate(stable_time_arrays):
             extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
             fuel_mean_value = round(extracted_df['Zużycie paliwa średnie[g/s]'].mean(), 2)
-            if fuel_mean_value != 0:
-                fuel_mean_values.append(fuel_mean_value)
+            fuel_mean_values.append(fuel_mean_value)
             if self.log_manager:
                 self.log_manager.log_info(f"Group {idx}: Mean fuel consumption = {fuel_mean_value} g/s.")
     
@@ -554,115 +575,6 @@ class DataFilter:
     
         return stable_time_arrays
     
-    def _identify_stable_fuel_consumption_current(self, threshold: float = 0.1, window: str = '8000ms') -> List[np.ndarray]:
-        """
-        Identify stable fuel consumption levels in the column 'Zużycie paliwa bieżące[g/s]'.
-        A fuel consumption level is considered stable if its value changes by ≤ threshold over a specified window.
-        Returns a list of time arrays (from the "Time" index) corresponding to each stable fuel consumption level.
-        """
-        if self.log_manager:
-            self.log_manager.log_info(f"Starting identify_stable_fuel_consumption_current (bieżące) with threshold={threshold} and window='{window}'")
-
-        # Check if 'Zużycie paliwa średnie[g/s]' column exists
-        if 'Zużycie paliwa bieżące[g/s]' not in self.df.columns:
-            if self.log_manager:
-                self.log_manager.log_error("Column 'Zużycie paliwa bieżące[g/s]' not found in DataFrame.")
-            return []
-
-        df = self.df.copy()
-        if self.log_manager:
-            self.log_manager.log_info("DataFrame copied for processing.")
-
-        # Check if 'Time' column exists
-        if 'Time' not in df.columns:
-            if self.log_manager:
-                self.log_manager.log_error("Column 'Time' not found in DataFrame.")
-            return []
-
-        # Ensure 'Time' is in datetime format and set as index
-        if not pd.api.types.is_datetime64_any_dtype(df['Time']):
-            df['Time'] = pd.to_datetime(df['Time'], unit='ms')
-            if self.log_manager:
-                self.log_manager.log_info("Converted 'Time' column to datetime.")
-        else:
-            if self.log_manager:
-                self.log_manager.log_info("'Time' column is already in datetime format.")
-
-        df.set_index('Time', inplace=True)
-        if self.log_manager:
-            self.log_manager.log_info("'Time' column set as index.")
-
-        # Compute rolling max and min over the specified window
-        if self.log_manager:
-            self.log_manager.log_info("Computing rolling max and min of 'Zużycie paliwa bieżące[g/s]'.")
-        rolling_object = df['Zużycie paliwa bieżące[g/s]'].rolling(window, min_periods=1)
-        roll_max = rolling_object.max()
-        roll_min = rolling_object.min()
-        roll_diff = roll_max - roll_min
-        if self.log_manager:
-            # Log main parameters of the rolling object
-            self.log_manager.log_info("Rolling object parameters:")
-            self.log_manager.log_info(f" - window: {rolling_object.window}")
-            self.log_manager.log_info(f" - min_periods: {rolling_object.min_periods}")
-            self.log_manager.log_info(f" - center: {rolling_object.center}")
-            self.log_manager.log_info(f" - axis: {rolling_object.axis}")
-            self.log_manager.log_info(f" - method: {rolling_object.method}")
-            self.log_manager.log_info(f" - closed: {rolling_object.closed}")
-
-        # Identify stable fuel consumption where difference ≤ threshold
-        stable_mask = roll_diff <= threshold
-        if self.log_manager:
-            num_stable_points = stable_mask.sum()
-            self.log_manager.log_info(f"Identified {num_stable_points} points where fuel consumption difference ≤ threshold.")
-
-        # Label contiguous stable regions
-        df['Stable'] = stable_mask
-        df['Group'] = (df['Stable'] != df['Stable'].shift()).cumsum()
-        if self.log_manager:
-            num_groups = df['Group'].nunique()
-            self.log_manager.log_info(f"Labeled stable regions into {num_groups} groups.")
-
-        # Extract time arrays for each stable region
-        stable_time_arrays = []
-        for group_id, group in df[df['Stable']].groupby('Group'):
-            times = group.index.values
-            stable_time_arrays.append(times)
-            if self.log_manager:
-                self.log_manager.log_info(f"Group {group_id}: Found {len(times)} stable time points.")
-
-        # Clean up
-        df.drop(columns=['Stable', 'Group'], inplace=True)
-        if self.log_manager:
-            self.log_manager.log_info("Dropped temporary 'Stable' and 'Group' columns.")
-
-        # Logging
-        if self.log_manager:
-            self.log_manager.log_info(f"Identified {len(stable_time_arrays)} stable fuel consumption levels.")
-
-        # Calculate average fuel consumption values for each stable period
-        fuel_mean_values = []
-        for idx, time_array in enumerate(stable_time_arrays):
-            extracted_df = self.df[self.df['Time'].isin(time_array)].copy()
-            fuel_mean_value = round(extracted_df['Zużycie paliwa bieżące[g/s]'].mean(), 2)
-            if fuel_mean_value != 0:
-                fuel_mean_values.append(fuel_mean_value)
-            if self.log_manager:
-                self.log_manager.log_info(f"Group {idx}: Mean fuel consumption = {fuel_mean_value} g/s.")
-
-        if self.log_manager:
-            self.log_manager.log_info(f"Stable fuel consumption levels extracted. Average values: {fuel_mean_values}")
-
-        # Metadata management
-        if self.metadata_manager:
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Identified stable fuel consumption levels:', len(stable_time_arrays)
-            )
-            self.metadata_manager.update_metadata(
-                self.step_5_file_name, 'Stable fuel consumption levels extracted. Average values:', fuel_mean_values
-            )
-
-        return stable_time_arrays
-
     def _filter_high_temperature_oil(self) -> List[np.ndarray]:
         """
         Removes rows where 'Temp. oleju w misce[°C]' is less than 50.
@@ -734,5 +646,7 @@ class DataFilter:
             self.log_manager.log_info(
                 f"Removed {before_count - after_count} rows with rotation in [{min_val}, {max_val}]."
             )
+            self.log_manager.log_info("DataFrame cleaned successfully using DataCleaner.")
+
 
 

@@ -166,7 +166,8 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
 
         data_filter.filter_columns()
         data_filter.synchronize_time()
-        filtered_df = data_filter.filter_all_stable_periods()
+        data_filter.filter_all_stable_periods()
+        filtered_df = data_filter.delete_fuel_column_avr_or_current()
 
         validator.get_metadata([filtered_df], message_for_logs="DataFrame after filtering:")
         metadata_manager.update_metadata(step_5_file_name, 'step_5_status', 'completed')
@@ -205,10 +206,17 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         metadata_manager.update_metadata(step_8_file_name, 'step_8_end_time', str(datetime.now()))
         log_manager.log_info("Step 8: Fuel data added successfully.")
 
+        #Step 9: Rename_polish_columns_to_english
+        df_with_en_column_names = add_fuel_obj.rename_polish_columns_to_english(use_full_en_column_name = False)
+        validator.get_metadata([df_with_en_column_names], message_for_logs="Column's list after Rename_polish_columns_to_english:")
+        metadata_manager.update_metadata(step_8_file_name, 'step_9_status', 'completed')
+        metadata_manager.update_metadata(step_8_file_name, 'step_9_end_time', str(datetime.now()))
+        log_manager.log_info("Step 9: Rename_polish_columns_to_english was successfully.")
+
         # Save transformed data
         #transformed_data_parquet_path = os.path.join(PROCESSED_DATA_SEPARATE_FILES_DIR, f'transformed_data_{main_file_name}.parquet')
         transformed_data_parquet_path = os.path.join(PROCESSED_DATA_WITH_FUELS_FILE_DIR, f'{main_file_name}_tr_f.parquet')
-        df_with_fuel.to_parquet(transformed_data_parquet_path, index=False)
+        df_with_en_column_names.to_parquet(transformed_data_parquet_path, index=False)
 
         # Pipeline completed for this file
         log_manager.log_info(f"!!--Data pipeline completed successfully for file with"

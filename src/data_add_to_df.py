@@ -6,6 +6,26 @@ from src.log_manager import LogManager
 from src.metadata_manager import MetadataManager
 from src.config import FUELS_DATA_DIR
 
+column_names_from_pl_to_en_full = {
+    'Ciś. pow. za turb.[Pa]': ['Air Pressure After Turbo [Pa]', 'Turbo Pressure'],
+    'ECT - wyjście z sil.[°C]': ['Engine Coolant Temperature at Engine Outlet [°C]', 'Coolant Temp'],
+    'MAF[kg/h]': ['Mass Air Flow [kg/h]', 'MAF'],
+    'Moc[kW]': ['Engine Power [kW]', 'Power'],
+    'Moment obrotowy[Nm]': ['Engine Torque [Nm]', 'Torque'],
+    'Obroty[obr/min]': ['Engine Speed [rpm]', 'RPM'],
+    'Temp. oleju w misce[°C]': ['Oil Temperature in Sump [°C]', 'Oil Temp'],
+    'Temp. pal. na wyjściu sil.[°C]': ['Fuel Temperature at Engine Outlet [°C]', 'Fuel Temp'],
+    'Temp. powietrza za turb.[°C]': ['Air Temperature After Turbo [°C]', 'Turbo Air Temp'],
+    'Temp. spalin mean[°C]': ['Exhaust Gas Temperature 1/6 [°C]', 'Exhaust Temp 1'],
+    'Zużycie paliwa średnie[g/s]': ['Average Fuel Consumption [g/s]', 'Fuel Consump'],
+    'Zużycie paliwa bieżące[g/s]': ['Instantaneous Fuel Consumption [g/s]', 'Fuel Consump'],
+    "Cetane number": ['Cetane Number', 'Cetane'],
+    "Density at 15 °C": ['Density at 15 °C', 'Density-15'],
+    "Viscosity at 40 °C": ['Viscosity at 40 °C', 'Viscosity-40'],
+    "Flash point": ['Flash Point', 'Flash pt'],
+    "LHV (Lower Heating Value)": ['LHV (Lower Heating Value)', 'LHV']
+}
+
 class AddAdditionalDataToEachFile:
     def __init__(
         self, 
@@ -70,9 +90,31 @@ class AddAdditionalDataToEachFile:
             )
         self.step_8_file_name = self._construct_file_name()
         self._update_metadata()
-        self._log_dataframe_details()
+        self._log_dataframe_details(name_of_the_function='add_fuel process completed successfully.')
 
         # Return the updated DataFrame
+        return self.df
+    
+    def rename_polish_columns_to_english(self, use_full_en_column_name: bool = False) -> pd.DataFrame:
+        """
+        Renames the DataFrame's columns from Polish to English using the global dictionary.
+
+        Args:
+            use_full (bool): If True, use the full descriptive names; if False, use the simplified names.
+
+        Returns:
+            pd.DataFrame: DataFrame with updated column names.
+        """
+        mapping = {
+            k: (v[0] if use_full_en_column_name else v[1])
+            for k, v in column_names_from_pl_to_en_full.items()
+            if k in self.df.columns
+        }
+        self.df = self.df.rename(columns=mapping)
+
+        naming = "full" if use_full_en_column_name else "simplified"
+        message = f"Columns renamed from Polish to English using {naming} naming."
+        self._log_dataframe_details(name_of_the_function=message)
         return self.df
 
 
@@ -106,13 +148,15 @@ class AddAdditionalDataToEachFile:
                 metadata_info,
             )
 
-    def _log_dataframe_details(self):
+    def _log_dataframe_details(self, name_of_the_function: str = "was forgotten") -> None:
         """
         Logs details of the DataFrame after processing.
         """
         if self.log_manager:
             self.log_manager.log_info(f"DataFrame shape after processing: {self.df.shape}")
             self.log_manager.log_info(f"Columns in DataFrame: {list(self.df.columns)}")
-            self.log_manager.log_info("add_fuel process completed successfully.")
+            self.log_manager.log_info(name_of_the_function)
+
+    
 
 
