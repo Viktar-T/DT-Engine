@@ -234,15 +234,24 @@ class DataFilter:
             if self.log_manager:
                 self.log_manager.log_info(f"Dropping column '{current_col}' (less informative).")
             self.df.drop(columns=[current_col], inplace=True)
+            
         else:
             if self.log_manager:
                 self.log_manager.log_info(f"Dropping column '{avg_col}' (less informative).")
             self.df.drop(columns=[avg_col], inplace=True)
-        
+            self._rename_fuel_column(fuel_col_name=current_col)
         if self.log_manager:
             self.log_manager.log_info("Completed delete_fuel_column_avr_or_current function.")
         return self.df
     
+    def _rename_fuel_column(self, fuel_col_name: str) -> None:
+        """
+        Renames the retained fuel consumption column to "Zużycie paliwa średnie[g/s]".
+        """
+        if self.log_manager:
+            self.log_manager.log_info(f"Renaming column '{fuel_col_name}' to 'Zużycie paliwa średnie[g/s]'.")
+        self.df.rename(columns={fuel_col_name: "Zużycie paliwa średnie[g/s]"}, inplace=True)
+
     def _identify_stable_rotation(self, threshold: int = 20, window: str = '8000ms') -> List[np.ndarray]:
         """
         Identifies stable rotation levels in 'Obroty[obr/min]'.

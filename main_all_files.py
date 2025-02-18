@@ -133,6 +133,7 @@ def process_file(item: dict, metadata_manager: MetadataManager, log_manager: Log
         ]
         validator.validate_schema(expected_schemas)
         validator.check_for_duplicate_columns()
+        
         reports = validator.generate_report()
         for report in reports:
             log_manager.log_info(report)

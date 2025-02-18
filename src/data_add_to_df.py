@@ -1,4 +1,5 @@
 import json
+import unicodedata
 import numpy as np
 import pandas as pd
 from typing import List, Optional
@@ -16,14 +17,13 @@ column_names_from_pl_to_en_full = {
     'Temp. oleju w misce[°C]': ['Oil Temperature in Sump [°C]', 'Oil Temp'],
     'Temp. pal. na wyjściu sil.[°C]': ['Fuel Temperature at Engine Outlet [°C]', 'Fuel Temp'],
     'Temp. powietrza za turb.[°C]': ['Air Temperature After Turbo [°C]', 'Turbo Air Temp'],
-    'Temp. spalin mean[°C]': ['Exhaust Gas Temperature 1/6 [°C]', 'Exhaust Temp 1'],
+    'Temp. spalin mean[°C]': ['Exhaust Gas Temperature 1/6 [°C]', 'Exhaust Temp'],
     'Zużycie paliwa średnie[g/s]': ['Average Fuel Consumption [g/s]', 'Fuel Consump'],
-    'Zużycie paliwa bieżące[g/s]': ['Instantaneous Fuel Consumption [g/s]', 'Fuel Consump'],
-    "Cetane number": ['Cetane Number', 'Cetane'],
-    "Density at 15 °C": ['Density at 15 °C', 'Density-15'],
-    "Viscosity at 40 °C": ['Viscosity at 40 °C', 'Viscosity-40'],
-    "Flash point": ['Flash Point', 'Flash pt'],
-    "LHV (Lower Heating Value)": ['LHV (Lower Heating Value)', 'LHV']
+    "Cetane number": ['Cetane Number', 'Cetane number'],
+    "Density at 15 °C, kg/m3": ['Density at 15 °C', 'Density-15'],
+    "Viscosity at 40 °C, mm2/s": ['Viscosity at 40 °C', 'Viscosity-40'],
+    "Flash point, °C": ['Flash Point', 'Flash pt'],
+    "LHV (Lower Heating Value), MJ/kg": ['LHV (Lower Heating Value)', 'LHV']
 }
 
 class AddAdditionalDataToEachFile:
@@ -95,23 +95,33 @@ class AddAdditionalDataToEachFile:
         # Return the updated DataFrame
         return self.df
     
+    def _normalize_str(self, s: str) -> str:
+        s = s.replace("Â", "")
+        return unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII').strip()
+
     def rename_polish_columns_to_english(self, use_full_en_column_name: bool = False) -> pd.DataFrame:
         """
         Renames the DataFrame's columns from Polish to English using the global dictionary.
-
         Args:
-            use_full (bool): If True, use the full descriptive names; if False, use the simplified names.
-
+            use_full_en_column_name (bool): If True, use the full descriptive names; if False, use the simplified names.
         Returns:
             pd.DataFrame: DataFrame with updated column names.
         """
-        mapping = {
-            k: (v[0] if use_full_en_column_name else v[1])
+        # Create a normalized mapping dictionary
+        normalized_mapping = {
+            self._normalize_str(k): (v[0] if use_full_en_column_name else v[1])
             for k, v in column_names_from_pl_to_en_full.items()
-            if k in self.df.columns
         }
+        
+        # Build a new mapping by normalizing the DataFrame's columns as well
+        mapping = {}
+        for col in self.df.columns:
+            norm_col = self._normalize_str(col)
+            if norm_col in normalized_mapping:
+                mapping[col] = normalized_mapping[norm_col]
+        
         self.df = self.df.rename(columns=mapping)
-
+        
         naming = "full" if use_full_en_column_name else "simplified"
         message = f"Columns renamed from Polish to English using {naming} naming."
         self._log_dataframe_details(name_of_the_function=message)

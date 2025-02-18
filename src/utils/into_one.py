@@ -26,7 +26,6 @@ required_columns_for_validation_step = [
   "Temp. pal. na wyjściu sil.[°C]",
   "Temp. powietrza za turb.[°C]",
   "Zużycie paliwa średnie[g/s]",
-  "Zużycie paliwa bieżące[g/s]",
   "Temp. spalin mean[°C]",
   "Cetane number",
   "Density at 15 Â°C, kg/m3",
